@@ -23,6 +23,7 @@
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     linear-gradient(90deg, rgba(25, 27, 31, 0.045) 1px, transparent 1px),
     linear-gradient(180deg, rgba(25, 27, 31, 0.04) 1px, transparent 1px),
@@ -58,6 +59,20 @@ button {
   grid-template-columns: minmax(0, 1fr) 360px;
   gap: 32px;
   align-items: center;
+  min-width: 0;
+}
+
+.intro-copy,
+.preview-panel,
+.tester,
+.side-panel,
+.question-panel,
+.results,
+.result-hero,
+.analysis-layout,
+.breakdown,
+.metric-grid article {
+  min-width: 0;
 }
 
 .intro-copy h1 {
@@ -345,6 +360,7 @@ button {
   font-size: clamp(28px, 4vw, 46px);
   line-height: 1.18;
   letter-spacing: 0;
+  overflow-wrap: anywhere;
 }
 
 .options {
@@ -397,6 +413,7 @@ button {
 .option-text {
   font-size: 18px;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .nav-row {
@@ -584,6 +601,8 @@ button {
 
   .intro {
     align-content: center;
+    min-height: auto;
+    padding: 28px 0;
   }
 
   .side-panel {
@@ -601,16 +620,27 @@ button {
   .question-panel {
     min-height: auto;
   }
+
+  .preview-panel {
+    max-width: 520px;
+  }
 }
 
 @media (max-width: 540px) {
   .app-shell {
-    width: min(100% - 20px, 1160px);
-    padding: 16px 0;
+    width: min(100% - 18px, 1160px);
+    padding: 10px 0 18px;
   }
 
   .intro-copy h1 {
-    font-size: 48px;
+    margin-bottom: 14px;
+    font-size: 46px;
+    line-height: 1;
+  }
+
+  .eyebrow,
+  .chapter-kicker {
+    font-size: 12px;
   }
 
   .lede,
@@ -618,17 +648,55 @@ button {
     font-size: 16px;
   }
 
+  .lede {
+    line-height: 1.5;
+  }
+
+  .intro-actions {
+    margin-top: 24px;
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .preview-panel {
+    padding: 16px;
+    gap: 12px;
+  }
+
   .preview-ring {
-    min-height: 170px;
+    min-height: 118px;
   }
 
   .preview-ring span,
   .hero-score span {
-    font-size: 56px;
+    font-size: 48px;
+  }
+
+  .preview-list {
+    gap: 0;
   }
 
   .chapter-list {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: 8px;
+    margin: 16px -2px 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 2px 4px;
+    scrollbar-width: none;
+  }
+
+  .chapter-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chapter-item {
+    min-width: 138px;
   }
 
   .question-panel,
@@ -638,8 +706,78 @@ button {
     padding: 18px;
   }
 
+  .tester {
+    gap: 12px;
+  }
+
+  .question-panel h2 {
+    margin: 18px 0;
+    font-size: 28px;
+  }
+
+  .chapter-banner {
+    padding: 12px;
+  }
+
+  .option {
+    min-height: 70px;
+    grid-template-columns: 36px minmax(0, 1fr);
+    padding: 14px;
+  }
+
+  .option-letter {
+    width: 30px;
+    height: 30px;
+  }
+
+  .result-hero {
+    gap: 18px;
+  }
+
+  .result-hero p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .result-hero .result-type {
+    font-size: 19px;
+  }
+
+  .result-hero .heart-line {
+    font-size: 17px;
+  }
+
+  .hero-score {
+    width: 100%;
+    aspect-ratio: auto;
+    min-height: 132px;
+  }
+
+  .metric-grid strong {
+    font-size: 30px;
+  }
+
+  .metric-grid .share-line {
+    font-size: 19px;
+  }
+
   .bar-row {
     grid-template-columns: 1fr;
     gap: 7px;
+  }
+}
+
+@media (max-width: 380px) {
+  .intro-copy h1 {
+    font-size: 40px;
+  }
+
+  .question-panel h2 {
+    font-size: 26px;
+  }
+
+  .preview-list div {
+    display: grid;
+    gap: 4px;
   }
 }
