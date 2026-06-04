@@ -163,7 +163,8 @@ button {
 .metric-grid article,
 .side-panel,
 .question-panel,
-.breakdown {
+.breakdown,
+.explain-section {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 253, 248, 0.92);
@@ -250,7 +251,8 @@ button {
 
 .side-panel,
 .question-panel,
-.breakdown {
+.breakdown,
+.explain-section {
   padding: 22px;
 }
 
@@ -585,6 +587,97 @@ button {
   line-height: 1.65;
 }
 
+.explain-section {
+  display: grid;
+  gap: 18px;
+}
+
+.section-heading {
+  display: grid;
+  gap: 8px;
+  max-width: 860px;
+}
+
+.section-heading h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.explain-grid,
+.dimension-card-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.explain-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dimension-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.explain-grid article,
+.dimension-card-grid article {
+  border: 1px solid #e2ddd3;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.explain-grid article {
+  padding: 18px;
+}
+
+.dimension-card-grid article {
+  padding: 15px 16px;
+}
+
+.explain-grid span,
+.dimension-card-grid strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.explain-grid p,
+.dimension-card-grid p,
+.logic-list p {
+  margin: 0;
+  color: #4b5258;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.logic-section {
+  background:
+    linear-gradient(135deg, rgba(31, 114, 92, 0.08), transparent 44%),
+    rgba(255, 253, 248, 0.94);
+}
+
+.logic-list {
+  display: grid;
+  gap: 10px;
+}
+
+.logic-list p {
+  padding: 12px 14px;
+  border-left: 4px solid var(--blue);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.logic-list strong {
+  color: var(--ink);
+}
+
 .result-actions {
   justify-content: center;
   padding: 8px 0 22px;
@@ -595,7 +688,9 @@ button {
   .tester,
   .analysis-layout,
   .result-hero,
-  .metric-grid {
+  .metric-grid,
+  .explain-grid,
+  .dimension-card-grid {
     grid-template-columns: 1fr;
   }
 
@@ -702,6 +797,7 @@ button {
   .question-panel,
   .side-panel,
   .breakdown,
+  .explain-section,
   .result-hero {
     padding: 18px;
   }
@@ -759,6 +855,15 @@ button {
 
   .metric-grid .share-line {
     font-size: 19px;
+  }
+
+  .section-heading h3 {
+    font-size: 21px;
+  }
+
+  .explain-grid article,
+  .dimension-card-grid article {
+    padding: 14px;
   }
 
   .bar-row {
