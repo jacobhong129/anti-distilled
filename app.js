@@ -1,2482 +1,203 @@
 const dims = ["context", "boundary", "generative", "taste", "stance", "groundedness"];
 const auxFields = ["skillable", "expressive", "noise"];
+
 const dimLabels = {
-  context: "读空气",
-  boundary: "识边界",
-  generative: "会生成",
-  taste: "有品味",
-  stance: "有立场",
-  groundedness: "有来处",
+  context: "情境辨识",
+  boundary: "边界校准",
+  generative: "生成重构",
+  taste: "审美判别",
+  stance: "价值定向",
+  groundedness: "经验内化",
 };
 
 const dimDescriptions = {
-  context: "看见任务说明之外的东西",
-  boundary: "知道模板什么时候会失效",
-  generative: "长出新想法，而不只是选答案",
-  taste: "判断什么更好，而不只是更标准",
-  stance: "有目标函数之外的取舍",
-  groundedness: "判断从真实经历里长出来",
+  context: "看见任务说明之外的局",
+  boundary: "知道方法什么时候会失效",
+  generative: "不只选答案，还能改写问题",
+  taste: "判断“对”之外的“好”",
+  stance: "不把所有判断交给目标函数",
+  groundedness: "让经历长成可用的直觉",
 };
 
 const dimHighCopy = {
-  context: "你能看见话外之音。别人看到任务，你看到关系、时机和没说出口的风险。",
-  boundary: "你不迷信模板，也不为了显得独特而反模板。你知道方法什么时候有用，也知道什么时候该停。",
-  generative: "你不只是会选答案，你会长出新角度。你的想法不是模板拼贴，而是带着个人判断。",
-  taste: "你能识别“正确但没灵魂”的东西。你不是只看流畅和专业，而是在看取舍、分寸和气质。",
-  stance: "你不是只有目标函数。你知道有些东西不能为了效率轻易牺牲，也能说出冲突在哪里。",
-  groundedness: "你的判断不是信息堆出来的，而是从真实经历里长出来的。",
+  context: "你能看见任务说明之外的关系、时机和隐含约束。别人看到待办，你看到局面。",
+  boundary: "你不迷信模板，也不为了显得独特而反模板。你知道方法何时可用，何时该停。",
+  generative: "你不只在给定选项里挑答案，也会把空泛需求改成具体方向，把旧问题改成新问法。",
+  taste: "你能识别正确但空心、专业但没取舍的东西。你的判断里有分寸，也有审美上的负责。",
+  stance: "你能识别目标背后的价值冲突，并把取舍说成别人能理解、能协商的话。",
+  groundedness: "你的判断不是观点堆叠，而是从真实经历里沉淀出来，并能迁移到新情境里。",
 };
 
 const dimLowCopy = {
-  context: "你很容易相信任务的字面意思。下一步可以练习问一句：这件事真正影响谁？",
+  context: "你比较容易相信任务的字面意思。下一步可以练习问一句：这件事真正影响谁？",
   boundary: "你对流程比较友好，但容易被流程带着走。真正的经验，常常藏在“不适用”的地方。",
-  generative: "你更擅长在已有选项里做选择。想提高含活人量，可以试着先改写问题，再寻找答案。",
-  taste: "你容易把规范、完整、流畅当成好。下一步可以练习问：它准确吗？有判断吗？",
-  stance: "你很会完成目标，但有时会太快接受目标本身。人最难被复制的部分，往往从“我不这样做”开始。",
-  groundedness: "你的观点还缺少来处。多经历不是重点，重点是让经历沉淀成下一次选择的理由。",
+  generative: "你更擅长在现有选项中做选择。想提高含活人量，可以试着先改写问题，再寻找答案。",
+  taste: "你容易把规范、完整、流畅当成好。下一步可以练习问：它有取舍吗？有人负责判断吗？",
+  stance: "你很会完成目标，但有时会太快接受目标本身。人最难被复制的部分，常从“我不这样做”开始。",
+  groundedness: "你的观点还缺少来处。多经历不是重点，重点是让经历变成下一次选择的理由。",
 };
 
 const chapters = [
-  "开始蒸馏",
-  "读懂空气",
-  "模板失灵",
-  "品味残留",
-  "生成活人",
-  "蒸不出来"
+  {
+    name: "可 Skill 化",
+    subtitle:
+      "先从最危险的地方开始：你的工作方式能不能被写进说明书。能写清楚不是坏事，真正要测的是写完以后还剩多少判断带不走。",
+  },
+  {
+    name: "情境辨识",
+    subtitle:
+      "这一部分测“读空气”，但不是测脑补。真正的情境辨识，是看见任务之外的关系、时机、风险，并变成下一步行动。",
+  },
+  {
+    name: "边界校准",
+    subtitle:
+      "模板、流程、最佳实践都很有用，直到它们开始假装自己永远正确。这里测你知不知道方法什么时候该用、什么时候该停。",
+  },
+  {
+    name: "审美判别",
+    subtitle:
+      "这里的审美不是高级感滤镜。它测的是当一个东西很流畅、很专业、很像样时，你还能不能判断它有没有取舍和灵魂。",
+  },
+  {
+    name: "生成重构",
+    subtitle:
+      "真正难蒸的生成能力，是把空泛需求改成具体方向，把旧问题改成新问法，把经历变成别人没想到的方案。",
+  },
+  {
+    name: "价值与经验",
+    subtitle:
+      "最后测那些最不容易写进提示词的东西：你在乎什么、经历过什么，以及你愿不愿意为判断负责。",
+  },
 ];
-const chapterSubtitles = [
-  "正在读取你的工作流、话术和那些你以为别人看不出来的小动作。",
-  "任务说明之外，通常还有一整屋子的空气。",
-  "最佳实践很好，直到它开始假装自己永远正确。",
-  "有些东西不是不专业，只是太像正确答案。",
-  "现在检测你是不是只会选答案，还是能长出新东西。",
-  "最后检测：哪些判断不该被外包给工具。",
-];
-const progressHints = ["工作流", "空气感", "模板边界", "品味残留", "生成能力", "价值和来处"];
-const questions = [
-  {
-    "id": 1,
-    "chapter": 0,
-    "title": "有人想把你做成“同事 Skill”，你第一反应是？",
-    "options": [
-      {
-        "id": "A",
-        "text": "挺好，顺便帮我整理一下工作流",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "可以，但它大概学不全我的判断",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "先说清楚：资料从哪来，谁授权？",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 3,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "我也说不清我怎么做事，但有些东西不能拿走",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "chapter": 0,
-    "title": "如果 AI 学你工作，最容易学错什么？",
-    "options": [
-      {
-        "id": "A",
-        "text": "我的格式和话术",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "我怎么排优先级",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "我什么时候不按流程走",
-        "score": {
-          "context": 1,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "我觉得“哪里不对劲”的那一下",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "chapter": 0,
-    "title": "你写工作文档时，更像哪种？",
-    "options": [
-      {
-        "id": "A",
-        "text": "写成别人照做就行",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "写步骤，也写什么时候不能照做",
-        "score": {
-          "context": 0,
-          "boundary": 3,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 1,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "写到关键处，会标一句“这里要看情况”",
-        "score": {
-          "context": 1,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "很少写，很多东西只有我在场才知道",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 2
-        }
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "chapter": 0,
-    "title": "同事问“这事有标准流程吗”，你会怎么回？",
-    "options": [
-      {
-        "id": "A",
-        "text": "有，我发你",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "有，但先看这次像不像",
-        "score": {
-          "context": 1,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "有，不过先确认哪里不能照抄",
-        "score": {
-          "context": 1,
-          "boundary": 3,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "如果流程就够了，也不用来问我",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "chapter": 0,
-    "title": "如果你是一条知识库内容，你更像：",
-    "options": [
-      {
-        "id": "A",
-        "text": "可复用 SOP",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "带注意事项的操作指南",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 1,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "常见例外和判断依据",
-        "score": {
-          "context": 1,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 2,
-          "skillable": 1,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "此处需要活人判断",
-        "score": {
-          "context": 1,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "chapter": 0,
-    "title": "如果 AI 替你上班一天，最可能出什么问题？",
-    "options": [
-      {
-        "id": "A",
-        "text": "问题不大，交付还挺稳",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "能做大半，但优先级会错",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "事情做对了，方向却偏了",
-        "score": {
-          "context": 1,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 2,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "它不知道什么时候该停",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 2,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "chapter": 1,
-    "title": "会上一个方案看着没毛病，但你觉得不对。你会：",
-    "options": [
-      {
-        "id": "A",
-        "text": "先看数据",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "问它在哪些条件下不成立",
-        "score": {
-          "context": 1,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "把“不对劲”变成一个可验证的风险",
-        "score": {
-          "context": 2,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "看看谁没说话，为什么没说",
-        "score": {
-          "context": 3,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "chapter": 1,
-    "title": "别人发来“你方便再看看吗”，你会理解成：",
-    "options": [
-      {
-        "id": "A",
-        "text": "他就是让我看看",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "可能有问题，但不好直说",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "八成是想让我兜底",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 2
-        }
-      },
-      {
-        "id": "D",
-        "text": "先看关系、时间点和上下文",
-        "score": {
-          "context": 3,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "chapter": 1,
-    "title": "新人照文档做错了，你第一反应是：",
-    "options": [
-      {
-        "id": "A",
-        "text": "文档可能没写清",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "他可能没懂前提",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "这事可能不能只靠文档",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      },
-      {
-        "id": "D",
-        "text": "我想知道他为什么会那样理解",
-        "score": {
-          "context": 3,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 10,
-    "chapter": 1,
-    "title": "大家都说“先快速推进”，你会：",
-    "options": [
-      {
-        "id": "A",
-        "text": "可以，先往前走",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "先问快的代价是什么",
-        "score": {
-          "context": 1,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "找出没人愿意说的风险",
-        "score": {
-          "context": 2,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "判断这是不是在集体逃避",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 2,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 11,
-    "chapter": 1,
-    "title": "你判断一个人靠谱不靠谱，最看重：",
-    "options": [
-      {
-        "id": "A",
-        "text": "交付稳不稳",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "关键时刻能不能兜住",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "怎么处理模糊、冲突和坏消息",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "没人要求时会不会多想一步",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 12,
-    "chapter": 1,
-    "title": "别人说“都可以，你决定吧”，你通常会：",
-    "options": [
-      {
-        "id": "A",
-        "text": "直接选一个效率最高的",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "先确认他是不是真的无所谓",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "问清楚他最怕哪种结果",
-        "score": {
-          "context": 3,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "看这句话背后是不是在回避责任",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 13,
-    "chapter": 2,
-    "title": "面对一个很模糊的任务，你第一步是：",
-    "options": [
-      {
-        "id": "A",
-        "text": "拆任务，列步骤",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "确认目标、限制和成功标准",
-        "score": {
-          "context": 1,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "找真正拍板的人和隐含期待",
-        "score": {
-          "context": 3,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "先判断这个任务是不是问错了",
-        "score": {
-          "context": 1,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 14,
-    "chapter": 2,
-    "title": "模板答案和你的直觉冲突时，你会：",
-    "options": [
-      {
-        "id": "A",
-        "text": "先信模板",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "检查直觉有没有依据",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "做个小验证，看谁更接近现实",
-        "score": {
-          "context": 0,
-          "boundary": 3,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "先问这个模板是为谁设计的",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 15,
-    "chapter": 2,
-    "title": "你最信任哪种“最佳实践”？",
-    "options": [
-      {
-        "id": "A",
-        "text": "被很多人验证过的",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "写清楚适用条件的",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "能被小范围试错的",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "让我知道什么时候别用它的",
-        "score": {
-          "context": 0,
-          "boundary": 3,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 16,
-    "chapter": 2,
-    "title": "一个流程执行得很顺，但结果不太好，你会先怀疑：",
-    "options": [
-      {
-        "id": "A",
-        "text": "执行不到位",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "指标选错了",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "流程假设过期了",
-        "score": {
-          "context": 0,
-          "boundary": 3,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "一开始就把问题定义窄了",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 2,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 17,
-    "chapter": 2,
-    "title": "老板让你“按行业通用打法来”，你会：",
-    "options": [
-      {
-        "id": "A",
-        "text": "找几个案例照着搭",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "先列出通用打法的优缺点",
-        "score": {
-          "context": 1,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "看我们和行业样板差在哪",
-        "score": {
-          "context": 2,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "先问这次为什么一定要通用",
-        "score": {
-          "context": 1,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 18,
-    "chapter": 2,
-    "title": "你遇到一个“看起来很聪明”的方案，最警惕：",
-    "options": [
-      {
-        "id": "A",
-        "text": "它是不是太复杂",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      },
-      {
-        "id": "B",
-        "text": "它是不是难落地",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "它解决的是不是真问题",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 2,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "它是不是只是显得很聪明",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 3,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 19,
-    "chapter": 3,
-    "title": "看到一篇很流畅、很标准、很像 AI 写的文章，你会觉得：",
-    "options": [
-      {
-        "id": "A",
-        "text": "挺好，省事",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "能用，但没有判断痕迹",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 2,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "它没有冒险，所以也没有选择",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 2,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "我看不出作者本人在哪里",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 2,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 20,
-    "chapter": 3,
-    "title": "四个方案里，你更喜欢哪种？",
-    "options": [
-      {
-        "id": "A",
-        "text": "稳妥、清楚、可复制",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "有一点新意，风险可控",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 1,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "不完美，但判断很明确",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 2,
-          "taste": 2,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "一看就不是模板生成的",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 1,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 21,
-    "chapter": 3,
-    "title": "做创意时，你最怕什么？",
-    "options": [
-      {
-        "id": "A",
-        "text": "不够清楚",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "不够专业",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "太像别人做过的",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 2,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "只是把正确答案拼在一起",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 3,
-          "taste": 2,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 22,
-    "chapter": 3,
-    "title": "哪句话最有“活人味”？",
-    "options": [
-      {
-        "id": "A",
-        "text": "建议按最佳实践推进",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "建议先对齐目标和资源",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "这个方案能赢，但赢得不好看",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 2,
-          "stance": 2,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "我不反对，但我想先说清楚哪里不舒服",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 1,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 23,
-    "chapter": 3,
-    "title": "你怎么看“高级感”？",
-    "options": [
-      {
-        "id": "A",
-        "text": "更克制、更统一",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "看起来不廉价",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "分寸、取舍和气质都对",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 3,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "不是堆元素，是知道不放什么",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 3,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 24,
-    "chapter": 3,
-    "title": "你最受不了哪种“专业感”？",
-    "options": [
-      {
-        "id": "A",
-        "text": "术语很多，但没说人话",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "页面很满，但没有重点",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "很正确，但没有取舍",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 3,
-          "stance": 2,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "很像样，但没有人负责判断",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 2,
-          "stance": 2,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 25,
-    "chapter": 4,
-    "title": "接到“做一版更高级的方案”，你第一步会：",
-    "options": [
-      {
-        "id": "A",
-        "text": "找高级感参考，整理模板",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "先问“高级”到底服务什么目标",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 1,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "找出这个需求里最空的词",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 1,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "先做一个有明确气质的样本",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 3,
-          "taste": 2,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 26,
-    "chapter": 4,
-    "title": "要把一句套话改得像人写的，你会先：",
-    "options": [
-      {
-        "id": "A",
-        "text": "加一点情绪和修辞",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 1,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 1
-        }
-      },
-      {
-        "id": "B",
-        "text": "找到它真正想打动谁",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 1,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "删掉套话，留下一个具体判断",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 3,
-          "taste": 2,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "放进一点自己的经历感",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 1,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 27,
-    "chapter": 4,
-    "title": "你提出新想法时，更常从哪里开始？",
-    "options": [
-      {
-        "id": "A",
-        "text": "现有框架缺哪块",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "现有方案哪里让人不满意",
-        "score": {
-          "context": 1,
-          "boundary": 1,
-          "generative": 1,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "这个问题是不是问错了",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 1,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "最近的真实经历里，有什么能和它连上",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 3,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 28,
-    "chapter": 4,
-    "title": "如果要让一个普通方案更有生命力，你会先加：",
-    "options": [
-      {
-        "id": "A",
-        "text": "更完整的结构",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "更清楚的目标",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "一个别人没看到的矛盾",
-        "score": {
-          "context": 1,
-          "boundary": 1,
-          "generative": 3,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "一个只有你会这样处理的角度",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 3,
-          "taste": 2,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 29,
-    "chapter": 4,
-    "title": "你做东西时，什么时候最容易进入状态？",
-    "options": [
-      {
-        "id": "A",
-        "text": "目标清楚、资源齐全的时候",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "有一个具体问题要解决的时候",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 1,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "发现现有答案都不太对的时候",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 2,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "某个经历突然和问题接上的时候",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 3,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 30,
-    "chapter": 4,
-    "title": "别人问你“有没有更不一样的想法”，你会：",
-    "options": [
-      {
-        "id": "A",
-        "text": "多给几个备选方向",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 1,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "先问“不一样”要解决什么",
-        "score": {
-          "context": 1,
-          "boundary": 1,
-          "generative": 1,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "换一个问题问法",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 2,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "拿一个有风险但有判断的方向出来",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 3,
-          "taste": 1,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 31,
-    "chapter": 5,
-    "title": "目标和价值感冲突时，你会：",
-    "options": [
-      {
-        "id": "A",
-        "text": "先完成目标",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "找一个折中方案",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "说清冲突，并提出替代做法",
-        "score": {
-          "context": 1,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 3,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "宁愿变慢，也不想变成那样",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 2,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 32,
-    "chapter": 5,
-    "title": "如果别人复刻了你的工作产出，你会觉得：",
-    "options": [
-      {
-        "id": "A",
-        "text": "说明我方法沉淀得好",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "有点不爽，但也合理",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "他复刻不了我为什么那样做",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 1,
-          "groundedness": 2,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 1
-        }
-      },
-      {
-        "id": "D",
-        "text": "如果只剩产出能证明我，那我该升级了",
-        "score": {
-          "context": 0,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 2,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 33,
-    "chapter": 5,
-    "title": "你改变一个重要观点，通常是因为：",
-    "options": [
-      {
-        "id": "A",
-        "text": "看到了新信息",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "听到了更强的逻辑",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "现实给了我一个反例",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 3,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "发现旧观点伤害了我在乎的东西",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 3,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 34,
-    "chapter": 5,
-    "title": "你最不希望 AI 替你决定什么？",
-    "options": [
-      {
-        "id": "A",
-        "text": "我的日程安排",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "我的表达风格",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 1,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "哪个问题值得投入",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 3,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "我愿意成为什么样的人",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 3,
-          "groundedness": 1,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 35,
-    "chapter": 5,
-    "title": "你觉得“经验”最有价值的地方是：",
-    "options": [
-      {
-        "id": "A",
-        "text": "做得更快",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "少踩坑",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 1,
-          "expressive": 0,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "知道哪些坑值得踩",
-        "score": {
-          "context": 0,
-          "boundary": 1,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 3,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "能闻出事情开始变味的时刻",
-        "score": {
-          "context": 2,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 3,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 0
-        }
-      }
-    ]
-  },
-  {
-    "id": 36,
-    "chapter": 5,
-    "title": "你希望自己在 AI 时代更像：",
-    "options": [
-      {
-        "id": "A",
-        "text": "一个高质量可调用模块",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 2,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "B",
-        "text": "一个会用 AI 放大自己的专业人",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 0,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 1,
-          "skillable": 1,
-          "expressive": 2,
-          "noise": 0
-        }
-      },
-      {
-        "id": "C",
-        "text": "一个知道何时该用、何时不该用工具的人",
-        "score": {
-          "context": 1,
-          "boundary": 2,
-          "generative": 0,
-          "taste": 0,
-          "stance": 3,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 1,
-          "noise": 0
-        }
-      },
-      {
-        "id": "D",
-        "text": "一个永远独特、拒绝被定义的人",
-        "score": {
-          "context": 0,
-          "boundary": 0,
-          "generative": 1,
-          "taste": 0,
-          "stance": 0,
-          "groundedness": 0,
-          "skillable": 0,
-          "expressive": 0,
-          "noise": 2
-        }
-      }
-    ]
-  }
-];
-const modes = {
-  standard: { label: "标准版", description: "24 题，适合快速测含活人量。", questionIds: [1, 3, 4, 6, 7, 8, 10, 12, 13, 14, 16, 18, 19, 20, 22, 24, 25, 26, 27, 30, 31, 32, 35, 36] },
-  full: { label: "完整版", description: "36 题，适合深度检测你的不可蒸馏成分。", questionIds: questions.map((question) => question.id) },
-};
-const coreAnswers = { 3: "B", 7: "C", 14: "C", 31: "C", 36: "C" };
 
-let modeKey = "standard";
-let activeQuestions = [];
-let current = 0;
-let answers = {};
+const questions = [
+  q(1, 0, "有人想把你做成“同事 Skill”，你第一反应是？", ["挺好，顺便帮我整理工作流", "可以，但它大概学不全我的判断", "先说清楚：资料从哪来，谁授权？", "我也说不清我怎么做事，但有些东西不能拿走"]),
+  q(2, 0, "你写工作文档时，更像哪种？", ["写成别人照做就行", "写步骤，也写什么时候不能照做", "写到关键处，会标一句“这里要看情况”", "很少写，很多东西只有我在场才知道"]),
+  q(3, 0, "同事问“这事有标准流程吗”，你会怎么回？", ["有，我发你", "有，但先看这次像不像", "有，不过先确认哪里不能照抄", "如果流程就够了，也不用来问我"]),
+  q(4, 0, "如果 AI 替你上班一天，最可能出什么问题？", ["问题不大，交付还挺稳", "能做大半，但优先级会错", "事情做对了，方向却偏了", "它不知道什么时候该停"]),
+  q(5, 1, "会上一个方案看着没毛病，但你觉得不对。你会：", ["先看数据", "问它在哪些条件下不成立", "把“不对劲”变成一个可验证的风险", "看看谁没说话，为什么没说"]),
+  q(6, 1, "别人发来“你方便再看看吗”，你会理解成：", ["他就是让我看看", "可能有问题，但不好直说", "八成是想让我兜底", "先看关系、时间点和上下文"]),
+  q(7, 1, "大家都说“先快速推进”，你会：", ["可以，先往前走", "先问快的代价是什么", "找出没人愿意说的风险", "判断这是不是在集体逃避"]),
+  q(8, 1, "别人说“都可以，你决定吧”，你通常会：", ["直接选效率最高的", "先确认他是不是真的无所谓", "问清楚他最怕哪种结果", "看这句话背后是不是在回避责任"]),
+  q(9, 2, "面对一个很模糊的任务，你第一步是：", ["拆任务，列步骤", "确认目标、限制和成功标准", "找真正拍板的人和隐含期待", "先判断这个任务是不是问错了"]),
+  q(10, 2, "模板答案和你的直觉冲突时，你会：", ["先信模板", "检查直觉有没有依据", "做个小验证，看谁更接近现实", "先问这个模板是为谁设计的"]),
+  q(11, 2, "一个流程执行得很顺，但结果不太好，你会先怀疑：", ["执行不到位", "指标选错了", "流程假设过期了", "一开始就把问题定义窄了"]),
+  q(12, 2, "遇到一个“看起来很聪明”的方案，你最警惕：", ["它是不是太复杂", "它是不是难落地", "它解决的是不是真问题", "它是不是只是显得很聪明"]),
+  q(13, 3, "看到一篇很流畅、很标准、很像 AI 写的文章，你会觉得：", ["挺好，省事", "能用，但没有判断痕迹", "它没有冒险，所以也没有选择", "我看不出作者本人在哪里"]),
+  q(14, 3, "四个方案里，你更喜欢哪种？", ["稳妥、清楚、可复制", "有一点新意，风险可控", "不完美，但判断很明确", "一看就不是模板生成的"]),
+  q(15, 3, "哪句话最有“活人味”？", ["建议按最佳实践推进", "建议先对齐目标和资源", "这个方案能赢，但赢得不好看", "我不反对，但想先说清楚哪里不舒服"]),
+  q(16, 3, "你最受不了哪种“专业感”？", ["术语很多，但没说人话", "页面很满，但没有重点", "很正确，但没有取舍", "很像样，但没人负责判断"]),
+  q(17, 4, "接到“做一版更高级的方案”，你第一步会：", ["找高级感参考，整理模板", "先问“高级”到底服务什么目标", "找出这个需求里最空的词", "先做一个有明确气质的样本"]),
+  q(18, 4, "要把一句套话改得像人写的，你会先：", ["加一点情绪和修辞", "找到它真正想打动谁", "删掉套话，留下一个具体判断", "放进一点自己的经历感"]),
+  q(19, 4, "你提出新想法时，更常从哪里开始？", ["现有框架缺哪块", "现有方案哪里让人不满意", "这个问题是不是问错了", "最近的真实经历里，有什么能和它连上"]),
+  q(20, 4, "别人问“有没有更不一样的想法”，你会：", ["多给几个备选方向", "先问“不一样”要解决什么", "换一个问题问法", "拿一个有风险但有判断的方向出来"]),
+  q(21, 5, "目标和价值感冲突时，你会：", ["先完成目标", "找一个折中方案", "说清冲突，并提出替代做法", "宁愿变慢，也不想变成那样"]),
+  q(22, 5, "如果别人复刻了你的工作产出，你会觉得：", ["说明我方法沉淀得好", "有点不爽，但也合理", "他复刻不了我为什么那样做", "如果只剩产出能证明我，那我该升级了"]),
+  q(23, 5, "你觉得“经验”最有价值的地方是：", ["做得更快", "少踩坑", "知道哪些坑值得踩", "能闻出事情开始变味的时刻"]),
+  q(24, 5, "你希望自己在 AI 时代更像：", ["一个高质量可调用模块", "一个会用 AI 放大自己的专业人", "一个知道何时该用、何时不该用工具的人", "一个永远独特、拒绝被定义的人"]),
+];
+
+const scoreRows = `
+1,A,0,0,0,0,0,0,2,1,0
+1,B,0,2,0,0,0,1,1,1,0
+1,C,0,1,0,0,3,0,0,1,0
+1,D,0,0,0,0,1,2,0,0,1
+2,A,0,0,0,0,0,0,2,1,0
+2,B,0,3,0,0,0,1,1,2,0
+2,C,1,1,0,0,0,1,1,1,0
+2,D,0,0,0,0,0,1,0,0,2
+3,A,0,0,0,0,0,0,2,1,0
+3,B,1,2,0,0,0,0,1,1,0
+3,C,1,3,0,0,0,0,0,2,0
+3,D,0,2,0,0,0,1,0,0,1
+4,A,0,0,0,0,0,0,2,1,0
+4,B,2,0,0,0,0,1,1,0,0
+4,C,1,2,0,0,2,0,0,1,0
+4,D,1,0,0,0,2,1,0,0,0
+5,A,0,0,0,0,0,0,1,1,0
+5,B,1,2,0,0,0,0,0,2,0
+5,C,2,2,0,0,0,1,0,2,0
+5,D,3,0,0,0,0,1,0,0,0
+6,A,0,0,0,0,0,0,1,0,0
+6,B,1,0,0,0,0,0,0,0,0
+6,C,1,0,0,0,0,0,0,0,2
+6,D,3,0,0,0,0,1,0,1,0
+7,A,0,0,0,0,0,0,1,0,0
+7,B,1,1,0,0,1,0,0,2,0
+7,C,2,2,0,0,1,1,0,1,0
+7,D,2,0,0,0,2,0,0,0,1
+8,A,0,0,0,0,0,0,2,0,0
+8,B,2,0,0,0,0,0,1,1,0
+8,C,3,0,0,0,0,1,0,1,0
+8,D,2,0,0,0,0,0,0,0,1
+9,A,0,0,0,0,0,0,2,1,0
+9,B,1,1,0,0,0,0,1,2,0
+9,C,3,0,0,0,0,1,0,1,0
+9,D,1,2,0,0,1,0,0,0,1
+10,A,0,0,0,0,0,0,2,0,0
+10,B,0,1,0,0,0,1,0,2,0
+10,C,0,3,0,0,0,2,0,2,0
+10,D,0,2,0,0,1,0,0,0,0
+11,A,0,0,0,0,0,0,2,0,0
+11,B,0,1,0,0,0,0,1,1,0
+11,C,0,3,0,0,1,1,0,1,0
+11,D,0,2,0,0,2,1,0,0,0
+12,A,0,0,0,1,0,0,0,0,1
+12,B,0,1,0,1,0,0,0,1,0
+12,C,0,2,0,2,0,0,0,1,0
+12,D,0,1,0,3,0,0,0,0,1
+13,A,0,0,0,0,0,0,2,0,0
+13,B,0,1,0,2,0,0,0,1,0
+13,C,0,1,0,2,1,0,0,1,0
+13,D,0,0,0,2,0,1,0,0,1
+14,A,0,0,0,0,0,0,2,1,0
+14,B,0,0,1,0,0,0,1,1,0
+14,C,0,0,2,2,1,0,0,1,0
+14,D,0,0,1,1,0,0,0,0,1
+15,A,0,0,0,0,0,0,2,1,0
+15,B,0,0,0,0,0,0,1,2,0
+15,C,1,0,0,2,2,0,0,1,0
+15,D,1,0,0,1,1,0,0,1,0
+16,A,0,0,0,1,0,0,0,0,0
+16,B,0,0,0,1,0,0,0,0,0
+16,C,0,0,0,3,2,0,0,1,0
+16,D,0,0,0,2,2,0,0,0,0
+17,A,0,0,0,0,0,0,2,1,0
+17,B,2,0,1,1,0,0,1,2,0
+17,C,0,2,1,1,0,0,0,1,0
+17,D,0,0,3,2,0,1,0,0,0
+18,A,0,0,1,0,0,0,1,0,1
+18,B,2,0,1,1,0,0,0,1,0
+18,C,0,1,3,2,1,0,0,1,0
+18,D,0,0,1,1,0,2,0,0,1
+19,A,0,0,0,0,0,0,1,1,0
+19,B,1,1,1,0,0,0,0,1,0
+19,C,0,2,1,0,1,0,0,0,0
+19,D,0,0,3,1,0,2,0,0,0
+20,A,0,0,1,0,0,0,1,1,0
+20,B,1,1,1,0,0,0,0,2,0
+20,C,0,2,2,0,0,0,0,1,0
+20,D,0,1,3,1,1,0,0,0,0
+21,A,0,0,0,0,0,0,1,0,0
+21,B,1,0,0,0,1,0,0,1,0
+21,C,1,0,0,0,3,0,0,2,0
+21,D,0,0,0,0,2,0,0,0,1
+22,A,0,0,0,0,0,0,2,2,0
+22,B,0,0,0,0,0,1,0,0,0
+22,C,0,0,0,0,1,2,0,0,1
+22,D,0,2,0,0,2,1,0,0,0
+23,A,0,0,0,0,0,0,2,0,0
+23,B,0,0,0,0,0,1,1,0,0
+23,C,0,1,0,0,0,3,0,1,0
+23,D,2,0,0,0,0,3,0,0,0
+24,A,0,0,0,0,0,0,2,1,0
+24,B,0,0,0,0,0,1,1,2,0
+24,C,1,2,0,0,3,0,0,1,0
+24,D,0,0,1,0,0,0,0,0,2
+`;
+
+const scoreMap = parseScoreRows(scoreRows);
+const anchorAnswers = new Set(["2:B", "5:C", "10:C", "21:C", "24:C"]);
 
 const el = {
   intro: document.getElementById("intro"),
@@ -2488,7 +209,7 @@ const el = {
   progressText: document.getElementById("progressText"),
   chapterText: document.getElementById("chapterText"),
   progressFill: document.getElementById("progressFill"),
-  stepDots: document.getElementById("stepDots"),
+  chapterList: document.getElementById("chapterList"),
   questionChapter: document.getElementById("questionChapter"),
   questionSubtitle: document.getElementById("questionSubtitle"),
   questionTitle: document.getElementById("questionTitle"),
@@ -2497,25 +218,45 @@ const el = {
   resultType: document.getElementById("resultType"),
   resultCopy: document.getElementById("resultCopy"),
   heartLine: document.getElementById("heartLine"),
-  shareLine: document.getElementById("shareLine"),
   humanScore: document.getElementById("humanScore"),
   undistillableScore: document.getElementById("undistillableScore"),
   skillFitScore: document.getElementById("skillFitScore"),
-  versionScore: document.getElementById("versionScore"),
+  shareLine: document.getElementById("shareLine"),
   dimensionBars: document.getElementById("dimensionBars"),
   personalNotes: document.getElementById("personalNotes"),
-  modeButtons: document.querySelectorAll("[data-mode]"),
 };
 
-function setMode(nextMode) {
-  modeKey = nextMode;
-  activeQuestions = modes[modeKey].questionIds.map((id) => questions.find((question) => question.id === id));
-  answers = {};
-  current = 0;
-  el.modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === modeKey));
+let current = 0;
+let answers = {};
+
+function q(id, chapter, title, optionTexts) {
+  const ids = ["A", "B", "C", "D"];
+  return {
+    id,
+    chapter,
+    title,
+    options: optionTexts.map((text, index) => ({
+      id: ids[index],
+      text,
+    })),
+  };
+}
+
+function parseScoreRows(rows) {
+  const fields = [...dims, ...auxFields];
+  return rows.trim().split("\n").reduce((map, row) => {
+    const [question, option, ...values] = row.split(",");
+    map[`${question}:${option}`] = fields.reduce((score, field, index) => {
+      score[field] = Number(values[index]);
+      return score;
+    }, {});
+    return map;
+  }, {});
 }
 
 function start() {
+  current = 0;
+  answers = {};
   el.intro.classList.add("hidden");
   el.results.classList.add("hidden");
   el.tester.classList.remove("hidden");
@@ -2523,31 +264,37 @@ function start() {
 }
 
 function restart() {
-  answers = {};
   current = 0;
+  answers = {};
   el.results.classList.add("hidden");
-  el.tester.classList.add("hidden");
   el.intro.classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function renderQuestion() {
-  const question = activeQuestions[current];
-  const answeredCount = activeQuestions.filter((item) => answers[item.id]).length;
-  el.progressText.textContent = `第 ${current + 1} / ${activeQuestions.length} 题`;
-  el.chapterText.textContent = `正在蒸馏第 ${question.chapter + 1} 层：${progressHints[question.chapter]}`;
-  el.progressFill.style.width = `${((current + 1) / activeQuestions.length) * 100}%`;
-  el.questionChapter.textContent = `第 ${question.chapter + 1} 章：${chapters[question.chapter]}`;
-  el.questionSubtitle.textContent = chapterSubtitles[question.chapter];
-  el.questionTitle.textContent = `Q${current + 1} ${question.title}`;
-  el.options.innerHTML = "";
+  const question = questions[current];
+  const chapter = chapters[question.chapter];
+  const answeredCount = Object.keys(answers).length;
+  const displayIndex = current + 1;
+  const progress = ((answeredCount) / questions.length) * 100;
 
+  el.progressText.textContent = `第 ${displayIndex} / ${questions.length} 题`;
+  el.chapterText.textContent = chapter.name;
+  el.progressFill.style.width = `${progress}%`;
+  el.questionChapter.textContent = `第 ${question.chapter + 1} 章 · ${chapter.name}`;
+  el.questionSubtitle.textContent = chapter.subtitle;
+  el.questionTitle.textContent = question.title;
+  el.prevBtn.disabled = current === 0;
+
+  el.options.innerHTML = "";
   question.options.forEach((option) => {
     const button = document.createElement("button");
     button.className = `option ${answers[question.id] === option.id ? "selected" : ""}`;
+    button.type = "button";
     button.innerHTML = `<span class="option-letter">${option.id}</span><span class="option-text">${option.text}</span>`;
     button.addEventListener("click", () => {
       answers[question.id] = option.id;
-      if (current < activeQuestions.length - 1) {
+      if (current < questions.length - 1) {
         current += 1;
         renderQuestion();
       } else {
@@ -2557,75 +304,91 @@ function renderQuestion() {
     el.options.appendChild(button);
   });
 
-  el.prevBtn.disabled = current === 0;
-  renderStepDots(answeredCount);
+  renderChapterList();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function renderStepDots(answeredCount) {
-  el.stepDots.innerHTML = "";
-  activeQuestions.forEach((question, index) => {
-    const dot = document.createElement("span");
-    dot.className = `${answers[question.id] ? "done" : ""} ${index === current ? "active" : ""}`;
-    dot.setAttribute("aria-label", `第 ${index + 1} 题${answers[question.id] ? "已完成" : "未完成"}`);
-    el.stepDots.appendChild(dot);
+function renderChapterList() {
+  el.chapterList.innerHTML = "";
+  chapters.forEach((chapter, index) => {
+    const chapterQuestions = questions.filter((question) => question.chapter === index);
+    const doneCount = chapterQuestions.filter((question) => answers[question.id]).length;
+    const item = document.createElement("div");
+    item.className = `chapter-item ${index === questions[current].chapter ? "active" : ""} ${doneCount === chapterQuestions.length ? "done" : ""}`;
+    item.innerHTML = `<span>${doneCount === chapterQuestions.length ? "✓" : index + 1}</span><strong>${chapter.name}</strong>`;
+    el.chapterList.appendChild(item);
   });
 }
 
 function scoreAnswers() {
-  const totals = Object.fromEntries([...dims, ...auxFields].map((key) => [key, 0]));
-  let answered = 0;
-  let matureHits = 0;
+  const totals = [...dims, ...auxFields].reduce((state, field) => {
+    state[field] = 0;
+    return state;
+  }, {});
+  let anchorHits = 0;
 
-  activeQuestions.forEach((question) => {
-    const answer = answers[question.id];
-    const option = question.options.find((item) => item.id === answer);
-    if (!option) return;
-    answered += 1;
-    Object.entries(option.score).forEach(([key, value]) => { totals[key] += value; });
-    if (coreAnswers[question.id] === answer) matureHits += 1;
+  questions.forEach((question) => {
+    const optionId = answers[question.id];
+    const score = scoreMap[`${question.id}:${optionId}`] || {};
+    [...dims, ...auxFields].forEach((field) => {
+      totals[field] += score[field] || 0;
+    });
+    if (anchorAnswers.has(`${question.id}:${optionId}`)) anchorHits += 1;
   });
 
-  const bankMax = calculateBankMax(activeQuestions);
-  const positiveRaw = dims.reduce((sum, key) => sum + totals[key], 0);
+  const bankMax = calculateBankMax();
+  const positiveRaw = dims.reduce((sum, field) => sum + totals[field], 0);
   const positiveScore = safeRatio(positiveRaw, bankMax.positive);
   const expressiveScore = safeRatio(totals.expressive, bankMax.expressive);
   const skillableScore = safeRatio(totals.skillable, bankMax.skillable);
   const noiseScore = safeRatio(totals.noise, bankMax.noise);
-  const balanceScore = balance(dims.map((key) => totals[key]));
-  const healthyExpressionBonus = Math.min(expressiveScore, positiveScore) * 0.15;
+  const dimensionScores = dims.map((field) => safeRatio(totals[field], bankMax.dims[field]));
+  const balanceScore = balance(dimensionScores);
+  const expressionBonus = Math.min(expressiveScore, positiveScore) * 0.15;
   const skillPenalty = skillableScore <= 0.45 ? 0 : (skillableScore - 0.45) * (1 - positiveScore) * 0.35;
   const noisePenalty = noiseScore * 0.18;
-  const maturityBonus = matureHits <= 1 ? 0 : matureHits <= 3 ? 0.025 : 0.05;
-  const measuredHumanScore = positiveScore * 0.7 + healthyExpressionBonus + balanceScore * 0.1 + maturityBonus - skillPenalty - noisePenalty;
-  const undistillableScore = positiveScore * 0.75 + balanceScore * 0.1 + healthyExpressionBonus + maturityBonus * 0.7 - noiseScore * 0.1 - skillPenalty * 0.5;
+  const anchorBonus = anchorHits <= 1 ? 0 : anchorHits <= 3 ? 0.025 : 0.05;
+  const human = positiveScore * 0.7 + expressionBonus + balanceScore * 0.1 + anchorBonus - skillPenalty - noisePenalty;
+  const undistillable = positiveScore * 0.75 + balanceScore * 0.1 + expressionBonus + anchorBonus * 0.7 - noiseScore * 0.1 - skillPenalty * 0.5;
   const skillFit = skillableScore * 0.55 + expressiveScore * 0.3 + (1 - noiseScore) * 0.15;
 
   return {
     totals,
     bankMax,
-    answered,
-    positiveRaw,
+    anchorHits,
     positiveScore,
     expressiveScore,
     skillableScore,
     noiseScore,
     balanceScore,
-    displayHumanPercent: displayHumanScore(measuredHumanScore, noiseScore),
-    undistillablePercent: clamp(Math.round(undistillableScore * 100), 0, 100),
-    skillFitPercent: clamp(Math.round(skillFit * 100), 0, 100),
+    humanScore: displayHumanScore(human, noiseScore),
+    undistillableScore: clamp(Math.round(undistillable * 100), 0, 100),
+    skillFitScore: clamp(Math.round(skillFit * 100), 0, 100),
   };
 }
 
-function calculateBankMax(bankQuestions) {
-  const bankMax = Object.fromEntries([...dims, ...auxFields].map((key) => [key, 0]));
-  bankMax.positive = 0;
-  bankQuestions.forEach((question) => {
-    bankMax.positive += Math.max(...question.options.map((option) => dims.reduce((sum, key) => sum + option.score[key], 0)));
-    [...dims, ...auxFields].forEach((key) => {
-      bankMax[key] += Math.max(...question.options.map((option) => option.score[key]));
+function calculateBankMax() {
+  const maxes = {
+    dims: dims.reduce((state, field) => {
+      state[field] = 0;
+      return state;
+    }, {}),
+    positive: 0,
+    expressive: 0,
+    skillable: 0,
+    noise: 0,
+  };
+
+  questions.forEach((question) => {
+    dims.forEach((field) => {
+      maxes.dims[field] += Math.max(...question.options.map((option) => scoreMap[`${question.id}:${option.id}`][field]));
     });
+    maxes.expressive += Math.max(...question.options.map((option) => scoreMap[`${question.id}:${option.id}`].expressive));
+    maxes.skillable += Math.max(...question.options.map((option) => scoreMap[`${question.id}:${option.id}`].skillable));
+    maxes.noise += Math.max(...question.options.map((option) => scoreMap[`${question.id}:${option.id}`].noise));
   });
-  return bankMax;
+  maxes.positive = dims.reduce((sum, field) => sum + maxes.dims[field], 0);
+  return maxes;
 }
 
 function displayHumanScore(measuredHumanScore, noiseScore) {
@@ -2637,100 +400,139 @@ function displayHumanScore(measuredHumanScore, noiseScore) {
 
 function balance(values) {
   const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
-  if (mean === 0) return 0;
+  if (!mean) return 0;
   const variance = values.reduce((sum, value) => sum + (value - mean) ** 2, 0) / values.length;
   return clamp(1 - Math.sqrt(variance) / mean, 0, 1);
 }
 
 function showResults() {
   const result = scoreAnswers();
-  if (result.answered < activeQuestions.length) return;
-  el.intro.classList.add("hidden");
-  el.tester.classList.add("hidden");
-  el.results.classList.remove("hidden");
-
-  const band = resultBand(result.displayHumanPercent);
-  const combo = comboResult(result);
+  const band = resultBand(result.humanScore);
   const strongest = strongestDimension(result);
   const weakest = weakestDimension(result);
-  el.resultTitle.textContent = band.title;
-  el.resultType.textContent = combo.title ? `${combo.title}` : "";
-  el.resultCopy.textContent = `${band.copy} ${combo.copy}`;
-  el.heartLine.textContent = band.heart;
-  el.shareLine.textContent = combo.share || band.share;
-  el.humanScore.textContent = `${result.displayHumanPercent}%`;
-  el.undistillableScore.textContent = result.undistillablePercent;
-  el.skillFitScore.textContent = `${result.skillFitPercent}%`;
-  el.versionScore.textContent = `${modes[modeKey].label} · ${activeQuestions.length} 题`;
 
+  el.tester.classList.add("hidden");
+  el.results.classList.remove("hidden");
+  el.resultTitle.textContent = band.title;
+  el.resultType.textContent = band.type;
+  el.resultCopy.textContent = band.copy;
+  el.heartLine.textContent = comboResult(result, strongest);
+  el.humanScore.textContent = `${result.humanScore}%`;
+  el.undistillableScore.textContent = `${result.undistillableScore}%`;
+  el.skillFitScore.textContent = `${result.skillFitScore}%`;
+  el.shareLine.textContent = band.share;
   renderBars(result);
   renderPersonalNotes(strongest, weakest, result);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function renderBars(result) {
   el.dimensionBars.innerHTML = "";
-  dims.forEach((key) => {
-    const percent = safeRatio(result.totals[key], result.bankMax[key]) * 100;
+  dims.forEach((field) => {
+    const value = Math.round(safeRatio(result.totals[field], result.bankMax.dims[field]) * 100);
     const row = document.createElement("div");
     row.className = "bar-row";
     row.innerHTML = `
-      <span><b>${dimLabels[key]}</b><small>${dimDescriptions[key]}</small></span>
-      <div class="bar-track"><div class="bar-fill" style="width:${percent}%"></div></div>
-      <strong>${Math.round(percent)}%</strong>
+      <span><b>${dimLabels[field]}</b><small>${dimDescriptions[field]}</small></span>
+      <div class="bar-track"><div class="bar-fill" style="width: ${value}%"></div></div>
+      <strong>${value}</strong>
     `;
     el.dimensionBars.appendChild(row);
   });
 }
 
 function renderPersonalNotes(strongest, weakest, result) {
-  const notes = [dimHighCopy[strongest.key]];
-  if (result.displayHumanPercent < 75) notes.push(dimLowCopy[weakest.key]);
-  if (result.skillFitPercent >= 60) notes.push("你的方法可复用性很强。让工具负责效率，你负责判断，会是更好的分工。");
-  el.personalNotes.innerHTML = "";
-  notes.slice(0, 3).forEach((text) => {
-    const p = document.createElement("p");
-    p.textContent = text;
-    el.personalNotes.appendChild(p);
-  });
+  const noiseCopy =
+    result.noiseScore >= 0.5
+      ? "你的结果里有一些“伪抗蒸噪声”：难懂、拒绝表达或只凭不舒服，并不会自动变成不可复制。"
+      : "你的结果没有明显奖励“故作神秘”。这很好，成熟的抗蒸性通常是说得清一部分，但复制仍然会损耗。";
+  const skillCopy =
+    result.skillFitScore >= 62
+      ? "你的方法有不少能被整理、复用和调用的部分。这不是坏事，它说明你清晰、稳定，也更容易协作。"
+      : "你不算特别容易被整理成稳定 Skill。真正的提升不是变得更神秘，而是把能说清的部分说清，把说不清的部分变成可验证判断。";
+  el.personalNotes.innerHTML = `
+    <p>${dimHighCopy[strongest]}</p>
+    <p>${dimLowCopy[weakest]}</p>
+    <p>${skillCopy}</p>
+    <p>${noiseCopy}</p>
+  `;
 }
 
 function strongestDimension(result) {
-  return dims.map((key) => ({ key, percent: safeRatio(result.totals[key], result.bankMax[key]) })).sort((a, b) => b.percent - a.percent)[0];
+  return dims.reduce((best, field) => {
+    const value = safeRatio(result.totals[field], result.bankMax.dims[field]);
+    const bestValue = safeRatio(result.totals[best], result.bankMax.dims[best]);
+    return value > bestValue ? field : best;
+  }, dims[0]);
 }
 
 function weakestDimension(result) {
-  return dims.map((key) => ({ key, percent: safeRatio(result.totals[key], result.bankMax[key]) })).sort((a, b) => a.percent - b.percent)[0];
+  return dims.reduce((worst, field) => {
+    const value = safeRatio(result.totals[field], result.bankMax.dims[field]);
+    const worstValue = safeRatio(result.totals[worst], result.bankMax.dims[worst]);
+    return value < worstValue ? field : worst;
+  }, dims[0]);
 }
 
 function resultBand(score) {
-  if (score >= 90) return { title: "高密度活人", copy: "你不是不能被总结，而是一总结就会损失关键成分。别人可以学你的方法、抄你的流程、复刻你的表达，但到了真正要判断、取舍、负责的时候，复制品会开始露馅。", heart: "你最难被蒸馏的部分，不是你的知识，而是你知道什么时候知识不够。", share: "我不是不能蒸，是蒸完会少一个人。" };
-  if (score >= 75) return { title: "蒸不干净型", copy: "你的很多能力可以被整理成方法，但真正有价值的地方经常发生在边界、例外、临场和取舍里。蒸馏可以得到你的工作方式，却很难得到你为什么在那个时刻那样判断。", heart: "你的流程能被学走，但关键处会变味。", share: "我的流程能抄，我的判断会变味。" };
-  if (score >= 60) return { title: "半蒸半活型", copy: "你一部分很适合被写进说明书，一部分还需要真人在场。你稳定、可协作，也有一些自己的判断；只是这些判断还没有强到让复制品明显失真。", heart: "你不是没有人味，只是有些人味还没长成稳定的判断力。", share: "一半可调用，一半还活着。" };
-  if (score >= 45) return { title: "同事 Skill 友好型", copy: "你的工作方式清楚、稳定、可复用，组织知识库会很喜欢你。这不是坏事，说明你可靠、好协作、容易被放大。", heart: "你已经很会成为一个好工具，但还可以更会成为一个人。", share: "组织知识库喜欢我，但我还可以更难蒸一点。" };
-  if (score >= 20) return { title: "优质蒸馏原料", copy: "你目前最稳定的价值，主要来自流程、产出和标准执行。你清楚、可靠、适合复用，这当然有价值。", heart: "你不是没有价值，只是你的价值现在太容易被写成说明书。", share: "我很适合被做成 Skill，但这不代表我只能是 Skill。" };
-  return { title: "待激活活人变量", copy: "你的选择更偏向稳定、标准、照流程和低风险。它让你很好协作，也让你很容易被系统理解。", heart: "你不是被 AI 打败了，你只是还没有把自己训练成一个更难复制的人。", share: "当前版本较适合蒸馏，等待活人变量升级。" };
+  if (score >= 86) {
+    return {
+      title: "高密度活人型",
+      type: "能表达，也难低损耗复制",
+      copy: "你的判断里有情境、边界、取舍和真实来处。别人可以学到你的方法，但很难无损复制你为什么在那个时刻那样做。",
+      share: "我不是不能写成 Skill，是写完还会剩下我。",
+    };
+  }
+  if (score >= 72) {
+    return {
+      title: "成熟抗蒸型",
+      type: "有流程，也有例外判断",
+      copy: "你的很多做法可以被整理出来，但关键处仍然需要你本人校准。你不是靠神秘感抗蒸，而是靠复杂判断抗蒸。",
+      share: "我大部分可协作，关键处不可代班。",
+    };
+  }
+  if (score >= 55) {
+    return {
+      title: "半蒸半活型",
+      type: "一半可调用，一半还活着",
+      copy: "你有稳定、好复用的一面，也保留了一些情境判断和个人取舍。继续练习把隐性判断说清，会让你的抗蒸性更健康。",
+      share: "一半可调用，一半还活着。",
+    };
+  }
+  if (score >= 38) {
+    return {
+      title: "高协作可蒸型",
+      type: "清晰稳定，但判断痕迹偏少",
+      copy: "你的工作方式很适合被整理成流程，这在协作中是优点。只是如果所有选择都能被说明书解释，含活人量会显得偏低。",
+      share: "我很好复用，但正在补判断痕迹。",
+    };
+  }
+  return {
+    title: "低损耗可替身型",
+    type: "像一个稳定模块，但还不像完整的人",
+    copy: "你的选择更偏流程执行和目标完成。下一步不是变得更难懂，而是练习识别例外、说明取舍、把经历变成判断。",
+    share: "我先承认：我现在有点太好蒸了。",
+  };
 }
 
-function comboResult(result) {
-  const highHuman = result.displayHumanPercent >= 75;
-  const midHuman = result.displayHumanPercent >= 45 && result.displayHumanPercent <= 74;
-  if (result.noiseScore >= 0.5) return { title: "伪抗蒸警报", copy: "你的选择里有不少“无法被复制”的成分，但其中一部分更像不稳定，而不是判断力。真正的抗蒸性，是能把这种不对劲说清楚、试出来、承担它。", share: "难蒸不等于高级，有些只是还没说清。" };
-  if (highHuman && result.skillFitPercent >= 55) return { title: "可教，但不可替代", copy: "你的方法能被整理，经验能被讲出来，甚至可以教给别人。但复杂场景里，复制品只能学到你的动作，学不到你为什么在这里停一下、绕一下、拒绝一下。", share: "我可以被学习，但很难被复刻。" };
-  if (highHuman && result.skillFitPercent < 45) return { title: "野生判断型", copy: "你的人味很强，但蒸馏成本也高。很多判断发生得太快、太现场、太依赖经验和气质。", share: "我不是不能蒸，是蒸馏成本太高。" };
-  if (midHuman && result.expressiveScore >= 0.7) return { title: "方法沉淀型", copy: "你很会把事情讲清楚，也愿意把经验变成别人能用的东西。想提高含活人量，不是少写文档，而是在文档里写出边界、例外和判断依据。", share: "我的方法能复用，但边界还要继续长。" };
-  if (midHuman && result.skillFitPercent >= 55) return { title: "AI 放大型专业人", copy: "你有不少能力很适合被工具放大：流程、表达、复用、稳定交付。但你的下一步，是让工具负责效率，你负责判断。", share: "工具可以放大我，但不能替我判断。" };
-  const groundedRank = dims.map((key) => key).sort((a, b) => result.totals[b] - result.totals[a]).indexOf("groundedness");
-  if (midHuman && groundedRank <= 1 && result.expressiveScore < 0.45) return { title: "直觉有来处型", copy: "你有不少判断来自真实经历，所以你的选择并不空。但这些判断现在还太像“我就是觉得”。你不是缺人味，你是缺一个把人味说出来的方式。", share: "我的直觉不是玄学，只是还没翻译完。" };
-  if (result.displayHumanPercent < 45 && result.skillFitPercent >= 60) return { title: "优质流程资产", copy: "你很适合被做成一个好 Skill：清楚、稳定、可复用、低噪声。这在团队里很有价值。", share: "我很可靠，也确实有点好蒸。" };
-  if (result.displayHumanPercent < 45 && result.skillFitPercent < 40) return { title: "尚未成型型", copy: "你不是不可蒸馏，而是个人价值还不够稳定。现在最重要的不是追求独特，而是先把自己的经验、能力和选择练成形。", share: "不是蒸不出来，是还没长成。" };
-  return { title: "", copy: "", share: "" };
+function comboResult(result, strongest) {
+  if (result.anchorHits >= 4) return "你命中了多道判断力锚点：复杂，但不是玄学；有立场，也能说清。";
+  if (result.noiseScore >= 0.5) return "你的“不可复制”里混入了一些说不清的噪声，系统已经做了保护校准。";
+  if (result.skillFitScore >= 70 && result.humanScore >= 70) return "你很适合写成 Skill，但写完以后仍然剩下不少本人判断。";
+  return `你最明显的活人痕迹在「${dimLabels[strongest]}」：${dimDescriptions[strongest]}。`;
 }
 
-function safeRatio(value, denominator) { return denominator ? value / denominator : 0; }
-function clamp(value, low, high) { return Math.min(Math.max(value, low), high); }
+function safeRatio(value, denominator) {
+  return denominator ? value / denominator : 0;
+}
 
-el.modeButtons.forEach((button) => button.addEventListener("click", () => setMode(button.dataset.mode)));
+function clamp(value, low, high) {
+  return Math.min(Math.max(value, low), high);
+}
+
 el.startBtn.addEventListener("click", start);
 el.retakeBtn.addEventListener("click", restart);
-el.prevBtn.addEventListener("click", () => { current = Math.max(current - 1, 0); renderQuestion(); });
-setMode("standard");
+el.prevBtn.addEventListener("click", () => {
+  current = Math.max(current - 1, 0);
+  renderQuestion();
+});
