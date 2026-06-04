@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="抗蒸性测试：测测你的含活人量。" />
+    <title>抗蒸性测试</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro" id="intro">
+        <div class="intro-copy">
+          <p class="eyebrow">Anti-Distilled Test</p>
+          <h1>抗蒸性测试</h1>
+          <p class="lede">
+            测测你的含活人量。假如有人把你的文档、聊天记录、工作习惯都蒸馏成一个“同事 Skill”，还剩多少东西是蒸不出来的？
+          </p>
+          <div class="mode-picker" aria-label="选择测试版本">
+            <button class="mode-card active" data-mode="standard">
+              <strong>标准版</strong>
+              <span>24 题，适合快速测含活人量。</span>
+            </button>
+            <button class="mode-card" data-mode="full">
+              <strong>完整版</strong>
+              <span>36 题，深度检测不可蒸馏成分。</span>
+            </button>
+          </div>
+          <div class="intro-actions">
+            <button class="primary" id="startBtn">开始蒸馏我</button>
+          </div>
+          <p class="intro-note">本测试不反 AI，也不鼓励装神秘。高分来自复杂判断，不是来自不写文档。</p>
+        </div>
+        <div class="score-preview" aria-label="测试会展示的指标">
+          <div>
+            <span>主指标</span>
+            <strong>含活人量</strong>
+          </div>
+          <div>
+            <span>能力指标</span>
+            <strong>不可蒸馏度</strong>
+          </div>
+          <div>
+            <span>趣味指标</span>
+            <strong>同事 Skill 适配度</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="tester hidden" id="tester">
+        <aside class="side-panel">
+          <div class="progress-block">
+            <div class="progress-label">
+              <span id="progressText">第 1 / 24 题</span>
+              <span id="chapterText">工作流</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+          <div class="step-dots" id="stepDots" aria-label="答题进度"></div>
+        </aside>
+
+        <section class="question-panel" aria-live="polite">
+          <p class="chapter-kicker" id="questionChapter"></p>
+          <p class="question-subtitle" id="questionSubtitle"></p>
+          <h2 id="questionTitle"></h2>
+          <div class="options" id="options"></div>
+          <div class="nav-row">
+            <button class="secondary" id="prevBtn">上一题</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="results hidden" id="results">
+        <div class="result-hero">
+          <div>
+            <p class="eyebrow" id="versionScore">标准版 · 24 题</p>
+            <h2 id="resultTitle">半蒸半活型</h2>
+            <p class="result-type" id="resultType"></p>
+            <p id="resultCopy"></p>
+            <p class="heart-line" id="heartLine"></p>
+          </div>
+          <div class="hero-score">
+            <span id="humanScore">0%</span>
+            <small>含活人量</small>
+          </div>
+        </div>
+
+        <div class="metric-grid">
+          <article>
+            <span>不可蒸馏度</span>
+            <strong id="undistillableScore">0</strong>
+          </article>
+          <article>
+            <span>同事 Skill 适配度</span>
+            <strong id="skillFitScore">0%</strong>
+          </article>
+          <article>
+            <span>分享短句</span>
+            <strong class="share-line" id="shareLine">一半可调用，一半还活着。</strong>
+          </article>
+        </div>
+
+        <div class="analysis-layout">
+          <section class="breakdown">
+            <h3>六维拆解</h3>
+            <div id="dimensionBars"></div>
+          </section>
+          <section class="breakdown">
+            <h3>你的抗蒸说明</h3>
+            <div class="personal-notes" id="personalNotes"></div>
+          </section>
+        </div>
+
+        <div class="result-actions">
+          <button class="primary" id="retakeBtn">再测一次</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

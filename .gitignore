@@ -1,0 +1,9 @@
+.DS_Store
+deploy/
+*.log
+node_modules/
+dist/
+build/
+.vercel/
+.netlify/
+.deploy_key/
