@@ -55,6 +55,7 @@ let assessment;
 let latestResult;
 let answerHistory = [];
 let detailContext = { dimensions: [], activeIndex: 0 };
+let activeDetailEscapeHandler;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -235,7 +236,7 @@ function buildReasoningText(result) {
     .slice(0, 2)
     .join("、");
   if (low) {
-    return `你的含活人量主要来自${top}上的有效信号，同时${low}还有成长空间。这个分数不是人格定论，而是对当前判断结构的快照。`;
+    return `你的含活人量主要来自${top}上的有效信号，同时${low}还有成长空间。这个百分比不是人格定论，而是对当前判断结构的快照。`;
   }
   return `你的含活人量主要来自${top}上的稳定信号。后续追问的作用，是确认这些信号不是偶然选择，而是在多个场景中反复出现。`;
 }
@@ -304,7 +305,7 @@ function openDimensionDetail(index) {
     subtitle: detail.subtitle,
     sections: [
       ["这是什么意思", detail.meaning],
-      ["为什么你可能是这个分数", detail.evidence],
+      ["为什么你可能是这个表现", detail.evidence],
       ["怎么提升含活人量", detail.growth],
     ],
     next: true,
@@ -312,8 +313,10 @@ function openDimensionDetail(index) {
 }
 
 function openDetail(content) {
+  closeDetail();
   const fragment = templates.detail.content.cloneNode(true);
   document.body.append(fragment);
+  document.body.classList.add("is-detail-open");
   document.querySelector("#detailType").textContent = content.type;
   document.querySelector("#detailTitle").textContent = content.title;
   document.querySelector("#detailSubtitle").textContent = content.subtitle;
@@ -327,6 +330,10 @@ function openDetail(content) {
   document.querySelector("#detailBackdrop").addEventListener("click", (event) => {
     if (event.target.id === "detailBackdrop") closeDetail();
   });
+  activeDetailEscapeHandler = (event) => {
+    if (event.key === "Escape") closeDetail();
+  };
+  document.addEventListener("keydown", activeDetailEscapeHandler);
   const nextButton = document.querySelector("#detailNextButton");
   nextButton.hidden = !content.next;
   nextButton.addEventListener("click", () => {
@@ -338,14 +345,23 @@ function openDetail(content) {
 
 function closeDetail() {
   document.querySelector("#detailBackdrop")?.remove();
+  document.body.classList.remove("is-detail-open");
+  if (activeDetailEscapeHandler) {
+    document.removeEventListener("keydown", activeDetailEscapeHandler);
+    activeDetailEscapeHandler = undefined;
+  }
 }
 
 async function copyResult() {
   if (!latestResult) return;
-  const text = `我做了抗蒸性测试：含活人量 ${latestResult.score}分｜${latestResult.band.name}｜结构标签：${latestResult.labelDetails.name}。${latestResult.labelDetails.shareLine || latestResult.labelDetails.plainMeaning}`;
-  await navigator.clipboard.writeText(text);
+  const text = `我做了抗蒸性测试：含活人量 ${latestResult.score}%｜${latestResult.band.name}｜结构标签：${latestResult.labelDetails.name}。${latestResult.labelDetails.shareLine || latestResult.labelDetails.plainMeaning}`;
   const button = document.querySelector("#copyButton");
-  button.textContent = "已复制";
+  try {
+    await navigator.clipboard.writeText(text);
+    button.textContent = "已复制";
+  } catch {
+    button.textContent = "复制失败，请手动选择结果";
+  }
   setTimeout(() => {
     button.textContent = "复制结果摘要";
   }, 1600);

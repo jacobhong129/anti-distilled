@@ -38,6 +38,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body.is-detail-open {
+  overflow: hidden;
+}
+
 button,
 input {
   font: inherit;
@@ -560,6 +564,7 @@ input[type="radio"] {
   border-radius: 7px;
   color: var(--ink);
   background: rgba(255, 255, 255, 0.84);
+  font-family: var(--serif);
   text-align: left;
   font-size: 17px;
   line-height: 1.7;
@@ -628,6 +633,8 @@ body[data-view="result-rich"] .result-hero::before {
 }
 
 .score-line span:last-child {
+  color: var(--accent-dark);
+  font-family: var(--serif);
   font-size: 22px;
 }
 
@@ -635,6 +642,7 @@ body[data-view="result-rich"] .result-hero::before {
   max-width: 310px;
   margin: 0;
   color: var(--muted);
+  font-family: var(--serif);
   font-size: 15px;
   line-height: 1.8;
 }
@@ -649,6 +657,7 @@ body[data-view="result-rich"] .result-hero::before {
 .result-summary > p {
   max-width: 680px;
   color: var(--muted);
+  font-family: var(--serif);
   font-size: 18px;
   line-height: 1.8;
 }
@@ -976,6 +985,31 @@ body[data-view="result-rich"] .result-hero::before {
 }
 
 @media (max-width: 520px) {
+  .smoke-backdrop {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(247, 248, 246, 0.7)),
+      url("./assets/smoke-neutral.png") 58% top / auto 100% no-repeat;
+  }
+
+  body[data-view="result-rich"] .smoke-backdrop {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(247, 248, 246, 0.62)),
+      url("./assets/smoke-rich.png") 62% top / auto 100% no-repeat;
+  }
+
+  body[data-view="result-color"] .smoke-backdrop,
+  body[data-view="result-soft"] .smoke-backdrop {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(247, 248, 246, 0.66)),
+      url("./assets/smoke-neutral.png") 58% top / auto 100% no-repeat;
+  }
+
+  body[data-view="result-gray"] .smoke-backdrop {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(247, 248, 246, 0.68)),
+      url("./assets/smoke-gray.png") 60% top / auto 100% no-repeat;
+  }
+
   .app-shell {
     width: calc(100vw - 32px);
     max-width: none;
@@ -1005,6 +1039,7 @@ body[data-view="result-rich"] .result-hero::before {
   .distill-visual {
     margin-top: 4px;
     padding: 14px;
+    background: rgba(255, 255, 255, 0.74);
   }
 
   .distill-row {
@@ -1025,6 +1060,19 @@ body[data-view="result-rich"] .result-hero::before {
 
   .formula-box span {
     font-size: 18px;
+  }
+
+  .result-hero {
+    background: rgba(255, 255, 255, 0.56);
+    backdrop-filter: blur(12px);
+  }
+
+  .result-panel,
+  .theory-card,
+  .dimension-primer,
+  .question-panel,
+  .calibration-panel {
+    background: rgba(255, 255, 255, 0.78);
   }
 
   .start-copy p,
