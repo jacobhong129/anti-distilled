@@ -16,7 +16,7 @@
     <div class="app-shell">
       <header class="topbar" aria-label="应用导航">
         <a class="brand" href="/" aria-label="抗蒸性测试首页">
-          <span class="brand-mark" aria-hidden="true">蒸</span>
+          <span class="brand-mark brand-mark-flask" aria-hidden="true"></span>
           <span>抗蒸性测试</span>
         </a>
         <div class="top-actions">
@@ -44,17 +44,24 @@
           <p class="microcopy">动态追问，通常十几到二十题完成。结果会生成一个有梗但有依据的含活人量。</p>
         </div>
 
-        <aside class="distill-visual" aria-label="抗蒸性示意">
-          <div class="distill-row">
-            <span>人的判断</span>
-            <strong>经验 / 审美 / 取舍</strong>
+        <aside class="distill-visual process-visual" aria-label="抗蒸性蒸馏过程示意">
+          <div class="process-node human-node">
+            <span class="process-figure" aria-hidden="true"></span>
+            <strong>真人判断</strong>
+            <small>经验 / 审美 / 取舍</small>
           </div>
-          <div class="smoke-meter" aria-hidden="true"></div>
-          <div class="distill-row">
-            <span>被蒸馏后</span>
-            <strong>流程 / AI / Skill</strong>
+          <div class="process-arrow" aria-hidden="true"></div>
+          <div class="process-flask" aria-hidden="true">
+            <span class="flask-bubble"></span>
+            <span class="flask-smoke"></span>
           </div>
-          <p>抗蒸性关注的不是会不会用 AI，而是复制过程中会损失多少关键判断。</p>
+          <div class="process-arrow" aria-hidden="true"></div>
+          <div class="process-output">
+            <span>流程</span>
+            <span>AI</span>
+            <span>技能</span>
+          </div>
+          <p>抗蒸性关注的不是会不会用 AI，而是被蒸馏成流程后，还剩多少不可低损耗复制的人味。</p>
         </aside>
       </section>
     </template>
@@ -155,6 +162,12 @@
     <template id="calibrationTemplate">
       <section class="calibration-flow">
         <div class="flow-copy">
+          <div class="journey-stepper" aria-label="测试流程">
+            <span class="is-done">开始</span>
+            <span class="is-current">工作场景</span>
+            <span>动态测试</span>
+            <span>结果</span>
+          </div>
           <p class="phase-label">工作场景，可选</p>
           <h1>要不要先校准你的工作场景？</h1>
           <p>
@@ -202,6 +215,12 @@
     <template id="questionTemplate">
       <section class="quiz-layout">
         <aside class="quiz-status">
+          <div class="journey-stepper compact-stepper" aria-label="测试流程">
+            <span class="is-done">开始</span>
+            <span class="is-done">场景</span>
+            <span class="is-current">动态测试</span>
+            <span>结果</span>
+          </div>
           <button class="text-button back-button" id="backButton" type="button">上一题</button>
           <div>
             <p class="phase-label" id="phaseLabel"></p>
@@ -222,30 +241,53 @@
 
     <template id="resultTemplate">
       <section class="result-layout" id="resultLayout">
+        <div class="journey-stepper result-stepper" aria-label="测试流程">
+          <span class="is-done">开始</span>
+          <span class="is-done">工作场景</span>
+          <span class="is-done">动态测试</span>
+          <span class="is-current">结果</span>
+        </div>
         <div class="result-hero">
           <div class="score-card">
+            <span class="result-complete">测试完成</span>
             <p class="result-label">含活人量</p>
             <div class="score-line"><span id="scoreValue"></span><span>%</span></div>
-            <p class="score-help">这个百分比表示：你的判断、经验和取舍被低损耗蒸馏成流程或技能时，会保留多少关键人味。</p>
+            <div class="band-pill"><span class="medal-icon" aria-hidden="true"></span><span id="bandPill"></span></div>
+            <p class="score-help" id="scoreHelp"></p>
           </div>
           <div class="result-summary">
-            <h1 id="bandName"></h1>
+            <p class="result-label">你的段位是</p>
+            <div class="band-title-row">
+              <span class="band-badge" id="bandBadge" aria-hidden="true"></span>
+              <h1 id="bandName"></h1>
+            </div>
             <p id="bandLine"></p>
+            <p class="band-roast" id="bandRoast"></p>
             <button class="label-card" id="labelDetailButton" type="button">
-              <span>结构标签</span>
-              <strong id="labelName"></strong>
-              <p id="labelMeaning"></p>
+              <span class="label-orb" id="labelOrb" aria-hidden="true"></span>
+              <span class="label-copy">
+                <span>结构标签</span>
+                <strong id="labelName"></strong>
+                <p id="labelMeaning"></p>
+              </span>
             </button>
-          </div>
-          <div class="smoke-legend">
-            <span>烟雾颜色说明</span>
-            <p>色彩越丰富，表示蒸馏后仍保留的个人判断越多；越灰，表示越容易被流程化。</p>
           </div>
         </div>
 
         <div class="result-grid">
+          <section class="result-panel share-panel">
+            <h2>一句话分享</h2>
+            <p id="shareLine"></p>
+            <button class="secondary-button mini-action" id="copyButton" type="button">复制结果摘要</button>
+          </section>
+
+          <section class="result-panel role-panel">
+            <h2>岗位蒸馏度</h2>
+            <p id="roleResult"></p>
+          </section>
+
           <section class="result-panel">
-            <h2>六个核心维度</h2>
+            <h2>六大维度表现</h2>
             <div class="dimension-list" id="dimensionList"></div>
           </section>
 
@@ -254,35 +296,25 @@
             <p id="reasoningText"></p>
             <div class="signal-list" id="signalList"></div>
           </section>
-
-          <section class="result-panel">
-            <h2>结果候选</h2>
-            <p id="candidateText"></p>
-          </section>
-
-          <section class="result-panel">
-            <h2>岗位蒸馏度</h2>
-            <p id="roleResult"></p>
-          </section>
-
-          <section class="result-panel method-panel">
-            <h2>这套测试在看什么</h2>
-            <p>
-              题目不是按“选项越靠后越高分”设计，而是从情境辨识、边界校准、生成重构、审美判别、价值定向和经验内化六个核心维度观察你的判断结构。
-            </p>
-            <p>
-              系统会先做覆盖式初筛，再根据低置信度维度、标签分叉和可能误读的地方追加追问；达到稳定条件后停止，避免把测试做成机械刷题。
-            </p>
-            <p>
-              设计逻辑参考了专业判断、情境认知、专家直觉、任务可流程化程度与人机协作边界等思路。结果适合自我理解和讨论，不用于招聘、医疗或人格定论。
-            </p>
-          </section>
         </div>
 
         <div class="result-actions">
           <button class="primary-button" id="restartButton" type="button">再测一次</button>
-          <button class="secondary-button" id="copyButton" type="button">复制结果摘要</button>
+          <button class="secondary-button" id="methodButton" type="button">查看测试逻辑</button>
         </div>
+        <section class="smoke-scale" aria-label="烟雾图例">
+          <div>
+            <h2>烟雾图例：含活人量如何可视化</h2>
+            <p>蒸馏过程会带走可复制的部分，留下难以低损耗复刻的人味。颜色越丰富，人味越难蒸；越灰，越适合流程化。</p>
+          </div>
+          <div class="smoke-scale-steps">
+            <span><i class="smoke-dot gray"></i>灰色<br />可被轻松蒸馏</span>
+            <b></b>
+            <span><i class="smoke-dot faint"></i>单色微光<br />有少量真人残留</span>
+            <b></b>
+            <span><i class="smoke-dot rich"></i>多色烟雾<br />真人判断很浓</span>
+          </div>
+        </section>
       </section>
     </template>
 

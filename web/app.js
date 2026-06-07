@@ -170,12 +170,17 @@ function renderResult(result) {
   setTopbar("result");
 
   document.querySelector("#scoreValue").textContent = result.score;
+  document.querySelector("#bandPill").textContent = bandPillText(result.score);
+  document.querySelector("#bandBadge").dataset.tier = resultSmokeTier(result.score);
+  document.querySelector("#labelOrb").dataset.label = labelVisualKey(result.labelDetails.name);
+  document.querySelector("#scoreHelp").textContent = scoreHelpText(result.score);
   document.querySelector("#bandName").textContent = result.band.name;
   document.querySelector("#bandLine").textContent = result.band.line;
+  document.querySelector("#bandRoast").textContent = bandRoastText(result);
   document.querySelector("#labelName").textContent = result.labelDetails.name;
   document.querySelector("#labelMeaning").textContent = result.labelDetails.plainMeaning;
   document.querySelector("#reasoningText").textContent = buildReasoningText(result);
-  document.querySelector("#candidateText").textContent = buildCandidateText(result);
+  document.querySelector("#shareLine").textContent = buildShareLine(result);
   document.querySelector("#roleResult").textContent = result.role;
   document.querySelector("#labelDetailButton").addEventListener("click", () => openLabelDetail(result));
 
@@ -184,6 +189,7 @@ function renderResult(result) {
 
   document.querySelector("#restartButton").addEventListener("click", renderStart);
   document.querySelector("#copyButton").addEventListener("click", copyResult);
+  document.querySelector("#methodButton").addEventListener("click", openMethodDetail);
 }
 
 function resultSmokeTier(score) {
@@ -198,12 +204,13 @@ function renderDimensions(result) {
   detailContext.dimensions = result.dimensions;
   for (const [index, dimension] of result.dimensions.entries()) {
     const button = document.createElement("button");
-    button.className = "dimension-row";
+    button.className = `dimension-row dimension-${dimension.key}`;
     button.type = "button";
     button.innerHTML = `
       <div class="dimension-head">
+        <span class="dimension-icon" aria-hidden="true">${dimensionIcon(dimension.key)}</span>
         <span>${dimension.name}</span>
-        <strong>${dimension.value}</strong>
+        <strong>${dimension.value}%</strong>
       </div>
       <div class="dimension-track"><span style="width:${dimension.value}%"></span></div>
       <p>${dimensionCopy(dimension.key, dimension.value)}</p>
@@ -211,6 +218,27 @@ function renderDimensions(result) {
     button.addEventListener("click", () => openDimensionDetail(index));
     dimensionList.append(button);
   }
+}
+
+function dimensionIcon(metric) {
+  const icons = {
+    CXT: "◎",
+    BND: "⌖",
+    GEN: "◇",
+    TST: "◌",
+    STN: "♡",
+    GRD: "♧",
+  };
+  return icons[metric] || "◇";
+}
+
+function labelVisualKey(name = "") {
+  if (name.includes("边界")) return "boundary";
+  if (name.includes("经验") || name.includes("直觉")) return "experience";
+  if (name.includes("审美") || name.includes("空心")) return "taste";
+  if (name.includes("生成") || name.includes("重构")) return "generate";
+  if (name.includes("执行") || name.includes("流程")) return "method";
+  return "human";
 }
 
 function renderSignals(result) {
@@ -245,6 +273,32 @@ function buildCandidateText(result) {
   const candidates = result.labelCandidates || [];
   if (!candidates.length) return "系统已经给出主标签；候选标签不足以形成额外解释。";
   return `主标签之外，系统还参考了 ${candidates.join("、")} 等候选结构，用来避免单一标签把复杂回答吞掉。`;
+}
+
+function bandPillText(score) {
+  if (score >= 80) return "人味难蒸";
+  if (score >= 62) return "蒸馏高损";
+  if (score >= 45) return "半蒸半活";
+  return "流程友好";
+}
+
+function scoreHelpText(score) {
+  if (score >= 80) return "你不是不能被总结，是一总结就容易把关键人味总结丢。";
+  if (score >= 62) return "你的流程能被学走，但例外、边界和取舍还得本人校准。";
+  if (score >= 45) return "你有一部分很适合沉淀成 Skill，也还有一些判断正在长出来。";
+  return "你很适合标准化复制，下一步是把经验从步骤里拎出来。";
+}
+
+function bandRoastText(result) {
+  const label = result.labelDetails?.name || "判断结构";
+  if (result.score >= 80) return `蒸馏瓶已经开始冒烟：${label}这块，复制品容易只学到姿势，学不到手感。`;
+  if (result.score >= 62) return `你不是反流程的人，但流程遇到你会有点紧张：关键时候还得问一句“本人怎么看”。`;
+  if (result.score >= 45) return `目前是“能蒸，但别蒸太干”的状态：标准动作可交给工具，判断部分建议留给自己。`;
+  return `你很适合做成高质量 SOP，但别急着把自己全交出去：先把几个真实判断点养肥。`;
+}
+
+function buildShareLine(result) {
+  return `我的含活人量 ${result.score}%｜${result.band.name}｜${result.labelDetails.name}：${result.labelDetails.shareLine || result.band.line}`;
 }
 
 function riskCopy(risk) {
@@ -301,7 +355,7 @@ function openDimensionDetail(index) {
   };
   openDetail({
     type: "核心维度",
-    title: `${dimension.name} ${dimension.value}`,
+    title: `${dimension.name} ${dimension.value}%`,
     subtitle: detail.subtitle,
     sections: [
       ["这是什么意思", detail.meaning],
@@ -309,6 +363,20 @@ function openDimensionDetail(index) {
       ["怎么提升含活人量", detail.growth],
     ],
     next: true,
+  });
+}
+
+function openMethodDetail() {
+  openDetail({
+    type: "测试逻辑",
+    title: "这套测试在看什么",
+    subtitle: "它不是按选项位置给分，而是在看你的判断结构能不能低损耗复制。",
+    sections: [
+      ["六个观察面", "系统从情境辨识、边界校准、生成重构、审美判别、价值定向和经验内化六个维度观察你的选择。"],
+      ["为什么会动态追问", "先做覆盖式初筛，再根据低置信度维度、标签分叉和可能误读的地方追加追问；达到稳定条件后停止。"],
+      ["结果怎么理解", "含活人量越高，不代表越厉害，而是表示你的关键判断越难被流程、模板或 AI 低损耗复制。"],
+      ["适用边界", "结果适合自我理解和讨论，不用于招聘、医疗、心理诊断或人格定论。"],
+    ],
   });
 }
 
