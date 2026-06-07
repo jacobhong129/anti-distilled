@@ -8,16 +8,21 @@
       content="抗蒸性测试：通过动态追问理解你的判断、经验、审美和取舍有多难被低损耗蒸馏，并生成含活人量结果。"
     />
     <title>抗蒸性测试</title>
+    <link rel="preload" href="./assets/smoke-neutral.png" as="image" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <div class="smoke-backdrop" aria-hidden="true"></div>
     <div class="app-shell">
       <header class="topbar" aria-label="应用导航">
         <a class="brand" href="/" aria-label="抗蒸性测试首页">
           <span class="brand-mark" aria-hidden="true">蒸</span>
           <span>抗蒸性测试</span>
         </a>
-        <button class="ghost-button" id="restartTopButton" type="button" hidden>重新开始</button>
+        <div class="top-actions">
+          <button class="ghost-button" id="learnTopButton" type="button">什么是抗蒸性</button>
+          <button class="ghost-button" id="restartTopButton" type="button" hidden>重新开始</button>
+        </div>
       </header>
 
       <main id="app" class="app-main" aria-live="polite"></main>
@@ -27,22 +32,113 @@
       <section class="start-grid">
         <div class="start-copy">
           <h1>
-            <span>测测你的判断，</span>
-            <span>到底有多抗蒸。</span>
+            <span>测测你的抗蒸性。</span>
           </h1>
           <p>
-            系统会用动态追问观察你的判断、经验、审美和取舍，最后生成一个有点梗、但有依据的“含活人量”结果。
+            看看你的判断、经验、审美和取舍，有多难被低损耗蒸馏成一套流程，或一个同事技能。
           </p>
           <div class="start-actions">
-            <button class="primary-button" id="startButton" type="button">开始蒸馏</button>
-            <span class="microcopy">动态追问，通常十几题完成</span>
+            <button class="primary-button" id="startButton" type="button">开始测试</button>
+            <button class="text-button" id="learnButton" type="button">什么是抗蒸性？</button>
           </div>
+          <p class="microcopy">动态追问，通常十几到二十题完成。结果会生成一个有梗但有依据的含活人量。</p>
+        </div>
+
+        <aside class="distill-visual" aria-label="抗蒸性示意">
+          <div class="visual-column">
+            <span>人的判断</span>
+            <strong>经验 / 审美 / 取舍</strong>
+          </div>
+          <div class="smoke-meter" aria-hidden="true"></div>
+          <div class="visual-column">
+            <span>被蒸馏后</span>
+            <strong>流程 / AI / Skill</strong>
+          </div>
+          <p>抗蒸性关注的不是会不会用 AI，而是复制过程中会损失多少关键判断。</p>
+        </aside>
+      </section>
+    </template>
+
+    <template id="learnTemplate">
+      <section class="theory-page">
+        <div class="page-kicker">专业说明</div>
+        <div class="theory-hero">
+          <div>
+            <h1>什么是抗蒸性？</h1>
+            <p>
+              抗蒸性是本测试使用的自拟概念：它描述一个人的能力在被整理成流程、提示词、AI 工具或同事 Skill 时，保留关键判断的难易程度。
+            </p>
+          </div>
+          <div class="loss-model" aria-label="蒸馏损耗模型示意">
+            <div><span>行为层</span><small>步骤、格式、动作</small></div>
+            <div><span>判断层</span><small>边界、取舍、场景</small></div>
+            <div><span>责任层</span><small>信任、后果、价值</small></div>
+          </div>
+        </div>
+
+        <div class="theory-grid">
+          <article class="theory-card wide">
+            <h2>概念定义：从人到 Skill 的信息损耗</h2>
+            <p>
+              当一个人的工作被“蒸馏”成可复用技能时，最容易保留下来的是行为层：步骤、模板、格式和输出样式。更容易损耗的是判断层和责任层：为什么这样取舍、什么时候不能照做、出了后果由谁承担。
+            </p>
+            <p>
+              因此，抗蒸性不是神秘的不可替代，也不是拒绝工具，而是一个人在场景理解、边界判断、价值取舍和经验校准上的低损耗保真能力。
+            </p>
+          </article>
+
+          <article class="theory-card">
+            <h2>为什么它重要</h2>
+            <p>
+              AI 可以快速复制大量输出形态，却不总能理解关系、时机、责任和隐含代价。人在 AI 时代的不可替代性，越来越来自能否判断“该不该这样做”，而不仅是“能不能做出来”。
+            </p>
+          </article>
+
+          <article class="theory-card">
+            <h2>如何培养抗蒸性</h2>
+            <p>
+              三条路径最重要：积累可追溯经验，练习边界判断，把隐性判断表达出来。能说清依据的经验，才更容易成为你的个人招牌，而不是只停留在熟练度。
+            </p>
+          </article>
+        </div>
+
+        <section class="dimension-primer">
+          <h2>本测试观察的六个维度</h2>
+          <div class="primer-list">
+            <div><strong>情境辨识</strong><span>读懂任务之外的局</span></div>
+            <div><strong>边界校准</strong><span>知道方法何时会失效</span></div>
+            <div><strong>生成重构</strong><span>能把问题改准</span></div>
+            <div><strong>审美判别</strong><span>分辨空心专业感</span></div>
+            <div><strong>价值定向</strong><span>面对目标仍能取舍</span></div>
+            <div><strong>经验内化</strong><span>让经历沉淀成判断</span></div>
+          </div>
+        </section>
+
+        <p class="disclaimer">
+          本测试使用自拟的蒸馏损耗模型，用于自我理解和讨论，不用于招聘、医疗、心理诊断或人格定论。
+        </p>
+        <div class="page-actions">
+          <button class="primary-button" id="learnStartButton" type="button">开始测试</button>
+          <button class="secondary-button" id="learnBackButton" type="button">返回首页</button>
+        </div>
+      </section>
+    </template>
+
+    <template id="calibrationTemplate">
+      <section class="calibration-flow">
+        <div class="flow-copy">
+          <p class="phase-label">工作场景，可选</p>
+          <h1>要不要先校准你的工作场景？</h1>
+          <p>
+            这部分不会直接改变你的个人含活人量分数。它只帮助结果页区分：是你本人难蒸，还是这份工作本身更容易或更不容易被蒸。
+          </p>
+          <p class="microcopy">跳过后仍可得到个人含活人量；结果页只不显示岗位蒸馏度判断。</p>
         </div>
 
         <aside class="calibration-panel" aria-labelledby="calibrationTitle">
           <div>
             <h2 id="calibrationTitle">工作方式校准</h2>
-            <p>可选填写。它只用于解释岗位蒸馏度，不会直接改变你的个人分数。</p>
+            <p>约 20 秒。也可以直接跳过进入动态测试。</p>
           </div>
           <form id="roleForm" class="role-form">
             <fieldset>
@@ -67,45 +163,55 @@
               <label><input name="sopHardPart" type="radio" value="taste" />方向、品味、价值取舍和后果承担</label>
             </fieldset>
           </form>
+          <div class="calibration-actions">
+            <button class="primary-button" id="calibrationContinueButton" type="button">填写，开始测试</button>
+            <button class="secondary-button" id="calibrationSkipButton" type="button">跳过，直接测试</button>
+          </div>
         </aside>
       </section>
     </template>
 
     <template id="questionTemplate">
       <section class="quiz-layout">
-        <div class="quiz-status">
+        <aside class="quiz-status">
+          <button class="text-button back-button" id="backButton" type="button">上一题</button>
           <div>
             <p class="phase-label" id="phaseLabel"></p>
-            <h1 id="questionText"></h1>
+            <div class="progress-stack" aria-label="答题进度">
+              <span id="progressText"></span>
+              <div class="progress-track"><span id="progressBar"></span></div>
+            </div>
           </div>
-          <div class="progress-stack" aria-label="答题进度">
-            <span id="progressText"></span>
-            <div class="progress-track"><span id="progressBar"></span></div>
-          </div>
-        </div>
+          <p class="microcopy">系统会根据前面的回答追问，不显示固定总题量。</p>
+        </aside>
         <div class="question-panel">
           <p class="section-intro" id="sectionIntro"></p>
+          <h1 id="questionText"></h1>
           <div class="option-list" id="optionList"></div>
         </div>
       </section>
     </template>
 
     <template id="resultTemplate">
-      <section class="result-layout">
+      <section class="result-layout" id="resultLayout">
         <div class="result-hero">
           <div class="score-card">
-            <p class="result-label">含活人量指数</p>
+            <p class="result-label">含活人量</p>
             <div class="score-line"><span id="scoreValue"></span><span>分</span></div>
-            <p class="score-help">这个分数表示：你的判断结构有多难被低损耗蒸馏成可复用流程。</p>
+            <p class="score-help">这个分数表示：你的判断、经验和取舍被低损耗蒸馏成流程或技能时，会损失多少关键人味。</p>
           </div>
           <div class="result-summary">
             <h1 id="bandName"></h1>
             <p id="bandLine"></p>
-            <div class="label-card">
+            <button class="label-card" id="labelDetailButton" type="button">
               <span>结构标签</span>
               <strong id="labelName"></strong>
               <p id="labelMeaning"></p>
-            </div>
+            </button>
+          </div>
+          <div class="smoke-legend">
+            <span>烟雾颜色说明</span>
+            <p>色彩越丰富，表示蒸馏后仍保留的个人判断越多；越灰，表示越容易被流程化。</p>
           </div>
         </div>
 
@@ -132,15 +238,15 @@
           </section>
 
           <section class="result-panel method-panel">
-            <h2>这套测评在看什么</h2>
+            <h2>这套测试在看什么</h2>
             <p>
               题目不是按“选项越靠后越高分”设计，而是从情境辨识、边界校准、生成重构、审美判别、价值定向和经验内化六个核心维度观察你的判断结构。
             </p>
             <p>
-              系统会先做覆盖式初筛，再根据低置信度维度、标签分叉和可能误读的地方追加追问；达到稳定条件后停止，避免把测评做成机械刷题。
+              系统会先做覆盖式初筛，再根据低置信度维度、标签分叉和可能误读的地方追加追问；达到稳定条件后停止，避免把测试做成机械刷题。
             </p>
             <p>
-              设计逻辑参考了专业判断研究、情境认知、专家直觉、任务可流程化程度与人机协作边界等思路。结果适合自我理解和讨论，不用于医疗、招聘或人格定论。
+              设计逻辑参考了专业判断、情境认知、专家直觉、任务可流程化程度与人机协作边界等思路。结果适合自我理解和讨论，不用于招聘、医疗或人格定论。
             </p>
           </section>
         </div>
@@ -150,6 +256,19 @@
           <button class="secondary-button" id="copyButton" type="button">复制结果摘要</button>
         </div>
       </section>
+    </template>
+
+    <template id="detailTemplate">
+      <div class="detail-backdrop" id="detailBackdrop">
+        <aside class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+          <button class="close-button" id="detailCloseButton" type="button" aria-label="关闭">×</button>
+          <p class="phase-label" id="detailType"></p>
+          <h2 id="detailTitle"></h2>
+          <p class="detail-subtitle" id="detailSubtitle"></p>
+          <div class="detail-sections" id="detailSections"></div>
+          <button class="secondary-button" id="detailNextButton" type="button">查看下一个维度</button>
+        </aside>
+      </div>
     </template>
 
     <script type="module" src="./app.js"></script>

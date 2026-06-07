@@ -142,6 +142,19 @@ export class AdaptiveAssessment {
     return this.currentItem;
   }
 
+  getSnapshot() {
+    return {
+      state: JSON.parse(JSON.stringify(this.state)),
+      currentItemId: this.currentItem?.id || null,
+    };
+  }
+
+  restoreSnapshot(snapshot) {
+    if (!snapshot) return;
+    this.state = JSON.parse(JSON.stringify(snapshot.state));
+    this.currentItem = snapshot.currentItemId ? this.items.find((item) => item.id === snapshot.currentItemId) || null : null;
+  }
+
   get progress() {
     const answered = this.state.answers.length;
     const target = this.flow.targetAverageQuestions || 18;
@@ -569,7 +582,12 @@ export class AdaptiveAssessment {
 
   roleResult() {
     const context = this.state.roleContext || {};
-    const values = Object.values(context).filter(Boolean);
+    if (context.skipped) {
+      return "你跳过了工作场景校准，因此本次只展示个人含活人量，不判断岗位蒸馏度。";
+    }
+    const values = Object.entries(context)
+      .filter(([key, value]) => key !== "skipped" && Boolean(value))
+      .map(([, value]) => value);
     if (!values.length) {
       return "你没有填写工作方式校准，因此这里不做岗位蒸馏度判断。个人分数仍然按答题表现计算。";
     }
