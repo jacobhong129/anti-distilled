@@ -250,7 +250,8 @@ body[data-view="result-gray"] .smoke-backdrop {
   max-width: 100%;
 }
 
-.visual-column {
+.visual-column,
+.distill-row {
   display: grid;
   gap: 6px;
   padding: 18px;
@@ -259,13 +260,15 @@ body[data-view="result-gray"] .smoke-backdrop {
   background: rgba(255, 255, 255, 0.62);
 }
 
-.visual-column span {
+.visual-column span,
+.distill-row span {
   color: var(--muted);
   font-size: 13px;
   font-weight: 700;
 }
 
-.visual-column strong {
+.visual-column strong,
+.distill-row strong {
   font-family: var(--serif);
   font-size: 23px;
 }
@@ -371,6 +374,23 @@ body[data-view="result-gray"] .smoke-backdrop {
 
 .theory-card p + p {
   margin-top: 12px;
+}
+
+.formula-box {
+  margin: 18px 0;
+  padding: 18px;
+  border: 1px solid rgba(15, 107, 82, 0.2);
+  border-radius: 7px;
+  background: rgba(15, 107, 82, 0.07);
+}
+
+.formula-box span {
+  display: block;
+  color: var(--accent-dark);
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.65;
 }
 
 .primer-list {
@@ -853,6 +873,28 @@ body[data-view="result-rich"] .result-hero::before {
     gap: 28px;
   }
 
+  .distill-visual {
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .distill-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+  }
+
+  .distill-row strong {
+    font-size: 19px;
+    text-align: right;
+  }
+
+  .smoke-meter {
+    height: 70px;
+  }
+
   .start-copy h1,
   .theory-page h1,
   .calibration-flow h1 {
@@ -951,6 +993,31 @@ body[data-view="result-rich"] .result-hero::before {
   .start-copy h1 {
     font-size: clamp(38px, 10.2vw, 46px);
     line-height: 1.18;
+  }
+
+  .distill-visual {
+    margin-top: 4px;
+    padding: 14px;
+  }
+
+  .distill-row {
+    display: grid;
+    gap: 4px;
+    padding: 12px;
+  }
+
+  .distill-row strong {
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .distill-visual p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .formula-box span {
+    font-size: 18px;
   }
 
   .start-copy p,
