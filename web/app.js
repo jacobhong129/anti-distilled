@@ -93,6 +93,7 @@ function renderResult(result) {
   document.querySelector("#labelName").textContent = result.labelDetails.name;
   document.querySelector("#labelMeaning").textContent = result.labelDetails.plainMeaning;
   document.querySelector("#reasoningText").textContent = buildReasoningText(result);
+  document.querySelector("#candidateText").textContent = buildCandidateText(result);
   document.querySelector("#roleResult").textContent = result.role;
 
   renderDimensions(result);
@@ -126,6 +127,20 @@ function renderSignals(result) {
   answeredText.textContent = `本次完成 ${result.answeredCount} 题后停止`;
   signalList.append(answeredText);
 
+  if (result.stabilityLevel === "light_swing") {
+    const chip = document.createElement("div");
+    chip.className = "signal-chip signal-chip-warn";
+    chip.textContent = "结果有轻微摇摆";
+    signalList.append(chip);
+  }
+
+  for (const risk of result.openRisks || []) {
+    const chip = document.createElement("div");
+    chip.className = "signal-chip signal-chip-warn";
+    chip.textContent = riskCopy(risk);
+    signalList.append(chip);
+  }
+
   for (const signal of result.signals) {
     const chip = document.createElement("div");
     chip.className = "signal-chip";
@@ -142,9 +157,24 @@ function buildReasoningText(result) {
     .slice(0, 2)
     .join("、");
   if (low) {
-    return `系统主要看到了你在${top}上的有效信号，同时也保留了${low}的成长空间。这个分数不是人格定论，而是对当前判断结构的快照。`;
+    return `你的含活人量主要来自${top}上的有效信号，同时${low}还有成长空间。这个分数不是人格定论，而是对当前判断结构的快照。`;
   }
-  return `系统主要看到了你在${top}上的稳定信号。后续追问的作用，是确认这些信号不是偶然选择，而是在多个场景中反复出现。`;
+  return `你的含活人量主要来自${top}上的稳定信号。后续追问的作用，是确认这些信号不是偶然选择，而是在多个场景中反复出现。`;
+}
+
+function buildCandidateText(result) {
+  const candidates = result.labelCandidates || [];
+  if (!candidates.length) return "系统已经给出主标签；候选标签不足以形成额外解释。";
+  return `主标签之外，系统还参考了 ${candidates.join("、")} 等候选结构。V10.10 会用候选和风险校验避免单一标签把复杂回答吞掉。`;
+}
+
+function riskCopy(risk) {
+  const copy = {
+    polished_answer_risk: "体面答案校验",
+    ai_underrecognized_risk: "AI 放大校验",
+    low_band_flattening_risk: "低分分型校验",
+  };
+  return copy[risk] || "风险校验";
 }
 
 function dimensionCopy(metric, value) {
@@ -169,7 +199,7 @@ function dimensionCopy(metric, value) {
 
 async function copyResult() {
   if (!latestResult) return;
-  const text = `我的含活人量：${latestResult.score}分｜${latestResult.band.name}｜结构标签：${latestResult.labelDetails.name}。${latestResult.labelDetails.shareLine || latestResult.labelDetails.plainMeaning}`;
+  const text = `我做了抗蒸性测试：含活人量 ${latestResult.score}分｜${latestResult.band.name}｜结构标签：${latestResult.labelDetails.name}。${latestResult.labelDetails.shareLine || latestResult.labelDetails.plainMeaning}`;
   await navigator.clipboard.writeText(text);
   const button = document.querySelector("#copyButton");
   button.textContent = "已复制";

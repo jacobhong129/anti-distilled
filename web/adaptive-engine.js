@@ -13,7 +13,7 @@ const METRIC_NAMES = {
   TLB: "工具边界",
 };
 
-const LABEL_KEYS = [
+const DEFAULT_LABEL_KEYS = [
   "teachable_irreplaceable",
   "intuition_grounded",
   "boundary_radar",
@@ -24,6 +24,15 @@ const LABEL_KEYS = [
   "taste_low_expression",
   "fake_resistance",
   "latent_human_variable",
+  "relationship_stabilizer",
+  "experience_locked",
+  "skill_friendly",
+  "method_distilled",
+  "high_density_human",
+  "grounded_experience",
+  "context_reader",
+  "expressive_high",
+  "expressive_low",
 ];
 
 const LABEL_DIMENSIONS = {
@@ -37,6 +46,15 @@ const LABEL_DIMENSIONS = {
   taste_low_expression: ["TST", "EXP"],
   fake_resistance: ["NOI"],
   latent_human_variable: ["CXT", "GEN", "GRD"],
+  relationship_stabilizer: ["CXT", "EXP", "STN"],
+  experience_locked: ["GRD", "BND", "EXP"],
+  skill_friendly: ["SKL", "EXP"],
+  method_distilled: ["SKL", "EXP", "BND"],
+  high_density_human: ["CXT", "BND", "GEN", "TST", "STN", "GRD"],
+  grounded_experience: ["GRD", "EXP"],
+  context_reader: ["CXT", "BND"],
+  expressive_high: ["EXP", "CXT"],
+  expressive_low: ["EXP", "TST"],
 };
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
@@ -80,6 +98,13 @@ export class AdaptiveAssessment {
   constructor(config) {
     this.config = config;
     this.metrics = config.scoreMetrics || [...CORE_METRICS, ...AUX_METRICS];
+    this.labelKeys = Object.keys(config.labelDetails || config.labels || {}).length
+      ? Object.keys(config.labelDetails || config.labels)
+      : DEFAULT_LABEL_KEYS;
+    this.labelPriority = new Map((config.labelPriority || []).map((item) => [item.id, item.priority]));
+    this.labelRules = config.labelRules || {};
+    this.labelExclusionRules = config.labelExclusionRules || [];
+    this.riskRules = config.riskRules || {};
     this.items = config.items || [];
     this.flow = {
       screeningCount: 8,
@@ -102,8 +127,9 @@ export class AdaptiveAssessment {
       rawScores: Object.fromEntries(this.metrics.map((metric) => [metric, 0])),
       possibleScores: Object.fromEntries(this.metrics.map((metric) => [metric, 0])),
       evidenceCounts: {},
-      labelConfidence: Object.fromEntries(LABEL_KEYS.map((key) => [key, 0])),
+      labelConfidence: Object.fromEntries(this.labelKeys.map((key) => [key, 0])),
       stabilityChecks: [],
+      openRisks: [],
       currentStage: "screening",
       stopped: false,
     };
@@ -233,7 +259,14 @@ export class AdaptiveAssessment {
     const topLabels = this.sortedLabels().slice(0, 3).map(([key]) => key);
     const labelImpact = topLabels.some((label) => LABEL_DIMENSIONS[label]?.some((metric) => metricSet.includes(metric))) ? 1 : 0.25;
 
-    const contradictionRisk = this.hasMisreadRisk() && (item.role === "noise_probe" || item.primaryMetric === "NOI") ? 1 : 0.25;
+    const openRisks = this.openRisks(normalized, false);
+    const riskRoutes = openRisks.flatMap((risk) => this.riskRules[risk]?.routeTo || this.riskRules[risk]?.countercheckFrom || []);
+    const contradictionRisk = this.hasMisreadRisk(normalized) || openRisks.length
+      ? item.role === "noise_probe" || item.primaryMetric === "NOI" || riskRoutes.some((route) => this.matchesRoute(item, route))
+        ? 1
+        : 0.3
+      : 0.18;
+    const underrepresentedKeyLabel = this.keyLabelNeed(item, normalized);
     const topicFreshness = this.topicFreshness(item);
     const stageBoost = item.stage === "split" ? 0.1 : item.stage === "auxiliary" ? 0.06 : 0;
 
@@ -242,8 +275,24 @@ export class AdaptiveAssessment {
       labelImpact * (weights.labelImpact ?? 0.3) +
       contradictionRisk * (weights.contradictionRisk ?? 0.2) +
       topicFreshness * (weights.topicFreshness ?? 0.1) +
+      underrepresentedKeyLabel * (weights.underrepresentedKeyLabel ?? 0.04) +
       stageBoost
     );
+  }
+
+  matchesRoute(item, route) {
+    if (!route) return false;
+    return item.id?.startsWith(route) || item.prefix === route || item.primaryMetric === route || item.role === route;
+  }
+
+  keyLabelNeed(item, normalized = this.getNormalizedScores()) {
+    const topLabels = this.sortedLabels(normalized).slice(0, 2).map(([key]) => key);
+    const counterchecks = this.flow.keyLabelCounterchecks || {};
+    const direct = topLabels.some((label) => (counterchecks[label] || []).some((route) => this.matchesRoute(item, route)));
+    if (direct) return 1;
+    if (normalized.TLB >= 45 && ["SCREEN_08", "SCREEN_10", "SKILL_02", "SPLIT_05", "SPLIT_10"].some((route) => this.matchesRoute(item, route))) return 1;
+    if (normalized.TST >= 55 && ["SCREEN_13", "TASTE_04", "TASTE_08", "TASTE_11", "TASTE_12", "SPLIT_04"].some((route) => this.matchesRoute(item, route))) return 1;
+    return 0;
   }
 
   topicFreshness(item) {
@@ -261,12 +310,13 @@ export class AdaptiveAssessment {
   updateLabelConfidence(option) {
     const deltas = option.labelDelta || option.labelDeltas || {};
     for (const [label, value] of Object.entries(deltas)) {
-      if (label in this.state.labelConfidence) this.state.labelConfidence[label] += value;
+      if (!(label in this.state.labelConfidence)) this.state.labelConfidence[label] = 0;
+      this.state.labelConfidence[label] += value;
     }
 
     const scores = scoreVector(option);
     const add = (label, value) => {
-      this.state.labelConfidence[label] += value;
+      if (label in this.state.labelConfidence) this.state.labelConfidence[label] += value;
     };
     add("teachable_irreplaceable", (scores.EXP || 0) * 0.7 + (scores.BND || 0) * 0.45);
     add("intuition_grounded", (scores.GRD || 0) * 0.8 + (scores.CXT || 0) * 0.3);
@@ -278,50 +328,158 @@ export class AdaptiveAssessment {
     add("taste_low_expression", (scores.TST || 0) * 0.45 - (scores.EXP || 0) * 0.16);
     add("fake_resistance", (scores.NOI || 0) * 1.2);
     add("latent_human_variable", 0.12);
+    add("relationship_stabilizer", (scores.CXT || 0) * 0.55 + (scores.EXP || 0) * 0.35 + (scores.STN || 0) * 0.22 - (scores.GEN || 0) * 0.08);
+    add("experience_locked", (scores.GRD || 0) * 0.5 + (scores.NOI || 0) * 0.35 - (scores.BND || 0) * 0.12 - (scores.EXP || 0) * 0.08);
+    add("skill_friendly", (scores.SKL || 0) * 0.7 + (scores.EXP || 0) * 0.15 - (scores.BND || 0) * 0.08);
+    add("method_distilled", (scores.SKL || 0) * 0.45 + (scores.EXP || 0) * 0.45 + (scores.BND || 0) * 0.12);
+    add("high_density_human", CORE_METRICS.reduce((sum, metric) => sum + (scores[metric] || 0), 0) * 0.16);
+    add("grounded_experience", (scores.GRD || 0) * 0.68 + (scores.EXP || 0) * 0.22);
+    add("context_reader", (scores.CXT || 0) * 0.7 + (scores.BND || 0) * 0.18);
+    add("expressive_high", (scores.EXP || 0) * 0.72 + (scores.CXT || 0) * 0.14);
+    add("expressive_low", (scores.TST || 0) * 0.26 - (scores.EXP || 0) * 0.24);
   }
 
   shouldStop() {
     const answered = this.state.answers.length;
     if (answered >= this.flow.maximumQuestions) return true;
-    if (answered < this.flow.minimumQuestions) return false;
+    const result = this.result();
+    const requiredMinimum = this.requiredMinimumQuestions(result);
+    if (answered < requiredMinimum) return false;
     if (answered % (this.flow.checkStabilityEvery || 2) !== 0) return false;
 
-    const result = this.result();
     const previous = this.state.stabilityChecks.at(-1);
-    const top = this.sortedLabels()[0]?.[0];
-    const second = this.sortedLabels()[1]?.[1] || 0;
-    const topValue = this.sortedLabels()[0]?.[1] || 0;
-    const total = this.sortedLabels().reduce((sum, [, value]) => sum + Math.max(value, 0), 0) || 1;
+    const labels = this.sortedLabels(result.normalized);
+    const top = labels[0]?.[0];
+    const second = labels[1]?.[1] || 0;
+    const topValue = labels[0]?.[1] || 0;
+    const total = labels.reduce((sum, [, value]) => sum + Math.max(value, 0), 0) || 1;
     const lead = (topValue - second) / total;
     const check = {
       band: result.band.name,
       top,
       lead,
-      riskCounterchecked: !this.hasMisreadRisk() || this.hasCountercheckEvidence(),
+      riskCounterchecked: !this.hasMisreadRisk(result.normalized) || this.hasCountercheckEvidence(),
+      evidenceCovered: this.minimumEvidenceCoverageMet(top),
     };
     this.state.stabilityChecks.push(check);
 
     if (!previous) return false;
+    if (answered < 20 && this.hasHardStopBlocker(result, previous, check)) return false;
+
     const met = [
       previous.band === check.band,
       previous.top === check.top,
-      check.lead >= 0.12,
+      check.lead >= 0.18,
       check.riskCounterchecked,
+      check.evidenceCovered,
     ].filter(Boolean).length;
     return met >= 3;
   }
 
-  hasMisreadRisk() {
-    const normalized = this.getNormalizedScores();
-    return normalized.NOI >= 45 || (normalized.SKL >= 72 && (normalized.BND + normalized.CXT + normalized.GRD) / 3 < 52);
+  requiredMinimumQuestions(result) {
+    const early = this.flow.exceptionalEarlyStop;
+    const defaultMinimum = this.flow.defaultMinimumQuestions || this.flow.minimumQuestions || 16;
+    if (early?.enabled && this.exceptionalEarlyStopAllowed(result)) return early.minimumQuestions || 14;
+    const complex = this.flow.complexPersonaMinimumQuestions;
+    if (!complex?.enabled) return defaultMinimum;
+    const labels = this.sortedLabels(result.normalized);
+    const topLabel = labels[0]?.[0] || "";
+    const second = labels[1]?.[1] || 0;
+    const topValue = labels[0]?.[1] || 0;
+    const total = labels.reduce((sum, [, value]) => sum + Math.max(value, 0), 0) || 1;
+    const lead = (topValue - second) / total;
+    const topLabelNeedsDepth = /generative_reframer|ai_amplified_professional|teachable_irreplaceable|boundary_radar|relationship_stabilizer|experience_locked/.test(topLabel);
+    const highKeyMetric = result.normalized.GEN >= 65 || result.normalized.BND >= 65 || result.normalized.TLB >= 55;
+    if ((result.score >= 55 && result.score <= 79) || topLabelNeedsDepth || lead < 0.18 || highKeyMetric) {
+      return complex.minimumQuestions || 18;
+    }
+    return defaultMinimum;
+  }
+
+  exceptionalEarlyStopAllowed(result) {
+    if (this.state.answers.length < (this.flow.exceptionalEarlyStop?.minimumQuestions || 14)) return false;
+    const last = this.state.stabilityChecks.at(-1);
+    if (!last) return false;
+    const labels = this.sortedLabels(result.normalized);
+    const second = labels[1]?.[1] || 0;
+    const topValue = labels[0]?.[1] || 0;
+    const total = labels.reduce((sum, [, value]) => sum + Math.max(value, 0), 0) || 1;
+    return last.band === result.band.name && last.top === labels[0]?.[0] && (topValue - second) / total >= 0.24 && this.minimumEvidenceCoverageMet(labels[0]?.[0]) && !this.openRisks(result.normalized).length;
+  }
+
+  hasHardStopBlocker(result, previous, check) {
+    const nearBoundary = (this.config.resultBands || []).some((band) => Math.abs(result.score - band.min) <= 2 || Math.abs(result.score - band.max) <= 2);
+    const openRisks = this.openRisks(result.normalized);
+    const labelChanged = previous.top !== check.top;
+    const bandChanged = previous.band !== check.band;
+    const splitNeeded = result.score >= 55 && result.score <= 69 && !this.state.answers.some((answer) => answer.stage === "split");
+    return nearBoundary || openRisks.length > 0 || labelChanged || bandChanged || splitNeeded;
+  }
+
+  hasMisreadRisk(normalized = this.getNormalizedScores()) {
+    return this.openRisks(normalized).length > 0 || normalized.NOI >= 45 || (normalized.SKL >= 72 && (normalized.BND + normalized.CXT + normalized.GRD) / 3 < 52);
   }
 
   hasCountercheckEvidence() {
     return this.state.answers.some((answer) => answer.stage === "auxiliary" || answer.primaryMetric === "NOI");
   }
 
-  sortedLabels() {
-    return Object.entries(this.state.labelConfidence).sort((left, right) => right[1] - left[1]);
+  minimumEvidenceCoverageMet(topLabel) {
+    const evidenceCount = Object.values(this.state.evidenceCounts).reduce((sum, count) => sum + count, 0);
+    const topRule = this.labelRules[topLabel];
+    const supporting = topRule?.supportingEvidence || [];
+    const supportingMet = supporting.length ? supporting.filter((tag) => this.state.evidenceCounts[tag]).length : 1;
+    return evidenceCount >= 8 && supportingMet >= Math.min(2, supporting.length || 1);
+  }
+
+  signalFlags(normalized = this.getNormalizedScores()) {
+    const evidence = this.state.evidenceCounts;
+    return {
+      CXT_high: normalized.CXT >= 68,
+      BND_high: normalized.BND >= 68,
+      GEN_high: normalized.GEN >= 68,
+      TST_high: normalized.TST >= 68,
+      STN_high: normalized.STN >= 68,
+      GRD_high: normalized.GRD >= 68,
+      TLB_high: normalized.TLB >= 55,
+      empty_professional_detector_high: (this.state.labelConfidence.empty_professional_detector || 0) >= 3,
+      stable_execution_evidence: (evidence.process_execution || 0) + (evidence.skl_signal || 0) >= 4,
+      fixed_process_and_format: (evidence.process_execution || 0) >= 3,
+      efficient_standard_task: normalized.SKL >= 70 && normalized.BND < 55,
+      reuse_as_strength: normalized.SKL >= 65 && normalized.NOI < 35,
+      TLB_high_and_ai_judgment_reserved: normalized.TLB >= 45 && (evidence.ai_options_human_decision || 0) + (evidence.ai_challenges_but_human_decides || 0) > 0,
+      relationship_stabilizer_high: (this.state.labelConfidence.relationship_stabilizer || 0) >= 3,
+    };
+  }
+
+  openRisks(normalized = this.getNormalizedScores(), updateState = true) {
+    const risks = [];
+    const evidence = this.state.evidenceCounts;
+    const sociallyDesirable = (evidence.mature_judgment || 0) + (evidence.professional_polish || 0) + (evidence.polished_answer || 0);
+    const specific = (evidence.specific_experience || 0) + (evidence.case_validated || 0) + (evidence.failure_boundary || 0);
+    const tradeoff = (evidence.value_signal || 0) + (evidence.boundary_signal || 0) + (evidence.tool_boundary || 0);
+    if (sociallyDesirable >= 5 && specific <= 1 && tradeoff <= 2) risks.push("polished_answer_risk");
+    const aiCandidate = this.state.labelConfidence.ai_amplified_professional || 0;
+    if (normalized.TLB >= 40 && normalized.SKL >= 50 && aiCandidate < 2.4) risks.push("ai_underrecognized_risk");
+    const estimatedScore = this.estimateScore(normalized, false);
+    if (estimatedScore >= 35 && estimatedScore <= 44 && normalized.SKL >= 62 && normalized.NOI < 40) risks.push("low_band_flattening_risk");
+    if (updateState) this.state.openRisks = risks;
+    return risks;
+  }
+
+  sortedLabels(normalized = this.getNormalizedScores()) {
+    const flags = this.signalFlags(normalized);
+    const exclusions = new Map(this.labelExclusionRules.map((rule) => [rule.label, rule.blockedWhenAny || []]));
+    return Object.entries(this.state.labelConfidence)
+      .map(([label, value]) => {
+        const priorityBoost = ((this.labelPriority.get(label) ?? 55) - 55) * 0.035;
+        const rule = this.labelRules[label];
+        const evidenceBoost = (rule?.supportingEvidence || []).reduce((sum, tag) => sum + Math.min(this.state.evidenceCounts[tag] || 0, 2) * 0.25, 0);
+        const blocked = (exclusions.get(label) || []).some((flag) => flags[flag]);
+        const exclusionPenalty = blocked ? 4 : 0;
+        return [label, value + priorityBoost + evidenceBoost - exclusionPenalty];
+      })
+      .sort((left, right) => right[1] - left[1]);
   }
 
   stageLabel() {
@@ -335,24 +493,11 @@ export class AdaptiveAssessment {
 
   result() {
     const normalized = this.getNormalizedScores();
-    const formula = this.config.scoringFormula || {};
-    const weights = formula.coreWeights || {};
-    const coreScore = CORE_METRICS.reduce((sum, metric) => sum + normalized[metric] * (weights[metric] || 0), 0);
-    const replacementGap = Math.max(0, normalized.SKL - (normalized.BND + normalized.CXT + normalized.GRD + normalized.EXP) / 4);
-    const score = Math.round(
-      clamp(
-        coreScore +
-          normalized.EXP * (formula.translationBonusWeight ?? 0.08) +
-          normalized.TLB * (formula.toolBoundaryBonusWeight ?? 0.05) -
-          replacementGap * (formula.replacementPenaltyWeight ?? 0.12) -
-          normalized.NOI * (formula.noisePenaltyWeight ?? 0.16),
-        formula.minDisplayScore ?? 20,
-        formula.maxDisplayScore ?? 98,
-      ),
-    );
+    const score = Math.round(this.estimateScore(normalized));
 
     const band = this.findBand(score);
-    const [labelKey] = this.sortedLabels()[0] || ["latent_human_variable"];
+    const labels = this.sortedLabels(normalized);
+    const [labelKey] = labels[0] || ["latent_human_variable"];
     const labelDetails = this.config.labelDetails?.[labelKey] || {
       name: this.config.labels?.[labelKey] || "待开机型",
       shortName: "待机型",
@@ -369,9 +514,38 @@ export class AdaptiveAssessment {
       dimensions: CORE_METRICS.map((metric) => ({ key: metric, name: METRIC_NAMES[metric], value: Math.round(normalized[metric]) })),
       auxiliary: AUX_METRICS.map((metric) => ({ key: metric, name: METRIC_NAMES[metric], value: Math.round(normalized[metric]) })),
       signals: this.topSignals(),
+      openRisks: this.openRisks(normalized),
+      labelCandidates: labels.slice(0, 3).map(([key]) => this.config.labelDetails?.[key]?.name || this.config.labels?.[key] || key),
+      stabilityLevel: this.stabilityLevel(),
       role: this.roleResult(),
       answeredCount: this.state.answers.length,
     };
+  }
+
+  estimateScore(normalized, includeRiskPenalty = true) {
+    const formula = this.config.scoringFormula || {};
+    const weights = formula.coreWeights || {};
+    const coreScore = CORE_METRICS.reduce((sum, metric) => sum + normalized[metric] * (weights[metric] || 0), 0);
+    const replacementGap = Math.max(0, normalized.SKL - (normalized.BND + normalized.CXT + normalized.GRD + normalized.EXP) / 4);
+    const riskPenalty = includeRiskPenalty && this.openRisks(normalized, false).includes("polished_answer_risk") ? 6 : 0;
+    return clamp(
+      coreScore +
+        normalized.EXP * (formula.translationBonusWeight ?? 0.08) +
+        normalized.TLB * (formula.toolBoundaryBonusWeight ?? 0.05) -
+        replacementGap * (formula.replacementPenaltyWeight ?? 0.12) -
+        normalized.NOI * (formula.noisePenaltyWeight ?? 0.16) -
+        riskPenalty,
+      formula.minDisplayScore ?? 20,
+      formula.maxDisplayScore ?? 98,
+    );
+  }
+
+  stabilityLevel() {
+    if (this.state.answers.length >= this.flow.maximumQuestions && !this.state.stopped) return "forced_at_24";
+    const latest = this.state.stabilityChecks.at(-1);
+    if (!latest) return "light_swing";
+    if (latest.riskCounterchecked && latest.evidenceCovered && latest.lead >= 0.18) return "stable";
+    return "light_swing";
   }
 
   findBand(score) {

@@ -5,23 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="含活人量测评：通过动态追问理解你的判断、经验、审美和取舍有多难被低损耗蒸馏。"
+      content="抗蒸性测试：通过动态追问理解你的判断、经验、审美和取舍有多难被低损耗蒸馏，并生成含活人量结果。"
     />
-    <title>含活人量测评</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <title>抗蒸性测试</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="app-shell">
       <header class="topbar" aria-label="应用导航">
-        <a class="brand" href="/" aria-label="含活人量测评首页">
-          <span class="brand-mark" aria-hidden="true">活</span>
-          <span>含活人量测评</span>
+        <a class="brand" href="/" aria-label="抗蒸性测试首页">
+          <span class="brand-mark" aria-hidden="true">蒸</span>
+          <span>抗蒸性测试</span>
         </a>
         <button class="ghost-button" id="restartTopButton" type="button" hidden>重新开始</button>
       </header>
@@ -34,12 +28,10 @@
         <div class="start-copy">
           <h1>
             <span>测测你的判断，</span>
-            <span>能不能被</span>
-            <span>低损耗蒸馏</span>
-            <span>成一种技能。</span>
+            <span>到底有多抗蒸。</span>
           </h1>
           <p>
-            这不是测你会不会被 AI 替代，而是看你的判断、经验、审美和取舍，在不同场景里有多难被简单复刻。
+            系统会用动态追问观察你的判断、经验、审美和取舍，最后生成一个有点梗、但有依据的“含活人量”结果。
           </p>
           <div class="start-actions">
             <button class="primary-button" id="startButton" type="button">开始蒸馏</button>
@@ -101,9 +93,10 @@
     <template id="resultTemplate">
       <section class="result-layout">
         <div class="result-hero">
-          <div>
-            <p class="result-label">你的含活人量</p>
+          <div class="score-card">
+            <p class="result-label">含活人量指数</p>
             <div class="score-line"><span id="scoreValue"></span><span>分</span></div>
+            <p class="score-help">这个分数表示：你的判断结构有多难被低损耗蒸馏成可复用流程。</p>
           </div>
           <div class="result-summary">
             <h1 id="bandName"></h1>
@@ -126,6 +119,11 @@
             <h2>为什么这么判</h2>
             <p id="reasoningText"></p>
             <div class="signal-list" id="signalList"></div>
+          </section>
+
+          <section class="result-panel">
+            <h2>结果候选</h2>
+            <p id="candidateText"></p>
           </section>
 
           <section class="result-panel">
