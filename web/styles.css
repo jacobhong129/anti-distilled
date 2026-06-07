@@ -977,9 +977,16 @@ body[data-view="result-rich"] .result-hero::before {
 
 @media (max-width: 520px) {
   .app-shell {
-    width: min(calc(100vw - 48px), 342px);
-    margin-left: 24px;
-    margin-right: 24px;
+    width: calc(100vw - 32px);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @supports (width: 100dvw) {
+    .app-shell {
+      width: calc(100dvw - 32px);
+    }
   }
 
   .brand {
