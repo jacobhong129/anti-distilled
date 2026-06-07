@@ -1,177 +1,159 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="抗蒸性测试：测测你的含活人量、不可蒸馏度和同事 Skill 适配度。" />
-    <title>抗蒸性测试</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="含活人量测评：通过动态追问理解你的判断、经验、审美和取舍有多难被低损耗蒸馏。"
+    />
+    <title>含活人量测评</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="app-shell">
-      <section class="intro" id="intro">
-        <div class="intro-copy">
-          <p class="eyebrow">Anti-Distilled Test</p>
-          <h1>抗蒸性测试</h1>
-          <p class="lede">
-            假如有人把你的文档、聊天记录、工作习惯、产出风格，全都蒸馏成一个“同事 Skill”。它能学走多少？又会在哪一步开始变味？
+    <div class="app-shell">
+      <header class="topbar" aria-label="应用导航">
+        <a class="brand" href="/" aria-label="含活人量测评首页">
+          <span class="brand-mark" aria-hidden="true">活</span>
+          <span>含活人量测评</span>
+        </a>
+        <button class="ghost-button" id="restartTopButton" type="button" hidden>重新开始</button>
+      </header>
+
+      <main id="app" class="app-main" aria-live="polite"></main>
+    </div>
+
+    <template id="startTemplate">
+      <section class="start-grid">
+        <div class="start-copy">
+          <h1>
+            <span>测测你的判断，</span>
+            <span>能不能被</span>
+            <span>低损耗蒸馏</span>
+            <span>成一种技能。</span>
+          </h1>
+          <p>
+            这不是测你会不会被 AI 替代，而是看你的判断、经验、审美和取舍，在不同场景里有多难被简单复刻。
           </p>
-          <div class="intro-actions">
-            <button class="primary" id="startBtn">开始测含活人量</button>
+          <div class="start-actions">
+            <button class="primary-button" id="startButton" type="button">开始蒸馏</button>
+            <span class="microcopy">动态追问，通常十几题完成</span>
           </div>
-          <p class="intro-note">请选择你最常见的真实反应，不是你觉得最正确、最体面的答案。有些“好蒸”也是优点，说明你稳定、清楚、好协作。</p>
         </div>
 
-        <div class="preview-panel" aria-label="测评概要">
-          <div class="preview-top">
-            <span>测评流程</span>
-            <strong>24 题 / 6 章</strong>
+        <aside class="calibration-panel" aria-labelledby="calibrationTitle">
+          <div>
+            <h2 id="calibrationTitle">工作方式校准</h2>
+            <p>可选填写。它只用于解释岗位蒸馏度，不会直接改变你的个人分数。</p>
           </div>
-          <div class="preview-ring">
-            <span>24</span>
-            <small>情境判断题</small>
-          </div>
-          <dl class="preview-list">
-            <div>
-              <dt>主指标</dt>
-              <dd>含活人量</dd>
-            </div>
-            <div>
-              <dt>能力指标</dt>
-              <dd>不可蒸馏度</dd>
-            </div>
-            <div>
-              <dt>协作指标</dt>
-              <dd>同事 Skill 适配度</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      <section class="tester hidden" id="tester">
-        <aside class="side-panel" aria-label="答题进度">
-          <div class="progress-block">
-            <div class="progress-label">
-              <span id="progressText">第 1 / 24 题</span>
-              <strong id="chapterText">可 Skill 化</strong>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" id="progressFill"></div>
-            </div>
-          </div>
-          <div class="chapter-list" id="chapterList"></div>
+          <form id="roleForm" class="role-form">
+            <fieldset>
+              <legend>你的工作里，哪一类最多？</legend>
+              <label><input name="taskShape" type="radio" value="routine" />重复执行、整理、录入、检查</label>
+              <label><input name="taskShape" type="radio" value="ruleException" />按规则处理，但偶尔判断例外</label>
+              <label><input name="taskShape" type="radio" value="coordination" />协调人、信息和现场变化</label>
+              <label><input name="taskShape" type="radio" value="direction" />定义方向、判断取舍或承担后果</label>
+            </fieldset>
+            <fieldset>
+              <legend>AI 最容易接走你哪部分工作？</legend>
+              <label><input name="aiExposure" type="radio" value="standard" />标准流程和格式化产出</label>
+              <label><input name="aiExposure" type="radio" value="draft" />信息整理、初稿、分析草稿</label>
+              <label><input name="aiExposure" type="radio" value="partial" />部分方案，但要我判断能不能用</label>
+              <label><input name="aiExposure" type="radio" value="guarded" />很多动作能接走，关键责任不能接走</label>
+            </fieldset>
+            <fieldset>
+              <legend>最难被写成 SOP 的是什么？</legend>
+              <label><input name="sopHardPart" type="radio" value="efficiency" />熟练度和效率</label>
+              <label><input name="sopHardPart" type="radio" value="exceptions" />例外情况和具体判断</label>
+              <label><input name="sopHardPart" type="radio" value="trust" />信任、情绪和博弈</label>
+              <label><input name="sopHardPart" type="radio" value="taste" />方向、品味、价值取舍和后果承担</label>
+            </fieldset>
+          </form>
         </aside>
-
-        <section class="question-panel" aria-live="polite">
-          <div class="chapter-banner">
-            <p class="chapter-kicker" id="questionChapter"></p>
-            <p class="question-subtitle" id="questionSubtitle"></p>
-          </div>
-          <h2 id="questionTitle"></h2>
-          <div class="options" id="options"></div>
-          <div class="nav-row">
-            <button class="secondary" id="prevBtn">上一题</button>
-          </div>
-        </section>
       </section>
+    </template>
 
-      <section class="results hidden" id="results">
+    <template id="questionTemplate">
+      <section class="quiz-layout">
+        <div class="quiz-status">
+          <div>
+            <p class="phase-label" id="phaseLabel"></p>
+            <h1 id="questionText"></h1>
+          </div>
+          <div class="progress-stack" aria-label="答题进度">
+            <span id="progressText"></span>
+            <div class="progress-track"><span id="progressBar"></span></div>
+          </div>
+        </div>
+        <div class="question-panel">
+          <p class="section-intro" id="sectionIntro"></p>
+          <div class="option-list" id="optionList"></div>
+        </div>
+      </section>
+    </template>
+
+    <template id="resultTemplate">
+      <section class="result-layout">
         <div class="result-hero">
-          <div class="result-copy">
-            <p class="eyebrow">你的测评结果</p>
-            <h2 id="resultTitle">半蒸半活型</h2>
-            <p class="result-type" id="resultType"></p>
-            <p id="resultCopy"></p>
-            <p class="heart-line" id="heartLine"></p>
+          <div>
+            <p class="result-label">你的含活人量</p>
+            <div class="score-line"><span id="scoreValue"></span><span>分</span></div>
           </div>
-          <div class="hero-score">
-            <span id="humanScore">0%</span>
-            <small>含活人量</small>
+          <div class="result-summary">
+            <h1 id="bandName"></h1>
+            <p id="bandLine"></p>
+            <div class="label-card">
+              <span>结构标签</span>
+              <strong id="labelName"></strong>
+              <p id="labelMeaning"></p>
+            </div>
           </div>
         </div>
 
-        <div class="metric-grid">
-          <article>
-            <span>不可蒸馏度</span>
-            <strong id="undistillableScore">0%</strong>
-          </article>
-          <article>
-            <span>同事 Skill 适配度</span>
-            <strong id="skillFitScore">0%</strong>
-          </article>
-          <article>
-            <span>分享短句</span>
-            <strong class="share-line" id="shareLine">一半可调用，一半还活着。</strong>
-          </article>
-        </div>
-
-        <div class="analysis-layout">
-          <section class="breakdown">
-            <h3>六维拆解</h3>
-            <div id="dimensionBars"></div>
+        <div class="result-grid">
+          <section class="result-panel">
+            <h2>六个核心维度</h2>
+            <div class="dimension-list" id="dimensionList"></div>
           </section>
-          <section class="breakdown">
-            <h3>你的抗蒸说明</h3>
-            <div class="personal-notes" id="personalNotes"></div>
+
+          <section class="result-panel">
+            <h2>为什么这么判</h2>
+            <p id="reasoningText"></p>
+            <div class="signal-list" id="signalList"></div>
+          </section>
+
+          <section class="result-panel">
+            <h2>岗位蒸馏度</h2>
+            <p id="roleResult"></p>
+          </section>
+
+          <section class="result-panel method-panel">
+            <h2>这套测评在看什么</h2>
+            <p>
+              题目不是按“选项越靠后越高分”设计，而是从情境辨识、边界校准、生成重构、审美判别、价值定向和经验内化六个核心维度观察你的判断结构。
+            </p>
+            <p>
+              系统会先做覆盖式初筛，再根据低置信度维度、标签分叉和可能误读的地方追加追问；达到稳定条件后停止，避免把测评做成机械刷题。
+            </p>
+            <p>
+              设计逻辑参考了专业判断研究、情境认知、专家直觉、任务可流程化程度与人机协作边界等思路。结果适合自我理解和讨论，不用于医疗、招聘或人格定论。
+            </p>
           </section>
         </div>
-
-        <section class="explain-section" aria-label="结果解释">
-          <div class="section-heading">
-            <h3>如何理解这份结果</h3>
-            <p>这不是职业诊断，也不是人格标签。它衡量的是：你的判断、经验、审美和取舍被整理成流程或 Skill 时，低损耗复制的难度。</p>
-          </div>
-          <div class="explain-grid">
-            <article>
-              <span>含活人量</span>
-              <p>综合六维判断力、表达能力、维度均衡度和锚点表现后的主展示分。它不是“越难懂越高”，而是越能在复杂情境中做出可说明的判断越高。</p>
-            </article>
-            <article>
-              <span>不可蒸馏度</span>
-              <p>更偏正式的能力指标，强调情境、边界、生成、审美、价值和经验这些判断是否难以被低损耗复制。</p>
-            </article>
-            <article>
-              <span>同事 Skill 适配度</span>
-              <p>衡量你的工作方式是否清晰、稳定、易复用。它高不代表低价值，很多高水平协作者也很“可 Skill 化”。</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="explain-section" aria-label="测评维度说明">
-          <div class="section-heading">
-            <h3>六个维度测什么</h3>
-            <p>题目不是按 A 到 D 固定升分，而是在真实场景里观察你更常选择流程执行、边界校准、复杂判断，还是伪抗蒸噪声。</p>
-          </div>
-          <div class="dimension-card-grid">
-            <article><strong>情境辨识</strong><p>看懂话外音、关系、时机和没说出口的风险。</p></article>
-            <article><strong>边界校准</strong><p>知道流程、模板、AI 建议什么时候会失效。</p></article>
-            <article><strong>生成重构</strong><p>把空泛需求改成一个有判断的方向。</p></article>
-            <article><strong>审美判别</strong><p>看出“专业但空心”“正确但没取舍”的东西。</p></article>
-            <article><strong>价值定向</strong><p>在目标之外保留取舍，知道什么不能轻易牺牲。</p></article>
-            <article><strong>经验内化</strong><p>判断不是观点堆叠，而是从真实经历里长出来。</p></article>
-          </div>
-        </section>
-
-        <section class="explain-section logic-section" aria-label="设计逻辑与理论依据">
-          <div class="section-heading">
-            <h3>设计逻辑与理论依据</h3>
-            <p>这套测评采用情境判断题，而不是让你抽象评价自己。原因很简单：人在真实工作中的取舍，比“我是否有创造力”这类自评更能拉开差异。</p>
-          </div>
-          <div class="logic-list">
-            <p><strong>情境判断题方法：</strong>通过具体场景观察选择倾向，降低社会赞许偏差，避免所有人都选“看起来最正确”的答案。</p>
-            <p><strong>专家判断与隐性知识：</strong>很多关键能力来自难以完全写进说明书的情境识别、例外处理和经验迁移，这接近专业实践中的 tacit knowledge。</p>
-            <p><strong>元认知与边界意识：</strong>高分不是反流程，而是知道方法、模板和 AI 建议的适用条件，并能在必要时验证或停止。</p>
-            <p><strong>生成与审美判断：</strong>不可蒸馏不只来自原创点子，也来自对问题框架、表达分寸、取舍质量的判断。</p>
-            <p><strong>噪声保护：</strong>测试会惩罚“说不清、拒绝表达、故作神秘”的伪抗蒸反应，避免把混乱误判成独特。</p>
-          </div>
-        </section>
 
         <div class="result-actions">
-          <button class="primary" id="retakeBtn">重新测一次</button>
+          <button class="primary-button" id="restartButton" type="button">再测一次</button>
+          <button class="secondary-button" id="copyButton" type="button">复制结果摘要</button>
         </div>
       </section>
-    </main>
+    </template>
 
-    <script src="./app.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>
