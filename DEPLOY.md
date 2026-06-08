@@ -4,11 +4,37 @@
 
 ## 部署内容
 
-只需要发布 `web/` 目录下的文件：
+只需要发布 `web/` 目录：
 
 - `index.html`
 - `styles.css`
 - `app.js`
+- `adaptive-engine.js`
+- `data/game-config.json`
+- `assets/`
+
+当前 Netlify 配置见 `netlify.toml`：
+
+```toml
+[build]
+  publish = "web"
+  command = ""
+```
+
+推送到 GitHub `main` 后，Netlify 会从仓库发布 `web/` 目录。
+
+线上地址：
+
+```text
+https://anti-distilled.netlify.app/
+```
+
+## 发布前校验
+
+```bash
+node --check web/app.js
+python3 scripts/validate_game_config.py web/data/game-config.json
+```
 
 ## Nginx 部署示例
 
@@ -65,29 +91,3 @@ http://localhost:4173/
 - 不暴露后台评分表或调试诊断。
 
 用户只会看到测试入口、答题流程、最终结果、六维拆解和分享短句。
-
-## 火山引擎临时服务器部署
-
-当前服务器的 OpenClaw 已占用公网 `18789` 端口，请不要复用该端口。建议把本测试页部署在 `18080`：
-
-```bash
-mkdir -p "$HOME/anti-distilled-web"
-tar -xzf anti-distilled-web.tgz -C "$HOME/anti-distilled-web"
-cd "$HOME/anti-distilled-web"
-nohup python3 -m http.server 18080 --bind 0.0.0.0 > server.log 2>&1 &
-curl -I http://127.0.0.1:18080/
-```
-
-公网访问地址：
-
-```text
-http://118.196.75.36:18080/
-```
-
-如果服务器本机 `curl` 正常，但公网打不开，需要在火山引擎安全组/防火墙放行入方向 TCP `18080`。如果 `18080` 已被占用，可改用 `18081`，同样需要放行对应公网端口。
-
-本次已经生成可上传压缩包：
-
-```text
-deploy/anti-distilled-web.tgz
-```
