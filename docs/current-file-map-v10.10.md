@@ -22,6 +22,7 @@
 ## 脚本
 
 - `scripts/validate_game_config.py`：校验配置结构和开发准入字段。
+- `scripts/fill_label_deltas.py`：为题库选项补齐结构标签增量元数据。
 - `scripts/regress_app_engine.mjs`：使用当前 Web 引擎跑 30 虚拟人 x 5 轮严格回归。
 - `scripts/generate_visual_assets.py`：生成 Web/UI 视觉资产。
 

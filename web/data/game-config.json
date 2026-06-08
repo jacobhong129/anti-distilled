@@ -792,7 +792,11 @@
             "process_execution",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.24,
+            "method_distilled": 0.14,
+            "expressive_high": 0.04
+          }
         },
         {
           "key": "B",
@@ -807,7 +811,11 @@
             "condition_clarification",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.18,
+            "method_distilled": 0.15,
+            "teachable_irreplaceable": 0.13
+          }
         },
         {
           "key": "C",
@@ -822,7 +830,11 @@
             "mature_judgment",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.13,
+            "boundary_radar": 0.11,
+            "teachable_irreplaceable": 0.07
+          }
         },
         {
           "key": "D",
@@ -837,7 +849,11 @@
             "intuition_or_countercheck",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.13,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -879,7 +895,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -894,7 +914,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -908,7 +932,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -923,7 +951,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -967,7 +999,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -982,7 +1018,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -996,7 +1036,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -1011,7 +1054,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -1055,7 +1102,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -1070,7 +1121,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -1084,7 +1139,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -1098,7 +1157,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -1140,7 +1202,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -1155,7 +1221,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -1169,7 +1239,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -1184,7 +1258,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -1227,7 +1305,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -1242,7 +1324,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -1256,7 +1342,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -1271,7 +1361,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -1314,7 +1408,11 @@
             "process_execution",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -1329,7 +1427,11 @@
             "condition_clarification",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -1343,7 +1445,11 @@
             "mature_judgment",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -1357,7 +1463,10 @@
             "intuition_or_countercheck",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [],
@@ -1509,7 +1618,11 @@
             "process_execution",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "expressive_high": 0.09,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "B",
@@ -1523,7 +1636,11 @@
             "condition_clarification",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.16,
+            "expressive_high": 0.14,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "C",
@@ -1537,7 +1654,11 @@
             "mature_judgment",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.14,
+            "teachable_irreplaceable": 0.1,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -1552,7 +1673,11 @@
             "intuition_or_countercheck",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.09,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -1700,7 +1825,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -1715,7 +1844,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -1729,7 +1862,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -1743,7 +1880,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -1788,7 +1928,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -1803,7 +1947,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -1817,7 +1965,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -1832,7 +1984,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -1877,7 +2033,11 @@
           "evidence": [
             "usefulness_first"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.15,
+            "method_distilled": 0.07,
+            "empty_professional_detector": 0.04
+          }
         },
         {
           "key": "B",
@@ -1891,7 +2051,11 @@
           "evidence": [
             "clarity_check"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.1,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -1904,7 +2068,11 @@
           "evidence": [
             "judgment_and_consequence"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.1,
+            "value_low_generation": 0.08
+          }
         },
         {
           "key": "D",
@@ -1971,7 +2139,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -1986,7 +2158,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2000,7 +2176,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -2015,7 +2195,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -2059,7 +2243,11 @@
           "evidence": [
             "compliance_first"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.23,
+            "method_distilled": 0.1,
+            "value_low_generation": 0.08
+          }
         },
         {
           "key": "B",
@@ -2073,7 +2261,11 @@
           "evidence": [
             "condition_check"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "teachable_irreplaceable": 0.11,
+            "context_reader": 0.07
+          }
         },
         {
           "key": "C",
@@ -2087,7 +2279,11 @@
           "evidence": [
             "risk_with_alternative"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "value_low_generation": 0.15,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -2101,7 +2297,11 @@
           "evidence": [
             "pause_to_identify_reason"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.13,
+            "intuition_grounded": 0.1,
+            "relationship_stabilizer": 0.1
+          }
         }
       ],
       "followupTriggers": [
@@ -2154,7 +2354,11 @@
             "process_execution",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.24,
+            "method_distilled": 0.14,
+            "expressive_high": 0.04
+          }
         },
         {
           "key": "B",
@@ -2169,7 +2373,11 @@
             "condition_clarification",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.18,
+            "method_distilled": 0.15,
+            "teachable_irreplaceable": 0.13
+          }
         },
         {
           "key": "C",
@@ -2184,7 +2392,11 @@
             "mature_judgment",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.13,
+            "boundary_radar": 0.11,
+            "teachable_irreplaceable": 0.07
+          }
         },
         {
           "key": "D",
@@ -2199,7 +2411,11 @@
             "intuition_or_countercheck",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.13,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -2245,7 +2461,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -2260,7 +2480,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2274,7 +2498,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -2289,7 +2517,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -2335,7 +2567,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -2350,7 +2586,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2364,7 +2604,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -2379,7 +2623,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -2425,7 +2673,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -2440,7 +2692,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2454,7 +2710,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -2469,7 +2729,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -2515,7 +2779,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -2530,7 +2798,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2544,7 +2816,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -2559,7 +2835,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -2604,7 +2884,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -2619,7 +2903,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2633,7 +2921,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -2648,7 +2940,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -2693,7 +2989,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -2708,7 +3008,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2722,7 +3026,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -2737,7 +3045,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -2782,7 +3094,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -2797,7 +3113,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2811,7 +3131,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -2826,7 +3150,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -2871,7 +3199,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -2886,7 +3218,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2900,7 +3236,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -2915,7 +3255,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -2961,7 +3305,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -2976,7 +3324,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -2990,7 +3342,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -3005,7 +3361,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3050,7 +3410,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3065,7 +3429,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3079,7 +3447,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -3094,7 +3466,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3139,7 +3515,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3154,7 +3534,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3168,7 +3552,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -3183,7 +3571,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3228,7 +3620,11 @@
             "process_execution",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "context_reader": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3243,7 +3639,11 @@
             "condition_clarification",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "context_reader": 0.12,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3257,7 +3657,11 @@
             "mature_judgment",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -3272,7 +3676,11 @@
             "intuition_or_countercheck",
             "cxt_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "context_reader": 0.09,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3318,7 +3726,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3333,7 +3745,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3347,7 +3763,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -3362,7 +3781,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3409,7 +3832,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3424,7 +3851,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3438,7 +3869,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -3453,7 +3887,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3498,7 +3936,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3513,7 +3955,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3527,7 +3973,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -3542,7 +3991,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3588,7 +4041,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3603,7 +4060,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3617,7 +4078,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -3632,7 +4096,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3678,7 +4146,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3693,7 +4165,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3707,7 +4183,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -3722,7 +4201,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3768,7 +4251,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3783,7 +4270,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3797,7 +4288,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -3812,7 +4306,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3858,7 +4356,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3873,7 +4375,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3887,7 +4393,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -3902,7 +4411,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -3947,7 +4460,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -3962,7 +4479,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -3976,7 +4497,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -3991,7 +4515,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -4036,7 +4564,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4051,7 +4583,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4065,7 +4601,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -4080,7 +4619,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -4125,7 +4668,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4140,7 +4687,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4154,7 +4705,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -4169,7 +4723,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -4214,7 +4772,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4229,7 +4791,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4243,7 +4809,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -4258,7 +4827,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -4304,7 +4877,11 @@
             "process_execution",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4319,7 +4896,11 @@
             "condition_clarification",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.15,
+            "boundary_radar": 0.13,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4333,7 +4914,10 @@
             "mature_judgment",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.24,
+            "teachable_irreplaceable": 0.08
+          }
         },
         {
           "key": "D",
@@ -4348,7 +4932,11 @@
             "intuition_or_countercheck",
             "bnd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.16,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.05
+          }
         }
       ],
       "followupTriggers": [],
@@ -4390,7 +4978,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4405,7 +4997,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4419,7 +5015,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -4434,7 +5034,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -4476,7 +5080,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4491,7 +5099,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4505,7 +5117,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -4520,7 +5136,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -4562,7 +5182,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4577,7 +5201,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4591,7 +5219,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -4606,7 +5238,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -4649,7 +5285,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4664,7 +5304,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4678,7 +5322,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -4693,7 +5341,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -4735,7 +5387,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4750,7 +5406,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4764,7 +5424,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -4779,7 +5443,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -4821,7 +5489,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4836,7 +5508,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4850,7 +5526,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -4865,7 +5545,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -4907,7 +5591,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -4922,7 +5610,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -4936,7 +5628,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -4951,7 +5647,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -4993,7 +5693,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5008,7 +5712,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5022,7 +5730,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5037,7 +5749,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -5079,7 +5795,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5094,7 +5814,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5108,7 +5832,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5123,7 +5851,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -5165,7 +5897,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5180,7 +5916,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5194,7 +5934,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5209,7 +5953,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -5251,7 +5999,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5266,7 +6018,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5280,7 +6036,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5295,7 +6055,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -5337,7 +6101,11 @@
             "process_execution",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5352,7 +6120,11 @@
             "condition_clarification",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "generative_reframer": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5366,7 +6138,11 @@
             "mature_judgment",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5381,7 +6157,11 @@
             "intuition_or_countercheck",
             "gen_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "generative_reframer": 0.1,
+            "intuition_grounded": 0.07,
+            "empty_professional_detector": 0.04
+          }
         }
       ],
       "followupTriggers": [],
@@ -5423,7 +6203,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5438,7 +6222,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5452,7 +6240,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5466,7 +6258,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -5509,7 +6304,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5524,7 +6323,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5538,7 +6341,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5552,7 +6359,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -5594,7 +6404,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5609,7 +6423,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5623,7 +6441,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5637,7 +6459,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -5781,7 +6606,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5796,7 +6625,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5810,7 +6643,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5824,7 +6661,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -5866,7 +6706,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5881,7 +6725,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5895,7 +6743,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5909,7 +6761,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -5951,7 +6806,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -5966,7 +6825,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -5980,7 +6843,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -5994,7 +6861,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -6036,7 +6906,11 @@
           "evidence": [
             "readability_cleanup"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.15,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6050,7 +6924,11 @@
           "evidence": [
             "target_relevance_cleanup"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.11,
+            "empty_professional_detector": 0.09,
+            "generative_reframer": 0.09
+          }
         },
         {
           "key": "C",
@@ -6133,7 +7011,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6148,7 +7030,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -6162,7 +7048,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -6176,7 +7066,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -6218,7 +7111,11 @@
             "process_execution",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6233,7 +7130,11 @@
             "condition_clarification",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -6247,7 +7148,11 @@
             "mature_judgment",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.14,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -6261,7 +7166,10 @@
             "intuition_or_countercheck",
             "tst_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -6303,7 +7211,11 @@
           "evidence": [
             "surface_overdecorated"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.15,
+            "empty_professional_detector": 0.09,
+            "fake_resistance": 0.08
+          }
         },
         {
           "key": "B",
@@ -6317,7 +7229,11 @@
           "evidence": [
             "audience_overload"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "context_reader": 0.11,
+            "empty_professional_detector": 0.09,
+            "teachable_irreplaceable": 0.07
+          }
         },
         {
           "key": "C",
@@ -6400,7 +7316,11 @@
           "evidence": [
             "fact_logic_check"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.15,
+            "empty_professional_detector": 0.09,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6414,7 +7334,11 @@
           "evidence": [
             "context_fit_check"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "empty_professional_detector": 0.09,
+            "context_reader": 0.07,
+            "teachable_irreplaceable": 0.07
+          }
         },
         {
           "key": "C",
@@ -6496,7 +7420,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6511,7 +7439,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -6525,7 +7457,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -6540,7 +7476,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -6582,7 +7522,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6597,7 +7541,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -6611,7 +7559,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -6626,7 +7578,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -6670,7 +7626,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6685,7 +7645,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -6699,7 +7663,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -6714,7 +7682,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -6756,7 +7728,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6771,7 +7747,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -6785,7 +7765,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -6800,7 +7784,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -6843,7 +7831,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6858,7 +7850,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -6872,7 +7868,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -6887,7 +7887,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -6930,7 +7934,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -6945,7 +7953,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -6959,7 +7971,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -6974,7 +7990,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -7016,7 +8036,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7031,7 +8055,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7045,7 +8073,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -7060,7 +8092,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -7103,7 +8139,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7118,7 +8158,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7132,7 +8176,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -7147,7 +8195,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -7189,7 +8241,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7204,7 +8260,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7218,7 +8278,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -7233,7 +8297,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -7275,7 +8343,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7290,7 +8362,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7304,7 +8380,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -7319,7 +8399,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -7361,7 +8445,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7376,7 +8464,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7390,7 +8482,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -7405,7 +8501,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -7447,7 +8547,11 @@
             "process_execution",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7462,7 +8566,11 @@
             "condition_clarification",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "value_low_generation": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7476,7 +8584,11 @@
             "mature_judgment",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.15,
+            "boundary_radar": 0.06,
+            "teachable_irreplaceable": 0.05
+          }
         },
         {
           "key": "D",
@@ -7491,7 +8603,11 @@
             "intuition_or_countercheck",
             "stn_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "value_low_generation": 0.1,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -7532,7 +8648,11 @@
           "evidence": [
             "past_success"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.1,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.04
+          }
         },
         {
           "key": "B",
@@ -7546,7 +8666,11 @@
           "evidence": [
             "specific_experience"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.24,
+            "intuition_grounded": 0.14,
+            "teachable_irreplaceable": 0.1
+          }
         },
         {
           "key": "C",
@@ -7560,7 +8684,11 @@
           "evidence": [
             "failure_boundary"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.22,
+            "boundary_radar": 0.15,
+            "intuition_grounded": 0.14
+          }
         },
         {
           "key": "D",
@@ -7574,7 +8702,11 @@
           "evidence": [
             "intuition_needs_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "fake_resistance": 0.12,
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [
@@ -7625,7 +8757,11 @@
             "process_execution",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7640,7 +8776,11 @@
             "condition_clarification",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7654,7 +8794,11 @@
             "mature_judgment",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -7668,7 +8812,10 @@
             "intuition_or_countercheck",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [],
@@ -7710,7 +8857,11 @@
             "process_execution",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7725,7 +8876,11 @@
             "condition_clarification",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7739,7 +8894,11 @@
             "mature_judgment",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -7753,7 +8912,10 @@
             "intuition_or_countercheck",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [],
@@ -7795,7 +8957,11 @@
             "process_execution",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7810,7 +8976,11 @@
             "condition_clarification",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7824,7 +8994,11 @@
             "mature_judgment",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -7838,7 +9012,10 @@
             "intuition_or_countercheck",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [],
@@ -7880,7 +9057,11 @@
             "process_execution",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7895,7 +9076,11 @@
             "condition_clarification",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7909,7 +9094,11 @@
             "mature_judgment",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -7923,7 +9112,10 @@
             "intuition_or_countercheck",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [],
@@ -7965,7 +9157,11 @@
             "process_execution",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -7980,7 +9176,11 @@
             "condition_clarification",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -7994,7 +9194,11 @@
             "mature_judgment",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -8008,7 +9212,10 @@
             "intuition_or_countercheck",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [],
@@ -8149,7 +9356,11 @@
           "evidence": [
             "data_validated"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.17,
+            "skill_friendly": 0.15,
+            "method_distilled": 0.11
+          }
         },
         {
           "key": "B",
@@ -8163,7 +9374,11 @@
           "evidence": [
             "case_validated"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.24,
+            "intuition_grounded": 0.14,
+            "teachable_irreplaceable": 0.1
+          }
         },
         {
           "key": "C",
@@ -8177,7 +9392,11 @@
           "evidence": [
             "failure_refined_judgment"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.24,
+            "intuition_grounded": 0.14,
+            "boundary_radar": 0.11
+          }
         },
         {
           "key": "D",
@@ -8190,7 +9409,10 @@
           "evidence": [
             "intuition_later_validated"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.13
+          }
         }
       ],
       "followupTriggers": [
@@ -8240,7 +9462,11 @@
             "process_execution",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -8255,7 +9481,11 @@
             "condition_clarification",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -8269,7 +9499,11 @@
             "mature_judgment",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -8283,7 +9517,10 @@
             "intuition_or_countercheck",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [],
@@ -8325,7 +9562,11 @@
             "process_execution",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -8340,7 +9581,11 @@
             "condition_clarification",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -8354,7 +9599,11 @@
             "mature_judgment",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -8368,7 +9617,10 @@
             "intuition_or_countercheck",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [],
@@ -8410,7 +9662,11 @@
             "process_execution",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -8425,7 +9681,11 @@
             "condition_clarification",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "grounded_experience": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -8439,7 +9699,11 @@
             "mature_judgment",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.15,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -8453,7 +9717,10 @@
             "intuition_or_countercheck",
             "grd_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "intuition_grounded": 0.1,
+            "grounded_experience": 0.1
+          }
         }
       ],
       "followupTriggers": [],
@@ -8878,7 +10145,11 @@
             "process_execution",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.24,
+            "method_distilled": 0.14,
+            "expressive_high": 0.04
+          }
         },
         {
           "key": "B",
@@ -8893,7 +10164,11 @@
             "condition_clarification",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.18,
+            "method_distilled": 0.15,
+            "teachable_irreplaceable": 0.13
+          }
         },
         {
           "key": "C",
@@ -8908,7 +10183,11 @@
             "mature_judgment",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.13,
+            "boundary_radar": 0.11,
+            "teachable_irreplaceable": 0.07
+          }
         },
         {
           "key": "D",
@@ -8923,7 +10202,11 @@
             "intuition_or_countercheck",
             "skl_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.13,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -8964,7 +10247,10 @@
           "evidence": [
             "steps_trainable"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.24,
+            "method_distilled": 0.1
+          }
         },
         {
           "key": "B",
@@ -8978,7 +10264,11 @@
           "evidence": [
             "framework_trainable"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.15,
+            "method_distilled": 0.13,
+            "teachable_irreplaceable": 0.1
+          }
         },
         {
           "key": "C",
@@ -8993,7 +10283,11 @@
           "evidence": [
             "judgment_partly_trainable"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.11,
+            "skill_friendly": 0.1,
+            "teachable_irreplaceable": 0.09
+          }
         },
         {
           "key": "D",
@@ -9007,7 +10301,11 @@
           "evidence": [
             "exceptions_need_human"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.13,
+            "skill_friendly": 0.1,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [
@@ -9149,7 +10447,11 @@
             "process_execution",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "expressive_high": 0.09,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "B",
@@ -9163,7 +10465,11 @@
             "condition_clarification",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.16,
+            "expressive_high": 0.14,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "C",
@@ -9177,7 +10483,11 @@
             "mature_judgment",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.14,
+            "teachable_irreplaceable": 0.1,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -9192,7 +10502,11 @@
             "intuition_or_countercheck",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.09,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -9236,7 +10550,11 @@
             "process_execution",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "expressive_high": 0.09,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "B",
@@ -9250,7 +10568,11 @@
             "condition_clarification",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.16,
+            "expressive_high": 0.14,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "C",
@@ -9264,7 +10586,11 @@
             "mature_judgment",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.14,
+            "teachable_irreplaceable": 0.1,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -9279,7 +10605,11 @@
             "intuition_or_countercheck",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.09,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -9321,7 +10651,11 @@
             "process_execution",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "expressive_high": 0.09,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "B",
@@ -9335,7 +10669,11 @@
             "condition_clarification",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.16,
+            "expressive_high": 0.14,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "C",
@@ -9349,7 +10687,11 @@
             "mature_judgment",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.14,
+            "teachable_irreplaceable": 0.1,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -9364,7 +10706,11 @@
             "intuition_or_countercheck",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.09,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -9406,7 +10752,11 @@
             "process_execution",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "expressive_high": 0.09,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "B",
@@ -9420,7 +10770,11 @@
             "condition_clarification",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.16,
+            "expressive_high": 0.14,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "C",
@@ -9434,7 +10788,11 @@
             "mature_judgment",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.14,
+            "teachable_irreplaceable": 0.1,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -9449,7 +10807,11 @@
             "intuition_or_countercheck",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.09,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -9491,7 +10853,11 @@
             "process_execution",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "expressive_high": 0.09,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "B",
@@ -9505,7 +10871,11 @@
             "condition_clarification",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.16,
+            "expressive_high": 0.14,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "C",
@@ -9519,7 +10889,11 @@
             "mature_judgment",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.14,
+            "teachable_irreplaceable": 0.1,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -9534,7 +10908,11 @@
             "intuition_or_countercheck",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.09,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -9576,7 +10954,11 @@
             "process_execution",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "expressive_high": 0.09,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "B",
@@ -9590,7 +10972,11 @@
             "condition_clarification",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.16,
+            "expressive_high": 0.14,
+            "method_distilled": 0.09
+          }
         },
         {
           "key": "C",
@@ -9604,7 +10990,11 @@
             "mature_judgment",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.14,
+            "teachable_irreplaceable": 0.1,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -9619,7 +11009,11 @@
             "intuition_or_countercheck",
             "exp_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "expressive_high": 0.09,
+            "boundary_radar": 0.08,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -9659,7 +11053,11 @@
           "evidence": [
             "complex_details"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.15,
+            "method_distilled": 0.07,
+            "fake_resistance": 0.04
+          }
         },
         {
           "key": "B",
@@ -9673,7 +11071,11 @@
           "evidence": [
             "complex_experience"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.1,
+            "method_distilled": 0.07,
+            "grounded_experience": 0.05
+          }
         },
         {
           "key": "C",
@@ -9687,7 +11089,11 @@
           "evidence": [
             "context_boundary_tradeoff"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.21,
+            "teachable_irreplaceable": 0.07,
+            "grounded_experience": 0.05
+          }
         },
         {
           "key": "D",
@@ -9700,7 +11106,10 @@
           "evidence": [
             "personal_feeling_without_basis"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "fake_resistance": 0.24,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [
@@ -9749,7 +11158,11 @@
             "process_execution",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "fake_resistance": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -9764,7 +11177,11 @@
             "condition_clarification",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "fake_resistance": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -9779,7 +11196,11 @@
             "mature_judgment",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.11,
+            "fake_resistance": 0.1,
+            "teachable_irreplaceable": 0.07
+          }
         },
         {
           "key": "D",
@@ -9793,7 +11214,10 @@
             "intuition_or_countercheck",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "fake_resistance": 0.24,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -9834,7 +11258,11 @@
             "process_execution",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "fake_resistance": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -9849,7 +11277,11 @@
             "condition_clarification",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "fake_resistance": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -9864,7 +11296,11 @@
             "mature_judgment",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.11,
+            "fake_resistance": 0.1,
+            "teachable_irreplaceable": 0.07
+          }
         },
         {
           "key": "D",
@@ -9878,7 +11314,10 @@
             "intuition_or_countercheck",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "fake_resistance": 0.24,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -9919,7 +11358,11 @@
           "evidence": [
             "evidence_first"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.15,
+            "method_distilled": 0.07,
+            "fake_resistance": 0.04
+          }
         },
         {
           "key": "B",
@@ -9933,7 +11376,11 @@
           "evidence": [
             "case_explanation"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.1,
+            "method_distilled": 0.07,
+            "grounded_experience": 0.05
+          }
         },
         {
           "key": "C",
@@ -9946,7 +11393,11 @@
           "evidence": [
             "experience_signal_calibrated"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "grounded_experience": 0.1,
+            "intuition_grounded": 0.06,
+            "boundary_radar": 0.06
+          }
         },
         {
           "key": "D",
@@ -9959,7 +11410,10 @@
           "evidence": [
             "refuses_explanation"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "fake_resistance": 0.24,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [
@@ -10009,7 +11463,11 @@
             "process_execution",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.19,
+            "fake_resistance": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "B",
@@ -10024,7 +11482,11 @@
             "condition_clarification",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.13,
+            "fake_resistance": 0.1,
+            "method_distilled": 0.07
+          }
         },
         {
           "key": "C",
@@ -10039,7 +11501,11 @@
             "mature_judgment",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.11,
+            "fake_resistance": 0.1,
+            "teachable_irreplaceable": 0.07
+          }
         },
         {
           "key": "D",
@@ -10053,7 +11519,10 @@
             "intuition_or_countercheck",
             "noi_signal"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "fake_resistance": 0.24,
+            "intuition_grounded": 0.07
+          }
         }
       ],
       "followupTriggers": [],
@@ -10093,7 +11562,11 @@
           "evidence": [
             "wants_judgment_recognized"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "skill_friendly": 0.1,
+            "value_low_generation": 0.05,
+            "fake_resistance": 0.04
+          }
         },
         {
           "key": "B",
@@ -10107,7 +11580,11 @@
           "evidence": [
             "judgment_expression_gap"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "teachable_irreplaceable": 0.1,
+            "method_distilled": 0.07,
+            "grounded_experience": 0.05
+          }
         },
         {
           "key": "C",
@@ -10121,7 +11598,11 @@
           "evidence": [
             "unstable_method"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "boundary_radar": 0.11,
+            "teachable_irreplaceable": 0.07,
+            "grounded_experience": 0.05
+          }
         },
         {
           "key": "D",
@@ -10135,7 +11616,11 @@
           "evidence": [
             "aware_of_fake_uniqueness_risk"
           ],
-          "labelDelta": {}
+          "labelDelta": {
+            "fake_resistance": 0.24,
+            "intuition_grounded": 0.07,
+            "expressive_high": 0.04
+          }
         }
       ],
       "followupTriggers": [

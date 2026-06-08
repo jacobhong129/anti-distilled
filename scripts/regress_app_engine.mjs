@@ -8,6 +8,7 @@ const CONFIG_PATH = path.join(ROOT, "web/data/game-config.json");
 const ROUNDS = 5;
 
 const config = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
+const validLabels = new Set(Object.keys(config.labels || {}));
 
 const TYPE_WEIGHTS = {
   process: { process_execution: 2.2, condition_clarification: 0.7, mature_judgment: -0.3, intuition_or_countercheck: -0.8 },
@@ -133,6 +134,14 @@ function hasCandidate(row, text) {
   return row.label.includes(text) || row.candidates.some((candidate) => candidate.includes(text));
 }
 
+function hasCompleteOptionMetadata(option) {
+  const labelDelta = option.labelDelta || {};
+  return Boolean(option.scores)
+    && option.evidence?.length
+    && Object.keys(labelDelta).length > 0
+    && Object.entries(labelDelta).every(([label, value]) => validLabels.has(label) && Number.isFinite(value));
+}
+
 const rows = profiles.flatMap((profile) => Array.from({ length: ROUNDS }, (_, index) => runOne(profile, index + 1)));
 const avg = (values) => values.reduce((sum, value) => sum + value, 0) / values.length;
 const labels = countBy(rows, "label");
@@ -155,7 +164,7 @@ const gates = [
   ["high_value_personas_average_at_least_55", avg(highValue.map((row) => row.score)) >= 55],
   ["low_band_not_all_same_label", new Set(low.map((row) => row.label)).size >= 2],
   ["label_copy_covers_all_labels", Object.keys(config.labels || {}).every((key) => config.labelDetails?.[key]?.plainMeaning)],
-  ["all_options_scores_and_evidence", config.items.every((item) => item.options.every((option) => option.scores && option.evidence?.length))],
+  ["all_options_scores_evidence_label_delta", config.items.every((item) => item.options.every(hasCompleteOptionMetadata))],
 ];
 
 const summary = {

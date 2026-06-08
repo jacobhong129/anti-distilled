@@ -1,4 +1,5 @@
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -53,16 +54,26 @@ def validate(path):
             key = option["key"]
             scores = option.get("scores")
             evidence = option.get("evidence")
+            label_delta = option.get("labelDelta")
             if not scores:
                 fail(f"{item_id}.{key}: missing scores")
             if not evidence:
                 fail(f"{item_id}.{key}: missing evidence")
+            if not label_delta:
+                fail(f"{item_id}.{key}: missing labelDelta")
             invalid_metrics = set(scores) - metrics
             if invalid_metrics:
                 fail(f"{item_id}.{key}: invalid metrics {sorted(invalid_metrics)}")
-            invalid_labels = set(option.get("labelDelta", {})) - labels
+            invalid_labels = set(label_delta) - labels
             if invalid_labels:
                 fail(f"{item_id}.{key}: invalid labelDelta {sorted(invalid_labels)}")
+            invalid_values = {
+                label: value
+                for label, value in label_delta.items()
+                if not isinstance(value, (int, float)) or not math.isfinite(value)
+            }
+            if invalid_values:
+                fail(f"{item_id}.{key}: invalid labelDelta values {invalid_values}")
 
     bands = config["resultBands"]
     ranges = sorted((band["min"], band["max"]) for band in bands)
@@ -95,6 +106,12 @@ def validate(path):
         "version": config["version"],
         "items": len(items),
         "options": sum(len(item["options"]) for item in items),
+        "labelDeltaOptions": sum(
+            1
+            for item in items
+            for option in item["options"]
+            if option.get("labelDelta")
+        ),
         "labels": len(labels),
         "riskRules": len(risk_rules),
         "readinessChecks": len(gate["mustPassBeforePublicLaunch"]),
