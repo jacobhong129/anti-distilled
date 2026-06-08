@@ -78,6 +78,10 @@ function seededNoise(seed, id) {
   return (hashString(`${seed}:${id}`) % 1000) / 1000;
 }
 
+function evidenceScore(evidence, tags, weight = 1) {
+  return tags.reduce((sum, tag) => sum + Math.min(evidence[tag] || 0, 3) * weight, 0);
+}
+
 function scoreVector(option) {
   return option?.scores || {};
 }
@@ -469,12 +473,72 @@ export class AdaptiveAssessment {
     const risks = [];
     const evidence = this.state.evidenceCounts;
     const sociallyDesirable = (evidence.mature_judgment || 0) + (evidence.professional_polish || 0) + (evidence.polished_answer || 0);
-    const specific = (evidence.specific_experience || 0) + (evidence.case_validated || 0) + (evidence.failure_boundary || 0);
-    const tradeoff = (evidence.value_signal || 0) + (evidence.boundary_signal || 0) + (evidence.tool_boundary || 0);
-    if (sociallyDesirable >= 5 && specific <= 1 && tradeoff <= 2) risks.push("polished_answer_risk");
+    const specific = evidenceScore(evidence, [
+      "specific_experience",
+      "case_validated",
+      "failure_boundary",
+      "data_validated",
+      "failure_refined_judgment",
+      "updates_judgment_conditions",
+    ]);
+    const tradeoff = evidenceScore(evidence, [
+      "value_signal",
+      "boundary_signal",
+      "tool_boundary",
+      "judgment_reserved",
+      "ai_options_human_decision",
+      "ai_challenges_but_human_decides",
+      "risk_with_alternative",
+      "practical_rework",
+    ]);
+    const concreteCriticalTaste = evidenceScore(evidence, [
+      "anti_empty_professionalism",
+      "cliche_without_judgment",
+      "empty_but_polished_detected",
+      "ai_empty_judgment_check",
+      "judgment_selection_gap",
+    ]);
+    const aiJudgmentReserved = evidenceScore(evidence, [
+      "ai_amplifier",
+      "tool_boundary",
+      "ai_options_human_decision",
+      "ai_challenges_but_human_decides",
+      "ai_direction_boundary",
+      "ai_goal_check",
+    ]);
+    const concreteCounterEvidence = specific + tradeoff + concreteCriticalTaste + aiJudgmentReserved;
+    const matureAnswerCount = this.state.answers.filter((answer) => answer.type === "mature_judgment").length;
+    const highPolishDensity = matureAnswerCount >= 10 && matureAnswerCount / Math.max(this.state.answers.length, 1) >= 0.58;
+    const genuineAiAmplification = normalized.SKL >= 35 && normalized.TLB >= 45 && aiJudgmentReserved >= 3 && (this.state.labelConfidence.ai_amplified_professional || 0) >= 4;
+    const genuineCriticalTaste = normalized.TST >= 55 && concreteCriticalTaste >= 1 && (this.state.labelConfidence.empty_professional_detector || 0) >= 4;
+    const generationEvidence = evidenceScore(evidence, ["problem_reframed", "practical_rework", "target_relevance_cleanup", "judgment_selection_gap"]);
+    const genuineReframing = normalized.GEN >= 65 && generationEvidence >= 2 && (this.state.labelConfidence.generative_reframer || 0) >= 4;
+    const boundaryEvidence = evidenceScore(evidence, ["boundary_signal", "risk_with_alternative", "context_boundary_tradeoff", "condition_check", "failure_boundary"]);
+    const contextEvidence = evidenceScore(evidence, ["context_signal", "pause_to_identify_reason", "audience_need_check"]);
+    const valueEvidence = evidenceScore(evidence, ["value_signal", "judgment_and_consequence", "compliance_first", "risk_with_alternative"]);
+    const genuineBoundaryJudgment =
+      normalized.BND >= 64 && normalized.CXT >= 52 && boundaryEvidence >= 2 && (!highPolishDensity || boundaryEvidence >= 4);
+    const genuineContextStabilizing =
+      normalized.CXT >= 62 && contextEvidence >= 2 && (this.state.labelConfidence.relationship_stabilizer || 0) >= 3 && (!highPolishDensity || contextEvidence >= 4);
+    const genuineValueGuardrail =
+      normalized.STN >= 68 && valueEvidence >= 2 && (this.state.labelConfidence.value_low_generation || 0) >= 2 && (!highPolishDensity || valueEvidence >= 4);
+    const genuineCounterSignal =
+      genuineAiAmplification ||
+      genuineCriticalTaste ||
+      genuineReframing ||
+      genuineBoundaryJudgment ||
+      genuineContextStabilizing ||
+      genuineValueGuardrail;
+    if (
+      !genuineCounterSignal &&
+      ((sociallyDesirable >= 5 && specific <= 1 && tradeoff <= 2 && concreteCounterEvidence < 4) ||
+        (highPolishDensity && specific <= 1 && concreteCriticalTaste < 2 && aiJudgmentReserved < 4))
+    ) {
+      risks.push("polished_answer_risk");
+    }
     const aiCandidate = this.state.labelConfidence.ai_amplified_professional || 0;
     if (normalized.TLB >= 40 && normalized.SKL >= 50 && aiCandidate < 2.4) risks.push("ai_underrecognized_risk");
-    const estimatedScore = this.estimateScore(normalized, false);
+    const estimatedScore = this.estimateBaseScore(normalized);
     if (estimatedScore >= 35 && estimatedScore <= 44 && normalized.SKL >= 62 && normalized.NOI < 40) risks.push("low_band_flattening_risk");
     if (updateState) this.state.openRisks = risks;
     return risks;
@@ -482,17 +546,75 @@ export class AdaptiveAssessment {
 
   sortedLabels(normalized = this.getNormalizedScores()) {
     const flags = this.signalFlags(normalized);
+    const evidence = this.state.evidenceCounts;
     const exclusions = new Map(this.labelExclusionRules.map((rule) => [rule.label, rule.blockedWhenAny || []]));
     return Object.entries(this.state.labelConfidence)
       .map(([label, value]) => {
-        const priorityBoost = ((this.labelPriority.get(label) ?? 55) - 55) * 0.035;
+        const priorityBoost = ((this.labelPriority.get(label) ?? 55) - 55) * 0.045;
         const rule = this.labelRules[label];
-        const evidenceBoost = (rule?.supportingEvidence || []).reduce((sum, tag) => sum + Math.min(this.state.evidenceCounts[tag] || 0, 2) * 0.25, 0);
+        const evidenceBoost = (rule?.supportingEvidence || []).reduce((sum, tag) => sum + Math.min(evidence[tag] || 0, 2) * 0.55, 0);
+        const specificBoost = this.specificLabelBoost(label, normalized);
         const blocked = (exclusions.get(label) || []).some((flag) => flags[flag]);
         const exclusionPenalty = blocked ? 4 : 0;
-        return [label, value + priorityBoost + evidenceBoost - exclusionPenalty];
+        const fallbackPenalty = this.fallbackLabelPenalty(label, normalized);
+        return [label, value + priorityBoost + evidenceBoost + specificBoost - exclusionPenalty - fallbackPenalty];
       })
       .sort((left, right) => right[1] - left[1]);
+  }
+
+  specificLabelBoost(label, normalized = this.getNormalizedScores()) {
+    const evidence = this.state.evidenceCounts;
+    const boosts = {
+      ai_amplified_professional:
+        (normalized.TLB >= 45 ? 1.2 : 0) +
+        evidenceScore(evidence, ["ai_amplifier", "tool_boundary", "ai_options_human_decision", "ai_challenges_but_human_decides", "ai_direction_boundary"], 0.85),
+      empty_professional_detector:
+        (normalized.TST >= 58 ? 0.9 : 0) +
+        evidenceScore(evidence, ["anti_empty_professionalism", "cliche_without_judgment", "empty_but_polished_detected", "ai_empty_judgment_check", "correct_but_empty_words"], 0.9),
+      generative_reframer:
+        (normalized.GEN >= 62 ? 0.9 : 0) +
+        evidenceScore(evidence, ["problem_reframed", "practical_rework", "target_relevance_cleanup", "judgment_selection_gap"], 0.75),
+      relationship_stabilizer:
+        evidenceScore(evidence, ["context_signal", "expression_signal", "value_signal", "pause_to_identify_reason"], 0.55),
+      grounded_experience:
+        evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment"], 0.72),
+      experience_locked:
+        evidenceScore(evidence, ["old_method_continues", "rarely_update_experience", "old_experience_rejected_broadly"], 0.8),
+      value_low_generation:
+        evidenceScore(evidence, ["value_signal", "risk_with_alternative", "compliance_first"], 0.55),
+      method_distilled:
+        evidenceScore(evidence, ["reusable_method", "process_execution", "skl_signal"], 0.18),
+      skill_friendly:
+        evidenceScore(evidence, ["process_execution", "skl_signal", "standardizable_work"], 0.16),
+    };
+    return boosts[label] || 0;
+  }
+
+  fallbackLabelPenalty(label, normalized = this.getNormalizedScores()) {
+    const evidence = this.state.evidenceCounts;
+    if (label === "boundary_radar") {
+      const specificAlternative =
+        evidenceScore(evidence, [
+          "ai_amplifier",
+          "tool_boundary",
+          "anti_empty_professionalism",
+          "cliche_without_judgment",
+          "empty_but_polished_detected",
+          "problem_reframed",
+          "practical_rework",
+          "specific_experience",
+          "case_validated",
+          "value_signal",
+        ]) >= 3;
+      const boundaryIsDominant = normalized.BND >= 68 && normalized.CXT >= 56;
+      if (specificAlternative && !boundaryIsDominant) return 2.2;
+      if (specificAlternative) return 0.9;
+    }
+    if (label === "fake_resistance" && normalized.NOI < 48) {
+      const constructiveEvidence = evidenceScore(evidence, ["practical_rework", "risk_with_alternative", "tool_boundary", "specific_experience"]);
+      if (constructiveEvidence >= 2) return 2.5;
+    }
+    return 0;
   }
 
   stageLabel() {
@@ -537,28 +659,94 @@ export class AdaptiveAssessment {
 
   estimateScore(normalized, includeRiskPenalty = true) {
     const formula = this.config.scoringFormula || {};
+    const rawScore = this.estimateBaseScore(normalized) - (includeRiskPenalty ? this.riskScorePenalty(normalized) : 0);
+    const calibrated = this.applyScoreCalibration(rawScore, normalized, includeRiskPenalty);
+    return clamp(calibrated, formula.minDisplayScore ?? 20, formula.maxDisplayScore ?? 98);
+  }
+
+  estimateBaseScore(normalized = this.getNormalizedScores()) {
+    const formula = this.config.scoringFormula || {};
     const weights = formula.coreWeights || {};
     const coreScore = CORE_METRICS.reduce((sum, metric) => sum + normalized[metric] * (weights[metric] || 0), 0);
     const replacementGap = Math.max(0, normalized.SKL - (normalized.BND + normalized.CXT + normalized.GRD + normalized.EXP) / 4);
-    const riskPenalty = includeRiskPenalty && this.openRisks(normalized, false).includes("polished_answer_risk") ? 6 : 0;
-    return clamp(
+    return (
       coreScore +
-        normalized.EXP * (formula.translationBonusWeight ?? 0.08) +
-        normalized.TLB * (formula.toolBoundaryBonusWeight ?? 0.05) -
-        replacementGap * (formula.replacementPenaltyWeight ?? 0.12) -
-        normalized.NOI * (formula.noisePenaltyWeight ?? 0.16) -
-        riskPenalty,
-      formula.minDisplayScore ?? 20,
-      formula.maxDisplayScore ?? 98,
+      normalized.EXP * (formula.translationBonusWeight ?? 0.08) +
+      normalized.TLB * (formula.toolBoundaryBonusWeight ?? 0.05) -
+      replacementGap * (formula.replacementPenaltyWeight ?? 0.12) -
+      normalized.NOI * (formula.noisePenaltyWeight ?? 0.16)
     );
+  }
+
+  riskScorePenalty(normalized = this.getNormalizedScores()) {
+    const risks = this.openRisks(normalized, false);
+    let penalty = 0;
+    if (risks.includes("polished_answer_risk")) penalty += 8;
+    if (risks.includes("ai_underrecognized_risk")) penalty -= 1.5;
+    return penalty;
+  }
+
+  applyScoreCalibration(score, normalized = this.getNormalizedScores(), includeRiskPenalty = true) {
+    const calibration = this.config.scoreCalibration || {};
+    let calibrated = score;
+    if (calibration.highConfidenceLift?.enabled) {
+      const highCore = CORE_METRICS.filter((metric) => normalized[metric] >= 72).length;
+      const labelStrength = this.sortedLabels(normalized).filter(([, value]) => value >= 5).length;
+      const polishedRiskOpen = includeRiskPenalty && this.openRisks(normalized, false).includes("polished_answer_risk");
+      if (score >= 68 && normalized.NOI <= 28 && highCore >= 2 && labelStrength >= 2 && !polishedRiskOpen) {
+        calibrated += highCore >= 4 ? 12 : highCore >= 3 ? 12 : 6;
+        calibrated = Math.min(calibrated, calibration.highConfidenceLift.cap ?? 94);
+      }
+    }
+    if (calibration.midBandSpread?.enabled && calibrated >= 55 && calibrated <= 69) {
+      const dimensions = calibration.midBandSpread.dimensionsForSpread || ["BND", "EXP", "GRD", "GEN"];
+      const spreadBase = dimensions.reduce((sum, metric) => sum + (normalized[metric] || 0), 0) / Math.max(dimensions.length, 1);
+      calibrated += clamp((spreadBase - 58) * 0.16, -4, 5);
+    }
+    if (calibration.lowScoreDignityFloor?.enabled) {
+      const reliableExecution = normalized.SKL >= 62 && normalized.NOI <= 35;
+      if (reliableExecution && calibrated >= 20 && calibrated < 40) calibrated = Math.max(calibrated, 38);
+      if (reliableExecution && normalized.EXP >= 55 && calibrated < 45) calibrated = Math.max(calibrated, 45);
+    }
+    if (includeRiskPenalty) calibrated = this.applyRiskScoreEffects(calibrated, normalized);
+    return calibrated;
+  }
+
+  applyRiskScoreEffects(score, normalized = this.getNormalizedScores()) {
+    const risks = this.openRisks(normalized, false);
+    let adjusted = score;
+    if (risks.includes("polished_answer_risk") && !this.polishedRiskResolved()) {
+      adjusted = Math.min(adjusted, 61);
+    }
+    return adjusted;
+  }
+
+  polishedRiskResolved() {
+    if (!this.hasCountercheckForRisk("polished_answer_risk")) return false;
+    const evidence = this.state.evidenceCounts;
+    const specific = evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment"]);
+    const tradeoff = evidenceScore(evidence, ["tool_boundary", "ai_options_human_decision", "ai_challenges_but_human_decides", "risk_with_alternative", "practical_rework"]);
+    const criticalTaste = evidenceScore(evidence, ["anti_empty_professionalism", "cliche_without_judgment", "empty_but_polished_detected"]);
+    return specific + tradeoff + criticalTaste >= 5;
+  }
+
+  hasCountercheckForRisk(risk) {
+    const routes = this.riskRules[risk]?.countercheckFrom || this.riskRules[risk]?.routeTo || [];
+    if (!routes.length) return this.hasCountercheckEvidence();
+    const answeredItems = this.state.answers
+      .map((answer) => this.items.find((item) => item.id === answer.itemId))
+      .filter(Boolean);
+    return answeredItems.some((item) => routes.some((route) => this.matchesRoute(item, route)));
   }
 
   stabilityLevel() {
     if (this.state.answers.length >= this.flow.maximumQuestions && !this.state.stopped) return "forced_at_24";
     const latest = this.state.stabilityChecks.at(-1);
-    if (!latest) return "light_swing";
+    if (!latest) return this.openRisks().length ? "risk_pending" : "path_stable";
+    if (this.openRisks().length) return "risk_pending";
     if (latest.riskCounterchecked && latest.evidenceCovered && latest.lead >= 0.18) return "stable";
-    return "light_swing";
+    if (latest.lead >= 0.12 && latest.evidenceCovered) return "path_stable";
+    return "label_swing";
   }
 
   findBand(score) {

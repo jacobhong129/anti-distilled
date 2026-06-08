@@ -321,7 +321,7 @@ function renderDimensions(result) {
 function renderSignals(result) {
   const signalList = document.querySelector("#signalList");
   const chips = [`完成 ${result.answeredCount} 题后停止`];
-  if (result.stabilityLevel === "light_swing") chips.push("结果有轻微摇摆");
+  chips.push(stabilityCopy(result.stabilityLevel));
   chips.push(...(result.openRisks || []).map(riskCopy));
   chips.push(...result.signals.slice(0, 4).map((signal) => `${signal.name} ${signal.value}%`));
 
@@ -331,6 +331,18 @@ function renderSignals(result) {
     chip.textContent = text;
     signalList.append(chip);
   }
+}
+
+function stabilityCopy(level) {
+  const copy = {
+    stable: "判断路径稳定",
+    path_stable: "路径基本稳定",
+    label_swing: "标签轻微摇摆",
+    risk_pending: "风险待反证",
+    forced_at_24: "追问到上限",
+    light_swing: "结果有轻微摇摆",
+  };
+  return copy[level] || "路径基本稳定";
 }
 
 function buildReasoningText(result) {

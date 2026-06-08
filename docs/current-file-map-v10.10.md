@@ -12,6 +12,7 @@
 - `docs/development-handoff-v10.10.md`：开发交接说明。
 - `docs/v10.10-historical-regression-and-app-readiness.md`：历史问题复盘、V10.10 修复矩阵与应用开发准入。
 - `docs/v10.10-comprehensive-readiness-eval.md`：最新全面测试与正式应用开发准入评估。
+- `docs/app-implementation-regression-v10.10-30x5.md`：当前应用引擎实现回归报告。
 
 ## 题库与样本
 
@@ -21,6 +22,7 @@
 ## 脚本
 
 - `scripts/validate_game_config.py`：校验配置结构和开发准入字段。
+- `scripts/regress_app_engine.mjs`：使用当前 Web 引擎跑 30 虚拟人 x 5 轮严格回归。
 - `scripts/generate_visual_assets.py`：生成 Web/UI 视觉资产。
 
 ## 设计与应用材料
@@ -32,4 +34,4 @@
 
 - 新增版本时，优先更新主配置和本文件地图。
 - 当前阶段以 `config/game-config-v10.10.json` 和 `web/data/game-config.json` 作为配置基准，不再保留旧版本过程稿。
-- 后续应用优化优先修改 `web/` 和 `design/approved-uiux-v1/`，评测设计暂不继续扩展。
+- 后续应用优化优先修改 `web/` 和 `design/approved-uiux-v1/`；若触及评测引擎，必须运行 `node scripts/regress_app_engine.mjs --strict`。
