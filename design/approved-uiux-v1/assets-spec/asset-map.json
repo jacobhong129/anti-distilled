@@ -1,0 +1,61 @@
+{
+  "resultBands": {
+    "真人浓缩型": "assets/ui-art/badge-human-concentrate.svg",
+    "关键真人型": "assets/ui-art/badge-key-human.svg",
+    "高损蒸馏型": "assets/ui-art/badge-high-distill.svg",
+    "招牌养成型": "assets/ui-art/badge-signature-growing.svg",
+    "半蒸半活型": "assets/ui-art/badge-half-distilled.svg",
+    "协作易蒸型": "assets/ui-art/badge-collab-distillable.svg",
+    "流程友好型": "assets/ui-art/badge-process-friendly.svg",
+    "优质蒸馏原料": "assets/ui-art/badge-quality-material.svg"
+  },
+  "labels": {
+    "teachable_irreplaceable": "assets/ui-art/tag-teachable-irreplaceable.svg",
+    "intuition_grounded": "assets/ui-art/tag-intuition-grounded.svg",
+    "boundary_radar": "assets/ui-art/tag-boundary.svg",
+    "empty_professional_detector": "assets/ui-art/tag-empty-professional-detector.svg",
+    "generative_reframer": "assets/ui-art/tag-generative-reframer.svg",
+    "ai_amplified_professional": "assets/ui-art/tag-ai-amplified.svg",
+    "value_low_generation": "assets/ui-art/tag-value-guardrail.svg",
+    "taste_low_expression": "assets/ui-art/tag-taste-low-expression.svg",
+    "fake_resistance": "assets/ui-art/tag-fake-resistance.svg",
+    "latent_human_variable": "assets/ui-art/tag-latent-human-variable.svg",
+    "skill_friendly": "assets/ui-art/tag-skill-friendly.svg",
+    "method_distilled": "assets/ui-art/tag-method-distilled.svg",
+    "high_density_human": "assets/ui-art/tag-high-density-human.svg",
+    "grounded_experience": "assets/ui-art/tag-grounded-experience.svg",
+    "context_reader": "assets/ui-art/tag-context-reader.svg",
+    "expressive_high": "assets/ui-art/tag-expressive-high.svg",
+    "expressive_low": "assets/ui-art/tag-expressive-low.svg",
+    "relationship_stabilizer": "assets/ui-art/tag-relationship-stabilizer.svg",
+    "experience_locked": "assets/ui-art/tag-experience-locked.svg"
+  },
+  "dimensions": {
+    "icons": "assets/ui-art/icons-dimensions.svg"
+  },
+  "smoke": {
+    "scoreHigh": "assets/ui-art/smoke-score-high.png",
+    "scoreMid": "assets/ui-art/smoke-score-mid.png",
+    "scoreLow": "assets/ui-art/smoke-score-low.png",
+    "questionMobile": "assets/ui-art/smoke-question-mobile.png",
+    "questionDensity": "assets/ui-art/smoke-question-density.png",
+    "homeAmbient": "assets/ui-art/smoke-home-ambient.png",
+    "theoryEdge": "assets/ui-art/smoke-theory-edge.png",
+    "workContext": "assets/ui-art/smoke-work-context.png",
+    "drawerHeader": "assets/ui-art/smoke-drawer-header.png",
+    "shareCard": "assets/ui-art/smoke-share-card.png"
+  },
+  "global": {
+    "homeDistillationDesktop": "assets/ui-art/home-distillation-desktop.png",
+    "homeDistillationMobile": "assets/ui-art/home-distillation-mobile.png",
+    "brandFlask": "assets/ui-art/icon-brand-flask.svg",
+    "sparkleSeal": "assets/ui-art/icon-sparkle-seal.svg",
+    "humanHardStamp": "assets/ui-art/stamp-human-hard.svg",
+    "workContextIcons": "assets/ui-art/icons-work-context.svg"
+  },
+  "supplementalTags": {
+    "execution": "assets/ui-art/tag-execution.svg",
+    "aesthetic": "assets/ui-art/tag-aesthetic.svg",
+    "reconstruction": "assets/ui-art/tag-reconstruction.svg"
+  }
+}

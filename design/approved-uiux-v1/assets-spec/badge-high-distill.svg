@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+  <defs>
+    <radialGradient id="badge-high-distill-field" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(122 82) rotate(42) scale(132 140)">
+      <stop stop-color="#fffdf2"/>
+      <stop offset=".25" stop-color="#f3d38a"/>
+      <stop offset=".66" stop-color="#b68b45"/>
+      <stop offset="1" stop-color="#6f5432"/>
+    </radialGradient>
+    <radialGradient id="badge-high-distill-inner" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(128 128) scale(78)">
+      <stop stop-color="#fffdf6"/>
+      <stop offset=".66" stop-color="#fffdf6" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#fffdf6" stop-opacity=".36"/>
+    </radialGradient>
+    <filter id="badge-high-distill-shadow" x="20" y="16" width="216" height="224" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="15" stdDeviation="15" flood-color="#33423d" flood-opacity=".18"/>
+    </filter>
+    
+    <style>
+      .ink { stroke: #18382f; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .thin { stroke: #18382f; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .soft { stroke: #a79263; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .hair { stroke: #a79263; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; opacity: .82; }
+      .paper { fill: #fffdf6; }
+      .paper-stroke { fill: #fffdf6; stroke: #18382f; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+      .soft-paper { fill: #fffdf6; stroke: #a79263; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .ink-fill { fill: #18382f; }
+    </style>
+    
+  </defs>
+  <circle cx="128" cy="128" r="116" fill="#fbfaf6"/>
+  <g filter="url(#badge-high-distill-shadow)">
+    <path d="M128 27 203 71v87l-75 75-75-75V71Z" fill="url(#badge-high-distill-field)" stroke="#6f5432" stroke-width="7" stroke-linejoin="round"/>
+    <circle cx="128" cy="128" r="73" fill="url(#badge-high-distill-inner)" opacity=".86"/>
+    <circle cx="128" cy="128" r="61" fill="#fffdf6" opacity=".26"/>
+    <g transform="translate(128 128)">
+      
+      <path class="ink" d="M-17 -60h34M-9 -60v42l-31 50c-9 15 2 33 19 33h42c17 0 28-18 19-33L9 -18v-42"/>
+      <path class="hair" d="M-27 28c18 11 36 11 54 0"/>
+      <path class="thin" d="M-14 45c9 6 19 6 28 0"/>
+      <path class="soft" d="M36 -4c16 6 25 18 28 32"/>
+      <circle cx="0" cy="36" r="16" class="ink-fill" opacity=".13"/>
+    
+    </g>
+  </g>
+</svg>

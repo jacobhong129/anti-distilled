@@ -2,319 +2,325 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta
       name="description"
-      content="抗蒸性测试：通过动态追问理解你的判断、经验、审美和取舍有多难被低损耗蒸馏，并生成含活人量结果。"
+      content="抗蒸性测试：看看你的判断、经验、审美和取舍有多难被低损耗蒸馏成工作流、插件或 Skill。"
     />
     <title>抗蒸性测试</title>
-    <link rel="preload" href="./assets/smoke-neutral.png" as="image" />
+    <link rel="preload" href="./assets/ui-art/smoke-home-ambient.png" as="image" />
+    <link rel="preload" href="./assets/ui-art/home-distillation-desktop.png" as="image" />
+    <link rel="preload" href="./assets/ui-art/home-distillation-mobile.png" as="image" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="smoke-backdrop" aria-hidden="true"></div>
     <div class="app-shell">
       <header class="topbar" aria-label="应用导航">
-        <a class="brand" href="/" aria-label="抗蒸性测试首页">
-          <span class="brand-mark brand-mark-flask" aria-hidden="true"></span>
-          <span>抗蒸性测试</span>
+        <a class="brand" href="./" aria-label="抗蒸性测试首页">
+          <img class="brand-icon" src="./assets/ui-art/icon-brand-flask.svg" alt="" />
+          <span>
+            <strong>抗蒸性测试</strong>
+            <small>测测你的含活人量</small>
+          </span>
         </a>
-        <div class="top-actions">
-          <button class="ghost-button" id="learnTopButton" type="button">什么是抗蒸性</button>
-          <button class="ghost-button" id="restartTopButton" type="button" hidden>重新开始</button>
-        </div>
+        <nav class="desktop-nav" aria-label="页面导航">
+          <button class="nav-button" id="learnTopButton" type="button">什么是抗蒸性？</button>
+          <button class="nav-button" id="restartTopButton" type="button" hidden>重新开始</button>
+        </nav>
       </header>
 
-      <main id="app" class="app-main" aria-live="polite"></main>
+      <main id="app" class="app-main" aria-live="polite">
+        <section class="app-fallback">
+          <h1>页面需要通过网站地址打开</h1>
+          <p>如果你是直接双击本地 HTML 文件打开，Chrome 和 Safari 会限制数据加载。请使用本地预览地址或部署后的公网地址访问。</p>
+        </section>
+      </main>
     </div>
 
     <template id="startTemplate">
-      <section class="start-grid">
-        <div class="start-copy">
-          <h1>
-            <span>测测你的抗蒸性。</span>
-          </h1>
+      <section class="home-page">
+        <div class="hero-copy">
+          <h1>测测你的抗蒸性</h1>
+          <div class="title-rule" aria-hidden="true"></div>
           <p>
-            看看你的判断、经验、审美和取舍，有多难被低损耗蒸馏成一套流程，或一个同事技能。
+            看看你的判断、经验、审美和取舍，有多难被低损耗蒸馏成一套工作流、一个插件，或一个同事 Skill。
           </p>
-          <div class="start-actions">
+          <div class="hero-actions">
             <button class="primary-button" id="startButton" type="button">开始测试</button>
-            <button class="text-button" id="learnButton" type="button">什么是抗蒸性？</button>
+            <button class="link-button" id="learnButton" type="button">什么是抗蒸性？</button>
           </div>
-          <p class="microcopy">动态追问，通常十几到二十题完成。结果会生成一个有梗但有依据的含活人量。</p>
         </div>
 
-        <aside class="distill-visual process-visual" aria-label="抗蒸性蒸馏过程示意">
-          <div class="process-node human-node">
-            <span class="process-figure" aria-hidden="true"></span>
-            <strong>真人判断</strong>
-            <small>经验 / 审美 / 取舍</small>
+        <figure class="distillation-art" aria-label="人的想法经过蒸馏形成工作流、插件、Skill 和提示词">
+          <picture>
+            <source media="(max-width: 760px)" srcset="./assets/ui-art/home-distillation-mobile.png" />
+            <img src="./assets/ui-art/home-distillation-desktop.png" alt="人的想法、判断、经验、审美和取舍经过蒸馏，转化为工作流、插件、Skill 和提示词" />
+          </picture>
+        </figure>
+
+        <aside class="human-note">
+          <img class="sparkle-seal" src="./assets/ui-art/icon-sparkle-seal.svg" alt="" />
+          <div>
+            <h2>含活人量，越高越难蒸馏</h2>
+            <p>我们关心的不是你会不会被替代，而是你身上那些不可低损耗复制的人味。</p>
           </div>
-          <div class="process-arrow" aria-hidden="true"></div>
-          <div class="process-flask" aria-hidden="true">
-            <span class="flask-bubble"></span>
-            <span class="flask-smoke"></span>
-          </div>
-          <div class="process-arrow" aria-hidden="true"></div>
-          <div class="process-output">
-            <span>流程</span>
-            <span>AI</span>
-            <span>技能</span>
-          </div>
-          <p>抗蒸性关注的不是会不会用 AI，而是被蒸馏成流程后，还剩多少不可低损耗复制的人味。</p>
+          <img class="human-stamp" src="./assets/ui-art/stamp-human-hard.svg" alt="人味难蒸" />
         </aside>
       </section>
     </template>
 
     <template id="learnTemplate">
       <section class="theory-page">
-        <div class="page-kicker">专业说明</div>
-        <div class="theory-hero">
-          <div>
-            <h1>什么是抗蒸性？</h1>
-            <p>
-              抗蒸性是本测试使用的自拟分析框架：它描述一个人的能力被整理成流程、提示词、AI 工具或同事 Skill 时，关键判断能否被低损耗保留下来。
-            </p>
-          </div>
-          <div class="loss-model" aria-label="蒸馏损耗模型示意">
-            <div><span>行为层</span><small>步骤、格式、动作</small></div>
-            <div><span>判断层</span><small>边界、取舍、场景</small></div>
-            <div><span>责任层</span><small>信任、后果、价值</small></div>
-          </div>
+        <div class="theory-title">
+          <h1>什么是抗蒸性</h1>
+          <p>人在 AI 时代的低损耗不可蒸馏能力</p>
+          <div class="title-rule" aria-hidden="true"></div>
         </div>
 
-        <div class="theory-grid">
-          <article class="theory-card wide">
-            <h2>概念定义：从人到 Skill 的蒸馏损耗</h2>
+        <div class="theory-layout">
+          <article class="paper-card theory-definition">
+            <span class="section-number">1</span>
+            <h2>概念定义：从人到 Skill 的信息损耗</h2>
             <p>
-              当一个人的工作被“蒸馏”成可复用技能时，最容易保留下来的是行为层：步骤、模板、格式和输出样式。更容易损耗的是判断层和责任层：为什么这样取舍、什么时候不能照做、出了后果由谁承担。
+              所谓“蒸馏”，是把复杂的人类工作过程，提炼为可复用、可自动化的规则、步骤或模型，从而被机器或他人以更低成本复制的过程。
             </p>
             <p>
-              因此，抗蒸性不是神秘的不可替代，也不是拒绝 AI，而是一个人在场景理解、边界判断、价值取舍和经验校准上的低损耗保真能力。我们把它理解为：在复制你的做法时，系统还能不能复制你做出判断的条件、依据和责任感。
+              抗蒸性，是指在这一过程中，仍能保留在关键判断、审美取舍与责任承担上的人味与独特性，难以被低损耗复制。
             </p>
           </article>
 
-          <article class="theory-card wide">
-            <h2>蒸馏损耗模型</h2>
-            <p>
-              本测试把一次“从人到 Skill”的转化拆成三个变量：可编码度、情境依赖度和责任负载。可编码度越高，越容易被流程化；情境依赖和责任负载越高，越需要人在场校准。
-            </p>
-            <div class="formula-box">
-              <span>抗蒸性 ≈ 情境判断 × 边界识别 × 责任承担 ÷ 可机械复用度</span>
+          <article class="paper-card layer-card">
+            <span class="section-number">2</span>
+            <h2>抗蒸性三层模型</h2>
+            <div class="layer-model" aria-label="责任层、判断层、行为层">
+              <div><strong>责任层</strong><span>为结果负责</span></div>
+              <div><strong>判断层</strong><span>做出更优取舍</span></div>
+              <div><strong>行为层</strong><span>执行与产出</span></div>
             </div>
-            <p>
-              这不是数学定理，而是测试采用的解释模型。它用来帮助你理解：为什么有些人输出很普通但判断很难复制，有些人输出很漂亮却容易被模板替代。
-            </p>
-          </article>
-
-          <article class="theory-card">
-            <h2>为什么 AI 时代更需要它</h2>
-            <p>
-              AI 可以快速复制大量输出形态，却不总能理解关系、时机、责任和隐含代价。人在 AI 时代的不可替代性，越来越来自能否判断“该不该这样做”，而不仅是“能不能做出来”。
-            </p>
-            <p>
-              越是高不确定、高信任、高后果的场景，越需要人来承担解释、取舍和最终判断。抗蒸性高的人，通常能让 AI 放大能力，而不是把判断交给 AI。
-            </p>
-          </article>
-
-          <article class="theory-card">
-            <h2>如何培养抗蒸性</h2>
-            <p>
-              三条路径最重要：积累可追溯经验，练习边界判断，把隐性判断表达出来。能说清依据的经验，才更容易成为你的个人招牌，而不是只停留在熟练度。
-            </p>
-            <p>
-              一个简单练习是：每次做完重要决策，写下“我为什么这样选”“哪些条件变了就不能照做”“如果让 AI 复刻，最容易丢掉哪一步”。
-            </p>
+            <ul class="layer-notes">
+              <li>行为层最容易被流程化和标准化。</li>
+              <li>判断层决定方法适不适用、何时要停下。</li>
+              <li>责任层关乎信任、后果与最终承担。</li>
+            </ul>
           </article>
         </div>
 
-        <section class="dimension-primer">
-          <h2>三类抗蒸能力</h2>
-          <div class="primer-list">
-            <div><strong>可解释的经验</strong><span>不是“我感觉”，而是能追到案例、失败和校准过程。</span></div>
-            <div><strong>可反证的判断</strong><span>知道自己什么时候可能错，也知道模板什么时候会失效。</span></div>
-            <div><strong>可承担的取舍</strong><span>面对目标冲突时，能说清为什么这样选以及愿意承担什么后果。</span></div>
+        <section class="paper-card dimensions-primer">
+          <span class="section-number">3</span>
+          <h2>六个观测维度</h2>
+          <div class="dimension-primer-grid">
+            <article data-metric="CXT"><span></span><strong>情境辨识</strong><p>识别关键变量与隐含约束，理解事物的真实处境。</p></article>
+            <article data-metric="BND"><span></span><strong>边界校准</strong><p>判断适用范围与边界条件，知道何时该停下或调整。</p></article>
+            <article data-metric="GEN"><span></span><strong>生成重构</strong><p>在既有要求上做出结构化或创造性的重新组织。</p></article>
+            <article data-metric="TST"><span></span><strong>审美判别</strong><p>基于品味与语境，做出难以量化的审美与风格判断。</p></article>
+            <article data-metric="STN"><span></span><strong>价值定向</strong><p>明确目标与取舍优先级，坚持长期与根本价值。</p></article>
+            <article data-metric="GRD"><span></span><strong>经验内化</strong><p>将经验转化为直觉与能力，可迁移到新情境中。</p></article>
           </div>
         </section>
 
-        <section class="dimension-primer">
-          <h2>本测试观察的六个维度</h2>
-          <div class="primer-list">
-            <div><strong>情境辨识</strong><span>读懂任务之外的局</span></div>
-            <div><strong>边界校准</strong><span>知道方法何时会失效</span></div>
-            <div><strong>生成重构</strong><span>能把问题改准</span></div>
-            <div><strong>审美判别</strong><span>分辨空心专业感</span></div>
-            <div><strong>价值定向</strong><span>面对目标仍能取舍</span></div>
-            <div><strong>经验内化</strong><span>让经历沉淀成判断</span></div>
-          </div>
-        </section>
+        <div class="theory-layout">
+          <article class="paper-card">
+            <span class="section-number">4</span>
+            <h2>为什么它重要</h2>
+            <ul class="clean-list">
+              <li>AI 能复制输出，但未必理解情境、承担后果与进行取舍。</li>
+              <li>决定质量差异的，往往是无法被规则穷尽的判断与品味。</li>
+              <li>抗蒸性越高，你的不可替代性、信任度与议价能力越强。</li>
+              <li>组织与个人的长期竞争力，取决于能否沉淀并放大这种能力。</li>
+            </ul>
+          </article>
+          <article class="paper-card">
+            <span class="section-number">5</span>
+            <h2>如何培养抗蒸性</h2>
+            <div class="growth-grid">
+              <div><strong>积累可追溯经验</strong><p>深度参与真实任务，复盘关键决策与结果，形成个人案例库。</p></div>
+              <div><strong>练习边界判断</strong><p>刻意练习在模糊信息下做决定，建立判断的条件与依据。</p></div>
+              <div><strong>把隐性判断表达出来</strong><p>将直觉、审美与取舍的逻辑外显化，形成可传递的思维资产。</p></div>
+            </div>
+          </article>
+        </div>
 
-        <p class="disclaimer">
-          本测试使用自拟的蒸馏损耗模型，用于自我理解和讨论，不用于招聘、医疗、心理诊断或人格定论。
-        </p>
-        <div class="page-actions">
-          <button class="primary-button" id="learnStartButton" type="button">开始测试</button>
-          <button class="secondary-button" id="learnBackButton" type="button">返回首页</button>
+        <div class="theory-actions">
+          <p>说明：本测试使用自拟的蒸馏损耗模型，不用于招聘、医疗或人格定论。</p>
+          <div>
+            <button class="secondary-button" id="learnBackButton" type="button">返回首页</button>
+            <button class="primary-button" id="learnStartButton" type="button">开始测试</button>
+          </div>
         </div>
       </section>
     </template>
 
     <template id="calibrationTemplate">
-      <section class="calibration-flow">
-        <div class="flow-copy">
-          <div class="journey-stepper" aria-label="测试流程">
-            <span class="is-done">开始</span>
-            <span class="is-current">工作场景</span>
-            <span>动态测试</span>
-            <span>结果</span>
-          </div>
-          <p class="phase-label">工作场景，可选</p>
-          <h1>要不要先校准你的工作场景？</h1>
-          <p>
-            这部分不会直接改变你的个人含活人量分数。它只帮助结果页区分：是你本人难蒸，还是这份工作本身更容易或更不容易被蒸。
-          </p>
-          <p class="microcopy">跳过后仍可得到个人含活人量；结果页只不显示岗位蒸馏度判断。</p>
+      <section class="work-page">
+        <div class="stepper" aria-label="测试流程">
+          <span class="done">开始</span>
+          <span class="current">工作场景</span>
+          <span>动态测试</span>
+          <span>结果</span>
         </div>
 
-        <aside class="calibration-panel" aria-labelledby="calibrationTitle">
-          <div>
-            <h2 id="calibrationTitle">工作方式校准</h2>
-            <p>约 20 秒。也可以直接跳过进入动态测试。</p>
-          </div>
-          <form id="roleForm" class="role-form">
-            <fieldset>
-              <legend>你的工作里，哪一类最多？</legend>
-              <label><input name="taskShape" type="radio" value="routine" />重复执行、整理、录入、检查</label>
-              <label><input name="taskShape" type="radio" value="ruleException" />按规则处理，但偶尔判断例外</label>
-              <label><input name="taskShape" type="radio" value="coordination" />协调人、信息和现场变化</label>
-              <label><input name="taskShape" type="radio" value="direction" />定义方向、判断取舍或承担后果</label>
-            </fieldset>
-            <fieldset>
-              <legend>AI 最容易接走你哪部分工作？</legend>
-              <label><input name="aiExposure" type="radio" value="standard" />标准流程和格式化产出</label>
-              <label><input name="aiExposure" type="radio" value="draft" />信息整理、初稿、分析草稿</label>
-              <label><input name="aiExposure" type="radio" value="partial" />部分方案，但要我判断能不能用</label>
-              <label><input name="aiExposure" type="radio" value="guarded" />很多动作能接走，关键责任不能接走</label>
-            </fieldset>
-            <fieldset>
-              <legend>最难被写成 SOP 的是什么？</legend>
-              <label><input name="sopHardPart" type="radio" value="efficiency" />熟练度和效率</label>
-              <label><input name="sopHardPart" type="radio" value="exceptions" />例外情况和具体判断</label>
-              <label><input name="sopHardPart" type="radio" value="trust" />信任、情绪和博弈</label>
-              <label><input name="sopHardPart" type="radio" value="taste" />方向、品味、价值取舍和后果承担</label>
-            </fieldset>
-          </form>
-          <div class="calibration-actions">
-            <button class="primary-button" id="calibrationContinueButton" type="button">填写，开始测试</button>
-            <button class="secondary-button" id="calibrationSkipButton" type="button">跳过，直接测试</button>
-          </div>
-        </aside>
+        <div class="work-heading">
+          <h1>要不要先校准你的工作场景？</h1>
+          <div class="title-rule" aria-hidden="true"></div>
+          <p>
+            这部分不会直接改变你的个人含活人量分数，只帮助结果页区分：是你本人难蒸，还是这份工作本身更容易或更不容易被蒸。
+          </p>
+        </div>
+
+        <form id="roleForm" class="work-card">
+          <fieldset>
+            <legend>1. 你的主要工作领域是？</legend>
+            <div class="radio-grid">
+              <label><input name="taskShape" type="radio" value="routine" /><span>产品/设计</span></label>
+              <label><input name="taskShape" type="radio" value="ruleException" /><span>研发/技术</span></label>
+              <label><input name="taskShape" type="radio" value="coordination" /><span>运营/增长</span></label>
+              <label><input name="taskShape" type="radio" value="direction" /><span>市场/品牌</span></label>
+              <label><input name="taskShape" type="radio" value="direction" /><span>管理/战略</span></label>
+              <label><input name="taskShape" type="radio" value="ruleException" /><span>其他</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>2. 你的工作更接近？</legend>
+            <div class="radio-grid">
+              <label><input name="aiExposure" type="radio" value="standard" /><span>执行落地</span></label>
+              <label><input name="aiExposure" type="radio" value="partial" /><span>判断决策</span></label>
+              <label><input name="aiExposure" type="radio" value="draft" /><span>创意生成</span></label>
+              <label><input name="aiExposure" type="radio" value="guarded" /><span>策略规划</span></label>
+              <label><input name="aiExposure" type="radio" value="partial" /><span>支持协同</span></label>
+              <label><input name="aiExposure" type="radio" value="guarded" /><span>多种兼具</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>3. 你的工作环境节奏是？</legend>
+            <div class="radio-grid compact">
+              <label><input name="sopHardPart" type="radio" value="trust" /><span>高度变化</span></label>
+              <label><input name="sopHardPart" type="radio" value="exceptions" /><span>中等变化</span></label>
+              <label><input name="sopHardPart" type="radio" value="efficiency" /><span>相对稳定</span></label>
+              <label><input name="sopHardPart" type="radio" value="taste" /><span>周期性变化</span></label>
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="work-actions">
+          <button class="primary-button" id="calibrationContinueButton" type="button">填写，约 20 秒</button>
+          <button class="secondary-button" id="calibrationSkipButton" type="button">跳过，直接测试</button>
+        </div>
+        <p class="skip-note">跳过后仍可得到个人含活人量；结果页只是不显示岗位蒸馏度判断。</p>
       </section>
     </template>
 
     <template id="questionTemplate">
-      <section class="quiz-layout">
-        <aside class="quiz-status">
-          <div class="journey-stepper compact-stepper" aria-label="测试流程">
-            <span class="is-done">开始</span>
-            <span class="is-done">场景</span>
-            <span class="is-current">动态测试</span>
-            <span>结果</span>
-          </div>
-          <button class="text-button back-button" id="backButton" type="button">上一题</button>
-          <div>
-            <p class="phase-label" id="phaseLabel"></p>
-            <div class="progress-stack" aria-label="答题进度">
-              <span id="progressText"></span>
-              <div class="progress-track"><span id="progressBar"></span></div>
-            </div>
-          </div>
-          <p class="microcopy">系统会根据前面的回答追问，不显示固定总题量。</p>
+      <section class="quiz-page">
+        <aside class="quiz-sidebar">
+          <a class="quiz-brand" href="./">
+            <img src="./assets/ui-art/icon-brand-flask.svg" alt="" />
+            <span><strong>抗蒸性测试</strong><small>测测你的含活人量</small></span>
+          </a>
+          <nav aria-label="测试状态">
+            <span class="active">正在测试</span>
+            <button id="quizLearnButton" type="button">测试说明</button>
+            <button id="quizRestartButton" type="button">退出后可重新开始</button>
+          </nav>
         </aside>
-        <div class="question-panel">
-          <p class="section-intro" id="sectionIntro"></p>
-          <h1 id="questionText"></h1>
-          <div class="option-list" id="optionList"></div>
+
+        <div class="quiz-main">
+          <div class="mobile-quizbar">
+            <button class="icon-button" id="mobileBackButton" type="button" aria-label="上一题">‹</button>
+            <strong id="mobilePhaseLabel"></strong>
+            <button class="icon-button" id="mobileMenuButton" type="button" aria-label="菜单">☰</button>
+          </div>
+
+          <section class="question-card">
+            <div class="question-topline">
+              <div>
+                <p id="phaseLabel"></p>
+                <span id="sectionIntro"></span>
+              </div>
+              <div class="progress-dots" id="progressDots" aria-label="答题进度"></div>
+            </div>
+            <h1 id="questionText"></h1>
+            <div class="option-list" id="optionList"></div>
+            <div class="question-footer">
+              <button class="secondary-button prev-button" id="backButton" type="button">上一题</button>
+              <p>没有绝对正确的答案，选最接近你的那一个</p>
+            </div>
+          </section>
+
+          <div class="smoke-density" aria-label="烟雾浓度">
+            <span>烟雾浓度</span>
+            <i></i>
+            <strong id="densityText">中等</strong>
+          </div>
         </div>
       </section>
     </template>
 
     <template id="resultTemplate">
-      <section class="result-layout" id="resultLayout">
-        <div class="journey-stepper result-stepper" aria-label="测试流程">
-          <span class="is-done">开始</span>
-          <span class="is-done">工作场景</span>
-          <span class="is-done">动态测试</span>
-          <span class="is-current">结果</span>
-        </div>
-        <div class="result-hero">
-          <div class="score-card">
-            <span class="result-complete">测试完成</span>
-            <p class="result-label">含活人量</p>
-            <div class="score-line"><span id="scoreValue"></span><span>%</span></div>
-            <div class="band-pill"><span class="medal-icon" aria-hidden="true"></span><span id="bandPill"></span></div>
-            <p class="score-help" id="scoreHelp"></p>
+      <section class="result-page" id="resultLayout">
+        <div class="result-topbar">
+          <a class="result-brand" href="./">
+            <img src="./assets/ui-art/icon-brand-flask.svg" alt="" />
+            <span>抗蒸性测试</span>
+          </a>
+          <div>
+            <button class="secondary-button small-button" id="restartButton" type="button">再测一次</button>
+            <button class="dark-button small-button" id="copyButton" type="button">分享结果</button>
           </div>
-          <div class="result-summary">
-            <p class="result-label">你的段位是</p>
-            <div class="band-title-row">
-              <span class="band-badge" id="bandBadge" aria-hidden="true"></span>
+        </div>
+
+        <section class="result-hero">
+          <div class="score-block">
+            <p class="result-complete">测试完成！</p>
+            <div class="score-title">你的<br />含活人量</div>
+            <div class="score-line"><span id="scoreValue"></span><b>%</b></div>
+            <p id="scoreHelp"></p>
+          </div>
+          <div class="rank-block">
+            <p>你的段位是</p>
+            <div class="rank-title-row">
               <h1 id="bandName"></h1>
+              <img id="bandBadge" src="" alt="" />
             </div>
             <p id="bandLine"></p>
             <p class="band-roast" id="bandRoast"></p>
-            <button class="label-card" id="labelDetailButton" type="button">
-              <span class="label-orb" id="labelOrb" aria-hidden="true"></span>
-              <span class="label-copy">
-                <span>结构标签</span>
-                <strong id="labelName"></strong>
-                <p id="labelMeaning"></p>
-              </span>
-            </button>
-          </div>
-        </div>
-
-        <div class="result-grid">
-          <section class="result-panel share-panel">
-            <h2>一句话分享</h2>
-            <p id="shareLine"></p>
-            <button class="secondary-button mini-action" id="copyButton" type="button">复制结果摘要</button>
-          </section>
-
-          <section class="result-panel role-panel">
-            <h2>岗位蒸馏度</h2>
-            <p id="roleResult"></p>
-          </section>
-
-          <section class="result-panel">
-            <h2>六大维度表现</h2>
-            <div class="dimension-list" id="dimensionList"></div>
-          </section>
-
-          <section class="result-panel">
-            <h2>为什么这么判</h2>
-            <p id="reasoningText"></p>
-            <div class="signal-list" id="signalList"></div>
-          </section>
-        </div>
-
-        <div class="result-actions">
-          <button class="primary-button" id="restartButton" type="button">再测一次</button>
-          <button class="secondary-button" id="methodButton" type="button">查看测试逻辑</button>
-        </div>
-        <section class="smoke-scale" aria-label="烟雾图例">
-          <div>
-            <h2>烟雾图例：含活人量如何可视化</h2>
-            <p>蒸馏过程会带走可复制的部分，留下难以低损耗复刻的人味。颜色越丰富，人味越难蒸；越灰，越适合流程化。</p>
-          </div>
-          <div class="smoke-scale-steps">
-            <span><i class="smoke-dot gray"></i>灰色<br />可被轻松蒸馏</span>
-            <b></b>
-            <span><i class="smoke-dot faint"></i>单色微光<br />有少量真人残留</span>
-            <b></b>
-            <span><i class="smoke-dot rich"></i>多色烟雾<br />真人判断很浓</span>
           </div>
         </section>
+
+        <div class="result-card-grid">
+          <button class="result-card tag-summary" id="labelDetailButton" type="button">
+            <span>你的结构标签</span>
+            <img id="labelBadge" src="" alt="" />
+            <strong id="labelName"></strong>
+            <p id="labelMeaning"></p>
+            <i>查看标签详情</i>
+          </button>
+
+          <section class="result-card share-panel">
+            <h2>一句话分享</h2>
+            <p id="shareLine"></p>
+            <span id="shareHash"></span>
+          </section>
+
+          <section class="result-card role-panel" id="rolePanel">
+            <h2>岗位蒸馏度</h2>
+            <strong id="roleTitle"></strong>
+            <p id="roleResult"></p>
+          </section>
+        </div>
+
+        <div class="result-lower-grid">
+          <section class="result-panel dimensions-panel">
+            <h2>六大维度表现 <small>点击维度查看详情</small></h2>
+            <div class="dimension-list" id="dimensionList"></div>
+          </section>
+          <section class="result-panel evidence-panel">
+            <h2>为什么这么判？</h2>
+            <p id="reasoningText"></p>
+            <div class="signal-list" id="signalList"></div>
+            <button class="link-button" id="methodButton" type="button">查看完整逻辑</button>
+          </section>
+        </div>
       </section>
     </template>
 
@@ -322,9 +328,17 @@
       <div class="detail-backdrop" id="detailBackdrop">
         <aside class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
           <button class="close-button" id="detailCloseButton" type="button" aria-label="关闭">×</button>
-          <p class="phase-label" id="detailType"></p>
-          <h2 id="detailTitle"></h2>
-          <p class="detail-subtitle" id="detailSubtitle"></p>
+          <div class="detail-tabs">
+            <span class="active" id="detailType"></span>
+            <span>维度详情</span>
+          </div>
+          <div class="detail-hero">
+            <img id="detailAsset" src="" alt="" />
+            <div>
+              <h2 id="detailTitle"></h2>
+              <p id="detailSubtitle"></p>
+            </div>
+          </div>
           <div class="detail-sections" id="detailSections"></div>
           <button class="secondary-button" id="detailNextButton" type="button">查看下一个维度</button>
         </aside>

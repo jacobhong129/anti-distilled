@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>抗蒸性视觉资产预览</title>
+  <style>
+    :root {
+      color: #17231f;
+      background: #f7f5ef;
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(251, 250, 246, .9), rgba(251, 250, 246, .94)),
+        url("assets/ui-art/smoke-home-ambient.png") center top / cover no-repeat fixed;
+    }
+
+    main {
+      width: min(1440px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 48px 0 72px;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid rgba(23, 35, 31, .16);
+      padding-bottom: 22px;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(36px, 5vw, 72px);
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    .sub {
+      margin-top: 10px;
+      color: #65736d;
+      font-size: 18px;
+      line-height: 1.7;
+      font-family: "Songti SC", "STSong", serif;
+    }
+
+    .meta {
+      min-width: 190px;
+      text-align: right;
+      color: #68756f;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    section {
+      margin-top: 38px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    h2::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #1f6f5a;
+      box-shadow: 0 0 0 7px rgba(31, 111, 90, .1);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .tag-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .card {
+      min-height: 236px;
+      padding: 22px 18px 20px;
+      border: 1px solid rgba(23, 35, 31, .14);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .72);
+      box-shadow: 0 16px 38px rgba(23, 35, 31, .08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+    }
+
+    .card img {
+      width: 132px;
+      height: 132px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .badge-card img {
+      width: 148px;
+      height: 148px;
+    }
+
+    .name {
+      margin-top: 14px;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    .code {
+      margin-top: 8px;
+      color: #69776f;
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .range {
+      margin-top: 8px;
+      display: inline-flex;
+      border: 1px solid rgba(31, 111, 90, .2);
+      border-radius: 999px;
+      padding: 4px 10px;
+      color: #1f6f5a;
+      font-size: 13px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: rgba(238, 245, 239, .72);
+    }
+
+    @media (max-width: 980px) {
+      main {
+        width: min(100vw - 24px, 720px);
+        padding-top: 28px;
+      }
+
+      header {
+        display: block;
+      }
+
+      .meta {
+        margin-top: 16px;
+        text-align: left;
+      }
+
+      .grid,
+      .tag-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .grid,
+      .tag-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 210px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>视觉资产预览</h1>
+        <p class="sub">8 个段位徽章和 19 个结构标签徽章。此页只用于检查视觉方向，不是用户页面。</p>
+      </div>
+      <p class="meta">资产路径：<br>web/assets/ui-art</p>
+    </header>
+
+    <section>
+      <h2>8 个段位徽章</h2>
+      <div class="grid">
+        <article class="card badge-card">
+          <img src="assets/ui-art/badge-human-concentrate.svg" alt="真人浓缩型">
+          <div>
+            <div class="name">真人浓缩型</div>
+            <div class="range">90-100%</div>
+          </div>
+        </article>
+        <article class="card badge-card">
+          <img src="assets/ui-art/badge-key-human.svg" alt="关键真人型">
+          <div>
+            <div class="name">关键真人型</div>
+            <div class="range">80-89%</div>
+          </div>
+        </article>
+        <article class="card badge-card">
+          <img src="assets/ui-art/badge-high-distill.svg" alt="高损蒸馏型">
+          <div>
+            <div class="name">高损蒸馏型</div>
+            <div class="range">70-79%</div>
+          </div>
+        </article>
+        <article class="card badge-card">
+          <img src="assets/ui-art/badge-signature-growing.svg" alt="招牌养成型">
+          <div>
+            <div class="name">招牌养成型</div>
+            <div class="range">62-69%</div>
+          </div>
+        </article>
+        <article class="card badge-card">
+          <img src="assets/ui-art/badge-half-distilled.svg" alt="半蒸半活型">
+          <div>
+            <div class="name">半蒸半活型</div>
+            <div class="range">55-61%</div>
+          </div>
+        </article>
+        <article class="card badge-card">
+          <img src="assets/ui-art/badge-collab-distillable.svg" alt="协作易蒸型">
+          <div>
+            <div class="name">协作易蒸型</div>
+            <div class="range">45-54%</div>
+          </div>
+        </article>
+        <article class="card badge-card">
+          <img src="assets/ui-art/badge-process-friendly.svg" alt="流程友好型">
+          <div>
+            <div class="name">流程友好型</div>
+            <div class="range">35-44%</div>
+          </div>
+        </article>
+        <article class="card badge-card">
+          <img src="assets/ui-art/badge-quality-material.svg" alt="优质蒸馏原料">
+          <div>
+            <div class="name">优质蒸馏原料</div>
+            <div class="range">20-34%</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>19 个结构标签</h2>
+      <div class="grid tag-grid">
+        <article class="card"><img src="assets/ui-art/tag-teachable-irreplaceable.svg" alt="可教不好替"><div><div class="name">可教不好替</div><div class="code">teachable_irreplaceable</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-intuition-grounded.svg" alt="老练直觉"><div><div class="name">老练直觉</div><div class="code">intuition_grounded</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-boundary.svg" alt="边界感"><div><div class="name">边界感</div><div class="code">boundary_radar</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-empty-professional-detector.svg" alt="空话免疫"><div><div class="name">空话免疫</div><div class="code">empty_professional_detector</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-generative-reframer.svg" alt="改题型"><div><div class="name">改题型</div><div class="code">generative_reframer</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-ai-amplified.svg" alt="AI 放大型"><div><div class="name">AI 放大型</div><div class="code">ai_amplified_professional</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-value-guardrail.svg" alt="有底线型"><div><div class="name">有底线型</div><div class="code">value_low_generation</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-taste-low-expression.svg" alt="慢表达品味型"><div><div class="name">慢表达品味型</div><div class="code">taste_low_expression</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-fake-resistance.svg" alt="伪抗蒸型"><div><div class="name">伪抗蒸型</div><div class="code">fake_resistance</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-latent-human-variable.svg" alt="待开机型"><div><div class="name">待开机型</div><div class="code">latent_human_variable</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-skill-friendly.svg" alt="好复制型"><div><div class="name">好复制型</div><div class="code">skill_friendly</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-method-distilled.svg" alt="方法型"><div><div class="name">方法型</div><div class="code">method_distilled</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-high-density-human.svg" alt="真人核心型"><div><div class="name">真人核心型</div><div class="code">high_density_human</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-grounded-experience.svg" alt="经验型"><div><div class="name">经验型</div><div class="code">grounded_experience</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-context-reader.svg" alt="会看场型"><div><div class="name">会看场型</div><div class="code">context_reader</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-expressive-high.svg" alt="会翻译型"><div><div class="name">会翻译型</div><div class="code">expressive_high</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-expressive-low.svg" alt="表达堵车型"><div><div class="name">表达堵车型</div><div class="code">expressive_low</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-relationship-stabilizer.svg" alt="稳场型"><div><div class="name">稳场型</div><div class="code">relationship_stabilizer</div></div></article>
+        <article class="card"><img src="assets/ui-art/tag-experience-locked.svg" alt="经验固化型"><div><div class="name">经验固化型</div><div class="code">experience_locked</div></div></article>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll("img").forEach((img) => {
+      const src = img.getAttribute("src");
+      if (src && !src.includes("?")) img.src = `${src}?v=centered-20260608`;
+    });
+  </script>
+</body>
+</html>
