@@ -971,32 +971,54 @@ button {
   grid-template-columns: repeat(6, minmax(92px, 1fr));
 }
 
-.radio-grid label {
+.radio-option {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
   min-height: 38px;
   padding: 8px 10px 8px 30px;
   border: 1px solid transparent;
   border-radius: 999px;
+  background: transparent;
+  color: inherit;
   font-family: var(--font-ui);
   font-size: 16px;
   line-height: 1.35;
+  text-align: left;
   white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.radio-grid input {
+.radio-dot {
   position: absolute;
   left: 8px;
   width: 15px;
   height: 15px;
-  margin: 0;
-  accent-color: var(--green);
+  border: 1.5px solid rgba(16, 24, 22, 0.48);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
 }
 
-.radio-grid label:has(input:checked) {
+.radio-option[data-checked="true"] {
   border-color: rgba(11, 106, 79, 0.4);
   background: rgba(11, 106, 79, 0.09);
+}
+
+.radio-option[data-checked="true"] .radio-dot {
+  border-color: var(--green);
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.9);
+  background: var(--green);
+}
+
+.radio-option:focus {
+  outline: none;
+}
+
+.radio-option:focus-visible {
+  border-color: rgba(11, 106, 79, 0.5);
+  box-shadow: 0 0 0 4px rgba(11, 106, 79, 0.12);
 }
 
 .work-submit-panel {
@@ -1263,6 +1285,27 @@ button {
   font-family: var(--font-ui);
   opacity: 0;
   transform: scale(0.78);
+}
+
+.option-card.is-selected {
+  border-color: rgba(106, 84, 200, 0.44);
+  background: rgba(106, 84, 200, 0.06);
+  box-shadow: 0 0 0 4px rgba(106, 84, 200, 0.1), 0 16px 34px rgba(16, 24, 22, 0.12);
+}
+
+.option-card.is-selected b {
+  border-color: rgba(106, 84, 200, 0.62);
+  color: #fff;
+  background: var(--purple);
+}
+
+.option-card.is-selected i {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.option-card.is-dimmed {
+  opacity: 0.58;
 }
 
 .option-card:focus {
@@ -1832,7 +1875,7 @@ button {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 
-  .radio-grid label {
+  .radio-option {
     width: 100%;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.36);
@@ -1917,7 +1960,7 @@ button {
     padding: 12px 0;
   }
 
-  .radio-grid label {
+  .radio-option {
     min-height: 34px;
     padding-top: 6px;
     padding-bottom: 6px;
@@ -2322,7 +2365,7 @@ button {
     gap: 8px;
   }
 
-  .radio-grid label {
+  .radio-option {
     min-height: 38px;
     border-color: rgba(16, 24, 22, 0.08);
     border-radius: 10px;
@@ -2332,13 +2375,13 @@ button {
     white-space: normal;
   }
 
-  .radio-grid input {
+  .radio-dot {
     left: 8px;
     width: 13px;
     height: 13px;
   }
 
-  .radio-grid label:has(input:checked) {
+  .radio-option[data-checked="true"] {
     border-color: rgba(11, 106, 79, 0.28);
     background: rgba(11, 106, 79, 0.08);
   }
@@ -2438,7 +2481,17 @@ button {
     display: none;
   }
 
-  .option-card:hover {
+  .option-card.is-selected {
+    grid-template-columns: 42px 1fr 34px;
+  }
+
+  .option-card.is-selected i {
+    display: grid;
+    width: 32px;
+    height: 32px;
+  }
+
+  .option-card:not(.is-selected):hover {
     border-color: var(--line);
     background: rgba(255, 255, 255, 0.72);
   }

@@ -528,7 +528,7 @@ function WorkContextPage({ onSubmit, onSkip }) {
       setNeedsAnswer(true);
       return;
     }
-    onSubmit(form);
+    onSubmit(Object.fromEntries(Object.entries(form).map(([name, option]) => [name, option.value])));
   };
 
   return (
@@ -546,21 +546,23 @@ function WorkContextPage({ onSubmit, onSkip }) {
               <WorkIcon type={field.icon} />
               <span>{field.title}</span>
             </legend>
-            <div className="radio-grid">
+            <div className="radio-grid" role="radiogroup" aria-label={field.title}>
               {field.options.map(([value, label], index) => (
-                <label key={`${field.name}-${value}-${index}`}>
-                  <input
-                    type="radio"
-                    name={field.name}
-                    value={value}
-                    checked={form[field.name] === value}
-                    onChange={() => {
-                      setNeedsAnswer(false);
-                      setForm((current) => ({ ...current, [field.name]: value }));
-                    }}
-                  />
+                <button
+                  className="radio-option"
+                  key={`${field.name}-${value}-${index}`}
+                  type="button"
+                  role="radio"
+                  aria-checked={form[field.name]?.id === `${field.name}-${index}`}
+                  data-checked={form[field.name]?.id === `${field.name}-${index}` ? "true" : "false"}
+                  onClick={() => {
+                    setNeedsAnswer(false);
+                    setForm((current) => ({ ...current, [field.name]: { id: `${field.name}-${index}`, value } }));
+                  }}
+                >
+                  <span className="radio-dot" aria-hidden="true" />
                   <span>{label}</span>
-                </label>
+                </button>
               ))}
             </div>
           </fieldset>
@@ -596,9 +598,20 @@ function WorkIcon({ type }) {
 }
 
 function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrevious, onRestart }) {
+  const [selectedKey, setSelectedKey] = useState(null);
+
+  useEffect(() => {
+    setSelectedKey(null);
+  }, [currentItem?.id]);
+
   if (!currentItem) return null;
   const options = engine.orderedOptions(currentItem);
   const totalDots = Math.min(engine.flow.maximumQuestions || 24, 24);
+  const chooseOption = (optionKey) => {
+    if (selectedKey) return;
+    setSelectedKey(optionKey);
+    window.setTimeout(() => onAnswer(optionKey), 180);
+  };
 
   return (
     <section className="question-page">
@@ -636,7 +649,13 @@ function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrev
           <h1>{currentItem.question}</h1>
           <div className="option-list">
             {options.map((option, index) => (
-              <button className="option-card" key={option.key} type="button" onClick={() => onAnswer(option.key)}>
+              <button
+                className={`option-card ${selectedKey === option.key ? "is-selected" : selectedKey ? "is-dimmed" : ""}`}
+                key={option.key}
+                type="button"
+                aria-pressed={selectedKey === option.key}
+                onClick={() => chooseOption(option.key)}
+              >
                 <b aria-hidden="true">{index + 1}</b>
                 <span>{option.text}</span>
                 <i aria-hidden="true">✓</i>
