@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" fill="none">
+  <defs>
+    <style>
+      .icon-line {
+        stroke: #1f6f5a;
+        stroke-width: 7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .icon-soft {
+        stroke: #a88f6a;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .icon-fill {
+        fill: #eef5ef;
+        stroke: #1f6f5a;
+        stroke-width: 7;
+      }
+    </style>
+
+    <symbol id="dimension-context" viewBox="0 0 120 120">
+      <circle class="icon-fill" cx="60" cy="60" r="38"/>
+      <path class="icon-line" d="M60 25v12M60 83v12M25 60h12M83 60h12"/>
+      <path class="icon-line" d="M43 43l17 17 21-30"/>
+      <path class="icon-soft" d="M37 80c11 8 34 10 48-5"/>
+    </symbol>
+
+    <symbol id="dimension-boundary" viewBox="0 0 120 120">
+      <path class="icon-fill" d="M29 96 56 23c1-4 7-4 9 0l26 73"/>
+      <path class="icon-line" d="M42 67h36M50 47h20M34 85h52"/>
+      <path class="icon-soft" d="M27 101h66"/>
+    </symbol>
+
+    <symbol id="dimension-reconstruct" viewBox="0 0 120 120">
+      <path class="icon-fill" d="M31 43 60 27l29 16v34L60 93 31 77Z"/>
+      <path class="icon-line" d="M31 43 60 60l29-17M60 60v33"/>
+      <path class="icon-soft" d="M42 36v-9M77 36v-9M24 61h-9M105 61h-9"/>
+    </symbol>
+
+    <symbol id="dimension-aesthetic" viewBox="0 0 120 120">
+      <path class="icon-line" d="M17 60s16-28 43-28 43 28 43 28-16 28-43 28-43-28-43-28Z"/>
+      <circle class="icon-fill" cx="60" cy="60" r="16"/>
+      <path class="icon-soft" d="M36 28l-8-10M84 28l8-10M36 92l-8 10M84 92l8 10"/>
+    </symbol>
+
+    <symbol id="dimension-value" viewBox="0 0 120 120">
+      <circle class="icon-fill" cx="60" cy="60" r="36"/>
+      <path class="icon-line" d="M60 38v24l18 10"/>
+      <path class="icon-soft" d="M84 29l8-8M92 21h-14M92 21v14"/>
+      <path class="icon-soft" d="M34 88c9 8 25 12 42 3"/>
+    </symbol>
+
+    <symbol id="dimension-internalize" viewBox="0 0 120 120">
+      <circle class="icon-fill" cx="60" cy="60" r="34"/>
+      <circle class="icon-soft" cx="60" cy="60" r="22"/>
+      <circle class="icon-soft" cx="60" cy="60" r="10"/>
+      <path class="icon-line" d="M60 13v13M60 94v13M13 60h13M94 60h13"/>
+      <path class="icon-soft" d="M26 26l9 9M86 86l9 9M94 26l-9 9M35 86l-9 9"/>
+    </symbol>
+  </defs>
+
+  <rect width="720" height="480" rx="28" fill="#fbfaf6"/>
+  <use href="#dimension-context" x="40" y="40" width="160" height="160"/>
+  <use href="#dimension-boundary" x="260" y="40" width="160" height="160"/>
+  <use href="#dimension-reconstruct" x="480" y="40" width="160" height="160"/>
+  <use href="#dimension-aesthetic" x="40" y="260" width="160" height="160"/>
+  <use href="#dimension-value" x="260" y="260" width="160" height="160"/>
+  <use href="#dimension-internalize" x="480" y="260" width="160" height="160"/>
+</svg>

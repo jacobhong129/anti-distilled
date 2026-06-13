@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
+  <defs>
+    
+    <style>
+      .ink { stroke: #18382f; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { stroke: #18382f; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .soft { stroke: #a79263; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .fill-paper { fill: #fffdf6; }
+      .fill-ink { fill: #18382f; }
+      .fill-soft { fill: #eef3ec; }
+    </style>
+    
+  </defs>
+  <rect x="42" y="28" width="136" height="164" rx="10" fill="#fffdf6" stroke="#18382f" stroke-width="7"/><path class="ink" d="M78 66h44M82 103h56M79 140h61"/><path class="soft" d="M144 59c15 27 15 76 0 116"/><path class="ink" d="M79 66c13 16 27 31 43 45M78 140c18-11 34-25 49-42"/>
+</svg>

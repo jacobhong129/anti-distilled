@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="240" viewBox="0 0 720 240" fill="none">
+  <defs>
+    
+    <style>
+      .ink { stroke: #18382f; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { stroke: #18382f; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .soft { stroke: #a79263; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .fill-paper { fill: #fffdf6; }
+      .fill-ink { fill: #18382f; }
+      .fill-soft { fill: #eef3ec; }
+    </style>
+    
+  </defs>
+  <rect width="720" height="240" rx="28" fill="#fbfaf6"/><g transform="translate(50 40)"><rect class="fill-soft" x="18" y="42" width="124" height="88" rx="14" stroke="#18382f" stroke-width="7"/><path class="ink" d="M56 42V29h48v13M18 75h124M79 75v18"/></g><g transform="translate(270 40)"><circle class="fill-soft" cx="80" cy="55" r="24" stroke="#18382f" stroke-width="7"/><path class="ink" d="M36 132c10-38 36-55 44-55s34 17 44 55M30 58c-18 9-27 25-29 47M159 58c18 9 27 25 29 47"/></g><g transform="translate(490 40)"><path class="ink" d="M22 47h136M22 89h136M22 131h136"/><circle class="fill-soft" cx="62" cy="47" r="16" stroke="#18382f" stroke-width="7"/><circle class="fill-soft" cx="118" cy="89" r="16" stroke="#18382f" stroke-width="7"/><circle class="fill-soft" cx="82" cy="131" r="16" stroke="#18382f" stroke-width="7"/></g>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+  <defs>
+    <radialGradient id="badge-process-friendly-field" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(122 82) rotate(42) scale(132 140)">
+      <stop stop-color="#fffdf2"/>
+      <stop offset=".25" stop-color="#e9e6d8"/>
+      <stop offset=".66" stop-color="#9ba09e"/>
+      <stop offset="1" stop-color="#5a6262"/>
+    </radialGradient>
+    <radialGradient id="badge-process-friendly-inner" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(128 128) scale(78)">
+      <stop stop-color="#fffdf6"/>
+      <stop offset=".66" stop-color="#fffdf6" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#fffdf6" stop-opacity=".36"/>
+    </radialGradient>
+    <filter id="badge-process-friendly-shadow" x="20" y="16" width="216" height="224" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="15" stdDeviation="15" flood-color="#33423d" flood-opacity=".18"/>
+    </filter>
+    
+    <style>
+      .ink { stroke: #18382f; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .thin { stroke: #18382f; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .soft { stroke: #a79263; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .hair { stroke: #a79263; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; fill: none; opacity: .82; }
+      .paper { fill: #fffdf6; }
+      .paper-stroke { fill: #fffdf6; stroke: #18382f; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+      .soft-paper { fill: #fffdf6; stroke: #a79263; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .ink-fill { fill: #18382f; }
+    </style>
+    
+  </defs>
+  <circle cx="128" cy="128" r="116" fill="#fbfaf6"/>
+  <g filter="url(#badge-process-friendly-shadow)">
+    <path d="M128 27 203 71v87l-75 75-75-75V71Z" fill="url(#badge-process-friendly-field)" stroke="#5a6262" stroke-width="7" stroke-linejoin="round"/>
+    <circle cx="128" cy="128" r="73" fill="url(#badge-process-friendly-inner)" opacity=".86"/>
+    <circle cx="128" cy="128" r="61" fill="#fffdf6" opacity=".26"/>
+    <g transform="translate(128 128)">
+      
+      <rect x="-47" y="-56" width="54" height="34" rx="7" class="paper-stroke"/>
+      <rect x="-27" y="-17" width="54" height="34" rx="7" class="paper-stroke"/>
+      <rect x="-7" y="22" width="54" height="34" rx="7" class="paper-stroke"/>
+      <path class="soft" d="M7 -39h18v22M27 0h18v22M-25 39h18"/>
+      <circle cx="-25" cy="-39" r="5" class="ink-fill"/>
+      <circle cx="0" cy="0" r="5" class="ink-fill"/>
+      <circle cx="25" cy="39" r="5" class="ink-fill"/>
+    
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+{
+  "name": "anti-distilled",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "validate:config": "python3 scripts/validate_game_config.py config/game-config-v11.json",
+    "validate:engine": "node scripts/validate_dynamic_engine.mjs",
+    "regress": "node scripts/regress_app_engine.mjs --social-only --strict --summary-only",
+    "regress:semantic": "node scripts/run_semantic_persona_regression.mjs --strict --summary-only",
+    "regress:semantic:x99": "node scripts/run_semantic_persona_regression.mjs --include-x99 --personas X99 --strict --summary-only",
+    "test:suite": "node scripts/run_test_suite.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^7.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {}
+}
