@@ -814,6 +814,13 @@ export class AdaptiveAssessment {
     const professionalPolish = evidenceScore(evidence, ["professional_polish", "polished_answer", "smooth_without_source_or_tradeoff", "posture_hiding_low_judgment"]);
     const highCoreCount = CORE_METRICS.filter((metric) => normalized[metric] >= 72).length;
     const concreteCounterEvidence = specific + tradeoff + concreteCriticalTaste + aiJudgmentReserved;
+    const sourcePedigreeEvidence = evidenceScore(evidence, [
+      "specific_experience",
+      "case_validated",
+      "case_explanation",
+      "knows_experience_failure_boundary",
+      "failure_refined_judgment",
+    ]);
     const matureAnswerCount = this.state.answers.filter((answer) => answer.type === "mature_judgment").length;
     const highPolishDensity = matureAnswerCount >= 10 && matureAnswerCount / Math.max(this.state.answers.length, 1) >= 0.58;
     const collaborativeSource =
@@ -862,6 +869,25 @@ export class AdaptiveAssessment {
       normalized.TST >= 42 &&
       normalized.NOI <= 20 &&
       generationEvidence >= 1;
+    const strongCreativeSource =
+      normalized.GEN >= 92 &&
+      normalized.TST >= 82 &&
+      generationEvidence >= 4 &&
+      evidenceScore(evidence, ["target_relevance_cleanup", "judgment_selection_gap", "specific_problem"]) >= 1;
+    const explicitToolOrAntiEmptySource =
+      aiJudgmentReserved >= 2 ||
+      evidenceScore(evidence, ["tool_boundary", "ai_options_human_decision", "ai_challenges_but_human_decides", "anti_empty_professionalism"]) >= 2;
+    const strongBoundaryHumanSignature =
+      normalized.CXT >= 84 &&
+      normalized.BND >= 88 &&
+      normalized.STN >= 88 &&
+      normalized.GRD >= 80 &&
+      normalized.NOI <= 24;
+    const strongValueGuardSignature =
+      normalized.BND >= 84 &&
+      normalized.STN >= 84 &&
+      normalized.GEN < 58 &&
+      normalized.NOI <= 45;
     const genuinePeakDensity =
       (highCoreCount >= 4 &&
         normalized.NOI <= 30 &&
@@ -931,7 +957,8 @@ export class AdaptiveAssessment {
       normalized.TLB >= 70 &&
       normalized.BND >= 68 &&
       normalized.EXP <= 35 &&
-      normalized.SKL <= 12;
+      normalized.SKL <= 12 &&
+      !explicitToolOrAntiEmptySource;
     const polishedBoundaryPosture =
       normalized.TST >= 62 &&
       normalized.BND >= 55 &&
@@ -954,7 +981,68 @@ export class AdaptiveAssessment {
       normalized.BND >= 72 &&
       normalized.STN >= 72 &&
       (normalized.CXT >= 72 || normalized.GEN >= 82);
-    if (!collaborativeSource && (polishedLowSourceDetector || lowSourceToolPolish || lowSourcePolishedPosture || matureWithoutSource || polishedToolPosture || polishedBoundaryPosture || polishedEmptyPosture || polishedOverclaimPosture)) {
+    const matureNoSourceOverclaim =
+      normalized.EXP <= 14 &&
+      normalized.NOI >= 50 &&
+      normalized.BND >= 78 &&
+      normalized.STN >= 76 &&
+      normalized.TST >= 60 &&
+      specific <= 1 &&
+      concreteCriticalTaste <= 2 &&
+      generationEvidence <= 2;
+    const highPostureNoSource =
+      normalized.EXP <= 8 &&
+      normalized.SKL <= 12 &&
+      normalized.NOI >= 30 &&
+      normalized.BND >= 82 &&
+      normalized.STN >= 80 &&
+      normalized.TST >= 74 &&
+      specific <= 1;
+    const matureValuePostureNoSource =
+      highPolishDensity &&
+      matureAnswerCount >= 8 &&
+      normalized.EXP <= 32 &&
+      normalized.SKL <= 25 &&
+      normalized.NOI <= 28 &&
+      normalized.BND >= 60 &&
+      normalized.STN >= 60 &&
+      ((evidence.mature_judgment || 0) + (evidence.judgment_and_consequence || 0)) >= 12 &&
+      valueEvidence + generationEvidence >= 6 &&
+      sourcePedigreeEvidence <= 1 &&
+      !strongCreativeSource &&
+      !explicitToolOrAntiEmptySource;
+    const maturePerformanceRiskSignature =
+      ((evidence.mature_judgment || 0) + (evidence.judgment_and_consequence || 0)) >= 13 &&
+      normalized.EXP <= 45 &&
+      normalized.SKL <= 30 &&
+      normalized.TLB <= 25 &&
+      normalized.BND >= 58 &&
+      normalized.STN >= 58 &&
+      valueEvidence >= 3 &&
+      (professionalPolish >= 2 || normalized.NOI >= 25 || normalized.GRD >= 64 || sourcePedigreeEvidence === 0) &&
+      !genuineStrategicBoundary &&
+      !genuineBoundaryContext &&
+      !strongBoundaryHumanSignature &&
+      !strongValueGuardSignature &&
+      !explicitToolOrAntiEmptySource;
+    const maturePackagingRiskSignature =
+      ((evidence.mature_judgment || 0) + (evidence.judgment_and_consequence || 0)) >= 14 &&
+      professionalPolish >= 4 &&
+      sourcePedigreeEvidence <= 1 &&
+      normalized.EXP <= 45 &&
+      normalized.SKL <= 30 &&
+      normalized.TLB <= 25 &&
+      normalized.BND >= 58 &&
+      normalized.STN >= 55 &&
+      !strongBoundaryHumanSignature &&
+      !strongValueGuardSignature &&
+      !explicitToolOrAntiEmptySource;
+    const sourceBackedExperience =
+      specific >= 2 &&
+      normalized.GRD >= 42 &&
+      normalized.EXP >= 10 &&
+      evidenceScore(evidence, ["expression_lag", "source_and_experience_gap", "signal_conditions"]) >= 1;
+    if ((!sourceBackedExperience && !collaborativeSource && (polishedLowSourceDetector || lowSourceToolPolish || lowSourcePolishedPosture || matureWithoutSource || polishedToolPosture || polishedBoundaryPosture || polishedEmptyPosture || polishedOverclaimPosture || matureNoSourceOverclaim || highPostureNoSource)) || matureValuePostureNoSource || maturePerformanceRiskSignature || maturePackagingRiskSignature) {
       risks.push("polished_answer_risk");
     } else if (lowSourceHighPosture) {
       risks.push("polished_answer_risk");
@@ -970,6 +1058,14 @@ export class AdaptiveAssessment {
     }
     const aiCandidate = this.state.labelConfidence.ai_amplified_professional || 0;
     if (normalized.TLB >= 40 && normalized.SKL >= 50 && aiCandidate < 2.4) risks.push("ai_underrecognized_risk");
+    if (strongBoundaryHumanSignature) {
+      const index = risks.indexOf("polished_answer_risk");
+      if (index >= 0) risks.splice(index, 1);
+    }
+    if (strongValueGuardSignature) {
+      const index = risks.indexOf("polished_answer_risk");
+      if (index >= 0) risks.splice(index, 1);
+    }
     const estimatedScore = this.estimateBaseScore(normalized);
     if (estimatedScore >= 35 && estimatedScore <= 44 && normalized.SKL >= 62 && normalized.NOI < 40) risks.push("low_band_flattening_risk");
     if (updateState) this.state.openRisks = risks;
@@ -1011,7 +1107,8 @@ export class AdaptiveAssessment {
         (normalized.GEN >= 62 ? 1.1 : 0) +
         (normalized.GEN >= 78 ? 2.2 : 0) +
         (normalized.GEN >= 90 ? 1.4 : 0) +
-        evidenceScore(evidence, ["problem_reframed", "practical_rework", "target_relevance_cleanup", "judgment_selection_gap"], 1.0),
+        (normalized.GEN >= 78 && normalized.TST >= 55 ? 1.1 : 0) +
+        evidenceScore(evidence, ["problem_reframed", "practical_rework", "target_relevance_cleanup", "judgment_selection_gap"], 1.18),
       relationship_stabilizer:
         (normalized.CXT >= 58 && normalized.STN >= 42 ? 0.9 : 0) +
         evidenceScore(evidence, ["context_signal", "expression_signal", "pause_to_identify_reason", "audience_need_check", "condition_clarification"], 0.78),
@@ -1022,10 +1119,12 @@ export class AdaptiveAssessment {
         (normalized.GRD >= 56 ? 0.8 : 0) +
         (normalized.GRD >= 64 && normalized.SKL <= 24 ? 1.2 : 0) +
         (normalized.GRD >= 58 && normalized.NOI <= 18 && evidenceScore(evidence, ["intuition_or_countercheck"]) >= 4 ? 1.4 : 0) +
-        evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment", "signal_conditions"], 0.78),
+        (normalized.GRD >= 58 && evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment", "signal_conditions"]) >= 2 ? 1.2 : 0) +
+        evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment", "signal_conditions"], 0.92),
       grounded_experience:
         (normalized.GRD >= 58 && normalized.SKL <= 28 ? 0.9 : 0) +
-        evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment", "signal_conditions", "experience_signal_calibrated"], 0.68),
+        (normalized.GRD >= 52 && evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment"]) >= 2 ? 1.4 : 0) +
+        evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment", "signal_conditions", "experience_signal_calibrated"], 0.84),
       experience_locked:
         evidenceScore(evidence, ["old_method_continues", "rarely_update_experience", "old_experience_rejected_broadly"], 0.8),
       fake_resistance:
@@ -1036,11 +1135,13 @@ export class AdaptiveAssessment {
         (normalized.STN >= 68 && normalized.BND >= 55 && normalized.GEN < 62 ? 0.9 : 0) +
         (normalized.STN >= 80 && normalized.BND >= 65 && normalized.GRD < 62 ? 1.4 : 0) +
         (normalized.STN >= 90 && normalized.BND >= 70 ? 0.8 : 0) +
-        evidenceScore(evidence, ["risk_with_alternative", "compliance_first", "value_signal"], 0.72) +
+        (normalized.STN >= 62 && evidenceScore(evidence, ["risk_with_alternative", "value_signal"]) >= 2 && normalized.GEN < 75 ? 1.3 : 0) +
+        evidenceScore(evidence, ["risk_with_alternative", "compliance_first", "value_signal"], 0.86) +
         evidenceScore(evidence, ["ai_judgment_outsource_risk", "ai_kept_away_from_core"], 0.22),
       taste_low_expression:
         (normalized.TST >= 52 && normalized.EXP < 50 ? 0.7 : 0) +
-        evidenceScore(evidence, ["expression_lag", "specific_experience", "case_validated"], 0.6),
+        (normalized.TST >= 55 && normalized.EXP < 35 && normalized.GRD >= 42 ? 1.4 : 0) +
+        evidenceScore(evidence, ["expression_lag", "specific_experience", "case_validated", "source_and_experience_gap"], 0.88),
       method_distilled:
         evidenceScore(evidence, ["reusable_method", "process_execution", "skl_signal"], 0.18),
       skill_friendly:
@@ -1052,6 +1153,9 @@ export class AdaptiveAssessment {
   fallbackLabelPenalty(label, normalized = this.getNormalizedScores()) {
     const evidence = this.state.evidenceCounts;
     if (label === "boundary_radar") {
+      const generativeEvidence = evidenceScore(evidence, ["problem_reframed", "practical_rework", "target_relevance_cleanup", "judgment_selection_gap"]);
+      const experienceSourceEvidence = evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment", "signal_conditions"]);
+      const valueGuardEvidence = evidenceScore(evidence, ["risk_with_alternative", "value_signal"]);
       const specificAlternative =
         evidenceScore(evidence, [
           "ai_amplifier",
@@ -1079,6 +1183,9 @@ export class AdaptiveAssessment {
         (normalized.TLB >= 55 && evidenceScore(evidence, ["tool_boundary", "ai_options_human_decision", "ai_challenges_but_human_decides"]) >= 1) ||
         (normalized.TST >= 62 && evidenceScore(evidence, ["anti_empty_professionalism", "cliche_without_judgment", "empty_but_polished_detected"]) >= 1);
       const boundaryIsDominant = normalized.BND >= 68 && normalized.CXT >= 56;
+      if (normalized.GEN >= 76 && normalized.TST >= 52 && generativeEvidence >= 2) return 6.4;
+      if (normalized.GRD >= 58 && experienceSourceEvidence >= 2 && normalized.BND < 72) return 5.4;
+      if (normalized.STN >= 62 && normalized.GEN < 70 && valueGuardEvidence >= 2) return 4.8;
       if (strongerSpecificStructure) return 5.2;
       if (specificAlternative && !boundaryIsDominant) return 4.2;
       if (specificAlternative) return 0.9;
@@ -1089,6 +1196,12 @@ export class AdaptiveAssessment {
     if (label === "fake_resistance" && normalized.NOI < 48) {
       const constructiveEvidence = evidenceScore(evidence, ["practical_rework", "risk_with_alternative", "tool_boundary", "specific_experience"]);
       if (constructiveEvidence >= 2) return 2.5;
+    }
+    if (label === "fake_resistance") {
+      const experienceSourceEvidence = evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment", "signal_conditions"]);
+      const expressionEvidence = evidenceScore(evidence, ["expression_lag", "source_and_experience_gap"]);
+      if (experienceSourceEvidence >= 2 && normalized.GRD >= 42) return 5.2;
+      if (expressionEvidence >= 1 && normalized.TST >= 55 && normalized.GRD >= 35) return 4.6;
     }
     if (label === "ai_amplified_professional") {
       const aiPositive = evidenceScore(evidence, ["ai_amplifier", "ai_options_human_decision", "ai_challenges_but_human_decides", "ai_direction_boundary", "tool_boundary"]);
@@ -1380,6 +1493,8 @@ export class AdaptiveAssessment {
       "surface_overdecorated",
       "audience_overload",
     ]);
+    const valueGuardEvidence = evidenceScore(evidence, ["value_signal", "risk_with_alternative"]);
+    const expressionLagEvidence = evidenceScore(evidence, ["expression_lag", "source_and_experience_gap"]);
     const semanticHighValueEvidence = evidenceScore(evidence, [
       "risk_with_alternative",
       "value_signal",
@@ -1394,6 +1509,8 @@ export class AdaptiveAssessment {
     const concreteSourceEvidence = evidenceScore(evidence, [
       "specific_experience",
       "case_validated",
+      "case_explanation",
+      "knows_experience_failure_boundary",
       "failure_boundary",
       "failure_refined_judgment",
       "risk_with_alternative",
@@ -1405,6 +1522,21 @@ export class AdaptiveAssessment {
       "cliche_without_judgment",
       "empty_but_polished_detected",
       "signal_conditions",
+    ]);
+    const sourcePedigreeEvidence = evidenceScore(evidence, [
+      "specific_experience",
+      "case_validated",
+      "case_explanation",
+      "knows_experience_failure_boundary",
+      "failure_refined_judgment",
+    ]);
+    const toolAntiEmptyEvidence = evidenceScore(evidence, [
+      "tool_boundary",
+      "ai_options_human_decision",
+      "ai_challenges_but_human_decides",
+      "anti_empty_professionalism",
+      "cliche_without_judgment",
+      "ai_empty_judgment_check",
     ]);
     const topLabelKeys = this.sortedLabels(normalized).slice(0, 5).map(([label]) => label);
     const hasTopLabel = (labels) => labels.some((label) => topLabelKeys.includes(label));
@@ -1433,6 +1565,24 @@ export class AdaptiveAssessment {
     if (!hasPolishedRisk && normalized.NOI <= 45 && experienceEvidence >= 4 && normalized.GRD >= 58) {
       adjusted = Math.max(adjusted, 55);
     }
+    if (!hasPolishedRisk && normalized.NOI <= 82 && experienceEvidence >= 2 && normalized.GRD >= 45 && normalized.TST >= 55) {
+      adjusted = Math.max(adjusted, 45);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 82 && experienceEvidence >= 2 && normalized.GRD >= 40 && normalized.TST >= 55 && normalized.EXP >= 18) {
+      adjusted = Math.max(adjusted, 45);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 72 && experienceEvidence >= 3 && normalized.GRD >= 58) {
+      adjusted = Math.max(adjusted, 52);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 95 && normalized.TST >= 58 && normalized.GRD >= 30 && (experienceEvidence >= 1 || expressionLagEvidence >= 1)) {
+      adjusted = Math.max(adjusted, 32);
+    }
+    if (hasPolishedRisk && normalized.NOI <= 88 && normalized.TST >= 60 && normalized.GRD >= 26 && expressionLagEvidence >= 1) {
+      adjusted = Math.max(adjusted, 32);
+    }
+    if (normalized.NOI <= 80 && normalized.TST >= 50 && normalized.GRD >= 27 && normalized.EXP <= 16 && normalized.TLB >= 80) {
+      adjusted = Math.max(adjusted, 32);
+    }
     if (
       !hasPolishedRisk &&
       normalized.GRD >= 50 &&
@@ -1445,8 +1595,85 @@ export class AdaptiveAssessment {
     if (!hasPolishedRisk && normalized.NOI <= 48 && normalized.TST >= 45 && normalized.GRD >= 48 && (evidence.expression_lag || 0) > 0) {
       adjusted = Math.max(adjusted, 45);
     }
+    if (!hasPolishedRisk && normalized.NOI <= 88 && expressionLagEvidence >= 1 && normalized.TST >= 55 && normalized.GRD >= 35) {
+      adjusted = Math.max(adjusted, 38);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 78 && expressionLagEvidence >= 1 && experienceEvidence >= 1 && normalized.TST >= 58) {
+      adjusted = Math.max(adjusted, 45);
+    }
     if (!hasPolishedRisk && normalized.NOI <= 58 && normalized.GEN >= 55 && generationAttemptEvidence >= 1) {
       adjusted = Math.max(adjusted, 38);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 28 && normalized.GEN >= 78 && normalized.TST >= 55 && generationAttemptEvidence >= 2) {
+      adjusted = Math.max(adjusted, 65);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 20 && normalized.GEN >= 90 && normalized.TST >= 58 && generationAttemptEvidence >= 3) {
+      adjusted = Math.max(adjusted, 70);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 35 && normalized.STN >= 60 && normalized.BND >= 45 && normalized.GEN < 78 && valueGuardEvidence >= 2) {
+      adjusted = Math.max(adjusted, 55);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 28 && normalized.STN >= 68 && normalized.BND >= 55 && normalized.GEN < 75 && valueGuardEvidence >= 3) {
+      adjusted = Math.max(adjusted, 62);
+    }
+    if (normalized.BND >= 84 && normalized.STN >= 84 && normalized.GEN < 58 && normalized.NOI <= 45) {
+      adjusted = Math.max(adjusted, 55);
+    }
+    if (
+      !hasPolishedRisk &&
+      normalized.NOI <= 30 &&
+      normalized.TLB >= 50 &&
+      toolAntiEmptyEvidence >= 5 &&
+      normalized.CXT >= 68 &&
+      normalized.BND >= 62 &&
+      normalized.TST >= 68 &&
+      generationAttemptEvidence >= 3
+    ) {
+      adjusted = Math.max(adjusted, 90);
+    }
+    const highMaturePerformanceSignature =
+      normalized.EXP <= 46 &&
+      normalized.SKL <= 25 &&
+      normalized.TLB <= 25 &&
+      normalized.BND >= 64 &&
+      normalized.STN >= 64 &&
+      normalized.GRD >= 64 &&
+      (normalized.GEN >= 70 || normalized.TST >= 60) &&
+      ((evidence.mature_judgment || 0) + (evidence.judgment_and_consequence || 0)) >= 14 &&
+      valueGuardEvidence >= 4 &&
+      toolAntiEmptyEvidence === 0 &&
+      sourcePedigreeEvidence <= 4 &&
+      !(normalized.CXT >= 84 && normalized.BND >= 88 && normalized.STN >= 88 && normalized.GRD >= 80 && normalized.NOI <= 24);
+    if (highMaturePerformanceSignature) {
+      adjusted = Math.min(adjusted, 62);
+    }
+    const highReframeNoSourcePerformance =
+      normalized.EXP <= 40 &&
+      normalized.SKL <= 25 &&
+      normalized.TLB <= 25 &&
+      normalized.CXT >= 64 &&
+      normalized.BND >= 64 &&
+      normalized.GEN >= 70 &&
+      normalized.TST >= 64 &&
+      normalized.STN >= 60 &&
+      sourcePedigreeEvidence === 0 &&
+      toolAntiEmptyEvidence === 0 &&
+      ((evidence.mature_judgment || 0) + (evidence.judgment_and_consequence || 0)) >= 16 &&
+      valueGuardEvidence >= 4 &&
+      !(normalized.CXT >= 84 && normalized.BND >= 88 && normalized.STN >= 88 && normalized.GRD >= 80 && normalized.NOI <= 24);
+    if (highReframeNoSourcePerformance) {
+      adjusted = Math.min(adjusted, 62);
+    }
+    const experienceValueWithoutPeakDifferentiator =
+      adjusted > 84 &&
+      normalized.GRD >= 70 &&
+      normalized.BND >= 60 &&
+      normalized.STN >= 60 &&
+      normalized.GEN < 65 &&
+      normalized.TST < 60 &&
+      toolAntiEmptyEvidence <= 1;
+    if (experienceValueWithoutPeakDifferentiator) {
+      adjusted = Math.min(adjusted, 84);
     }
     return adjusted;
   }

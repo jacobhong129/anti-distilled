@@ -1005,7 +1005,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -0.54
+            "ai_amplified_professional": -0.66
           }
         },
         {
@@ -1224,7 +1224,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.14
+            "ai_amplified_professional": -1.26
           }
         },
         {
@@ -1282,12 +1282,16 @@
           },
           "evidence": [
             "process_execution",
-            "gen_signal"
+            "gen_signal",
+            "professional_polish"
           ],
           "labelDelta": {
             "skill_friendly": 0.19,
             "generative_reframer": 0.1,
-            "method_distilled": 0.07
+            "method_distilled": 0.07,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -1318,7 +1322,8 @@
             "GEN": 4,
             "BND": 4,
             "STN": 4,
-            "CXT": 4
+            "CXT": 4,
+            "TST": 2
           },
           "evidence": [
             "mature_judgment",
@@ -1327,10 +1332,10 @@
             "practical_rework"
           ],
           "labelDelta": {
-            "generative_reframer": 0.7,
-            "boundary_radar": -1.1,
+            "generative_reframer": 0.92,
+            "boundary_radar": -1.66,
             "teachable_irreplaceable": 0.05,
-            "value_low_generation": -0.57,
+            "value_low_generation": -0.85,
             "ai_amplified_professional": -0.3
           }
         },
@@ -1431,14 +1436,16 @@
           "evidence": [
             "mature_judgment",
             "stn_signal",
+            "risk_with_alternative",
             "judgment_and_consequence",
             "value_signal"
           ],
           "labelDelta": {
-            "value_low_generation": 0.3,
-            "boundary_radar": 0.26,
+            "value_low_generation": 0.46,
+            "boundary_radar": 0.22,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -0.54
+            "ai_amplified_professional": -0.66,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -1495,16 +1502,23 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "SKL": 1,
-            "GRD": 1
+            "GRD": 1,
+            "STN": 2,
+            "BND": 2
           },
           "evidence": [
             "process_execution",
-            "grd_signal"
+            "grd_signal",
+            "value_signal",
+            "risk_with_alternative"
           ],
           "labelDelta": {
             "skill_friendly": 0.19,
             "grounded_experience": 0.1,
-            "method_distilled": 0.07
+            "method_distilled": 0.07,
+            "value_low_generation": 0.32,
+            "boundary_radar": -0.08,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -1539,6 +1553,7 @@
           "evidence": [
             "mature_judgment",
             "grd_signal",
+            "risk_with_alternative",
             "judgment_and_consequence",
             "value_signal",
             "signal_conditions"
@@ -1546,9 +1561,10 @@
           "labelDelta": {
             "grounded_experience": 0.24,
             "intuition_grounded": 0.24,
-            "boundary_radar": 0.26,
-            "value_low_generation": 0.3,
-            "ai_amplified_professional": -0.6
+            "boundary_radar": 0.22,
+            "value_low_generation": 0.46,
+            "ai_amplified_professional": -0.72,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -1651,7 +1667,7 @@
             "ai_kept_away_from_core"
           ],
           "labelDelta": {
-            "ai_amplified_professional": -3.38,
+            "ai_amplified_professional": -3.74,
             "boundary_radar": 0.36,
             "value_low_generation": 0.14
           }
@@ -1768,7 +1784,7 @@
             "teachable_irreplaceable": 0.1,
             "boundary_radar": 0.26,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32
           }
         },
         {
@@ -1990,7 +2006,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -2.58
+            "ai_amplified_professional": -2.7
           }
         },
         {
@@ -2099,10 +2115,11 @@
           ],
           "labelDelta": {
             "context_reader": 0.14,
-            "boundary_radar": 0.36,
+            "boundary_radar": 0.32,
             "teachable_irreplaceable": 0.05,
-            "value_low_generation": 0.38,
-            "ai_amplified_professional": -1.32
+            "value_low_generation": 0.54,
+            "ai_amplified_professional": -1.68,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -2209,7 +2226,7 @@
             "empty_professional_detector": 0.14,
             "boundary_radar": 0.26,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.14
+            "ai_amplified_professional": -1.26
           }
         },
         {
@@ -2310,7 +2327,8 @@
           "scores": {
             "GEN": 4,
             "CXT": 4,
-            "GRD": 4
+            "GRD": 4,
+            "TST": 2
           },
           "evidence": [
             "mature_judgment",
@@ -2319,12 +2337,12 @@
             "practical_rework"
           ],
           "labelDelta": {
-            "generative_reframer": 0.7,
-            "boundary_radar": -1.62,
+            "generative_reframer": 0.92,
+            "boundary_radar": -2.18,
             "teachable_irreplaceable": 0.05,
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16,
-            "value_low_generation": -0.6
+            "value_low_generation": -0.88
           }
         },
         {
@@ -2427,10 +2445,11 @@
             "value_signal"
           ],
           "labelDelta": {
-            "boundary_radar": 0.26,
-            "value_low_generation": 0.3,
+            "boundary_radar": 0.22,
+            "value_low_generation": 0.46,
             "teachable_irreplaceable": 0.08,
-            "ai_amplified_professional": -0.84
+            "ai_amplified_professional": -0.96,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -2548,10 +2567,11 @@
           ],
           "labelDelta": {
             "skill_friendly": 0.13,
-            "boundary_radar": 0.36,
+            "boundary_radar": 0.32,
             "teachable_irreplaceable": 0.07,
-            "value_low_generation": 0.38,
-            "ai_amplified_professional": -1.32
+            "value_low_generation": 0.54,
+            "ai_amplified_professional": -1.68,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -2662,7 +2682,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32
           }
         },
         {
@@ -2741,16 +2761,22 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "CXT": 1,
-            "EXP": 1
+            "EXP": 1,
+            "STN": 2,
+            "BND": 2
           },
           "evidence": [
             "condition_clarification",
-            "cxt_signal"
+            "cxt_signal",
+            "value_signal"
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.13,
             "context_reader": 0.12,
-            "method_distilled": 0.07
+            "method_distilled": 0.07,
+            "value_low_generation": 0.32,
+            "boundary_radar": -0.08,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -3210,7 +3236,7 @@
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -0.96
+            "ai_amplified_professional": -1.08
           }
         },
         {
@@ -3430,7 +3456,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.08
+            "ai_amplified_professional": -1.2
           }
         },
         {
@@ -3755,7 +3781,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32
           }
         },
         {
@@ -3970,7 +3996,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.08,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2,
+            "ai_amplified_professional": -1.32,
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16
           }
@@ -4725,7 +4751,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.08,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.14
+            "ai_amplified_professional": -1.26
           }
         },
         {
@@ -5038,19 +5064,22 @@
           "scores": {
             "BND": 2,
             "GEN": 4,
-            "CXT": 4
+            "CXT": 4,
+            "TST": 2
           },
           "evidence": [
             "mature_judgment",
             "bnd_signal",
+            "target_relevance_cleanup",
+            "judgment_selection_gap",
             "problem_reframed",
             "practical_rework"
           ],
           "labelDelta": {
-            "boundary_radar": -1.46,
+            "boundary_radar": -2.02,
             "teachable_irreplaceable": 0.08,
-            "generative_reframer": 0.7,
-            "value_low_generation": -0.6
+            "generative_reframer": 0.92,
+            "value_low_generation": -0.88
           }
         },
         {
@@ -5154,16 +5183,18 @@
           "evidence": [
             "mature_judgment",
             "bnd_signal",
+            "risk_with_alternative",
             "judgment_and_consequence",
             "value_signal"
           ],
           "labelDelta": {
-            "boundary_radar": 0.26,
+            "boundary_radar": 0.22,
             "teachable_irreplaceable": 0.08,
-            "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.2,
+            "value_low_generation": 0.46,
+            "ai_amplified_professional": -1.32,
             "intuition_grounded": 0.16,
-            "grounded_experience": 0.16
+            "grounded_experience": 0.16,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -5256,19 +5287,22 @@
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GEN": 2,
+            "GEN": 4,
             "BND": 4,
-            "STN": 4
+            "STN": 4,
+            "TST": 2
           },
           "evidence": [
             "mature_judgment",
-            "gen_signal"
+            "gen_signal",
+            "problem_reframed",
+            "practical_rework"
           ],
           "labelDelta": {
-            "generative_reframer": 0.15,
-            "boundary_radar": 0.18,
+            "generative_reframer": 0.42,
+            "boundary_radar": -0.06,
             "teachable_irreplaceable": 0.05,
-            "value_low_generation": 0.03,
+            "value_low_generation": -0.09,
             "ai_amplified_professional": -0.3
           }
         },
@@ -5363,19 +5397,22 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "GEN": 4,
-            "CXT": 4
+            "CXT": 4,
+            "TST": 2
           },
           "evidence": [
             "mature_judgment",
             "gen_signal",
+            "target_relevance_cleanup",
+            "judgment_selection_gap",
             "problem_reframed",
             "practical_rework"
           ],
           "labelDelta": {
-            "generative_reframer": 0.7,
-            "boundary_radar": -1.62,
+            "generative_reframer": 0.92,
+            "boundary_radar": -2.18,
             "teachable_irreplaceable": 0.05,
-            "value_low_generation": -0.6
+            "value_low_generation": -0.88
           }
         },
         {
@@ -5786,16 +5823,22 @@
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GEN": 2
+            "GEN": 2,
+            "NOI": 2
           },
           "evidence": [
             "mature_judgment",
-            "gen_signal"
+            "gen_signal",
+            "professional_polish",
+            "smooth_without_source_or_tradeoff",
+            "posture_hiding_low_judgment"
           ],
           "labelDelta": {
             "generative_reframer": 0.15,
-            "boundary_radar": 0.06,
-            "teachable_irreplaceable": 0.05
+            "boundary_radar": -0.1,
+            "teachable_irreplaceable": 0.05,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2
           }
         },
         {
@@ -5855,12 +5898,16 @@
           },
           "evidence": [
             "process_execution",
-            "gen_signal"
+            "gen_signal",
+            "professional_polish"
           ],
           "labelDelta": {
             "skill_friendly": 0.19,
             "generative_reframer": 0.1,
-            "method_distilled": 0.07
+            "method_distilled": 0.07,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -5904,7 +5951,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.14,
+            "ai_amplified_professional": -1.26,
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16
           }
@@ -6226,10 +6273,10 @@
           ],
           "labelDelta": {
             "generative_reframer": 0.7,
-            "boundary_radar": -0.38,
+            "boundary_radar": -0.54,
             "teachable_irreplaceable": 0.05,
-            "value_low_generation": -0.33,
-            "ai_amplified_professional": -1.2,
+            "value_low_generation": -0.43,
+            "ai_amplified_professional": -1.32,
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16
           }
@@ -6653,7 +6700,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.2,
+            "ai_amplified_professional": -1.32,
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16
           }
@@ -6761,7 +6808,7 @@
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32
           }
         },
         {
@@ -6816,13 +6863,18 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "TST": 1,
-            "NOI": 1
+            "NOI": 3
           },
           "evidence": [
-            "correct_but_empty_words"
+            "correct_but_empty_words",
+            "professional_polish",
+            "smooth_without_source_or_tradeoff",
+            "posture_hiding_low_judgment"
           ],
           "labelDelta": {
-            "empty_professional_detector": 0.12
+            "empty_professional_detector": 0.32,
+            "fake_resistance": 0.24,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -6859,7 +6911,7 @@
             "empty_professional_detector": 0.16,
             "boundary_radar": 0.26,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -0.54
+            "ai_amplified_professional": -0.66
           }
         },
         {
@@ -7267,16 +7319,21 @@
           "scores": {
             "TST": 2,
             "BND": 4,
-            "STN": 4
+            "STN": 4,
+            "NOI": 2
           },
           "evidence": [
-            "cliche_without_judgment"
+            "cliche_without_judgment",
+            "professional_polish",
+            "smooth_without_source_or_tradeoff",
+            "posture_hiding_low_judgment"
           ],
           "labelDelta": {
-            "empty_professional_detector": 0.18,
-            "boundary_radar": 0.18,
+            "empty_professional_detector": 0.38,
+            "boundary_radar": 0.02,
             "value_low_generation": 0.03,
-            "ai_amplified_professional": -0.3
+            "ai_amplified_professional": -0.3,
+            "fake_resistance": 0.24
           }
         },
         {
@@ -7586,8 +7643,8 @@
             "cliche_without_judgment"
           ],
           "labelDelta": {
-            "empty_professional_detector": 2.74,
-            "fake_resistance": -0.87,
+            "empty_professional_detector": 2.98,
+            "fake_resistance": -0.97,
             "boundary_radar": 0.18,
             "value_low_generation": 0.09,
             "ai_amplified_professional": -0.3
@@ -7693,13 +7750,19 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "TST": 2,
-            "BND": 1
+            "BND": 1,
+            "NOI": 2
           },
           "evidence": [
-            "ai_empty_judgment_check"
+            "ai_empty_judgment_check",
+            "professional_polish",
+            "smooth_without_source_or_tradeoff",
+            "posture_hiding_low_judgment"
           ],
           "labelDelta": {
-            "empty_professional_detector": 0.18
+            "empty_professional_detector": 0.38,
+            "fake_resistance": 0.24,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -7760,16 +7823,21 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "SKL": 1,
-            "STN": 1
+            "STN": 3,
+            "BND": 2
           },
           "evidence": [
             "process_execution",
-            "stn_signal"
+            "stn_signal",
+            "value_signal",
+            "risk_with_alternative"
           ],
           "labelDelta": {
             "skill_friendly": 0.19,
-            "value_low_generation": 0.1,
-            "method_distilled": 0.07
+            "value_low_generation": 0.42,
+            "method_distilled": 0.07,
+            "boundary_radar": -0.08,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -7778,17 +7846,22 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "STN": 1,
-            "EXP": 1
+            "STN": 3,
+            "EXP": 1,
+            "BND": 2
           },
           "evidence": [
             "condition_clarification",
-            "stn_signal"
+            "stn_signal",
+            "value_signal",
+            "risk_with_alternative"
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.13,
-            "value_low_generation": 0.1,
-            "method_distilled": 0.07
+            "value_low_generation": 0.42,
+            "method_distilled": 0.07,
+            "boundary_radar": -0.08,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -7803,14 +7876,16 @@
           "evidence": [
             "mature_judgment",
             "stn_signal",
+            "risk_with_alternative",
             "judgment_and_consequence",
             "value_signal"
           ],
           "labelDelta": {
-            "value_low_generation": 0.3,
-            "boundary_radar": 0.26,
+            "value_low_generation": 0.46,
+            "boundary_radar": 0.22,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -7819,17 +7894,20 @@
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "STN": 1,
-            "BND": 1
+            "STN": 3,
+            "BND": 3
           },
           "evidence": [
             "intuition_or_countercheck",
-            "stn_signal"
+            "stn_signal",
+            "value_signal",
+            "risk_with_alternative"
           ],
           "labelDelta": {
-            "value_low_generation": 0.1,
-            "boundary_radar": 0.08,
-            "intuition_grounded": 0.07
+            "value_low_generation": 0.42,
+            "boundary_radar": 0,
+            "intuition_grounded": 0.07,
+            "fake_resistance": -0.16
           }
         }
       ],
@@ -7915,7 +7993,7 @@
             "value_low_generation": 0.06,
             "boundary_radar": 0.26,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32
           }
         },
         {
@@ -8121,14 +8199,16 @@
           "evidence": [
             "mature_judgment",
             "stn_signal",
+            "risk_with_alternative",
             "judgment_and_consequence",
             "value_signal"
           ],
           "labelDelta": {
-            "value_low_generation": 0.3,
-            "boundary_radar": 0.26,
+            "value_low_generation": 0.46,
+            "boundary_radar": 0.22,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -8228,14 +8308,16 @@
           "evidence": [
             "mature_judgment",
             "stn_signal",
+            "risk_with_alternative",
             "judgment_and_consequence",
             "value_signal"
           ],
           "labelDelta": {
-            "value_low_generation": 0.3,
-            "boundary_radar": 0.26,
+            "value_low_generation": 0.46,
+            "boundary_radar": 0.22,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -0.84
+            "ai_amplified_professional": -0.96,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -8342,10 +8424,11 @@
             "ai_kept_away_from_core"
           ],
           "labelDelta": {
-            "value_low_generation": 0.38,
-            "boundary_radar": 0.36,
+            "value_low_generation": 0.54,
+            "boundary_radar": 0.32,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -1.68
+            "ai_amplified_professional": -2.04,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -8507,16 +8590,21 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "SKL": 1,
-            "STN": 1
+            "STN": 3,
+            "BND": 2
           },
           "evidence": [
             "process_execution",
-            "stn_signal"
+            "stn_signal",
+            "value_signal",
+            "risk_with_alternative"
           ],
           "labelDelta": {
             "skill_friendly": 0.19,
-            "value_low_generation": 0.1,
-            "method_distilled": 0.07
+            "value_low_generation": 0.42,
+            "method_distilled": 0.07,
+            "boundary_radar": -0.08,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -8550,14 +8638,16 @@
           "evidence": [
             "mature_judgment",
             "stn_signal",
+            "risk_with_alternative",
             "judgment_and_consequence",
             "value_signal"
           ],
           "labelDelta": {
-            "value_low_generation": 0.3,
-            "boundary_radar": 0.26,
+            "value_low_generation": 0.46,
+            "boundary_radar": 0.22,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -8651,17 +8741,23 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "STN": 4,
-            "BND": 4
+            "BND": 4,
+            "NOI": 2
           },
           "evidence": [
             "mature_judgment",
-            "stn_signal"
+            "stn_signal",
+            "professional_polish",
+            "smooth_without_source_or_tradeoff",
+            "posture_hiding_low_judgment"
           ],
           "labelDelta": {
             "value_low_generation": 0.03,
-            "boundary_radar": 0.18,
+            "boundary_radar": 0.02,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -0.3
+            "ai_amplified_professional": -0.3,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2
           }
         },
         {
@@ -8768,12 +8864,13 @@
             "ai_kept_away_from_core"
           ],
           "labelDelta": {
-            "value_low_generation": 0.38,
-            "boundary_radar": 0.36,
+            "value_low_generation": 0.54,
+            "boundary_radar": 0.32,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -1.68,
+            "ai_amplified_professional": -2.04,
             "intuition_grounded": 0.16,
-            "grounded_experience": 0.16
+            "grounded_experience": 0.16,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -8829,16 +8926,23 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "SKL": 1,
-            "STN": 1
+            "STN": 1,
+            "NOI": 2
           },
           "evidence": [
             "process_execution",
-            "stn_signal"
+            "stn_signal",
+            "professional_polish",
+            "smooth_without_source_or_tradeoff",
+            "posture_hiding_low_judgment"
           ],
           "labelDelta": {
             "skill_friendly": 0.19,
             "value_low_generation": 0.1,
-            "method_distilled": 0.07
+            "method_distilled": 0.07,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -8847,17 +8951,26 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "STN": 1,
-            "EXP": 1
+            "STN": 3,
+            "EXP": 1,
+            "BND": 2,
+            "NOI": 2
           },
           "evidence": [
             "condition_clarification",
-            "stn_signal"
+            "stn_signal",
+            "value_signal",
+            "professional_polish",
+            "smooth_without_source_or_tradeoff",
+            "posture_hiding_low_judgment"
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.13,
-            "value_low_generation": 0.1,
-            "method_distilled": 0.07
+            "value_low_generation": 0.42,
+            "method_distilled": 0.07,
+            "boundary_radar": -0.24,
+            "fake_resistance": 0.08,
+            "empty_professional_detector": 0.2
           }
         },
         {
@@ -8871,13 +8984,15 @@
           },
           "evidence": [
             "mature_judgment",
-            "stn_signal"
+            "stn_signal",
+            "value_signal"
           ],
           "labelDelta": {
-            "value_low_generation": 0.03,
-            "boundary_radar": 0.18,
+            "value_low_generation": 0.19,
+            "boundary_radar": 0.1,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -0.3
+            "ai_amplified_professional": -0.3,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -8976,14 +9091,16 @@
           "evidence": [
             "mature_judgment",
             "stn_signal",
+            "risk_with_alternative",
             "judgment_and_consequence",
             "value_signal"
           ],
           "labelDelta": {
-            "value_low_generation": 0.3,
-            "boundary_radar": 0.26,
+            "value_low_generation": 0.46,
+            "boundary_radar": 0.22,
             "teachable_irreplaceable": 0.05,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -9039,15 +9156,22 @@
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 1
+            "GRD": 3,
+            "EXP": 1
           },
           "evidence": [
-            "past_success"
+            "past_success",
+            "specific_experience",
+            "case_validated",
+            "repeated_past_success"
           ],
           "labelDelta": {
             "skill_friendly": 0.1,
-            "grounded_experience": 0.1,
-            "method_distilled": 0.04
+            "grounded_experience": 0.14,
+            "method_distilled": 0.04,
+            "intuition_grounded": 0.12,
+            "taste_low_expression": 0,
+            "fake_resistance": -0.12
           }
         },
         {
@@ -9056,16 +9180,19 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 2,
-            "EXP": 1
+            "GRD": 4,
+            "EXP": 3
           },
           "evidence": [
-            "specific_experience"
+            "specific_experience",
+            "case_validated"
           ],
           "labelDelta": {
-            "grounded_experience": 0.24,
-            "intuition_grounded": 0.14,
-            "teachable_irreplaceable": 0.1
+            "grounded_experience": 0.68,
+            "intuition_grounded": 0.5,
+            "teachable_irreplaceable": 0.1,
+            "taste_low_expression": 0,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9074,16 +9201,18 @@
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 2,
-            "BND": 1
+            "GRD": 4,
+            "BND": 3
           },
           "evidence": [
-            "failure_boundary"
+            "failure_boundary",
+            "signal_conditions"
           ],
           "labelDelta": {
-            "grounded_experience": 0.16,
-            "boundary_radar": 0.15,
-            "intuition_grounded": 0.14
+            "grounded_experience": 0.36,
+            "boundary_radar": 0.19,
+            "intuition_grounded": 0.34,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9184,16 +9313,20 @@
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 4
+            "GRD": 4,
+            "BND": 2
           },
           "evidence": [
             "mature_judgment",
-            "grd_signal"
+            "grd_signal",
+            "failure_boundary",
+            "signal_conditions"
           ],
           "labelDelta": {
-            "grounded_experience": 0.16,
-            "intuition_grounded": 0.16,
-            "boundary_radar": 0.06
+            "grounded_experience": 0.36,
+            "intuition_grounded": 0.34,
+            "boundary_radar": 0.1,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9265,17 +9398,23 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 1,
-            "EXP": 1
+            "GRD": 3,
+            "EXP": 1,
+            "BND": 2
           },
           "evidence": [
             "condition_clarification",
-            "grd_signal"
+            "grd_signal",
+            "failure_boundary",
+            "signal_conditions"
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.13,
-            "grounded_experience": 0.1,
-            "method_distilled": 0.07
+            "grounded_experience": 0.5,
+            "method_distilled": 0.07,
+            "intuition_grounded": 0.36,
+            "boundary_radar": 0.04,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9284,20 +9423,23 @@
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 2,
+            "GRD": 4,
             "BND": 4,
             "STN": 4
           },
           "evidence": [
             "mature_judgment",
-            "grd_signal"
+            "grd_signal",
+            "failure_boundary",
+            "signal_conditions"
           ],
           "labelDelta": {
-            "grounded_experience": 0.15,
-            "intuition_grounded": 0.06,
-            "boundary_radar": 0.18,
+            "grounded_experience": 0.36,
+            "intuition_grounded": 0.34,
+            "boundary_radar": 0.2,
             "value_low_generation": 0.03,
-            "ai_amplified_professional": -0.3
+            "ai_amplified_professional": -0.3,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9369,17 +9511,22 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 1,
-            "EXP": 1
+            "GRD": 3,
+            "EXP": 3
           },
           "evidence": [
             "condition_clarification",
-            "grd_signal"
+            "grd_signal",
+            "specific_experience",
+            "case_validated"
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.13,
-            "grounded_experience": 0.1,
-            "method_distilled": 0.07
+            "grounded_experience": 0.54,
+            "method_distilled": 0.07,
+            "intuition_grounded": 0.36,
+            "taste_low_expression": 0,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9395,14 +9542,16 @@
           "evidence": [
             "mature_judgment",
             "grd_signal",
+            "failure_boundary",
             "signal_conditions"
           ],
           "labelDelta": {
-            "grounded_experience": 0.24,
-            "intuition_grounded": 0.24,
-            "boundary_radar": 0.18,
+            "grounded_experience": 0.44,
+            "intuition_grounded": 0.42,
+            "boundary_radar": 0.2,
             "value_low_generation": 0.03,
-            "ai_amplified_professional": -0.3
+            "ai_amplified_professional": -0.3,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9411,15 +9560,19 @@
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 1
+            "GRD": 3,
+            "NOI": 0
           },
           "evidence": [
             "intuition_or_countercheck",
-            "grd_signal"
+            "grd_signal",
+            "expression_lag"
           ],
           "labelDelta": {
             "intuition_grounded": 0.1,
-            "grounded_experience": 0.1
+            "grounded_experience": 0.34,
+            "taste_low_expression": 0.52,
+            "fake_resistance": -0.36
           }
         }
       ],
@@ -9556,16 +9709,22 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "SKL": 1,
-            "GRD": 1
+            "GRD": 3,
+            "EXP": 2
           },
           "evidence": [
             "process_execution",
-            "grd_signal"
+            "grd_signal",
+            "specific_experience",
+            "case_validated"
           ],
           "labelDelta": {
             "skill_friendly": 0.19,
-            "grounded_experience": 0.1,
-            "method_distilled": 0.07
+            "grounded_experience": 0.54,
+            "method_distilled": 0.07,
+            "intuition_grounded": 0.36,
+            "taste_low_expression": 0,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9694,15 +9853,17 @@
           },
           "evidence": [
             "updates_judgment_conditions",
+            "failure_boundary",
             "judgment_and_consequence",
             "signal_conditions"
           ],
           "labelDelta": {
-            "intuition_grounded": 0.24,
-            "boundary_radar": 0.26,
+            "intuition_grounded": 0.42,
+            "boundary_radar": 0.28,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2,
-            "grounded_experience": 0.24
+            "ai_amplified_professional": -1.32,
+            "grounded_experience": 0.44,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9781,16 +9942,19 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 2,
-            "EXP": 1
+            "GRD": 4,
+            "EXP": 3
           },
           "evidence": [
-            "case_validated"
+            "case_validated",
+            "specific_experience"
           ],
           "labelDelta": {
-            "grounded_experience": 0.24,
-            "intuition_grounded": 0.14,
-            "teachable_irreplaceable": 0.1
+            "grounded_experience": 0.68,
+            "intuition_grounded": 0.5,
+            "teachable_irreplaceable": 0.1,
+            "taste_low_expression": 0,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9805,14 +9969,16 @@
           },
           "evidence": [
             "failure_refined_judgment",
+            "failure_boundary",
             "signal_conditions"
           ],
           "labelDelta": {
-            "grounded_experience": 0.24,
-            "intuition_grounded": 0.24,
-            "boundary_radar": 0.18,
+            "grounded_experience": 0.44,
+            "intuition_grounded": 0.42,
+            "boundary_radar": 0.2,
             "value_low_generation": 0.03,
-            "ai_amplified_professional": -0.3
+            "ai_amplified_professional": -0.3,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9821,14 +9987,19 @@
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 2
+            "GRD": 4,
+            "EXP": 2
           },
           "evidence": [
-            "intuition_later_validated"
+            "intuition_later_validated",
+            "specific_experience",
+            "case_validated"
           ],
           "labelDelta": {
-            "grounded_experience": 0.15,
-            "intuition_grounded": 0.13
+            "grounded_experience": 0.59,
+            "intuition_grounded": 0.49,
+            "taste_low_expression": 0,
+            "fake_resistance": -0.24
           }
         }
       ],
@@ -9891,17 +10062,22 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 1,
-            "EXP": 1
+            "GRD": 3,
+            "EXP": 3
           },
           "evidence": [
             "condition_clarification",
-            "grd_signal"
+            "grd_signal",
+            "specific_experience",
+            "case_validated"
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.13,
-            "grounded_experience": 0.1,
-            "method_distilled": 0.07
+            "grounded_experience": 0.54,
+            "method_distilled": 0.07,
+            "intuition_grounded": 0.36,
+            "taste_low_expression": 0,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9917,15 +10093,17 @@
           "evidence": [
             "mature_judgment",
             "grd_signal",
+            "failure_boundary",
             "judgment_and_consequence",
             "signal_conditions"
           ],
           "labelDelta": {
-            "grounded_experience": 0.24,
-            "intuition_grounded": 0.24,
-            "boundary_radar": 0.26,
+            "grounded_experience": 0.44,
+            "intuition_grounded": 0.42,
+            "boundary_radar": 0.28,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -9997,17 +10175,22 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 1,
-            "EXP": 1
+            "GRD": 3,
+            "EXP": 3
           },
           "evidence": [
             "condition_clarification",
-            "grd_signal"
+            "grd_signal",
+            "specific_experience",
+            "case_validated"
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.13,
-            "grounded_experience": 0.1,
-            "method_distilled": 0.07
+            "grounded_experience": 0.54,
+            "method_distilled": 0.07,
+            "intuition_grounded": 0.36,
+            "taste_low_expression": 0,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -10023,15 +10206,17 @@
           "evidence": [
             "mature_judgment",
             "grd_signal",
+            "failure_boundary",
             "judgment_and_consequence",
             "signal_conditions"
           ],
           "labelDelta": {
-            "grounded_experience": 0.24,
-            "intuition_grounded": 0.24,
-            "boundary_radar": 0.26,
+            "grounded_experience": 0.44,
+            "intuition_grounded": 0.42,
+            "boundary_radar": 0.28,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -10108,12 +10293,16 @@
           },
           "evidence": [
             "condition_clarification",
-            "grd_signal"
+            "grd_signal",
+            "professional_polish"
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.13,
             "grounded_experience": 0.1,
-            "method_distilled": 0.07
+            "method_distilled": 0.07,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -10122,21 +10311,24 @@
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 2,
+            "GRD": 4,
             "BND": 4,
             "STN": 4
           },
           "evidence": [
             "mature_judgment",
             "grd_signal",
-            "judgment_and_consequence"
+            "failure_boundary",
+            "judgment_and_consequence",
+            "signal_conditions"
           ],
           "labelDelta": {
-            "grounded_experience": 0.15,
-            "intuition_grounded": 0.06,
-            "boundary_radar": 0.26,
+            "grounded_experience": 0.36,
+            "intuition_grounded": 0.34,
+            "boundary_radar": 0.28,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -10233,7 +10425,7 @@
             "intuition_grounded": 0.12,
             "boundary_radar": 0.26,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32
           }
         },
         {
@@ -10513,10 +10705,14 @@
             "EXP": 1
           },
           "evidence": [
-            "task_decomposition_method"
+            "task_decomposition_method",
+            "professional_polish"
           ],
           "labelDelta": {
-            "method_distilled": 0.16
+            "method_distilled": 0.16,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -11047,15 +11243,17 @@
           "evidence": [
             "mature_judgment",
             "exp_signal",
+            "risk_with_alternative",
             "judgment_and_consequence",
             "value_signal"
           ],
           "labelDelta": {
             "expressive_high": 0.14,
             "teachable_irreplaceable": 0.1,
-            "boundary_radar": 0.26,
-            "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.2
+            "boundary_radar": 0.22,
+            "value_low_generation": 0.46,
+            "ai_amplified_professional": -1.32,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -11267,7 +11465,7 @@
             "teachable_irreplaceable": 0.1,
             "boundary_radar": 0.26,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2,
+            "ai_amplified_professional": -1.32,
             "intuition_grounded": 0.24,
             "grounded_experience": 0.24
           }
@@ -11434,12 +11632,16 @@
           },
           "evidence": [
             "process_execution",
-            "exp_signal"
+            "exp_signal",
+            "professional_polish"
           ],
           "labelDelta": {
             "skill_friendly": 0.19,
             "expressive_high": 0.09,
-            "method_distilled": 0.09
+            "method_distilled": 0.09,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -11482,7 +11684,7 @@
             "teachable_irreplaceable": 0.1,
             "boundary_radar": 0.26,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2,
+            "ai_amplified_professional": -1.32,
             "intuition_grounded": 0.24,
             "grounded_experience": 0.24
           }
@@ -11588,7 +11790,7 @@
             "teachable_irreplaceable": 0.07,
             "grounded_experience": 0.16,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.2,
+            "ai_amplified_professional": -1.32,
             "intuition_grounded": 0.16
           }
         },
@@ -11656,7 +11858,7 @@
           ],
           "labelDelta": {
             "skill_friendly": 0.19,
-            "fake_resistance": -1.5,
+            "fake_resistance": -1.66,
             "method_distilled": 0.07
           }
         },
@@ -11674,7 +11876,7 @@
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.13,
-            "fake_resistance": -1.5,
+            "fake_resistance": -1.66,
             "method_distilled": 0.07
           }
         },
@@ -11696,7 +11898,7 @@
           ],
           "labelDelta": {
             "boundary_radar": 0.3,
-            "fake_resistance": -3.9,
+            "fake_resistance": -4.3,
             "teachable_irreplaceable": 0.07,
             "value_low_generation": 0.11,
             "ai_amplified_professional": -0.3,
@@ -11805,7 +12007,7 @@
             "fake_resistance": 0.1,
             "teachable_irreplaceable": 0.07,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32
           }
         },
         {
@@ -12015,7 +12217,7 @@
             "fake_resistance": 0.1,
             "teachable_irreplaceable": 0.07,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.08,
+            "ai_amplified_professional": -1.2,
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16
           }
@@ -12070,15 +12272,21 @@
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "STN": 1
+            "STN": 1,
+            "NOI": 2
           },
           "evidence": [
-            "wants_judgment_recognized"
+            "wants_judgment_recognized",
+            "professional_polish",
+            "smooth_without_source_or_tradeoff",
+            "posture_hiding_low_judgment"
           ],
           "labelDelta": {
             "skill_friendly": 0.1,
             "value_low_generation": 0.05,
-            "fake_resistance": 0.04
+            "fake_resistance": 0.28,
+            "empty_professional_detector": 0.2,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -12088,15 +12296,19 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "EXP": 1,
-            "GRD": 1
+            "GRD": 3,
+            "NOI": 0
           },
           "evidence": [
-            "judgment_expression_gap"
+            "judgment_expression_gap",
+            "expression_lag"
           ],
           "labelDelta": {
             "teachable_irreplaceable": 0.1,
             "method_distilled": 0.07,
-            "grounded_experience": 0.05
+            "grounded_experience": 0.29,
+            "taste_low_expression": 0.52,
+            "fake_resistance": -0.36
           }
         },
         {
@@ -12196,14 +12408,19 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "GRD": 2,
-            "EXP": 1
+            "GRD": 4,
+            "EXP": 3
           },
           "evidence": [
-            "similar_experience"
+            "similar_experience",
+            "specific_experience",
+            "case_validated"
           ],
           "labelDelta": {
-            "intuition_grounded": 0.18
+            "intuition_grounded": 0.54,
+            "grounded_experience": 0.44,
+            "taste_low_expression": 0,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -12217,15 +12434,17 @@
             "STN": 4
           },
           "evidence": [
+            "failure_boundary",
             "judgment_and_consequence",
             "signal_conditions"
           ],
           "labelDelta": {
-            "intuition_grounded": 0.24,
-            "boundary_radar": 0.26,
+            "intuition_grounded": 0.42,
+            "boundary_radar": 0.28,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2,
-            "grounded_experience": 0.24
+            "ai_amplified_professional": -1.32,
+            "grounded_experience": 0.44,
+            "fake_resistance": -0.24
           }
         },
         {
@@ -12327,7 +12546,7 @@
             "taste_low_expression": 0.12,
             "boundary_radar": 0.26,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32
           }
         },
         {
@@ -12400,15 +12619,20 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "BND": 1,
-            "EXP": 1
+            "BND": 3,
+            "EXP": 1,
+            "STN": 2
           },
           "evidence": [
             "condition_clarification",
-            "bnd_signal"
+            "bnd_signal",
+            "value_signal",
+            "risk_with_alternative"
           ],
           "labelDelta": {
-            "value_low_generation": 0.12
+            "value_low_generation": 0.44,
+            "boundary_radar": -0.08,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -12420,7 +12644,8 @@
             "BND": 4,
             "STN": 4,
             "GEN": 4,
-            "CXT": 4
+            "CXT": 4,
+            "TST": 2
           },
           "evidence": [
             "mature_judgment",
@@ -12429,10 +12654,10 @@
             "practical_rework"
           ],
           "labelDelta": {
-            "value_low_generation": -0.57,
-            "boundary_radar": -1.28,
+            "value_low_generation": -0.85,
+            "boundary_radar": -1.84,
             "ai_amplified_professional": -0.3,
-            "generative_reframer": 0.7
+            "generative_reframer": 0.92
           }
         },
         {
@@ -12441,14 +12666,18 @@
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "BND": 1
+            "BND": 3,
+            "STN": 2
           },
           "evidence": [
             "intuition_or_countercheck",
-            "bnd_signal"
+            "bnd_signal",
+            "value_signal"
           ],
           "labelDelta": {
-            "value_low_generation": 0.08
+            "value_low_generation": 0.4,
+            "boundary_radar": -0.08,
+            "fake_resistance": -0.16
           }
         }
       ],
@@ -12521,7 +12750,7 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "GEN": 4,
-            "TST": 1,
+            "TST": 3,
             "CXT": 4,
             "BND": 4,
             "STN": 4
@@ -12532,10 +12761,10 @@
             "practical_rework"
           ],
           "labelDelta": {
-            "generative_reframer": 0.7,
-            "boundary_radar": -1.2,
-            "value_low_generation": -0.4,
-            "ai_amplified_professional": -0.24
+            "generative_reframer": 0.92,
+            "boundary_radar": -1.6,
+            "value_low_generation": -0.62,
+            "ai_amplified_professional": -0.36
           }
         },
         {
@@ -12635,7 +12864,7 @@
             "ai_kept_away_from_core"
           ],
           "labelDelta": {
-            "ai_amplified_professional": -2.14,
+            "ai_amplified_professional": -2.38,
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16,
             "boundary_radar": 0.28,
@@ -12743,8 +12972,8 @@
           ],
           "labelDelta": {
             "generative_reframer": 0.7,
-            "boundary_radar": -1.28,
-            "value_low_generation": -0.57,
+            "boundary_radar": -1.6,
+            "value_low_generation": -0.73,
             "ai_amplified_professional": -0.3
           }
         },
@@ -12848,7 +13077,7 @@
             "empty_professional_detector": 0.12,
             "boundary_radar": 0.26,
             "value_low_generation": 0.3,
-            "ai_amplified_professional": -1.2
+            "ai_amplified_professional": -1.32
           }
         },
         {
@@ -13046,7 +13275,7 @@
             "fake_resistance": 0.12,
             "boundary_radar": 0.26,
             "value_low_generation": 0.06,
-            "ai_amplified_professional": -1.2,
+            "ai_amplified_professional": -1.32,
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16
           }
@@ -13147,7 +13376,7 @@
             "ai_kept_away_from_core"
           ],
           "labelDelta": {
-            "ai_amplified_professional": -2.1,
+            "ai_amplified_professional": -2.34,
             "boundary_radar": 0.28,
             "value_low_generation": 0.26
           }
@@ -13168,9 +13397,9 @@
           ],
           "labelDelta": {
             "high_density_human": 0.12,
-            "boundary_radar": 1.88,
-            "value_low_generation": 1.44,
-            "ai_amplified_professional": -2.16
+            "boundary_radar": 2.08,
+            "value_low_generation": 1.6,
+            "ai_amplified_professional": -2.4
           }
         }
       ],
@@ -13211,14 +13440,20 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "SKL": 1,
-            "BND": 1
+            "BND": 3,
+            "STN": 2
           },
           "evidence": [
             "process_execution",
-            "bnd_signal"
+            "bnd_signal",
+            "value_signal",
+            "risk_with_alternative"
           ],
           "labelDelta": {
-            "latent_human_variable": 0.08
+            "latent_human_variable": 0.08,
+            "value_low_generation": 0.32,
+            "boundary_radar": -0.08,
+            "fake_resistance": -0.16
           }
         },
         {
@@ -13232,10 +13467,14 @@
           },
           "evidence": [
             "condition_clarification",
-            "bnd_signal"
+            "bnd_signal",
+            "professional_polish"
           ],
           "labelDelta": {
-            "skill_friendly": 0.12
+            "skill_friendly": 0.12,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -13312,10 +13551,14 @@
           },
           "evidence": [
             "process_execution",
-            "bnd_signal"
+            "bnd_signal",
+            "professional_polish"
           ],
           "labelDelta": {
-            "taste_low_expression": 0.08
+            "taste_low_expression": 0.08,
+            "fake_resistance": 0.24,
+            "empty_professional_detector": 0.2,
+            "boundary_radar": -0.16
           }
         },
         {
@@ -13344,7 +13587,8 @@
             "BND": 2,
             "GEN": 4,
             "CXT": 4,
-            "GRD": 4
+            "GRD": 4,
+            "TST": 2
           },
           "evidence": [
             "mature_judgment",
@@ -13353,11 +13597,11 @@
             "practical_rework"
           ],
           "labelDelta": {
-            "generative_reframer": 0.7,
-            "boundary_radar": -1.68,
+            "generative_reframer": 0.92,
+            "boundary_radar": -2.24,
             "intuition_grounded": 0.16,
             "grounded_experience": 0.16,
-            "value_low_generation": -0.6
+            "value_low_generation": -0.88
           }
         },
         {
@@ -13526,14 +13770,22 @@
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
-            "EXP": 2,
-            "GRD": 1
+            "EXP": 3,
+            "GRD": 4,
+            "NOI": 0
           },
           "evidence": [
-            "case_needed"
+            "case_needed",
+            "specific_experience",
+            "case_validated",
+            "expression_lag"
           ],
           "labelDelta": {
-            "expressive_high": 0.15
+            "expressive_high": 0.15,
+            "grounded_experience": 0.68,
+            "intuition_grounded": 0.36,
+            "taste_low_expression": 0.84,
+            "fake_resistance": -0.6
           }
         },
         {
@@ -13543,9 +13795,10 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "EXP": 1,
-            "GRD": 1,
+            "GRD": 3,
             "BND": 4,
-            "STN": 4
+            "STN": 4,
+            "NOI": 0
           },
           "evidence": [
             "expression_lag"
@@ -13554,7 +13807,10 @@
             "expressive_low": 0.1,
             "boundary_radar": 0.18,
             "value_low_generation": 0.03,
-            "ai_amplified_professional": -0.3
+            "ai_amplified_professional": -0.3,
+            "taste_low_expression": 0.52,
+            "grounded_experience": 0.24,
+            "fake_resistance": -0.36
           }
         },
         {
@@ -13564,13 +13820,19 @@
           "scoreProfile": "balanced_evidence",
           "scores": {
             "EXP": 1,
-            "BND": 1
+            "BND": 1,
+            "NOI": 0,
+            "GRD": 2
           },
           "evidence": [
-            "complexity_reserved"
+            "complexity_reserved",
+            "expression_lag"
           ],
           "labelDelta": {
-            "expressive_low": 0.06
+            "expressive_low": 0.06,
+            "taste_low_expression": 0.52,
+            "grounded_experience": 0.24,
+            "fake_resistance": -0.36
           }
         }
       ],
