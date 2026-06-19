@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import gameConfig from "../config/game-config-v11.json";
 import assetMap from "./data/asset-map.json";
 import { AdaptiveAssessment } from "./engine/adaptive-engine.js";
 
 const STORAGE_KEY = "anti-distilled-session-v2";
+const CONFIG_PATH = "data/game-config.json";
 
 const VIEW_STEP = {
   home: 0,
@@ -164,20 +164,37 @@ function bandRoastText(result) {
   return "蒸馏瓶表示满意：可靠、好用、好复制。下一步是给经验加一点不可替代的出处。";
 }
 
-function riskCopy(risk) {
-  const map = {
-    polished_answer_risk: "体面答案风险",
-    ai_underrecognized_risk: "AI 放大信号待确认",
-    low_band_flattening_risk: "低分分型校验",
-  };
-  return map[risk] || "结果校验信号";
-}
-
 function buildShareLine(result) {
   return `我做了抗蒸性测试：含活人量 ${result.score}%｜${result.band.name}｜结构标签：${result.labelDetails.name}。${result.labelDetails.shareLine || result.labelDetails.plainMeaning}`;
 }
 
-function useAssessmentFlow() {
+function useGameConfig() {
+  const [state, setState] = useState({ config: null, error: null });
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        const response = await fetch(publicAsset(CONFIG_PATH), { cache: "no-cache" });
+        if (!response.ok) throw new Error(`Config request failed: ${response.status}`);
+        const config = await response.json();
+        if (!cancelled) setState({ config, error: null });
+      } catch (error) {
+        if (!cancelled) setState({ config: null, error });
+      }
+    }
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return state;
+}
+
+function useAssessmentFlow(gameConfig) {
   const engineRef = useRef(new AdaptiveAssessment(gameConfig));
   const [view, setView] = useState("home");
   const [currentItem, setCurrentItem] = useState(null);
@@ -206,7 +223,7 @@ function useAssessmentFlow() {
     } catch {
       localStorage.removeItem(STORAGE_KEY);
     }
-  }, []);
+  }, [gameConfig]);
 
   useEffect(() => {
     try {
@@ -292,7 +309,17 @@ function useAssessmentFlow() {
 }
 
 function App() {
-  const flow = useAssessmentFlow();
+  const { config, error } = useGameConfig();
+
+  if (!config) {
+    return <AppStatus error={error} />;
+  }
+
+  return <AssessmentApp config={config} />;
+}
+
+function AssessmentApp({ config }) {
+  const flow = useAssessmentFlow(config);
   const [menuOpen, setMenuOpen] = useState(false);
   const [detail, setDetail] = useState(null);
   const progress = flow.engine.progress;
@@ -302,6 +329,7 @@ function App() {
   useEffect(() => {
     setMenuOpen(false);
     setDetail(null);
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     document.title = flow.view === "result" ? "我的含活人量结果｜抗蒸性测试" : "抗蒸性测试";
   }, [flow.view]);
 
@@ -352,6 +380,23 @@ function App() {
       <main>{content}</main>
       <FooterSignature />
       {detail && <ResultDetailDrawer detail={detail} onClose={() => setDetail(null)} />}
+    </div>
+  );
+}
+
+function AppStatus({ error }) {
+  return (
+    <div className="app-shell view-home">
+      <SmokeBackdrop view="home" />
+      <main>
+        <section className="app-status page-frame">
+          <img src={publicAsset(assetMap.global.brandFlask)} alt="" />
+          <h1>{error ? "页面没有加载完整" : "正在准备测试"}</h1>
+          <p>{error ? "请刷新页面重试；如果仍然无法打开，稍后再访问。" : "题目和评测引擎正在载入。"}</p>
+          {error && <button className="primary-button" type="button" onClick={() => window.location.reload()}>刷新页面</button>}
+        </section>
+      </main>
+      <FooterSignature />
     </div>
   );
 }
@@ -425,7 +470,10 @@ function HomePage({ onStart, onLearn }) {
       </div>
 
       <figure className="distillation-art" aria-label="人的想法经过蒸馏形成工作流、插件、Skill 和提示词">
-        <img src={publicAsset(assetMap.global.homeDistillationDesktop)} alt="人的想法经过蒸馏过程转化为工作流、插件、Skill 和提示词" />
+        <picture>
+          <source media="(max-width: 820px)" srcSet={publicAsset(assetMap.global.homeDistillationMobile)} />
+          <img src={publicAsset(assetMap.global.homeDistillationDesktop)} alt="人的想法经过蒸馏过程转化为工作流、插件、Skill 和提示词" />
+        </picture>
       </figure>
 
       <div className="meaning-callout">
@@ -541,11 +589,11 @@ function WorkContextPage({ onSubmit, onSkip }) {
 
       <form className={`work-card ${needsAnswer ? "needs-answer" : ""}`} aria-invalid={needsAnswer}>
         {ROLE_FIELDS.map((field) => (
-          <fieldset key={field.name} className={`work-field work-field-${field.options.length}`}>
-            <legend>
+          <div key={field.name} className={`work-field work-field-${field.options.length}`} role="group" aria-labelledby={`work-${field.name}`}>
+            <div className="work-field-title" id={`work-${field.name}`}>
               <WorkIcon type={field.icon} />
               <span>{field.title}</span>
-            </legend>
+            </div>
             <div className="radio-grid" role="radiogroup" aria-label={field.title}>
               {field.options.map(([value, label], index) => (
                 <button
@@ -565,7 +613,7 @@ function WorkContextPage({ onSubmit, onSkip }) {
                 </button>
               ))}
             </div>
-          </fieldset>
+          </div>
         ))}
       </form>
 
@@ -601,6 +649,9 @@ function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrev
   const [selectedKey, setSelectedKey] = useState(null);
 
   useEffect(() => {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     setSelectedKey(null);
   }, [currentItem?.id]);
 
@@ -610,7 +661,7 @@ function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrev
   const chooseOption = (optionKey) => {
     if (selectedKey) return;
     setSelectedKey(optionKey);
-    window.setTimeout(() => onAnswer(optionKey), 180);
+    window.setTimeout(() => onAnswer(optionKey), 240);
   };
 
   return (
@@ -647,10 +698,10 @@ function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrev
         <article className="question-card">
           <p className="dimension-text">{currentItem.dimensionText || "动态追问"}</p>
           <h1>{currentItem.question}</h1>
-          <div className="option-list">
+          <div className="option-list" key={currentItem.id}>
             {options.map((option, index) => (
               <button
-                className={`option-card ${selectedKey === option.key ? "is-selected" : selectedKey ? "is-dimmed" : ""}`}
+                className={`option-card ${selectedKey === option.key ? "is-selected" : selectedKey ? "is-dimmed" : "is-ready"}`}
                 key={option.key}
                 type="button"
                 aria-pressed={selectedKey === option.key}
@@ -670,9 +721,9 @@ function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrev
         </article>
 
         <div className="smoke-density">
-          <span>烟雾浓度</span>
+          <span>答题进度</span>
           <div><i style={{ width: `${progress.percent}%` }} /></div>
-          <strong>当前：{progress.stage === "countercheck" ? "反证" : progress.stage === "split" ? "分叉" : "中等"}</strong>
+          <strong>{progress.answered} 题</strong>
         </div>
       </div>
     </section>
@@ -767,12 +818,12 @@ function ResultPage({ result, onRestart, onOpenDetail }) {
         </article>
 
         <article className="result-card evidence-card">
-          <h2>为什么这么判？</h2>
+          <h2>这次结果怎么读？</h2>
           <ul>
-            <li>完成 {result.answeredCount} 题后停止，系统认为结果已经达到可用稳定度。</li>
-            <li>候选标签还包括：{result.labelCandidates?.join("、") || "结构生成中"}。</li>
-            <li>{result.openRisks?.length ? `仍有 ${result.openRisks.map(riskCopy).join("、")}。` : "没有明显高姿态误读信号。"}</li>
-            <li>强信号集中在：{result.signals.slice(0, 3).map((signal) => `${signal.name} ${signal.value}%`).join("、")}。</li>
+            <li>含活人量来自你在具体情境里的取舍，而不是自我评价。</li>
+            <li>结构标签表示这次最突出的判断风格，不是人格定型。</li>
+            <li>六个维度展示的是不同判断场景里的相对表现。</li>
+            <li>点击标签或维度，可以继续看含义、误读点和提升建议。</li>
           </ul>
         </article>
       </div>
@@ -805,7 +856,7 @@ function buildLabelDetail(result) {
       ["为什么你可能是这个标签", `系统在 ${result.signals.slice(0, 3).map((signal) => signal.name).join("、")} 上看到了较强信号。`],
       ["容易被误解成什么", "标签不是人格定型，只是这次答题中最突出的判断结构。你可能同时具备多个候选结构。"],
       ["怎么提升含活人量", result.labelDetails.shareLine || "把隐性判断说清楚，让经验能够被追溯、被校准。"],
-      ["本次表现证据", `本次候选标签包括：${result.labelCandidates?.join("、") || "暂无候选标签"}。`],
+      ["本次表现证据", `这次更明显的信号集中在：${result.signals.slice(0, 3).map((signal) => `${signal.name} ${signal.value}%`).join("、")}。`],
     ],
   };
 }

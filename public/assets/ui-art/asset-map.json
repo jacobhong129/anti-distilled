@@ -46,8 +46,8 @@
     "shareCard": "assets/ui-art/smoke-share-card-alpha.webp"
   },
   "global": {
-    "homeDistillationDesktop": "assets/ui-art/home-distillation-cutout.webp",
-    "homeDistillationMobile": "assets/ui-art/home-distillation-cutout.webp",
+    "homeDistillationDesktop": "assets/ui-art/home-distillation-desktop.png",
+    "homeDistillationMobile": "assets/ui-art/home-distillation-mobile-alpha.webp",
     "brandFlask": "assets/ui-art/icon-brand-flask.svg",
     "sparkleSeal": "assets/ui-art/icon-sparkle-seal.svg",
     "humanHardStamp": "assets/ui-art/stamp-human-hard.svg",

@@ -574,9 +574,13 @@ button {
   min-height: 0;
 }
 
+.distillation-art picture {
+  display: contents;
+}
+
 .distillation-art img {
   width: min(1320px, 100%);
-  max-height: min(48vh, 540px);
+  max-height: min(42vh, 500px);
   display: block;
   object-fit: contain;
   mix-blend-mode: multiply;
@@ -917,7 +921,7 @@ button {
   border-color: rgba(227, 145, 131, 0.72);
 }
 
-.work-card fieldset {
+.work-card .work-field {
   display: grid;
   grid-template-columns: 270px minmax(0, 1fr);
   align-items: center;
@@ -928,11 +932,11 @@ button {
   margin: 0;
 }
 
-.work-card fieldset:last-child {
+.work-card .work-field:last-child {
   border-bottom: 0;
 }
 
-.work-card legend {
+.work-field-title {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -943,7 +947,7 @@ button {
   white-space: nowrap;
 }
 
-.work-card legend svg {
+.work-field-title svg {
   width: 42px;
   height: 42px;
   padding: 9px;
@@ -1257,6 +1261,7 @@ button {
   text-align: left;
   font-size: 19px;
   line-height: 1.65;
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
 }
 
 .option-card b {
@@ -1800,6 +1805,42 @@ button {
   text-align: center;
 }
 
+.app-status {
+  width: min(720px, 100%);
+  min-height: min(520px, calc(100svh - 120px));
+  margin: 8vh auto 0;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.app-status img {
+  width: 54px;
+  height: 54px;
+}
+
+.app-status h1 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 600;
+}
+
+.app-status p {
+  max-width: 430px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.app-status .primary-button {
+  width: min(280px, 100%);
+  margin-top: 8px;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .brand-header nav button:hover,
   .text-button:hover,
@@ -1850,7 +1891,7 @@ button {
     backdrop-filter: none;
   }
 
-  .work-card fieldset {
+  .work-card .work-field {
     grid-template-columns: 1fr;
     align-items: stretch;
     gap: 14px;
@@ -1861,11 +1902,11 @@ button {
     box-shadow: 0 12px 34px rgba(16, 24, 22, 0.08);
   }
 
-  .work-card fieldset:last-child {
+  .work-card .work-field:last-child {
     border-bottom: 1px solid rgba(16, 24, 22, 0.12);
   }
 
-  .work-card legend {
+  .work-field-title {
     white-space: normal;
   }
 
@@ -1899,7 +1940,7 @@ button {
     backdrop-filter: none;
   }
 
-  .work-card fieldset {
+  .work-card .work-field {
     grid-template-columns: 1fr;
     align-items: stretch;
     gap: 14px;
@@ -1910,11 +1951,11 @@ button {
     box-shadow: 0 12px 34px rgba(16, 24, 22, 0.08);
   }
 
-  .work-card fieldset:last-child {
+  .work-card .work-field:last-child {
     border-bottom: 1px solid rgba(16, 24, 22, 0.12);
   }
 
-  .work-card legend {
+  .work-field-title {
     white-space: normal;
   }
 
@@ -1956,7 +1997,7 @@ button {
     padding: 4px 30px;
   }
 
-  .work-card fieldset {
+  .work-card .work-field {
     padding: 12px 0;
   }
 
@@ -2099,21 +2140,21 @@ button {
   .smoke-work .smoke-primary {
     width: 148vw;
     top: 51%;
-    opacity: 0.18;
+    opacity: 0.38;
   }
 
   .smoke-work .smoke-secondary {
     width: 98vw;
     left: -46%;
     top: 11%;
-    opacity: 0.28;
+    opacity: 0.48;
   }
 
   .smoke-work .smoke-density-layer {
     width: 98vw;
     right: -44%;
     bottom: 20%;
-    opacity: 0.2;
+    opacity: 0.34;
   }
 
   .smoke-question .smoke-primary {
@@ -2144,7 +2185,7 @@ button {
 
   .home-page {
     min-height: auto;
-    gap: 20px;
+    gap: 18px;
   }
 
   .home-page::before {
@@ -2215,32 +2256,31 @@ button {
   }
 
   .view-work .work-page {
-    padding-bottom: 174px;
+    padding-bottom: 18px;
   }
 
   .view-work .work-submit-panel {
-    position: fixed;
-    left: 12px;
-    right: 12px;
-    bottom: max(10px, env(safe-area-inset-bottom));
-    z-index: 18;
-    width: auto;
-    margin: 0;
-    padding: 10px 10px 9px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin: 12px 0 0;
+    padding: 0;
     border: 1px solid rgba(16, 24, 22, 0.1);
     border-radius: 18px;
-    background: rgba(255, 254, 250, 0.9);
-    box-shadow: 0 18px 42px rgba(16, 24, 22, 0.16);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 254, 250, 0.78);
+    box-shadow: 0 12px 30px rgba(16, 24, 22, 0.08);
+    backdrop-filter: blur(6px);
   }
 
   .view-work .work-actions {
     margin: 0;
+    padding: 10px;
   }
 
   .view-work .skip-note {
     width: 100%;
-    margin-top: 8px;
+    margin: 0;
+    padding: 0 12px 12px;
     justify-content: flex-start;
     font-size: 12px;
     line-height: 1.45;
@@ -2257,12 +2297,17 @@ button {
   }
 
   .distillation-art img {
-    width: 100%;
-    max-height: min(32vh, 280px);
+    width: min(100%, 430px);
+    max-width: 100%;
+    height: auto;
+    max-height: none;
     object-fit: contain;
+    mix-blend-mode: normal;
   }
 
   .meaning-callout {
+    width: 100%;
+    max-width: 100%;
     grid-template-columns: 50px 1fr auto;
     gap: 12px;
     padding: 14px;
@@ -2327,7 +2372,7 @@ button {
     display: none;
   }
 
-  .work-card fieldset {
+  .work-card .work-field {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     align-items: stretch;
@@ -2339,18 +2384,18 @@ button {
     box-shadow: 0 10px 28px rgba(16, 24, 22, 0.07);
   }
 
-  .work-card fieldset:last-child {
+  .work-card .work-field:last-child {
     border-bottom: 1px solid rgba(16, 24, 22, 0.12);
   }
 
-  .work-card legend {
+  .work-field-title {
     gap: 9px;
     margin-bottom: 10px;
     font-size: 16px;
     white-space: normal;
   }
 
-  .work-card legend svg {
+  .work-field-title svg {
     width: 32px;
     height: 32px;
     padding: 8px;
@@ -2361,7 +2406,7 @@ button {
   .work-field-6 .radio-grid {
     width: 100%;
     min-width: 0;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
 
@@ -2369,7 +2414,7 @@ button {
     min-height: 38px;
     border-color: rgba(16, 24, 22, 0.08);
     border-radius: 10px;
-    padding: 7px 10px 7px 30px;
+    padding: 7px 8px 7px 28px;
     background: rgba(255, 255, 255, 0.42);
     font-size: 14px;
     white-space: normal;
@@ -2469,6 +2514,13 @@ button {
     padding: 14px 18px;
     font-size: 18px;
     background: rgba(255, 255, 255, 0.76);
+    transition: none;
+  }
+
+  .option-card.is-ready {
+    border-color: var(--line) !important;
+    background: rgba(255, 255, 255, 0.76) !important;
+    box-shadow: none !important;
   }
 
   .option-card b {
@@ -2491,9 +2543,19 @@ button {
     height: 32px;
   }
 
-  .option-card:not(.is-selected):hover {
-    border-color: var(--line);
-    background: rgba(255, 255, 255, 0.72);
+  .option-card:not(.is-selected):hover,
+  .option-card:not(.is-selected):focus,
+  .option-card:not(.is-selected):focus-visible,
+  .option-card:not(.is-selected):active {
+    border-color: var(--line) !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    box-shadow: none !important;
+  }
+
+  .option-card:not(.is-selected):focus-visible,
+  .radio-option:not([data-checked="true"]):focus-visible {
+    border-color: rgba(16, 24, 22, 0.14) !important;
+    box-shadow: none !important;
   }
 
   .question-actions {
