@@ -12,7 +12,15 @@
     "regress": "node scripts/regress_app_engine.mjs --social-only --strict --summary-only",
     "regress:semantic": "node scripts/run_semantic_persona_regression.mjs --strict --summary-only",
     "regress:semantic:x99": "node scripts/run_semantic_persona_regression.mjs --include-x99 --personas X99 --strict --summary-only",
-    "test:suite": "node scripts/run_test_suite.mjs"
+    "test:suite": "node scripts/run_test_suite.mjs",
+    "test:simulator:self": "node tests/simulator/self-test.mjs",
+    "test:simulator": "node tests/simulator/suite-runner.mjs --include-coverage --include-app --include-psychometric --strict --summary-only",
+    "test:simulator:engine": "node tests/simulator/engine-runner.mjs --include-x99 --strict --summary-only",
+    "test:simulator:semantic": "node tests/simulator/semantic-runner.mjs --include-x99 --strict --summary-only",
+    "test:simulator:coverage": "node tests/simulator/dynamic-coverage-runner.mjs --rounds 20 --summary-only",
+    "test:simulator:app": "playwright test tests/simulator/app-runner.spec.mjs",
+    "test:simulator:psychometric": "node tests/simulator/psychometric-quality-runner.mjs --summary-only",
+    "test:simulator:llm-review": "node tests/simulator/llm-review.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.0",
@@ -20,5 +28,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@playwright/test": "^1.57.0"
+  }
 }

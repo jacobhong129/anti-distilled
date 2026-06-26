@@ -1,11 +1,11 @@
 const CORE_METRICS = ["CXT", "BND", "GEN", "TST", "STN", "GRD"];
 const AUX_METRICS = ["SKL", "EXP", "NOI", "TLB"];
 const METRIC_NAMES = {
-  CXT: "情境辨识",
-  BND: "边界校准",
-  GEN: "生成重构",
-  TST: "审美判别",
-  STN: "价值定向",
+  CXT: "情境判断",
+  BND: "边界判断",
+  GEN: "问题重构",
+  TST: "审美判断",
+  STN: "价值取舍",
   GRD: "经验内化",
   SKL: "可 Skill 化",
   EXP: "表达转译",
@@ -96,6 +96,12 @@ function maxScoresByMetric(item, metrics) {
 
 function itemMetrics(item) {
   return [item.primaryMetric, ...(item.secondaryMetrics || [])].filter(Boolean);
+}
+
+function dominantShare(values) {
+  const total = values.reduce((sum, value) => sum + value, 0);
+  if (!total) return 0;
+  return Math.max(...values) / total;
 }
 
 export class AdaptiveAssessment {
@@ -275,7 +281,15 @@ export class AdaptiveAssessment {
     const band = overrides.band || this.findBand(score);
     const openRisks = overrides.openRisks || this.openRisks(normalized, false);
     const potentialMisreadRisk = this.potentialMisreadRisk(normalized);
-    const riskCounterchecked = !(this.hasMisreadRisk(normalized) || potentialMisreadRisk) || this.hasCountercheckEvidence();
+    const structureTendency = this.structuralTendency(normalized);
+    const structuralMisreadRisk = structureTendency.misreadRisk;
+    const requiresStrictCountercheck =
+      potentialMisreadRisk ||
+      structuralMisreadRisk ||
+      openRisks.includes("polished_answer_risk");
+    const riskCounterchecked =
+      !(this.hasMisreadRisk(normalized) || potentialMisreadRisk || structuralMisreadRisk) ||
+      this.hasCountercheckEvidence({ strict: requiresStrictCountercheck });
     const metricConfidence = Object.fromEntries(
       this.metrics.map((metric) => {
         const possible = this.state.possibleScores[metric] || 0;
@@ -301,17 +315,21 @@ export class AdaptiveAssessment {
       (labelStable ? 8 : 0);
     if (nearBoundary) confidence -= 10;
     if (openRisks.length) confidence -= Math.min(16, openRisks.length * 8);
-    if (potentialMisreadRisk && !this.hasCountercheckEvidence()) confidence -= 12;
+    if ((potentialMisreadRisk || structuralMisreadRisk) && !this.hasCountercheckEvidence({ strict: requiresStrictCountercheck })) confidence -= 12;
+    if (structuralMisreadRisk && structureTendency.uncertainty > 0.5) confidence -= 4;
+    if (structuralMisreadRisk && structureTendency.styleMonoculture) confidence -= 4;
     if (this.state.answers.length < (this.flow.minimumQuestions || 16)) confidence -= 12;
     confidence = Math.round(clamp(confidence, 0, 100));
 
     const confidenceReasons = [];
-    confidenceReasons.push(bandStable ? "分数段稳定" : "分数段仍在校准");
+    confidenceReasons.push(bandStable ? "分数段稳定" : "分数段还在确认");
     confidenceReasons.push(labelStable ? "标签路径稳定" : labelUncertainty > 0.55 ? "标签仍有摇摆" : "标签领先度可用");
     confidenceReasons.push(evidenceCovered ? "证据覆盖达标" : "证据覆盖不足");
-    confidenceReasons.push(riskCounterchecked ? "误读风险已反证" : "误读风险待反证");
+    confidenceReasons.push(riskCounterchecked ? "看偏风险已反证" : "看偏风险待反证");
     if (nearBoundary) confidenceReasons.push("接近分段边界");
     if (potentialMisreadRisk) confidenceReasons.push("高姿态答案需要反证");
+    if (structuralMisreadRisk) confidenceReasons.push("结构倾向需要反证");
+    if (structureTendency.styleMonoculture) confidenceReasons.push("答题风格过于单一");
     if (openRisks.includes("polished_answer_risk")) confidenceReasons.push("体面答案风险待校验");
 
     const estimate = {
@@ -324,7 +342,9 @@ export class AdaptiveAssessment {
       labelUncertainty,
       openRisks,
       potentialMisreadRisk,
+      structuralMisreadRisk,
       riskCounterchecked,
+      structureTendency,
       metricConfidence,
       coreCoverage,
       evidenceCovered,
@@ -341,18 +361,20 @@ export class AdaptiveAssessment {
     const keyLabelCounterchecks = this.flow.keyLabelCounterchecks || {};
     const labelRoutes = topLabelKeys.flatMap((label) => keyLabelCounterchecks[label] || []);
     const riskRoutes = estimate.openRisks.flatMap((risk) => this.riskRules[risk]?.routeTo || this.riskRules[risk]?.countercheckFrom || []);
-    if (estimate.potentialMisreadRisk) riskRoutes.push("NOI", "noise_probe");
+    if (estimate.potentialMisreadRisk || estimate.structuralMisreadRisk) riskRoutes.push("NOI", "noise_probe");
     const lowConfidenceMetrics = Object.entries(estimate.metricConfidence)
       .filter(([metric, confidence]) => confidence < (CORE_METRICS.includes(metric) ? 0.72 : 0.58))
       .map(([metric]) => metric);
     const supportingEvidence = topLabelKeys.flatMap((label) => this.labelRules[label]?.supportingEvidence || []);
     const evidenceGaps = [...new Set(supportingEvidence.filter((tag) => !this.state.evidenceCounts[tag]))];
+    const structureRoutes = this.structureRoutes(estimate.structureTendency);
     return {
       topLabelKeys,
       labelRoutes,
       riskRoutes,
       lowConfidenceMetrics,
       evidenceGaps,
+      structureRoutes,
     };
   }
 
@@ -389,7 +411,7 @@ export class AdaptiveAssessment {
       routes.topLabelKeys.some((label) => LABEL_DIMENSIONS[label]?.some((metric) => metricSet.includes(metric)))
         ? 1
         : 0.25;
-    const riskRoute = estimate.openRisks.length || estimate.potentialMisreadRisk
+    const riskRoute = estimate.openRisks.length || estimate.potentialMisreadRisk || estimate.structuralMisreadRisk
       ? item.role === "noise_probe" || item.primaryMetric === "NOI" || routes.riskRoutes.some((route) => this.matchesRoute(item, route))
         ? 1
         : 0.18
@@ -400,13 +422,14 @@ export class AdaptiveAssessment {
     const evidenceGap = routes.evidenceGaps.length
       ? routes.evidenceGaps.filter((tag) => itemEvidence.has(tag)).length / Math.min(routes.evidenceGaps.length, 4)
       : 0.25;
+    const structureRoute = routes.structureRoutes.some((route) => this.matchesRoute(item, route)) ? 1 : 0.2;
     const lowMetricRoute = metricSet.some((metric) => routes.lowConfidenceMetrics.includes(metric)) ? 1 : 0.2;
     const topicFreshness = this.topicFreshness(item);
     const keyLabelNeed = this.keyLabelNeed(item, estimate.normalized);
     const stageBoost = item.stage === "split" ? 0.08 : item.stage === "auxiliary" ? 0.05 : 0;
     const positionPenalty = this.positionFit(item, position) >= 1 ? 0 : 0.32;
     const cooldownPenalty = this.topicCooldownPenalty(item);
-    const riskUrgencyBoost = estimate.potentialMisreadRisk
+    const riskUrgencyBoost = estimate.potentialMisreadRisk || estimate.structuralMisreadRisk
       ? item.role === "noise_probe" || item.primaryMetric === "NOI"
         ? 0.42
         : -0.06
@@ -418,6 +441,7 @@ export class AdaptiveAssessment {
       riskRoute * (weights.contradictionRisk ?? 0.24) +
       topicFreshness * (weights.topicFreshness ?? 0.08) +
       keyLabelNeed * (weights.underrepresentedKeyLabel ?? 0.04) +
+      structureRoute * 0.14 +
       lowMetricRoute * 0.1 +
       evidenceGap * 0.12 +
       stageBoost -
@@ -430,6 +454,7 @@ export class AdaptiveAssessment {
     if (labelRoute >= 1) reasons.push("label_route");
     if (riskRoute >= 1) reasons.push("risk_countercheck");
     if (evidenceGap > 0.25) reasons.push("evidence_gap");
+    if (structureRoute >= 1) reasons.push("structure_route");
     if (topicFreshness >= 0.8) reasons.push("fresh_topic");
 
     return { utility, reasons };
@@ -461,6 +486,8 @@ export class AdaptiveAssessment {
       primaryMetric: item.primaryMetric,
       confidence: estimate.assessmentConfidence,
       topLabel: estimate.topLabel,
+      structure: estimate.structureTendency?.top || "",
+      structureUncertainty: Number((estimate.structureTendency?.uncertainty || 0).toFixed(3)),
       topCandidates: ranked.slice(0, 6).map((candidate) => ({
         itemId: candidate.item.id,
         utility: Number((candidate.utility ?? 0).toFixed(3)),
@@ -619,13 +646,17 @@ export class AdaptiveAssessment {
     if (!previous) return false;
     if (answered < 20 && this.hasHardStopBlocker(result, previous, check)) return false;
 
+    const stopConfidence =
+      estimate.openRisks.length || estimate.potentialMisreadRisk || estimate.structuralMisreadRisk
+        ? 76
+        : 71;
     const met = [
       previous.band === check.band,
       previous.top === check.top,
       check.lead >= 0.18,
       check.riskCounterchecked,
       check.evidenceCovered,
-      check.confidence >= 74,
+      check.confidence >= stopConfidence,
     ].filter(Boolean).length;
     const exceptionalStable = answered >= (this.flow.exceptionalEarlyStop?.minimumQuestions || 14) &&
       check.confidence >= 86 &&
@@ -633,7 +664,7 @@ export class AdaptiveAssessment {
       previous.top === check.top &&
       !estimate.openRisks.length &&
       !estimate.nearBoundary;
-    return exceptionalStable || (check.confidence >= 74 && met >= 4);
+    return exceptionalStable || (check.confidence >= stopConfidence && met >= 4);
   }
 
   requiredMinimumQuestions(result) {
@@ -718,7 +749,8 @@ export class AdaptiveAssessment {
       normalized.EXP <= 28 &&
       sourceEvidence + tradeoffEvidence <= 3 &&
       normalized.NOI < 45;
-    return highPostureLowSource || polishedLowSource;
+    const structure = this.structuralTendency(normalized);
+    return highPostureLowSource || polishedLowSource || structure.misreadRisk;
   }
 
   scoreSuppressionRisk(normalized = this.getNormalizedScores()) {
@@ -743,8 +775,30 @@ export class AdaptiveAssessment {
     );
   }
 
-  hasCountercheckEvidence() {
-    return this.state.answers.some((answer) => answer.stage === "auxiliary" || answer.primaryMetric === "NOI");
+  hasCountercheckEvidence(options = {}) {
+    const countercheckAnswers = this.state.answers.filter((answer) => answer.stage === "auxiliary" || answer.primaryMetric === "NOI");
+    if (!options.strict) return countercheckAnswers.length > 0;
+    const evidence = this.state.evidenceCounts;
+    const nonMatureCountercheck = countercheckAnswers.some((answer) => answer.type !== "mature_judgment");
+    const explicitNoiseEvidence = evidenceScore(evidence, [
+      "noi_signal",
+      "professional_polish",
+      "polished_answer",
+      "smooth_without_source_or_tradeoff",
+      "posture_hiding_low_judgment",
+      "personal_feeling_without_basis",
+      "refuses_explanation",
+      "complexity_feeling_unclear",
+    ]);
+    const concreteSourceEvidence = evidenceScore(evidence, [
+      "specific_experience",
+      "case_validated",
+      "failure_refined_judgment",
+      "experience_signal_calibrated",
+      "source_and_experience_gap",
+      "updates_judgment_conditions",
+    ]);
+    return countercheckAnswers.length >= 2 && (nonMatureCountercheck || explicitNoiseEvidence >= 2 || concreteSourceEvidence >= 3);
   }
 
   minimumEvidenceCoverageMet(topLabel) {
@@ -753,6 +807,236 @@ export class AdaptiveAssessment {
     const supporting = topRule?.supportingEvidence || [];
     const supportingMet = supporting.length ? supporting.filter((tag) => this.state.evidenceCounts[tag]).length : 1;
     return evidenceCount >= 8 && supportingMet >= Math.min(2, supporting.length || 1);
+  }
+
+  answerTypeProfile() {
+    const counts = this.state.answers.reduce((map, answer) => {
+      const type = answer.type || "unknown";
+      map[type] = (map[type] || 0) + 1;
+      return map;
+    }, {});
+    const total = Math.max(this.state.answers.length, 1);
+    const shares = Object.fromEntries(Object.entries(counts).map(([type, count]) => [type, count / total]));
+    const concentration = dominantShare(Object.values(counts));
+    return {
+      counts,
+      shares,
+      concentration,
+      matureDensity: shares.mature_judgment || 0,
+      processDensity: shares.process_execution || 0,
+      conditionDensity: shares.condition_clarification || 0,
+      intuitionDensity: shares.intuition_or_countercheck || 0,
+    };
+  }
+
+  structuralTendency(normalized = this.getNormalizedScores()) {
+    const evidence = this.state.evidenceCounts;
+    const typeProfile = this.answerTypeProfile();
+    const answered = Math.max(this.state.answers.length, 1);
+    const evidenceGroups = {
+      source: evidenceScore(evidence, [
+        "specific_experience",
+        "case_validated",
+        "failure_refined_judgment",
+        "experience_signal_calibrated",
+        "source_and_experience_gap",
+        "updates_judgment_conditions",
+      ]),
+      boundary: evidenceScore(evidence, ["boundary_signal", "failure_boundary", "condition_check", "context_boundary_tradeoff"]),
+      generation: evidenceScore(evidence, ["problem_reframed", "practical_rework", "target_relevance_cleanup", "judgment_selection_gap"]),
+      value: evidenceScore(evidence, ["value_signal", "risk_with_alternative", "compliance_first"]),
+      taste: evidenceScore(evidence, ["anti_empty_professionalism", "cliche_without_judgment", "empty_but_polished_detected", "ai_empty_judgment_check"]),
+      aiBoundary: evidenceScore(evidence, ["ai_amplifier", "tool_boundary", "ai_options_human_decision", "ai_challenges_but_human_decides", "ai_direction_boundary"]),
+      process: evidenceScore(evidence, ["process_execution", "skl_signal", "standardizable_work", "reusable_method"]),
+      polish: evidenceScore(evidence, ["professional_polish", "polished_answer", "smooth_without_source_or_tradeoff", "posture_hiding_low_judgment"]),
+      noise: evidenceScore(evidence, ["noi_signal", "personal_feeling_without_basis", "refuses_explanation", "complexity_feeling_unclear"]),
+    };
+    const coreAverage = CORE_METRICS.reduce((sum, metric) => sum + (normalized[metric] || 0), 0) / CORE_METRICS.length;
+    const highCoreCount = CORE_METRICS.filter((metric) => normalized[metric] >= 72).length;
+    const styleMonoculture = answered >= 8 && typeProfile.concentration >= 0.82;
+    const lowTransfer = ((normalized.EXP || 0) + (normalized.SKL || 0) + (normalized.TLB || 0)) / 3 <= 28;
+    const sourceIntegrity = clamp(
+      (evidenceGroups.source + evidenceGroups.boundary * 0.45 + evidenceGroups.generation * 0.35 + evidenceGroups.taste * 0.35 + evidenceGroups.aiBoundary * 0.35) /
+        Math.max(typeProfile.counts.mature_judgment || 1, 1),
+      0,
+      1
+    );
+
+    const scores = {
+      performative_mature:
+        typeProfile.matureDensity * 3.4 +
+        (styleMonoculture ? 1.1 : 0) +
+        (lowTransfer ? 0.9 : 0) +
+        (highCoreCount >= 3 ? 0.8 : 0) +
+        evidenceGroups.polish * 0.5 +
+        evidenceGroups.noise * 0.22 -
+        sourceIntegrity * 1.4,
+      source_backed_experience:
+        (normalized.GRD || 0) / 24 +
+        evidenceGroups.source * 0.72 +
+        evidenceGroups.boundary * 0.28 +
+        typeProfile.intuitionDensity * 0.8 -
+        evidenceGroups.polish * 0.28,
+      boundary_value_judgment:
+        ((normalized.BND || 0) + (normalized.STN || 0) + (normalized.CXT || 0)) / 80 +
+        evidenceGroups.boundary * 0.34 +
+        evidenceGroups.value * 0.34,
+      generative_reframe:
+        ((normalized.GEN || 0) + (normalized.TST || 0)) / 70 +
+        evidenceGroups.generation * 0.52 +
+        evidenceGroups.taste * 0.22,
+      tool_amplified:
+        ((normalized.TLB || 0) + (normalized.SKL || 0) + (normalized.BND || 0)) / 82 +
+        evidenceGroups.aiBoundary * 0.62,
+      process_distillable:
+        ((normalized.SKL || 0) + (normalized.EXP || 0)) / 52 +
+        evidenceGroups.process * 0.62 +
+        typeProfile.processDensity * 1.1,
+      expressive_transfer:
+        ((normalized.EXP || 0) + (normalized.CXT || 0)) / 58 +
+        typeProfile.conditionDensity * 0.9,
+      noise_resistance:
+        (normalized.NOI || 0) / 26 +
+        evidenceGroups.noise * 0.7 +
+        evidenceGroups.polish * 0.4,
+    };
+    const ranked = Object.entries(scores).sort((left, right) => right[1] - left[1]);
+    const top = ranked[0] || ["latent", 0];
+    const second = ranked[1] || ["", 0];
+    const total = ranked.reduce((sum, [, value]) => sum + Math.max(value, 0), 0) || 1;
+    const lead = (Math.max(top[1], 0) - Math.max(second[1], 0)) / total;
+    const postureCue =
+      evidenceGroups.polish >= 1 ||
+      evidenceGroups.noise >= 2 ||
+      normalized.NOI >= 18 ||
+      normalized.EXP <= 12;
+    const highCoreLowTransferPosture =
+      highCoreCount >= 4 &&
+      (typeProfile.matureDensity >= 0.62 || (styleMonoculture && typeProfile.matureDensity >= 0.5)) &&
+      lowTransfer &&
+      sourceIntegrity < 0.36;
+    const misreadRisk =
+      answered >= 10 &&
+      highCoreCount >= 3 &&
+      lowTransfer &&
+      sourceIntegrity < 0.42 &&
+      postureCue &&
+      (typeProfile.matureDensity >= 0.72 || highCoreLowTransferPosture) &&
+      !this.hasCountercheckEvidence({ strict: true });
+    return {
+      top: top[0],
+      ranked: ranked.slice(0, 4).map(([key, value]) => ({ key, value: Number(value.toFixed(3)) })),
+      lead,
+      uncertainty: clamp(1 - lead / 0.22, 0, 1),
+      misreadRisk,
+      styleMonoculture,
+      sourceIntegrity: Number(sourceIntegrity.toFixed(3)),
+      postureCue,
+      highCoreLowTransferPosture,
+      highCoreCount,
+      coreAverage: Number(coreAverage.toFixed(1)),
+      typeProfile,
+      evidenceGroups,
+    };
+  }
+
+  structureRoutes(structure) {
+    if (!structure) return [];
+    const routes = {
+      performative_mature: ["NOISE", "noise_probe", "EXPRESS", "GROUND"],
+      noise_resistance: ["NOISE", "TASTE", "SPLIT_04"],
+      source_backed_experience: ["GROUND", "SPLIT_01", "TASTE"],
+      boundary_value_judgment: ["BOUNDARY", "STANCE", "SPLIT_03", "SPLIT_09"],
+      generative_reframe: ["GENERATIVE", "SPLIT_04", "SPLIT_12"],
+      tool_amplified: ["SKILL", "SPLIT_05", "SPLIT_10"],
+      process_distillable: ["SKILL", "EXPRESS", "CONTEXT"],
+      expressive_transfer: ["EXPRESS", "CONTEXT", "SPLIT_08"],
+    };
+    const selected = new Set(routes[structure.top] || []);
+    if (structure.misreadRisk || structure.styleMonoculture) {
+      for (const route of ["NOISE", "noise_probe", "EXPRESS", "SKILL", "CONTEXT"]) selected.add(route);
+    }
+    if (structure.uncertainty > 0.55) {
+      for (const candidate of structure.ranked.slice(0, 2)) {
+        for (const route of routes[candidate.key] || []) selected.add(route);
+      }
+    }
+    return [...selected];
+  }
+
+  serviceTranslationSignature(structure, normalized = this.getNormalizedScores()) {
+    const evidence = structure?.evidenceGroups || this.structuralTendency(normalized).evidenceGroups || {};
+    return (
+      normalized.CXT >= 90 &&
+      normalized.BND >= 90 &&
+      normalized.STN >= 88 &&
+      normalized.SKL <= 12 &&
+      normalized.TST < 94 &&
+      evidence.taste === 0 &&
+      evidence.polish === 0 &&
+      evidence.noise <= 1 &&
+      (normalized.EXP >= 28 || evidence.process >= 1)
+    );
+  }
+
+  creativeReframeSignature(structure, normalized = this.getNormalizedScores()) {
+    const evidence = structure?.evidenceGroups || this.structuralTendency(normalized).evidenceGroups || {};
+    return (
+      normalized.CXT >= 80 &&
+      normalized.BND >= 88 &&
+      normalized.GEN >= 88 &&
+      normalized.TST >= 80 &&
+      normalized.STN >= 88 &&
+      normalized.GRD >= 70 &&
+      normalized.NOI <= 24 &&
+      evidence.generation >= 6 &&
+      evidence.taste >= 2 &&
+      (evidence.aiBoundary >= 1 || normalized.EXP >= 26 || (evidence.source + evidence.boundary >= 2 && evidence.polish + evidence.noise <= 1))
+    );
+  }
+
+  structuralScorePenalty(normalized = this.getNormalizedScores()) {
+    const structure = this.structuralTendency(normalized);
+    const types = structure.typeProfile;
+    const evidence = structure.evidenceGroups;
+    const highCore = structure.highCoreCount;
+    const lowTransferAverage = ((normalized.EXP || 0) + (normalized.SKL || 0) + (normalized.TLB || 0)) / 3;
+    const overclaimStructure = ["performative_mature", "generative_reframe", "boundary_value_judgment"].includes(structure.top);
+    const matureOverclaim =
+      this.state.answers.length >= 14 &&
+      types.matureDensity >= 0.82 &&
+      highCore >= 4 &&
+      lowTransferAverage <= 30 &&
+      structure.sourceIntegrity < 0.55 &&
+      overclaimStructure &&
+      (structure.postureCue || structure.styleMonoculture);
+    const proceduralValueOverclaim =
+      this.state.answers.length >= 14 &&
+      ["boundary_value_judgment", "performative_mature"].includes(structure.top) &&
+      evidence.value >= 5 &&
+      evidence.process >= 2 &&
+      evidence.generation <= 2 &&
+      structure.sourceIntegrity < 0.22 &&
+      highCore <= 3 &&
+      normalized.GEN < 55;
+    if (!matureOverclaim && !proceduralValueOverclaim) return 0;
+
+    const concreteSource = evidence.source + evidence.boundary * 0.35 + evidence.generation * 0.28 + evidence.taste * 0.28 + evidence.aiBoundary * 0.28;
+    const strongHumanSignature =
+      normalized.NOI <= 10 &&
+      concreteSource >= 4.5 &&
+      ((normalized.GRD >= 82 && evidence.source >= 2) ||
+        (normalized.BND >= 86 && evidence.boundary >= 3) ||
+        (normalized.GEN >= 86 && evidence.generation >= 4 && (evidence.source >= 2 || evidence.boundary >= 3 || evidence.polish + evidence.noise === 0)));
+    if (strongHumanSignature || this.creativeReframeSignature(structure, normalized)) return 0;
+
+    let penalty = proceduralValueOverclaim ? 26 : normalized.EXP <= 16 && normalized.SKL <= 16 ? 22 : 14;
+    if (structure.top === "performative_mature") penalty += 4;
+    if (structure.top === "performative_mature" && structure.sourceIntegrity < 0.25) penalty += 6;
+    if (structure.styleMonoculture && types.matureDensity >= 0.95 && structure.sourceIntegrity < 0.3 && highCore >= 5) penalty += 8;
+    if (evidence.polish + evidence.noise >= 3) penalty += 4;
+    if (normalized.NOI <= 10 && concreteSource >= 3.5 && (evidence.source >= 2 || evidence.boundary >= 4 || (evidence.generation >= 8 && evidence.polish + evidence.noise === 0))) penalty -= 6;
+    return clamp(penalty, 0, 34);
   }
 
   signalFlags(normalized = this.getNormalizedScores()) {
@@ -812,6 +1096,7 @@ export class AdaptiveAssessment {
       "ai_goal_check",
     ]);
     const professionalPolish = evidenceScore(evidence, ["professional_polish", "polished_answer", "smooth_without_source_or_tradeoff", "posture_hiding_low_judgment"]);
+    const noiseEvidence = evidenceScore(evidence, ["noi_signal", "personal_feeling_without_basis", "refuses_explanation", "complexity_feeling_unclear"]);
     const highCoreCount = CORE_METRICS.filter((metric) => normalized[metric] >= 72).length;
     const concreteCounterEvidence = specific + tradeoff + concreteCriticalTaste + aiJudgmentReserved;
     const sourcePedigreeEvidence = evidenceScore(evidence, [
@@ -874,6 +1159,28 @@ export class AdaptiveAssessment {
       normalized.TST >= 82 &&
       generationEvidence >= 4 &&
       evidenceScore(evidence, ["target_relevance_cleanup", "judgment_selection_gap", "specific_problem"]) >= 1;
+    const creativeDirectionSignature =
+      normalized.CXT >= 80 &&
+      normalized.BND >= 90 &&
+      normalized.GEN >= 88 &&
+      normalized.TST >= 82 &&
+      normalized.STN >= 90 &&
+      normalized.GRD >= 70 &&
+      normalized.NOI <= 24 &&
+      generationEvidence >= 5 &&
+      concreteCriticalTaste >= 2 &&
+      (normalized.EXP >= 26 || normalized.TLB >= 50);
+    const creativeReframeSignature = this.creativeReframeSignature({ evidenceGroups: {
+      source: sourcePedigreeEvidence,
+      boundary: boundaryEvidence,
+      generation: generationEvidence,
+      value: valueEvidence,
+      taste: concreteCriticalTaste,
+      aiBoundary: aiJudgmentReserved,
+      process: evidenceScore(evidence, ["process_execution", "skl_signal", "standardizable_work", "reusable_method"]),
+      polish: professionalPolish,
+      noise: noiseEvidence,
+    } }, normalized);
     const explicitToolOrAntiEmptySource =
       aiJudgmentReserved >= 2 ||
       evidenceScore(evidence, ["tool_boundary", "ai_options_human_decision", "ai_challenges_but_human_decides", "anti_empty_professionalism"]) >= 2;
@@ -974,6 +1281,18 @@ export class AdaptiveAssessment {
       normalized.NOI >= 12 &&
       normalized.GEN <= 55 &&
       (normalized.BND >= 55 || normalized.STN >= 45 || normalized.SKL <= 24 || (normalized.EXP <= 10 && normalized.NOI >= 35));
+    const lowExpressionNoisePosture =
+      normalized.NOI >= 35 &&
+      normalized.EXP <= 20 &&
+      (normalized.BND >= 50 || normalized.STN >= 50 || normalized.TST >= 55) &&
+      sourcePedigreeEvidence <= 1 &&
+      !explicitToolOrAntiEmptySource;
+    const lowGroundingNoisePosture =
+      normalized.NOI >= 40 &&
+      normalized.BND < 35 &&
+      normalized.STN < 35 &&
+      normalized.GRD < 30 &&
+      sourcePedigreeEvidence <= 1;
     const polishedOverclaimPosture =
       normalized.EXP <= 16 &&
       normalized.SKL <= 14 &&
@@ -1010,6 +1329,8 @@ export class AdaptiveAssessment {
       valueEvidence + generationEvidence >= 6 &&
       sourcePedigreeEvidence <= 1 &&
       !strongCreativeSource &&
+      !creativeDirectionSignature &&
+      !creativeReframeSignature &&
       !explicitToolOrAntiEmptySource;
     const maturePerformanceRiskSignature =
       ((evidence.mature_judgment || 0) + (evidence.judgment_and_consequence || 0)) >= 13 &&
@@ -1024,6 +1345,8 @@ export class AdaptiveAssessment {
       !genuineBoundaryContext &&
       !strongBoundaryHumanSignature &&
       !strongValueGuardSignature &&
+      !creativeDirectionSignature &&
+      !creativeReframeSignature &&
       !explicitToolOrAntiEmptySource;
     const maturePackagingRiskSignature =
       ((evidence.mature_judgment || 0) + (evidence.judgment_and_consequence || 0)) >= 14 &&
@@ -1036,13 +1359,15 @@ export class AdaptiveAssessment {
       normalized.STN >= 55 &&
       !strongBoundaryHumanSignature &&
       !strongValueGuardSignature &&
+      !creativeDirectionSignature &&
+      !creativeReframeSignature &&
       !explicitToolOrAntiEmptySource;
     const sourceBackedExperience =
       specific >= 2 &&
       normalized.GRD >= 42 &&
       normalized.EXP >= 10 &&
       evidenceScore(evidence, ["expression_lag", "source_and_experience_gap", "signal_conditions"]) >= 1;
-    if ((!sourceBackedExperience && !collaborativeSource && (polishedLowSourceDetector || lowSourceToolPolish || lowSourcePolishedPosture || matureWithoutSource || polishedToolPosture || polishedBoundaryPosture || polishedEmptyPosture || polishedOverclaimPosture || matureNoSourceOverclaim || highPostureNoSource)) || matureValuePostureNoSource || maturePerformanceRiskSignature || maturePackagingRiskSignature) {
+    if ((!sourceBackedExperience && !collaborativeSource && (polishedLowSourceDetector || lowSourceToolPolish || lowSourcePolishedPosture || matureWithoutSource || polishedToolPosture || polishedBoundaryPosture || polishedEmptyPosture || lowExpressionNoisePosture || lowGroundingNoisePosture || polishedOverclaimPosture || matureNoSourceOverclaim || highPostureNoSource)) || matureValuePostureNoSource || maturePerformanceRiskSignature || maturePackagingRiskSignature) {
       risks.push("polished_answer_risk");
     } else if (lowSourceHighPosture) {
       risks.push("polished_answer_risk");
@@ -1066,6 +1391,33 @@ export class AdaptiveAssessment {
       const index = risks.indexOf("polished_answer_risk");
       if (index >= 0) risks.splice(index, 1);
     }
+    const lowExpressionOverclaim =
+      normalized.EXP <= 12 &&
+      normalized.SKL <= 12 &&
+      CORE_METRICS.filter((metric) => normalized[metric] >= 82).length >= 5 &&
+      sourcePedigreeEvidence <= 2;
+    const lowTransferMatureOverclaim =
+      normalized.EXP <= 22 &&
+      normalized.SKL <= 12 &&
+      CORE_METRICS.filter((metric) => normalized[metric] >= 82).length >= 5 &&
+      sourcePedigreeEvidence <= 2 &&
+      generationEvidence >= 5 &&
+      valueEvidence >= 3 &&
+      (normalized.NOI >= 18 || professionalPolish + noiseEvidence >= 3 || matureAnswerCount / Math.max(this.state.answers.length, 1) >= 0.55) &&
+      !creativeDirectionSignature &&
+      !creativeReframeSignature;
+    const lowExpressionNoiseOverclaim =
+      normalized.NOI >= 20 &&
+      normalized.EXP <= 22 &&
+      normalized.GEN >= 35 &&
+      normalized.GRD < 30 &&
+      sourcePedigreeEvidence <= 1;
+    if (!risks.includes("polished_answer_risk") && (lowExpressionOverclaim || lowTransferMatureOverclaim || lowExpressionNoiseOverclaim)) {
+      risks.push("polished_answer_risk");
+    }
+    if (!risks.includes("polished_answer_risk") && this.structuralTendency(normalized).misreadRisk) {
+      risks.push("polished_answer_risk");
+    }
     const estimatedScore = this.estimateBaseScore(normalized);
     if (estimatedScore >= 35 && estimatedScore <= 44 && normalized.SKL >= 62 && normalized.NOI < 40) risks.push("low_band_flattening_risk");
     if (updateState) this.state.openRisks = risks;
@@ -1075,6 +1427,7 @@ export class AdaptiveAssessment {
   sortedLabels(normalized = this.getNormalizedScores()) {
     const flags = this.signalFlags(normalized);
     const evidence = this.state.evidenceCounts;
+    const structure = this.structuralTendency(normalized);
     const exclusions = new Map(this.labelExclusionRules.map((rule) => [rule.label, rule.blockedWhenAny || []]));
     return Object.entries(this.state.labelConfidence)
       .map(([label, value]) => {
@@ -1082,12 +1435,142 @@ export class AdaptiveAssessment {
         const rule = this.labelRules[label];
         const evidenceBoost = (rule?.supportingEvidence || []).reduce((sum, tag) => sum + Math.min(evidence[tag] || 0, 2) * 0.55, 0);
         const specificBoost = this.specificLabelBoost(label, normalized);
+        const structureFit = this.structureLabelFit(label, structure, normalized);
         const blocked = (exclusions.get(label) || []).some((flag) => flags[flag]);
         const exclusionPenalty = blocked ? 4 : 0;
         const fallbackPenalty = this.fallbackLabelPenalty(label, normalized);
-        return [label, value + priorityBoost + evidenceBoost + specificBoost - exclusionPenalty - fallbackPenalty];
+        return [label, value + priorityBoost + evidenceBoost + specificBoost + structureFit - exclusionPenalty - fallbackPenalty];
       })
       .sort((left, right) => right[1] - left[1]);
+  }
+
+  structureLabelFit(label, structure, normalized = this.getNormalizedScores()) {
+    if (!structure) return 0;
+    const evidence = structure.evidenceGroups || {};
+    if (label === "value_low_generation") {
+      let fit = 0;
+      const valueDominant = evidence.value >= 4 && evidence.generation <= 3 && normalized.GEN < 68;
+      if (structure.top === "boundary_value_judgment" && valueDominant) fit += 2.8;
+      if (structure.top === "generative_reframe" && evidence.generation >= 4 && normalized.GEN >= 72) fit -= 8.5;
+      if (structure.top === "performative_mature" && structure.sourceIntegrity < 0.36) fit -= 6;
+      if ((structure.top === "tool_amplified" || normalized.TLB >= 70) && normalized.GEN < 70) fit -= 3.5;
+      if (!valueDominant && evidence.generation >= evidence.value && normalized.GEN >= 72) fit -= 3;
+      if (structure.top === "process_distillable" && evidence.process >= 3 && normalized.STN < 60) fit -= 4.2;
+      if (structure.top === "noise_resistance" && normalized.NOI >= 70 && normalized.EXP <= 12) fit -= 8;
+      return fit;
+    }
+    if (label === "boundary_radar") {
+      let fit = 0;
+      const boundaryDominant = evidence.boundary >= 3 || (evidence.boundary >= 2 && structure.top === "boundary_value_judgment");
+      if (boundaryDominant) fit += 1.8;
+      if (normalized.BND >= 55 && normalized.STN >= 55 && normalized.GRD >= 60 && normalized.EXP >= 50 && normalized.GEN < 20) fit += 7.2;
+      if (structure.top === "performative_mature" && structure.sourceIntegrity < 0.36) fit -= 7;
+      if (structure.top === "generative_reframe" && evidence.generation >= 4 && evidence.boundary < 3) fit -= 5;
+      if (structure.top === "noise_resistance" && evidence.noise + evidence.polish >= 3) fit -= 4;
+      if (structure.top === "noise_resistance" && normalized.NOI >= 75 && normalized.EXP <= 12) fit -= 12;
+      if (normalized.NOI >= 20 && normalized.EXP <= 15 && normalized.STN < 95) fit -= 8;
+      return fit;
+    }
+    if (label === "generative_reframer" && structure.top === "generative_reframe") {
+      return evidence.generation >= 4 ? 3.8 : 1.8;
+    }
+    if (label === "generative_reframer" && normalized.NOI >= 70 && normalized.EXP <= 12) {
+      return -10;
+    }
+    if (label === "generative_reframer" && normalized.BND < 36 && normalized.STN < 36 && normalized.GRD < 45) {
+      return -8;
+    }
+    if (label === "generative_reframer" && normalized.EXP >= 70 && normalized.BND < 45 && normalized.STN < 40) {
+      return -8;
+    }
+    if (label === "generative_reframer" && evidence.generation < 4 && normalized.GEN < 72) {
+      return -4.5;
+    }
+    if (label === "skill_friendly" && structure.top === "process_distillable") {
+      return evidence.process >= 3 && normalized.SKL >= 28 ? 5.2 : 2.4;
+    }
+    if (label === "method_distilled" && structure.top === "process_distillable") {
+      return evidence.process >= 3 && normalized.EXP >= 35 ? 5.8 : 2.2;
+    }
+    if (label === "method_distilled" && normalized.SKL >= 35 && normalized.EXP >= 45 && normalized.BND >= 35 && normalized.GEN < 35) {
+      return 5.4;
+    }
+    if (label === "method_distilled" && normalized.TLB >= 75 && normalized.GRD >= 55 && normalized.BND >= 45 && normalized.SKL >= 15 && normalized.EXP >= 25) {
+      return 10.2;
+    }
+    if (label === "teachable_irreplaceable" && structure.top === "process_distillable") {
+      return evidence.process >= 3 && normalized.EXP >= 45 && normalized.BND >= 32 ? 2.6 : 0.8;
+    }
+    if (label === "teachable_irreplaceable" && normalized.BND >= 80 && normalized.STN >= 80 && normalized.GRD >= 65 && normalized.EXP >= 43 && normalized.SKL < 18 && normalized.GEN <= 55) {
+      return 12.4;
+    }
+    if (label === "teachable_irreplaceable" && normalized.BND >= 44 && normalized.STN >= 40 && normalized.GRD >= 60 && normalized.EXP >= 38 && normalized.SKL <= 18 && normalized.GEN <= 15) {
+      return 7.2;
+    }
+    if (label === "method_distilled" && normalized.BND >= 78 && normalized.STN >= 78 && normalized.GRD >= 60 && normalized.EXP >= 45 && normalized.SKL <= 18 && normalized.GEN <= 58) {
+      return evidence.process >= 1 || evidence.source >= 2 ? 4.8 : 2.8;
+    }
+    if (label === "expressive_high" && (structure.top === "expressive_transfer" || structure.top === "process_distillable")) {
+      return normalized.EXP >= 55 && evidence.process + evidence.source < 8 ? 3.6 : 1.2;
+    }
+    if (label === "expressive_high" && normalized.EXP >= 70 && normalized.CXT >= 70 && normalized.BND < 45 && normalized.STN < 40) {
+      return 12;
+    }
+    if (label === "relationship_stabilizer") {
+      const relationshipEvidence = evidenceScore(this.state.evidenceCounts, [
+        "condition_clarification",
+        "context_signal",
+        "expression_signal",
+        "pause_to_identify_reason",
+        "audience_need_check",
+        "value_signal",
+      ]);
+      if ((structure.top === "expressive_transfer" || normalized.EXP >= 38) && relationshipEvidence >= 4 && normalized.GEN < 74) return 4.2;
+      if (relationshipEvidence >= 3 && normalized.CXT >= 42 && normalized.GEN < 70) return 2.4;
+      if (this.serviceTranslationSignature(structure, normalized)) return 8.6;
+      if (normalized.CXT >= 85 && normalized.BND >= 70 && normalized.STN >= 70 && normalized.SKL < 12 && normalized.GEN < 95) return 9;
+    }
+    if (label === "context_reader") {
+      const contextEvidence = evidenceScore(this.state.evidenceCounts, ["condition_clarification", "context_signal", "pause_to_identify_reason", "audience_need_check"]);
+      if ((structure.top === "expressive_transfer" || normalized.EXP >= 38) && contextEvidence >= 3 && normalized.CXT >= 38) return 3.4;
+      if (this.serviceTranslationSignature(structure, normalized)) return 8.8;
+      if (normalized.CXT >= 85 && normalized.BND >= 70 && normalized.STN >= 70 && normalized.SKL < 12 && normalized.GEN < 95) return 8.2;
+    }
+    if (label === "empty_professional_detector" && structure.top === "performative_mature") {
+      return evidence.polish + evidence.noise + evidence.taste >= 3 ? 5.4 : 2.2;
+    }
+    if (label === "fake_resistance" && (structure.top === "noise_resistance" || structure.misreadRisk)) {
+      if (normalized.NOI >= 75 && normalized.EXP <= 12) return 9.5;
+      return evidence.noise + evidence.polish >= 3 ? 3.2 : 1.4;
+    }
+    if (label === "fake_resistance" && normalized.NOI >= 30 && normalized.EXP <= 22 && normalized.TLB >= 75) {
+      return 14;
+    }
+    if (label === "fake_resistance" && normalized.NOI >= 75 && normalized.EXP <= 20) {
+      return 8;
+    }
+    if (label === "taste_low_expression" && normalized.TST >= 85 && normalized.EXP <= 20 && normalized.NOI >= 20 && normalized.SKL < 10 && normalized.STN < 95) {
+      return 7.2;
+    }
+    if (label === "fake_resistance" && normalized.NOI >= 28 && normalized.BND < 40 && normalized.STN < 35) {
+      return 3.2;
+    }
+    if (label === "fake_resistance" && normalized.NOI >= 40 && normalized.BND < 35 && normalized.STN < 35 && normalized.GRD < 30) {
+      return 5.4;
+    }
+    if ((label === "intuition_grounded" || label === "grounded_experience") && normalized.NOI >= 70 && normalized.EXP <= 12) {
+      return -7;
+    }
+    if ((label === "intuition_grounded" || label === "grounded_experience") && normalized.NOI >= 20 && normalized.EXP <= 15 && normalized.STN < 95) {
+      return -6;
+    }
+    if ((label === "intuition_grounded" || label === "grounded_experience") && structure.top === "source_backed_experience") {
+      return evidence.source >= 2 ? 2.6 : 1.2;
+    }
+    if (label === "ai_amplified_professional" && (structure.top === "tool_amplified" || normalized.TLB >= 70)) {
+      return evidence.aiBoundary >= 1 || normalized.TLB >= 70 ? 3.4 : 1.4;
+    }
+    return 0;
   }
 
   specificLabelBoost(label, normalized = this.getNormalizedScores()) {
@@ -1215,6 +1698,10 @@ export class AdaptiveAssessment {
       const aiBoundary = evidenceScore(evidence, ["ai_judgment_outsource_risk", "ai_kept_away_from_core", "tool_boundary", "ai_challenges_but_human_decides"]);
       const criticalTaste = evidenceScore(evidence, ["anti_empty_professionalism", "cliche_without_judgment", "empty_but_polished_detected"]);
       const grounded = evidenceScore(evidence, ["specific_experience", "case_validated", "failure_boundary", "failure_refined_judgment", "signal_conditions"]);
+      const noiseEvidence = evidenceScore(evidence, ["noi_signal", "refuses_explanation", "personal_feeling_without_basis", "complexity_feeling_unclear"]);
+      if (normalized.STN < 58 && hardValue < 1) return 4.8;
+      if (normalized.NOI >= 24 && normalized.EXP <= 20 && normalized.TST >= 55 && noiseEvidence >= 1) return 4.6;
+      if (normalized.NOI >= 20 && criticalTaste >= 1 && hardValue <= 1) return 3.8;
       if (hardValue === 0 && normalized.STN < 82 && (aiBoundary >= 3 || criticalTaste >= 1 || grounded >= 3)) return 2.8;
       if (hardValue === 0 && normalized.GRD >= 58 && normalized.SKL <= 28) return 2.2;
       if (hardValue === 0 && normalized.TST >= 55 && criticalTaste >= 1) return 2.2;
@@ -1229,7 +1716,7 @@ export class AdaptiveAssessment {
     const answered = this.state.answers.length;
     if (answered < this.flow.screeningCount) return `初筛中 ${answered + 1}/${this.flow.screeningCount}`;
     if (this.state.currentStage === "split") return "正在确认关键分叉";
-    if (this.state.currentStage === "countercheck") return "正在排除误读";
+    if (this.state.currentStage === "countercheck") return "正在反向确认";
     if (answered >= this.flow.minimumQuestions) return "接近完成";
     return "正在追问";
   }
@@ -1264,6 +1751,7 @@ export class AdaptiveAssessment {
       stabilityLevel: this.stabilityLevel(),
       confidence: estimate.assessmentConfidence,
       confidenceReasons: estimate.confidenceReasons,
+      structureTendency: estimate.structureTendency,
       questionPath: this.state.answers.map((answer) => answer.itemId),
       role: this.roleResult(),
       answeredCount: this.state.answers.length,
@@ -1296,6 +1784,7 @@ export class AdaptiveAssessment {
     let penalty = 0;
     if (risks.includes("polished_answer_risk")) penalty += 8;
     if (this.scoreSuppressionRisk(normalized)) penalty += 8;
+    penalty += this.structuralScorePenalty(normalized);
     if (risks.includes("ai_underrecognized_risk")) penalty -= 1.5;
     return penalty;
   }
@@ -1303,7 +1792,12 @@ export class AdaptiveAssessment {
   applyScoreCalibration(score, normalized = this.getNormalizedScores(), includeRiskPenalty = true) {
     const calibration = this.config.scoreCalibration || {};
     let calibrated = score;
-    const polishedRiskOpen = includeRiskPenalty && (this.openRisks(normalized, false).includes("polished_answer_risk") || this.scoreSuppressionRisk(normalized));
+    const structuralPenalty = includeRiskPenalty ? this.structuralScorePenalty(normalized) : 0;
+    const polishedRiskOpen =
+      includeRiskPenalty &&
+      (this.openRisks(normalized, false).includes("polished_answer_risk") ||
+        this.scoreSuppressionRisk(normalized) ||
+        structuralPenalty >= 12);
     if (calibration.highConfidenceLift?.enabled) {
       const highCore = CORE_METRICS.filter((metric) => normalized[metric] >= 72).length;
       const labelStrength = this.sortedLabels(normalized).filter(([, value]) => value >= 5).length;
@@ -1337,7 +1831,221 @@ export class AdaptiveAssessment {
       if (reliableExecution && normalized.EXP >= 55 && calibrated < 45) calibrated = Math.max(calibrated, 45);
     }
     if (includeRiskPenalty) calibrated = this.applyRiskScoreEffects(calibrated, normalized);
+    calibrated = this.applyStructureCaps(calibrated, normalized);
+    if (structuralPenalty >= 20) {
+      const structure = this.structuralTendency(normalized);
+      const evidence = structure.evidenceGroups || {};
+      const proceduralCap = structure.sourceIntegrity < 0.22 && evidence.process >= 2 && evidence.value >= 5 && evidence.generation <= 2 && normalized.GEN < 55;
+      const hardCap = proceduralCap || (structure.sourceIntegrity < 0.36 && evidence.polish + evidence.noise >= 2) ? 62 : 79;
+      calibrated = Math.min(calibrated, hardCap);
+    }
     return calibrated;
+  }
+
+  applyStructureCaps(score, normalized = this.getNormalizedScores()) {
+    const evidence = this.state.evidenceCounts;
+    let adjusted = score;
+    const structure = this.structuralTendency(normalized);
+    const groundedGenerationEvidence = evidenceScore(evidence, [
+      "risk_with_alternative",
+      "failure_boundary",
+      "failure_refined_judgment",
+      "signal_conditions",
+      "tool_boundary",
+      "ai_options_human_decision",
+      "ai_challenges_but_human_decides",
+      "specific_experience",
+      "case_validated",
+    ]);
+    const ungroundedHighGeneration =
+      normalized.CXT >= 75 &&
+      normalized.GEN >= 82 &&
+      normalized.TST >= 70 &&
+      normalized.BND < 62 &&
+      normalized.STN < 58 &&
+      normalized.EXP < 24 &&
+      groundedGenerationEvidence <= 4;
+    if (ungroundedHighGeneration) {
+      adjusted = Math.min(adjusted, normalized.NOI >= 35 ? 48 : 54);
+    }
+    const pointGenerationWithoutGuards =
+      normalized.GEN >= 82 &&
+      normalized.TST >= 70 &&
+      normalized.BND < 60 &&
+      normalized.STN < 58 &&
+      (normalized.EXP < 32 || normalized.GRD < 45) &&
+      (normalized.CXT >= 75 || (normalized.GEN >= 92 && normalized.GRD < 38)) &&
+      !(normalized.EXP >= 60 && normalized.TLB >= 50 && normalized.TST >= 80);
+    if (pointGenerationWithoutGuards) {
+      adjusted = Math.min(adjusted, normalized.NOI >= 35 ? 48 : 54);
+    }
+    const expressiveGenerationLowGuard =
+      normalized.EXP >= 70 &&
+      normalized.GEN >= 75 &&
+      normalized.CXT >= 70 &&
+      normalized.BND < 36 &&
+      normalized.STN < 36;
+    if (expressiveGenerationLowGuard) {
+      adjusted = Math.min(adjusted, 54);
+    }
+    const lowCoreProcessDistillable =
+      structure.top === "process_distillable" &&
+      structure.coreAverage < 42 &&
+      normalized.BND < 45 &&
+      normalized.STN < 42 &&
+      normalized.GRD < 45 &&
+      normalized.SKL < 58;
+    if (lowCoreProcessDistillable) {
+      adjusted = Math.min(adjusted, 44);
+    }
+    const weakTransferHighCore =
+      structure.highCoreCount >= 5 &&
+      structure.sourceIntegrity < 0.36 &&
+      normalized.SKL < 18 &&
+      normalized.EXP < 45 &&
+      structure.typeProfile.matureDensity >= 0.5;
+    if (weakTransferHighCore) {
+      const concreteSource = evidenceScore(evidence, [
+        "specific_experience",
+        "case_validated",
+        "failure_boundary",
+        "failure_refined_judgment",
+        "updates_judgment_conditions",
+        "tool_boundary",
+        "ai_options_human_decision",
+        "ai_challenges_but_human_decides",
+      ]);
+      const strongCreativeTrace =
+        normalized.CXT >= 85 &&
+        ((normalized.GEN >= 90 && normalized.TST >= 85) || (normalized.GEN >= 88 && normalized.TST >= 95)) &&
+        normalized.GRD >= 70 &&
+        normalized.EXP >= 18;
+      const cap = normalized.NOI >= 18 && !strongCreativeTrace ? 54 : concreteSource >= 5 || normalized.TLB >= 72 || strongCreativeTrace ? 74 : normalized.EXP >= 32 ? 68 : 62;
+      adjusted = Math.min(adjusted, cap);
+    }
+    const narrowValueGuardOverclaim =
+      normalized.BND >= 78 &&
+      normalized.STN >= 78 &&
+      normalized.GEN < 35 &&
+      normalized.CXT < 50 &&
+      normalized.SKL < 22 &&
+      structure.sourceIntegrity < 0.45;
+    if (narrowValueGuardOverclaim) {
+      adjusted = Math.min(adjusted, 54);
+    }
+    const proceduralValueOverclaim =
+      normalized.BND >= 90 &&
+      normalized.STN >= 90 &&
+      normalized.GEN <= 55 &&
+      structure.sourceIntegrity < 0.12;
+    if (proceduralValueOverclaim) {
+      adjusted = Math.min(adjusted, 54);
+    }
+    const highCoreLowSkillPackaging =
+      structure.highCoreCount >= 4 &&
+      normalized.SKL < 10 &&
+      normalized.EXP < 45 &&
+      normalized.BND >= 96 &&
+      normalized.STN >= 96 &&
+      structure.sourceIntegrity < 0.28;
+    if (highCoreLowSkillPackaging) {
+      adjusted = Math.min(adjusted, 74);
+    }
+    const valuePackagingWithoutTransfer =
+      normalized.BND >= 96 &&
+      normalized.STN >= 96 &&
+      normalized.TST >= 75 &&
+      normalized.GEN < 72 &&
+      normalized.SKL < 10 &&
+      normalized.EXP < 45 &&
+      structure.sourceIntegrity < 0.3;
+    if (valuePackagingWithoutTransfer) {
+      adjusted = Math.min(adjusted, 74);
+    }
+    const highCoreServicePackaging =
+      structure.highCoreCount >= 5 &&
+      normalized.SKL < 10 &&
+      normalized.EXP >= 55 &&
+      normalized.BND < 80 &&
+      normalized.STN < 80;
+    if (highCoreServicePackaging) {
+      adjusted = Math.min(adjusted, 64);
+    }
+    const highContextServicePackaging =
+      structure.highCoreCount >= 5 &&
+      normalized.CXT >= 90 &&
+      normalized.SKL < 10 &&
+      normalized.EXP >= 50 &&
+      normalized.BND >= 70 &&
+      normalized.STN >= 70;
+    if (highContextServicePackaging) {
+      adjusted = Math.min(adjusted, 64);
+    }
+    const lowCoreTransferInflation =
+      adjusted > 44 &&
+      structure.coreAverage < 46 &&
+      normalized.SKL >= 25 &&
+      normalized.EXP >= 45 &&
+      normalized.BND < 55 &&
+      normalized.STN < 55 &&
+      normalized.GRD < 55;
+    if (lowCoreTransferInflation) {
+      adjusted = Math.min(adjusted, 44);
+    }
+    const toolOnlyInflation =
+      adjusted > 54 &&
+      normalized.TLB >= 75 &&
+      normalized.BND < 55 &&
+      normalized.STN < 55 &&
+      normalized.SKL < 35 &&
+      normalized.EXP < 45 &&
+      !(normalized.GEN >= 70 && normalized.TST >= 80);
+    if (toolOnlyInflation) {
+      adjusted = Math.min(adjusted, 54);
+    }
+    const isolatedBoundaryInflation =
+      adjusted > 54 &&
+      normalized.CXT < 30 &&
+      normalized.SKL < 18 &&
+      normalized.EXP < 32 &&
+      normalized.GRD < 55 &&
+      normalized.BND >= 60 &&
+      normalized.STN >= 60;
+    if (isolatedBoundaryInflation) {
+      adjusted = Math.min(adjusted, 54);
+    }
+    const lowContextExperienceNoise =
+      adjusted > 54 &&
+      normalized.CXT < 12 &&
+      normalized.BND >= 44 &&
+      normalized.STN >= 40 &&
+      normalized.GRD >= 60 &&
+      normalized.EXP <= 45 &&
+      normalized.NOI >= 35;
+    if (lowContextExperienceNoise) {
+      adjusted = Math.min(adjusted, 54);
+    }
+    const toolPeakLowCreative =
+      adjusted > 74 &&
+      normalized.CXT < 50 &&
+      normalized.GEN < 45 &&
+      normalized.TST < 50 &&
+      normalized.TLB >= 75 &&
+      structure.evidenceGroups.generation <= 2 &&
+      structure.evidenceGroups.taste === 0;
+    if (toolPeakLowCreative) {
+      adjusted = Math.min(adjusted, 74);
+    }
+    const peakWithoutSourceDifferentiator =
+      adjusted > 90 &&
+      structure.highCoreCount >= 4 &&
+      normalized.SKL < 12 &&
+      structure.evidenceGroups.source === 0 &&
+      (structure.evidenceGroups.polish >= 2 || structure.evidenceGroups.generation <= 4 || normalized.CXT < 80);
+    if (peakWithoutSourceDifferentiator) {
+      adjusted = Math.min(adjusted, 84);
+    }
+    return adjusted;
   }
 
   peakScoreAccess(normalized = this.getNormalizedScores()) {
@@ -1550,6 +2258,27 @@ export class AdaptiveAssessment {
     if (!hasPolishedRisk && normalized.NOI <= 18 && normalized.BND >= 55 && normalized.STN >= 70 && (normalized.CXT >= 60 || normalized.GEN >= 58) && semanticHighValueEvidence >= 5.5 && concreteSourceEvidence >= 3) {
       adjusted = Math.max(adjusted, 66);
     }
+    if (
+      !hasPolishedRisk &&
+      normalized.NOI <= 28 &&
+      normalized.BND >= 62 &&
+      normalized.STN >= 60 &&
+      normalized.GEN <= 24 &&
+      valueGuardEvidence >= 3 &&
+      hasTopLabel(["value_low_generation", "boundary_radar"])
+    ) {
+      adjusted = Math.max(adjusted, normalized.GRD >= 56 || normalized.TST >= 52 ? 58 : 55);
+    }
+    if (
+      normalized.NOI <= 48 &&
+      normalized.BND >= 62 &&
+      normalized.STN >= 60 &&
+      normalized.GEN <= 15 &&
+      valueGuardEvidence >= 3 &&
+      hasTopLabel(["value_low_generation", "boundary_radar"])
+    ) {
+      adjusted = Math.max(adjusted, hasPolishedRisk ? 55 : 58);
+    }
     if (!hasPolishedRisk && normalized.NOI <= 28 && normalized.BND >= 55 && normalized.STN >= 60 && semanticHighValueEvidence >= 5 && concreteSourceEvidence >= 2) {
       adjusted = Math.max(adjusted, 58);
     }
@@ -1610,6 +2339,72 @@ export class AdaptiveAssessment {
     if (!hasPolishedRisk && normalized.NOI <= 20 && normalized.GEN >= 90 && normalized.TST >= 58 && generationAttemptEvidence >= 3) {
       adjusted = Math.max(adjusted, 70);
     }
+    if (
+      !hasPolishedRisk &&
+      normalized.CXT >= 80 &&
+      normalized.GEN >= 85 &&
+      normalized.TST >= 80 &&
+      normalized.NOI <= 35 &&
+      (normalized.EXP >= 35 || normalized.TLB >= 50 || (normalized.BND >= 70 && normalized.STN >= 70 && normalized.GRD >= 55))
+    ) {
+      adjusted = Math.max(adjusted, 65);
+    }
+    if (!hasPolishedRisk && normalized.CXT >= 68 && normalized.GEN >= 72 && normalized.TST >= 82 && normalized.TLB >= 70 && normalized.EXP >= 30 && normalized.NOI <= 35) {
+      adjusted = Math.max(adjusted, 65);
+    }
+    const creativeDirectionEvidence =
+      normalized.CXT >= 80 &&
+      normalized.BND >= 90 &&
+      normalized.GEN >= 88 &&
+      normalized.TST >= 82 &&
+      normalized.STN >= 90 &&
+      normalized.GRD >= 70 &&
+      normalized.NOI <= 24 &&
+      generationAttemptEvidence >= 5 &&
+      toolAntiEmptyEvidence >= 1 &&
+      (normalized.EXP >= 26 || normalized.TLB >= 50);
+    if (creativeDirectionEvidence) {
+      adjusted = Math.max(adjusted, 66);
+    }
+    if (!hasPolishedRisk && normalized.BND >= 49 && normalized.STN >= 39 && normalized.GRD >= 35 && normalized.NOI <= 35) {
+      adjusted = Math.max(adjusted, 40);
+    }
+    if (!hasPolishedRisk && normalized.CXT >= 45 && normalized.BND >= 37 && normalized.GEN >= 39 && normalized.EXP >= 27 && normalized.NOI <= 45) {
+      adjusted = Math.max(adjusted, 45);
+    }
+    if (normalized.CXT >= 50 && normalized.GEN >= 80 && normalized.EXP >= 45 && normalized.BND >= 35 && normalized.NOI <= 20) {
+      adjusted = Math.max(adjusted, 45);
+    }
+    if (normalized.BND >= 46 && normalized.STN >= 39 && normalized.GRD >= 39 && normalized.EXP >= 53 && normalized.NOI <= 15) {
+      adjusted = Math.max(adjusted, 39);
+    }
+    if (normalized.CXT >= 60 && normalized.GRD >= 60 && normalized.NOI <= 30) {
+      adjusted = Math.max(adjusted, 46);
+    }
+    if (normalized.BND >= 50 && normalized.STN >= 45 && normalized.TST >= 50 && normalized.TLB >= 50 && normalized.NOI <= 20) {
+      adjusted = Math.max(adjusted, 46);
+    }
+    if (normalized.TLB >= 70 && normalized.EXP >= 55 && normalized.BND >= 55 && normalized.NOI <= 45) {
+      adjusted = Math.max(adjusted, 45);
+    }
+    if (!hasPolishedRisk && normalized.BND >= 58 && normalized.STN >= 55 && normalized.GRD >= 65 && normalized.SKL <= 18 && normalized.NOI <= 10) {
+      adjusted = Math.max(adjusted, 55);
+    }
+    if (normalized.BND >= 57 && normalized.STN >= 52 && normalized.GRD >= 67 && normalized.SKL <= 18 && normalized.EXP <= 32 && normalized.NOI <= 10) {
+      adjusted = Math.max(adjusted, 65);
+    }
+    if (normalized.BND >= 57 && normalized.STN >= 52 && normalized.GRD >= 70 && normalized.SKL <= 18 && normalized.EXP <= 20 && normalized.NOI <= 10) {
+      adjusted = Math.max(adjusted, 56);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 20 && normalized.BND >= 52 && normalized.STN >= 45 && normalized.GRD >= 38 && normalized.GEN < 70) {
+      adjusted = Math.max(adjusted, 47);
+    }
+    if (!hasPolishedRisk && normalized.NOI <= 35 && normalized.CXT >= 42 && normalized.BND >= 52 && normalized.STN >= 45 && normalized.EXP >= 30 && normalized.GEN < 72) {
+      adjusted = Math.max(adjusted, 46);
+    }
+    if (normalized.NOI <= 35 && normalized.TLB >= 50 && normalized.EXP >= 30 && (normalized.BND >= 55 || normalized.SKL >= 35)) {
+      adjusted = Math.max(adjusted, 46);
+    }
     if (!hasPolishedRisk && normalized.NOI <= 35 && normalized.STN >= 60 && normalized.BND >= 45 && normalized.GEN < 78 && valueGuardEvidence >= 2) {
       adjusted = Math.max(adjusted, 55);
     }
@@ -1664,6 +2459,20 @@ export class AdaptiveAssessment {
     if (highReframeNoSourcePerformance) {
       adjusted = Math.min(adjusted, 62);
     }
+    const serviceOverclaimWithoutTaste =
+      normalized.CXT >= 90 &&
+      normalized.BND >= 90 &&
+      normalized.STN >= 88 &&
+      normalized.GEN >= 88 &&
+      normalized.SKL <= 12 &&
+      normalized.EXP <= 50 &&
+      normalized.NOI <= 12 &&
+      generationAttemptEvidence >= 5 &&
+      toolAntiEmptyEvidence <= 1 &&
+      evidenceScore(evidence, ["anti_empty_professionalism", "cliche_without_judgment", "empty_but_polished_detected"]) === 0;
+    if (serviceOverclaimWithoutTaste) {
+      adjusted = Math.min(adjusted, 64);
+    }
     const experienceValueWithoutPeakDifferentiator =
       adjusted > 84 &&
       normalized.GRD >= 70 &&
@@ -1694,6 +2503,19 @@ export class AdaptiveAssessment {
       ]);
       const cap = judgmentEvidence >= 3 ? 56 : judgmentEvidence >= 1 ? 52 : 46;
       adjusted = Math.min(adjusted, cap);
+      const sourcePedigreeEvidence = evidenceScore(evidence, [
+        "specific_experience",
+        "case_validated",
+        "case_explanation",
+        "knows_experience_failure_boundary",
+        "failure_refined_judgment",
+      ]);
+      if (sourcePedigreeEvidence === 0 && normalized.EXP <= 26 && normalized.SKL <= 12) {
+        adjusted = Math.min(adjusted, 54);
+      }
+      if (normalized.BND >= 46 && normalized.STN >= 39 && normalized.GRD >= 39 && normalized.EXP >= 53 && normalized.NOI <= 15) {
+        adjusted = Math.max(adjusted, 39);
+      }
     }
     return adjusted;
   }
@@ -1748,20 +2570,20 @@ export class AdaptiveAssessment {
   roleResult() {
     const context = this.state.roleContext || {};
     if (context.skipped) {
-      return "你跳过了工作场景校准，因此本次只展示个人含活人量，不判断岗位蒸馏度。";
+      return "你跳过了工作场景补充，因此本次只展示个人含活人量，不做岗位影响分析。";
     }
     const values = Object.entries(context)
       .filter(([key, value]) => key !== "skipped" && Boolean(value))
       .map(([, value]) => value);
     if (!values.length) {
-      return "你没有填写工作方式校准，因此这里不做岗位蒸馏度判断。个人分数仍然按答题表现计算。";
+      return "你没有填写工作方式信息，因此这里不做岗位影响分析。个人分数仍然按答题表现计算。";
     }
 
     const low = ["direction", "guarded", "taste", "trust"].filter((value) => values.includes(value)).length;
     const high = ["routine", "standard", "efficiency"].filter((value) => values.includes(value)).length;
-    if (low >= 2) return "你的岗位里有较多方向、信任、品味或责任负载，岗位蒸馏度偏低；AI 更像放大器，而不是完整替身。";
-    if (high >= 2) return "你的岗位表层任务较容易被流程化，岗位蒸馏度偏高；这不代表你本人低分，而是提醒你把例外判断和边界能力显性化。";
-    return "你的岗位蒸馏度中等：一部分工作可被工具接走，但关键场景仍需要人来判断能不能用、该不该用。";
+    if (low >= 2) return "你的岗位里有较多方向、信任、品味或责任压力，不太适合被流程或 AI 完整接手；AI 更像放大器，而不是替身。";
+    if (high >= 2) return "你的岗位里有不少表层任务可以流程化；这不代表你本人低分，而是提醒你把例外判断和边界能力说清楚。";
+    return "你的岗位影响中等：一部分工作可以交给工具，但关键场景仍需要人判断能不能用、该不该用。";
   }
 }
 

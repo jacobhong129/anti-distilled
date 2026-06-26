@@ -1,4 +1,4 @@
-import { compactEngineResult, runEngineRegression } from "../tests/simulator/engine-runner.mjs";
+import { compactSemanticResult, runSemanticRegression } from "../tests/simulator/semantic-runner.mjs";
 
 function value(args, name, fallback = "") {
   const inline = args.find((arg) => arg.startsWith(`${name}=`));
@@ -8,15 +8,14 @@ function value(args, name, fallback = "") {
 }
 
 const args = process.argv.slice(2);
-const result = runEngineRegression({
-  rounds: Number.parseInt(value(args, "--rounds", "5"), 10),
-  personaIds: value(args, "--personas", "").split(",").map((id) => id.trim()).filter(Boolean),
-  socialOnly: args.includes("--social-only"),
-  includeX99: args.includes("--include-x99") || !args.includes("--social-only"),
+const result = runSemanticRegression({
+  rounds: Number.parseInt(value(args, "--rounds", process.env.ROUNDS || "5"), 10),
+  personaIds: value(args, "--personas", process.env.PERSONAS || "").split(",").map((id) => id.trim()).filter(Boolean),
+  includeX99: args.includes("--include-x99"),
   includeStress: args.includes("--include-stress"),
   includeCalibration: args.includes("--include-calibration"),
   summaryOnly: args.includes("--summary-only"),
 });
 
-console.log(JSON.stringify(args.includes("--summary-only") ? compactEngineResult(result) : result, null, 2));
+console.log(JSON.stringify(args.includes("--summary-only") ? compactSemanticResult(result) : result, null, 2));
 if (args.includes("--strict") && !result.ok) process.exitCode = 1;

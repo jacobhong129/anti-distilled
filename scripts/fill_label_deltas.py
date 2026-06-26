@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PATHS = [
-    ROOT / "config" / "game-config-v10.10.json",
+    ROOT / "config" / "game-config-v11.json",
     ROOT / "web" / "data" / "game-config.json",
 ]
 

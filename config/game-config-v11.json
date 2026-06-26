@@ -30,94 +30,94 @@
       "min": 90,
       "max": 100,
       "name": "真人浓缩型",
-      "line": "你不是不能被总结，而是一总结就会少一个人。"
+      "line": "你不是不能被总结，而是一总结就会少掉最关键的那个人。"
     },
     {
       "min": 80,
       "max": 89,
       "name": "关键真人型",
-      "line": "你的方法能学，但关键判断很难外包。"
+      "line": "方法别人能学，关键时刻还是得你本人看一眼。"
     },
     {
       "min": 70,
       "max": 79,
       "name": "高损蒸馏型",
-      "line": "你的流程能抄，真正值钱的地方会在例外里漏出来。"
+      "line": "流程能抄走一部分，但一到例外和取舍，人味就会露出来。"
     },
     {
       "min": 62,
       "max": 69,
       "name": "招牌养成型",
-      "line": "你有自己的判断，不过有时还没强到让复制品明显失真。"
+      "line": "你已经有自己的判断雏形，只是还没稳定到一复制就变味。"
     },
     {
       "min": 52,
       "max": 61,
       "name": "半蒸半活型",
-      "line": "一部分很适合沉淀成 Skill，一部分还需要你本人在场。"
+      "line": "有些部分适合沉淀成方法，有些部分还需要你亲自把关。"
     },
     {
       "min": 48,
       "max": 51,
       "name": "协作易蒸型",
-      "line": "你的稳定和清楚是优点，但还需要长出更鲜明的判断。"
+      "line": "你稳定、清楚、好协作；下一步是让自己的判断更明显。"
     },
     {
       "min": 35,
       "max": 47,
       "name": "流程友好型",
-      "line": "你现在最稳定的价值来自流程、标准和执行。"
+      "line": "你现在最稳定的价值，主要来自流程、标准和可靠执行。"
     },
     {
       "min": 20,
       "max": 34,
       "name": "优质蒸馏原料",
-      "line": "你很可靠，也确实有点好蒸；下一步是把经验变成判断。"
+      "line": "你很可靠，也确实有点好蒸；下一步是让经验长出自己的判断。"
     }
   ],
   "labels": {
-    "teachable_irreplaceable": "可教不好替",
+    "teachable_irreplaceable": "教得会替不了",
     "intuition_grounded": "老练直觉",
-    "boundary_radar": "边界感",
-    "empty_professional_detector": "空话免疫",
+    "boundary_radar": "有分寸型",
+    "empty_professional_detector": "空话过敏型",
     "generative_reframer": "改题型",
-    "ai_amplified_professional": "AI 放大型",
-    "value_low_generation": "有底线型",
-    "taste_low_expression": "慢表达品味型",
-    "fake_resistance": "伪抗蒸型",
-    "latent_human_variable": "待开机型",
-    "skill_friendly": "好复制型",
-    "method_distilled": "方法型",
-    "high_density_human": "真人核心型",
-    "grounded_experience": "经验型",
-    "context_reader": "会看场型",
-    "expressive_high": "会翻译型",
-    "expressive_low": "表达堵车型",
+    "ai_amplified_professional": "人机放大型",
+    "value_low_generation": "底线守门型",
+    "taste_low_expression": "看得准说得慢",
+    "fake_resistance": "嘴硬难蒸型",
+    "latent_human_variable": "还没开机型",
     "relationship_stabilizer": "稳场型",
-    "experience_locked": "经验固化型"
+    "experience_locked": "老经验卡住型",
+    "skill_friendly": "好复制型",
+    "method_distilled": "方法成型型",
+    "high_density_human": "真人在场型",
+    "grounded_experience": "经验压舱型",
+    "context_reader": "会看场型",
+    "expressive_high": "讲得明白型",
+    "expressive_low": "表达卡壳型"
   },
   "labelDetails": {
     "teachable_irreplaceable": {
-      "name": "可教不好替",
-      "shortName": "可教型",
+      "name": "教得会替不了",
+      "shortName": "难替型",
       "plainMeaning": "你能把方法讲清楚，但别人照着做时，关键分寸还是容易差一点。",
       "shareLine": "我可以被学习，但不好被替换。"
     },
     "intuition_grounded": {
       "name": "老练直觉",
       "shortName": "直觉型",
-      "plainMeaning": "你不是瞎感觉，你的判断背后通常有经历、案例或踩坑记录。",
+      "plainMeaning": "你不是瞎感觉，很多判断背后都有经历、案例或踩坑记录。",
       "shareLine": "我的直觉不是玄学，是吃过见识。"
     },
     "boundary_radar": {
-      "name": "边界感",
-      "shortName": "边界型",
-      "plainMeaning": "你擅长发现模板、流程、工具在当前场景里什么时候会失效。",
+      "name": "有分寸型",
+      "shortName": "分寸型",
+      "plainMeaning": "你擅长看出模板、流程、工具在当前场景里什么时候不该硬套。",
       "shareLine": "我不是反模板，我是知道哪里不能硬套。"
     },
     "empty_professional_detector": {
-      "name": "空话免疫",
-      "shortName": "免疫型",
+      "name": "空话过敏型",
+      "shortName": "过敏型",
       "plainMeaning": "别人看到完整框架，你会追问里面有没有真实判断和取舍。",
       "shareLine": "我对空心专业过敏。"
     },
@@ -128,31 +128,31 @@
       "shareLine": "我不只答题，我会改题。"
     },
     "ai_amplified_professional": {
-      "name": "AI 放大型",
-      "shortName": "AI 放大型",
-      "plainMeaning": "你适合让 AI 放大效率，但关键方向和判断仍然要自己把关。",
-      "shareLine": "工具可以放大我，但不能替我判断。"
+      "name": "人机放大型",
+      "shortName": "放大型",
+      "plainMeaning": "你适合让 AI 放大效率，但方向、分寸和最后判断仍要自己把关。",
+      "shareLine": "AI 可以放大我，但不能替我拍板。"
     },
     "value_low_generation": {
-      "name": "有底线型",
-      "shortName": "底线型",
-      "plainMeaning": "你知道什么不能牺牲，但还需要把底线变成更可执行的方案。",
+      "name": "底线守门型",
+      "shortName": "守门型",
+      "plainMeaning": "你知道什么不能牺牲，也在练习把底线变成更可执行的做法。",
       "shareLine": "我知道哪里不对，也在练怎么改。"
     },
     "taste_low_expression": {
-      "name": "慢表达品味型",
-      "shortName": "品味型",
+      "name": "看得准说得慢",
+      "shortName": "慢表达型",
       "plainMeaning": "你能看出哪里不对，但不一定能马上把判断讲清楚。",
-      "shareLine": "我看得出来，只是还没翻译完。"
+      "shareLine": "我看得出来，只是还没说顺。"
     },
     "fake_resistance": {
-      "name": "伪抗蒸型",
-      "shortName": "噪声型",
-      "plainMeaning": "你可能很抗拒模板或 AI，但有时还没把反感变成可说明的判断。",
+      "name": "嘴硬难蒸型",
+      "shortName": "嘴硬型",
+      "plainMeaning": "你可能很抗拒模板或 AI，但有时还没把反感变成说得清的判断。",
       "shareLine": "我不是不能被蒸，是还得先说清楚。"
     },
     "latent_human_variable": {
-      "name": "待开机型",
+      "name": "还没开机型",
       "shortName": "待机型",
       "plainMeaning": "你不是没有人味，而是个人判断还没稳定长成招牌能力。",
       "shareLine": "我的含活人量还在加载中。"
@@ -164,9 +164,9 @@
       "shareLine": "我的价值不只在输出，也在稳住场。"
     },
     "experience_locked": {
-      "name": "经验固化型",
+      "name": "老经验卡住型",
       "shortName": "老经验型",
-      "plainMeaning": "你的经验是真的有用，但如果更新太慢，也会变成新的模板。",
+      "plainMeaning": "你的经验确实有用，但如果更新太慢，也会变成新的模板。",
       "shareLine": "我有经验，但也得防止经验把我困住。"
     },
     "skill_friendly": {
@@ -176,40 +176,40 @@
       "shareLine": "我很好复制，但也很稳定。"
     },
     "method_distilled": {
-      "name": "方法型",
+      "name": "方法成型型",
       "shortName": "方法型",
-      "plainMeaning": "你有清楚的方法和框架，适合被别人学习，但还需要继续长出更鲜明的个人判断。",
+      "plainMeaning": "你有清楚的方法和框架，别人能学到不少；下一步是长出更鲜明的个人判断。",
       "shareLine": "我的方法已经成型，判断还在加厚。"
     },
     "high_density_human": {
-      "name": "真人核心型",
+      "name": "真人在场型",
       "shortName": "真人型",
-      "plainMeaning": "你的判断里有较多现场、取舍和责任，能被辅助，但很难完整外包。",
+      "plainMeaning": "你的判断里有现场、取舍和责任，能被辅助，但很难完整交给别人或 AI。",
       "shareLine": "这里需要真人在场。"
     },
     "grounded_experience": {
-      "name": "经验型",
+      "name": "经验压舱型",
       "shortName": "经验型",
-      "plainMeaning": "你的判断主要来自真实经历和复盘，关键是继续说明它适用在哪些条件下。",
+      "plainMeaning": "你的判断主要来自真实经历和复盘，关键是继续说明它适合哪些情况。",
       "shareLine": "我的经验不是故事，是判断材料。"
     },
     "context_reader": {
       "name": "会看场型",
       "shortName": "看场型",
-      "plainMeaning": "你比较会读场面、人和关系，但还需要把这种判断翻译成别人能执行的动作。",
+      "plainMeaning": "你比较会读场面、人和关系，但还需要把这种判断变成别人能执行的动作。",
       "shareLine": "我不只看事，也看场。"
     },
     "expressive_high": {
-      "name": "会翻译型",
-      "shortName": "会翻译型",
+      "name": "讲得明白型",
+      "shortName": "会讲型",
       "plainMeaning": "你不仅有判断，也比较能把判断讲出来、教出去、变成协作语言。",
-      "shareLine": "我能把判断翻译成人话。"
+      "shareLine": "我能把判断讲成人话。"
     },
     "expressive_low": {
-      "name": "表达堵车型",
-      "shortName": "表达堵车型",
+      "name": "表达卡壳型",
+      "shortName": "卡壳型",
       "plainMeaning": "你心里有判断，但经常卡在表达上；这更像翻译问题，不是没有判断。",
-      "shareLine": "我不是没想法，是出口有点堵。"
+      "shareLine": "我不是没想法，是表达有点卡。"
     }
   },
   "labelPriority": [
@@ -310,7 +310,7 @@
     "generative_reframer": {
       "trigger": "GEN_high + TST_mid_high + landing_countercheck_passed",
       "useWhen": "用户不仅有点子，还能把问题改准并落成方案。",
-      "avoidWhen": "GEN_high 但 BND_low 且没有落地证据时，改为生成待校准解释。",
+      "avoidWhen": "GEN 高但 BND 低、又缺少落地证据时，不直接判为改题型，需要继续确认。",
       "supportingEvidence": [
         "problem_reframed",
         "practical_rework",
@@ -325,7 +325,7 @@
     },
     "value_low_generation": {
       "trigger": "STN_high + BND_mid_high + GEN_low_mid + NOI_low",
-      "useWhen": "用户的价值来自守住后果、责任和不可轻易外包的边界，而不是大量生成新方案。",
+      "useWhen": "用户的价值来自守住后果、责任和不该轻易交给别人或 AI 的部分，而不是大量生成新方案。",
       "avoidWhen": "GEN/TST 高且能重构问题时，优先改题型；AI 工具分工更强时，优先 AI 放大型。",
       "supportingEvidence": [
         "value_signal",
@@ -373,7 +373,7 @@
     },
     "intuition_grounded": {
       "trigger": "GRD_high + EXP_mid_high + source_evidence_clear + no_stronger_specific_label",
-      "useWhen": "用户的判断能追到经历、案例、失败或长期校准，并且没有更强的改题、边界、稳场、AI 放大或经验固化证据。",
+      "useWhen": "用户的判断能追到经历、案例、失败或长期打磨，并且没有更强的改题、边界、稳场、AI 放大或经验固化证据。",
       "avoidWhen": "GEN_high、BND_high、TLB_high、CXT_high 或 update_flexibility_low 任一结构更强时，不把老练直觉当兜底。",
       "supportingEvidence": [
         "specific_experience",
@@ -462,10 +462,10 @@
   },
   "roleContext": {
     "enabled": true,
-    "principle": "职业影响的是岗位蒸馏度，不直接等同于个人含活人量。",
+    "principle": "职业影响的是岗位被流程或 AI 接手的风险，不直接等同于个人含活人量。",
     "inputMode": "optional",
-    "displayName": "岗位蒸馏度",
-    "description": "同一个人，在不同岗位上被 AI 或 Skill 替代的表面风险不同。结果页应区分“你这个人有多难蒸”和“你现在这份工作有多容易被蒸”。",
+    "displayName": "岗位影响",
+    "description": "同一个人，在不同岗位上被 AI、流程或 Skill 接手的风险不同。结果页会区分“你这个人有多难复制”和“你现在这份工作有多容易被接手”。",
     "dimensions": {
       "taskRepeatability": "任务重复度",
       "contextDependence": "情境依赖度",
@@ -497,13 +497,13 @@
         "id": "expert_accountable",
         "name": "专家责任型岗位",
         "jobDistillability": "low",
-        "note": "岗位里有大量判断、后果承担和不可轻易外包的责任。"
+        "note": "岗位里有大量判断、后果承担和不该轻易交给工具的责任。"
       }
     ],
     "resultPolicy": {
       "doNotDirectlyAddToHumanScore": true,
       "showAsSeparateLens": true,
-      "copyTemplate": "你的含活人量是个人判断结构；岗位蒸馏度是当前工作方式的外部环境。两者会互相影响，但不能混为一谈。"
+      "copyTemplate": "含活人量看的是你这个人的判断；岗位影响看的是当前工作方式被流程或 AI 接手的风险。两者有关，但不能混为一谈。"
     }
   },
   "scoringFormula": {
@@ -591,9 +591,9 @@
     "minimumDisplayedEvidenceCount": 3,
     "showStabilityLevel": true,
     "stabilityCopy": {
-      "stable": "画像比较稳，可以出锅。",
-      "light_swing": "结果大方向明确，但你的结构里有一点摇摆。",
-      "forced_at_24": "系统问满 24 题后仍保留一点疑问，所以结果会标注不确定处。"
+      "stable": "结果比较稳，可以出锅。",
+      "light_swing": "大方向明确，但还有几处需要确认。",
+      "forced_at_24": "系统问满 24 题后仍保留一点疑问，所以结果里会提醒你哪些地方可能被看偏。"
     },
     "sections": [
       "score_band",
@@ -604,7 +604,7 @@
       "countercheck_note",
       "role_context_if_available"
     ],
-    "copyPrinciple": "先给梗，再给证据；先让用户笑一下，再让用户觉得有道理。"
+    "copyPrinciple": "先让用户看懂，再让用户会心一笑；梗服务于共鸣，不替代判断依据。"
   },
   "adaptiveFlow": {
     "screeningCount": 8,
@@ -789,10 +789,10 @@
       "collaboration_easy_distill_band_share_not_over_35_percent_on_social_regression"
     ],
     "canStartAppDevelopmentNow": true,
-    "developmentScope": "V12 保持 V11 动态引擎、评测理念、评分结构和标签体系不变，只优化题目、选项和章节说明的中文表达，让真人更快理解、更容易选到符合自己的答案。"
+    "developmentScope": "V12 保持动态引擎、评测理念和评分结构不变，继续优化题目、选项、标签、段位和结果页的中文表达，让真人更快理解、更容易选到符合自己的答案。"
   },
   "designIntegrity": {
-    "construct": "含活人量衡量的是一个人的判断、经验、审美、边界和取舍被低损耗蒸馏成 Skill 的难度，不等同于人格优劣、职业贵贱或 AI 使用熟练度。",
+    "construct": "含活人量衡量的是一个人的判断、经验、审美、边界和取舍有多难被完整蒸馏成 Skill，不等同于人格优劣、职业贵贱或 AI 使用熟练度。",
     "mustNotMeasureAsMainScore": [
       "职业替代风险",
       "学历头衔",
@@ -803,16 +803,17 @@
     "validitySafeguards": [
       "高分必须有反证题",
       "老练直觉不能做复杂人格兜底",
-      "职业因素只作为岗位蒸馏度单独展示",
+      "职业因素只作为岗位影响单独展示",
       "低分文案保留尊严和成长路径",
       "结果显示百分比，但解释不宣称 1% 诊断精度"
-    ]
+    ],
+    "invariants": []
   },
   "sectionIntros": {
-    "screening": "按你平时最自然的反应选，不用猜哪个更高级。这个测试看的是你的真实工作方式。",
-    "followup": "下面换几个日常场景，看你在协作、判断、AI 和表达里的稳定习惯。",
-    "split": "这里会把几个很像的类型分开。选最像你的，不用把自己选得很完美。",
-    "countercheck": "最后确认一下：有些回答听起来成熟，但未必真的来自经验、判断和责任感。"
+    "screening": "先按第一反应选。别猜哪个更高级，这里看的是你平时真正会怎么做。",
+    "followup": "接下来换几个日常场景，看看你的判断是不是前后一致。",
+    "split": "这里会区分几个很像的类型。选最像你的那个，不用把自己选得很完美。",
+    "countercheck": "最后做一次反向确认：有些答案听起来成熟，但不一定真的来自经验和判断。"
   },
   "items": [
     {
@@ -986,7 +987,7 @@
         },
         {
           "key": "C",
-          "text": "分清他是要我补漏、让我兜底，还是在确认责任边界",
+          "text": "分清他要补漏、兜底，还是确认责任",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -1010,7 +1011,7 @@
         },
         {
           "key": "D",
-          "text": "我会默认他是想让我兜底，心里会有点警惕",
+          "text": "我会觉得他想让我兜底，心里留个神",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -1168,7 +1169,7 @@
       "options": [
         {
           "key": "A",
-          "text": "看能不能解决问题",
+          "text": "能不能解决实际问题",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -1187,7 +1188,7 @@
         },
         {
           "key": "B",
-          "text": "看有没有真实观点，而不是只是在铺结构",
+          "text": "有真实观点，还是只是在铺结构",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -1206,7 +1207,7 @@
         },
         {
           "key": "C",
-          "text": "看作者最想押哪个观点，哪些内容其实可以删",
+          "text": "作者最想押哪个观点，哪些内容可以删",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -1229,7 +1230,7 @@
         },
         {
           "key": "D",
-          "text": "看哪一段最像空话，我会想把它改实",
+          "text": "哪一段最像空话，需要改实",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -1497,7 +1498,7 @@
       "options": [
         {
           "key": "A",
-          "text": "让我做得更快、更稳",
+          "text": "做得更快、更稳",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -1523,7 +1524,7 @@
         },
         {
           "key": "B",
-          "text": "让我少踩以前踩过的坑",
+          "text": "少踩以前踩过的坑",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -1569,7 +1570,7 @@
         },
         {
           "key": "D",
-          "text": "让我能提前发现一件事开始偏离正常",
+          "text": "提前发现事情开始跑偏",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -2175,7 +2176,7 @@
       "options": [
         {
           "key": "A",
-          "text": "看能不能帮我把事情做下去",
+          "text": "能不能帮我把事情做下去",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -2192,7 +2193,7 @@
         },
         {
           "key": "B",
-          "text": "看它有没有把复杂问题讲清楚",
+          "text": "有没有把复杂问题讲清楚",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -2210,7 +2211,7 @@
         },
         {
           "key": "C",
-          "text": "看它有没有说清：为了这个选择，要放弃什么",
+          "text": "为了这个选择，必须放弃什么",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -2231,7 +2232,7 @@
         },
         {
           "key": "D",
-          "text": "看是不是只是在用专业包装一个普通结论",
+          "text": "是不是在用专业包装普通结论",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -2379,7 +2380,7 @@
         "EXP"
       ],
       "dimensionText": "第一反应筛查",
-      "question": "别人给了一个很合理的建议，但你觉得照做可能会出问题。你通常会怎么处理？",
+      "question": "别人给了一个很合理的建议，但你担心照做会出问题。你通常会怎么处理？",
       "topicTags": [
         "risk",
         "screen"
@@ -2510,7 +2511,7 @@
       "options": [
         {
           "key": "A",
-          "text": "很多日常工作可以被它稳定替代",
+          "text": "日常工作会被它稳定替代",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -2529,7 +2530,7 @@
         },
         {
           "key": "B",
-          "text": "它能替我做大部分，但关键处还要我看",
+          "text": "大部分能做，关键处还要我看",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -2548,7 +2549,7 @@
         },
         {
           "key": "C",
-          "text": "它能学会步骤，但学不会我怎么判断例外、怎么负责",
+          "text": "步骤能学会，例外和责任学不会",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -2576,7 +2577,7 @@
         },
         {
           "key": "D",
-          "text": "它大概会学到动作，但很快变成另一个人",
+          "text": "动作学得到，但很快变成另一个人",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -3835,7 +3836,7 @@
       "options": [
         {
           "key": "A",
-          "text": "看谁没有按约定交付",
+          "text": "谁没有按约定交付",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -3854,7 +3855,7 @@
         },
         {
           "key": "B",
-          "text": "看分工和接口是不是不清楚",
+          "text": "分工和接口是不是不清楚",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -3873,7 +3874,7 @@
         },
         {
           "key": "C",
-          "text": "看双方对“好结果”的理解是不是不同",
+          "text": "双方对“好结果”的理解是否不同",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -3891,7 +3892,7 @@
         },
         {
           "key": "D",
-          "text": "看他们是不是其实不信任彼此",
+          "text": "他们是不是其实不信任彼此",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -4843,7 +4844,7 @@
         },
         {
           "key": "C",
-          "text": "用案例校准，让大家知道什么算好什么算坏",
+          "text": "用案例对齐标准，让大家知道什么算好、什么算坏",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -5819,7 +5820,7 @@
         },
         {
           "key": "C",
-          "text": "把它拆成“有价值的洞察”和“不现实的包装”",
+          "text": "保留有价值的洞察，删掉不现实的包装",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -5843,7 +5844,7 @@
         },
         {
           "key": "D",
-          "text": "留下真正有价值的部分，再换一种更可做的形式",
+          "text": "留下有价值的部分，换成更可做的形式",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6435,7 +6436,7 @@
       "options": [
         {
           "key": "A",
-          "text": "看能不能形成可执行计划",
+          "text": "能不能形成可执行计划",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6454,7 +6455,7 @@
         },
         {
           "key": "B",
-          "text": "看是否解决了真实痛点",
+          "text": "是否解决了真实痛点",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6473,7 +6474,7 @@
         },
         {
           "key": "C",
-          "text": "看是否打开了原来没有的选择",
+          "text": "是否打开了原来没有的选择",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6495,7 +6496,7 @@
         },
         {
           "key": "D",
-          "text": "看能不能继续长出方案，而不是只停在一句灵感",
+          "text": "能继续长出方案，而不是只停在一句灵感",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6642,7 +6643,7 @@
       "options": [
         {
           "key": "A",
-          "text": "是否清楚、准确、没有废话",
+          "text": "清楚准确，没有废话",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6661,7 +6662,7 @@
         },
         {
           "key": "B",
-          "text": "是否让目标读者容易理解",
+          "text": "目标读者容易理解",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6680,7 +6681,7 @@
         },
         {
           "key": "C",
-          "text": "是否有明确立场和取舍",
+          "text": "有明确立场和取舍",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6707,7 +6708,7 @@
         },
         {
           "key": "D",
-          "text": "是否能让人感觉到一个真人在说话",
+          "text": "能感觉到真人在说话",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6751,7 +6752,7 @@
       "options": [
         {
           "key": "A",
-          "text": "看是否足够精致和完整",
+          "text": "足够精致和完整",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6770,7 +6771,7 @@
         },
         {
           "key": "B",
-          "text": "看是否符合场景和受众",
+          "text": "符合场景和受众",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6789,7 +6790,7 @@
         },
         {
           "key": "C",
-          "text": "看是不是有克制、有取舍，而不是堆效果",
+          "text": "有克制、有取舍，不只是堆效果",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6813,7 +6814,7 @@
         },
         {
           "key": "D",
-          "text": "看包装感有没有盖过内容本身",
+          "text": "包装感有没有盖过内容本身",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6858,7 +6859,7 @@
       "options": [
         {
           "key": "A",
-          "text": "它容易说太多正确废话",
+          "text": "太多正确废话",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6879,7 +6880,7 @@
         },
         {
           "key": "B",
-          "text": "它不太知道听的人真正需要什么",
+          "text": "不知道听的人真正需要什么",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6895,7 +6896,7 @@
         },
         {
           "key": "C",
-          "text": "它缺少判断，不知道什么该留下什么该删掉",
+          "text": "不知道该留什么、删什么",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6916,7 +6917,7 @@
         },
         {
           "key": "D",
-          "text": "它缺少具体经历和判断来源，所以不够可信",
+          "text": "缺少具体经历和判断来源",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6969,7 +6970,7 @@
       "options": [
         {
           "key": "A",
-          "text": "说哪里清楚、哪里不清楚",
+          "text": "哪里清楚、哪里不清楚",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -6988,7 +6989,7 @@
         },
         {
           "key": "B",
-          "text": "结合目标，说明哪里有效哪里无效",
+          "text": "结合目标，说明有效和无效",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -7007,7 +7008,7 @@
         },
         {
           "key": "C",
-          "text": "说出它真正的优点和最该放弃的部分",
+          "text": "真正的优点，以及最该放弃的部分",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -7025,7 +7026,7 @@
         },
         {
           "key": "D",
-          "text": "说我真实的感觉，再慢慢解释原因",
+          "text": "先讲真实感觉，再慢慢解释原因",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -7595,7 +7596,7 @@
       "options": [
         {
           "key": "A",
-          "text": "看它有没有堆太多形容词和效果",
+          "text": "堆了太多形容词和效果",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -7613,7 +7614,7 @@
         },
         {
           "key": "B",
-          "text": "看是否超过了别人真正需要的信息",
+          "text": "超过了别人真正需要的信息",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -7631,7 +7632,7 @@
         },
         {
           "key": "C",
-          "text": "看是不是在用好听的话盖住想得不够清楚",
+          "text": "用好听的话盖住想得不够清楚",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -7652,7 +7653,7 @@
         },
         {
           "key": "D",
-          "text": "看是不是把简单判断包装得过分隆重",
+          "text": "把简单判断包装得过分隆重",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -8609,7 +8610,7 @@
         },
         {
           "key": "B",
-          "text": "确认责任边界和资源是否匹配",
+          "text": "确认责任怎么分、资源够不够",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -9133,7 +9134,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你怎么知道自己的直觉不是瞎猜？",
       "topicTags": [
         "ground",
@@ -9253,7 +9254,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你复盘一次失败时，最想留下什么？",
       "topicTags": [
         "ground"
@@ -9357,7 +9358,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你学一个新方法时，什么时候才觉得它真正变成自己的？",
       "topicTags": [
         "ground"
@@ -9470,7 +9471,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "别人问你“为什么你一看就知道不对”，你会怎么回答？",
       "topicTags": [
         "ground"
@@ -9586,7 +9587,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你觉得一个人真正有经验，表现在哪里？",
       "topicTags": [
         "ground"
@@ -9686,7 +9687,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你遇到陌生问题时，会怎么调用过去经验？",
       "topicTags": [
         "ground"
@@ -9793,7 +9794,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你如何处理“以前这样做有效，现在可能不行”的情况？",
       "topicTags": [
         "ground"
@@ -9901,7 +9902,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你最信任自己的哪类判断？",
       "topicTags": [
         "ground",
@@ -9920,7 +9921,7 @@
       "options": [
         {
           "key": "A",
-          "text": "有数据支持、可以验证的判断",
+          "text": "有数据支持、可以验证",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -9938,7 +9939,7 @@
         },
         {
           "key": "B",
-          "text": "有案例支持、可以解释的判断",
+          "text": "有案例支持、能解释清楚",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -9959,7 +9960,7 @@
         },
         {
           "key": "C",
-          "text": "经过反复失败修正后的判断",
+          "text": "被失败反复修正过",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -9983,7 +9984,7 @@
         },
         {
           "key": "D",
-          "text": "一开始来自感觉，后来能被案例或信号验证的判断",
+          "text": "一开始来自感觉，后来能被信号验证",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -10021,7 +10022,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你教别人经验时，最怕他学成什么样？",
       "topicTags": [
         "ground"
@@ -10134,7 +10135,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "当别人质疑你的经验“不够科学”时，你会怎么回应？",
       "topicTags": [
         "ground"
@@ -10247,7 +10248,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你觉得“踩过坑”最应该转化成什么？",
       "topicTags": [
         "ground"
@@ -10359,7 +10360,7 @@
       "prefix": "GROUND",
       "primaryMetric": "GRD",
       "secondaryMetrics": [],
-      "dimensionText": "经验是不是真的长进身体里",
+      "dimensionText": "经验有没有真的变成判断",
       "question": "你什么时候会推翻自己过去很相信的经验？",
       "topicTags": [
         "ground"
@@ -11555,7 +11556,7 @@
         },
         {
           "key": "C",
-          "text": "拆出我真正想表达的判断结构",
+          "text": "把真正想表达的判断拆清楚",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -11664,7 +11665,7 @@
         },
         {
           "key": "C",
-          "text": "把判断条件说出来，让别人知道我为什么这么看",
+          "text": "说出判断条件，让别人知道我为什么这么看",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -11691,7 +11692,7 @@
         },
         {
           "key": "D",
-          "text": "保留复杂性，不把事情讲成过度简化的标准答案",
+          "text": "保留复杂性，不硬讲成标准答案",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -11952,7 +11953,7 @@
       "options": [
         {
           "key": "A",
-          "text": "它效率不够高或成本太高",
+          "text": "效率不高、成本太高",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -11970,7 +11971,7 @@
         },
         {
           "key": "B",
-          "text": "它不适合当前目标或人群",
+          "text": "不适合当前目标或人群",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -11989,7 +11990,7 @@
         },
         {
           "key": "C",
-          "text": "它背后的假设和现实不一致",
+          "text": "背后的假设和现实不一致",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -12012,7 +12013,7 @@
         },
         {
           "key": "D",
-          "text": "主流方法本身就容易把人弄平",
+          "text": "主流方法容易把人弄平",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -12092,7 +12093,7 @@
         },
         {
           "key": "C",
-          "text": "感觉是经验压缩后的信号，需要校准",
+          "text": "感觉往往来自经验，但也需要验证",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -12291,7 +12292,7 @@
         },
         {
           "key": "B",
-          "text": "判断，但说不清楚的人",
+          "text": "会判断，但说不清楚的人",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -12369,7 +12370,7 @@
       "prefix": "SPLIT",
       "primaryMetric": "BND",
       "secondaryMetrics": [],
-      "dimensionText": "直觉有依据，还是只是抗拒被解释",
+      "dimensionText": "直觉有依据，还是只是不想解释",
       "question": "你说“这个东西不对劲”时，通常能追到哪里？",
       "topicTags": [
         "intuition",
@@ -12477,7 +12478,7 @@
       "prefix": "SPLIT",
       "primaryMetric": "BND",
       "secondaryMetrics": [],
-      "dimensionText": "能教给别人，还是只能让别人感受",
+      "dimensionText": "能教给别人，还是只能自己会",
       "question": "别人想学习你的判断，你最能教给他什么？",
       "topicTags": [
         "split"
@@ -12580,7 +12581,7 @@
       "prefix": "SPLIT",
       "primaryMetric": "BND",
       "secondaryMetrics": [],
-      "dimensionText": "发现风险后，是换路还是只守底线",
+      "dimensionText": "发现风险后，是换路还是只喊停",
       "question": "你发现一个做法有问题后，下一步通常是什么？",
       "topicTags": [
         "split"
@@ -12799,7 +12800,7 @@
       "prefix": "SPLIT",
       "primaryMetric": "BND",
       "secondaryMetrics": [],
-      "dimensionText": "AI 是提效工具，还是开始替你判断",
+      "dimensionText": "AI 是帮手，还是开始替你拿主意",
       "question": "AI 让你效率提高后，你最担心什么？",
       "topicTags": [
         "ai_tool",
@@ -12818,7 +12819,7 @@
       "options": [
         {
           "key": "A",
-          "text": "我会担心自己不够会用，浪费工具能力",
+          "text": "工具能力被浪费，自己没用明白",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -12834,7 +12835,7 @@
         },
         {
           "key": "B",
-          "text": "我会担心交付更快但思考变浅",
+          "text": "交付变快，但思考变浅",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -12850,7 +12851,7 @@
         },
         {
           "key": "C",
-          "text": "我会担心判断也被交给别人或 AI，自己只剩确认按钮",
+          "text": "判断也交出去，自己只剩确认按钮",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -12873,7 +12874,7 @@
         },
         {
           "key": "D",
-          "text": "我会担心大家都变得很像，产出看不出真实判断",
+          "text": "大家产出都变得很像，看不出真人判断",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13224,7 +13225,7 @@
       "options": [
         {
           "key": "A",
-          "text": "它太慢或太麻烦",
+          "text": "太慢或太麻烦",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13241,7 +13242,7 @@
         },
         {
           "key": "B",
-          "text": "它不适合当前场景",
+          "text": "不适合当前场景",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13258,7 +13259,7 @@
         },
         {
           "key": "C",
-          "text": "它的假设会导致错误结果",
+          "text": "背后的假设会导致错误结果",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13311,7 +13312,7 @@
       "prefix": "SPLIT",
       "primaryMetric": "BND",
       "secondaryMetrics": [],
-      "dimensionText": "AI 离你的核心判断有多近",
+      "dimensionText": "AI 离你的关键判断有多近",
       "question": "你觉得 AI 最适合成为你的什么？",
       "topicTags": [
         "ai_tool",
@@ -13330,7 +13331,7 @@
       "options": [
         {
           "key": "A",
-          "text": "让它处理规则清楚的执行任务",
+          "text": "规则清楚的执行任务",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13346,7 +13347,7 @@
         },
         {
           "key": "B",
-          "text": "让它帮我整理信息、扩展思路",
+          "text": "整理信息、扩展思路",
           "type": "condition_clarification",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13362,7 +13363,7 @@
         },
         {
           "key": "C",
-          "text": "让它提意见，但不能替我做决定",
+          "text": "提意见可以，但不能替我做决定",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13383,7 +13384,7 @@
         },
         {
           "key": "D",
-          "text": "把它放进工具箱，重要判断还是我自己来",
+          "text": "放进工具箱，重要判断还是我自己来",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13635,7 +13636,7 @@
       "prefix": "SPLIT",
       "primaryMetric": "BND",
       "secondaryMetrics": [],
-      "dimensionText": "复杂感来自信息、人，还是经验结构",
+      "dimensionText": "你说复杂，到底复杂在哪里",
       "question": "你判断一个场景复杂时，主要靠什么？",
       "topicTags": [
         "split"
@@ -13653,7 +13654,7 @@
       "options": [
         {
           "key": "A",
-          "text": "信息量很多，变量很多",
+          "text": "信息多、变化多",
           "type": "process_execution",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13790,7 +13791,7 @@
         },
         {
           "key": "C",
-          "text": "很像，我知道自己常有判断但表达慢半拍",
+          "text": "很像，我常有判断但表达慢半拍",
           "type": "mature_judgment",
           "scoreProfile": "balanced_evidence",
           "scores": {
@@ -13815,7 +13816,7 @@
         },
         {
           "key": "D",
-          "text": "有点像，但我也担心翻译得太简单会丢掉关键复杂性",
+          "text": "有点像，但我怕讲太简单会丢掉关键复杂性",
           "type": "intuition_or_countercheck",
           "scoreProfile": "balanced_evidence",
           "scores": {
