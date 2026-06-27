@@ -475,6 +475,30 @@ function AssessmentApp({ config }) {
     document.title = flow.view === "result" ? "我的含活人量结果｜抗蒸性测试" : "抗蒸性测试";
   }, [flow.view]);
 
+  const openLabelDetail = () => {
+    if (!flow.result) return;
+    const firstDimension = flow.result?.dimensions?.[0]?.key || null;
+    setDetail({ kind: "label", result: flow.result, dimensionKey: firstDimension });
+  };
+
+  const openDimensionDetail = (dimension) => {
+    if (!flow.result) return;
+    setDetail({ kind: "dimension", result: flow.result, dimensionKey: dimension.key });
+  };
+
+  const closeDetail = () => setDetail(null);
+
+  const switchDetailMode = (kind, dimensionKey) => {
+    if (!detail || !detail.result) return;
+    setDetail((current) => current ? {
+      ...current,
+      kind,
+      dimensionKey: kind === "dimension"
+        ? dimensionKey || current.dimensionKey || current.result?.dimensions?.[0]?.key
+        : current.dimensionKey || current.result?.dimensions?.[0]?.key,
+    } : null);
+  };
+
   const content = useMemo(() => {
     if (flow.view === "theory") {
       return <TheoryPage onBack={() => flow.setView("home")} onStart={() => flow.setView("work")} />;
@@ -500,7 +524,8 @@ function AssessmentApp({ config }) {
         <ResultPage
           result={flow.result}
           onRestart={flow.restart}
-          onOpenDetail={setDetail}
+          onOpenLabel={openLabelDetail}
+          onOpenDimension={openDimensionDetail}
         />
       );
     }
@@ -521,7 +546,7 @@ function AssessmentApp({ config }) {
       {flow.view !== "home" && flow.view !== "theory" && <StepIndicator active={activeStep} />}
       <main>{content}</main>
       <FooterSignature />
-      {detail && <ResultDetailDrawer detail={detail} onClose={() => setDetail(null)} />}
+      {detail && <ResultDetailDrawer detail={detail} onClose={closeDetail} onSwitch={switchDetailMode} />}
     </div>
   );
 }
@@ -918,7 +943,7 @@ function QuestionGuideDrawer({ guide, onClose }) {
   );
 }
 
-function ResultPage({ result, onRestart, onOpenDetail }) {
+function ResultPage({ result, onRestart, onOpenLabel, onOpenDimension }) {
   const [copyState, setCopyState] = useState("idle");
   const bandBadge = assetMap.resultBands?.[result.band.name];
   const labelBadge = assetMap.labels?.[result.labelKey] || assetMap.labels?.latent_human_variable;
@@ -961,7 +986,7 @@ function ResultPage({ result, onRestart, onOpenDetail }) {
       </div>
 
       <div className={`result-grid ${showRole ? "" : "no-role"}`}>
-        <article className="result-card label-card" onClick={() => onOpenDetail(buildLabelDetail(result))}>
+        <article className="result-card label-card" onClick={onOpenLabel}>
           <h2>你的判断标签</h2>
           <AssetBadge src={labelBadge} alt={`${result.labelDetails.name}徽章`} label={result.labelDetails.name} variant="label" />
           <h3>{result.labelDetails.name}</h3>
@@ -990,7 +1015,7 @@ function ResultPage({ result, onRestart, onOpenDetail }) {
             {result.dimensions.map((dimension) => {
               const detail = DIMENSION_DETAILS[dimension.key];
               return (
-                <button key={dimension.key} type="button" onClick={() => onOpenDetail(buildDimensionDetail(dimension, result))}>
+                <button key={dimension.key} type="button" onClick={() => onOpenDimension(dimension)}>
                   <span className="dimension-icon" aria-hidden="true">
                     <DimensionVisual dimensionKey={dimension.key} />
                   </span>
@@ -1064,7 +1089,38 @@ function buildDimensionDetail(dimension, result) {
   };
 }
 
-function ResultDetailDrawer({ detail, onClose }) {
+function ResultDetailDrawer({ detail, onClose, onSwitch }) {
+  const [activeTab, setActiveTab] = useState(detail.kind === "dimension" ? "dimension" : "label");
+  const [selectedDimensionKey, setSelectedDimensionKey] = useState(detail.dimensionKey);
+  const labelDetail = useMemo(() => buildLabelDetail(detail.result), [detail.result]);
+  const dimensions = detail.result?.dimensions || [];
+  const activeDimension = dimensions.find((dimension) => dimension.key === selectedDimensionKey) || dimensions[0];
+  const dimensionDetail = activeDimension ? buildDimensionDetail(activeDimension, detail.result) : null;
+
+  useEffect(() => {
+    setActiveTab(detail.kind === "dimension" ? "dimension" : "label");
+    setSelectedDimensionKey(detail.dimensionKey || dimensions[0]?.key);
+  }, [detail.kind, detail.dimensionKey, dimensions]);
+
+  const detailContent = activeTab === "dimension" && dimensionDetail ? dimensionDetail : labelDetail;
+
+  const showDimensionTab = Boolean(detail.result?.dimensions?.length);
+
+  const switchTab = (nextTab) => {
+    if (nextTab === activeTab) return;
+    const nextDimensionKey = nextTab === "dimension"
+      ? (selectedDimensionKey || detail.dimensionKey || dimensions[0]?.key)
+      : selectedDimensionKey;
+    onSwitch(nextTab === "dimension" ? "dimension" : "label", nextDimensionKey);
+    setActiveTab(nextTab);
+  };
+
+  const switchDimension = (dimensionKey) => {
+    if (!dimensionKey || dimensionKey === selectedDimensionKey) return;
+    setSelectedDimensionKey(dimensionKey);
+    onSwitch("dimension", dimensionKey);
+  };
+
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [openSection, setOpenSection] = useState(0);
 
@@ -1078,25 +1134,43 @@ function ResultDetailDrawer({ detail, onClose }) {
 
   useEffect(() => {
     setOpenSection(0);
-  }, [detail.title]);
+  }, [detailContent.title]);
 
   return (
     <div className="detail-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
-      <aside className="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+    <aside className="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detail-title">
         <button className="detail-close" type="button" onClick={onClose} aria-label="关闭">×</button>
         <div className="detail-tabs">
-          <span className={detail.type === "判断标签" ? "active" : ""}>判断标签</span>
-          <span className={detail.type === "维度详情" ? "active" : ""}>维度详情</span>
+          <button type="button" className={`detail-tab ${activeTab === "label" ? "active" : ""}`} onClick={() => switchTab("label")}>判断标签</button>
+          {showDimensionTab && (
+            <button type="button" className={`detail-tab ${activeTab === "dimension" ? "active" : ""}`} onClick={() => switchTab("dimension")}>维度详情</button>
+          )}
         </div>
         <header>
           <div>
-            <h2 id="detail-title">{detail.title}</h2>
-            <p>{detail.subtitle}</p>
+            <h2 id="detail-title">{detailContent.title}</h2>
+            <p>{detailContent.subtitle}</p>
           </div>
-          <AssetBadge src={detail.asset} alt="" label={detail.title} variant="label" />
+          <AssetBadge src={detailContent.asset} alt="" label={detailContent.title} variant={activeTab === "dimension" ? "band" : "label"} />
         </header>
+        {activeTab === "dimension" && (
+          <div className="detail-dim-selector">
+            {dimensions.map((dimension, index) => (
+              <button
+                key={dimension.key}
+                type="button"
+                className={selectedDimensionKey === dimension.key ? "active" : ""}
+                onClick={() => switchDimension(dimension.key)}
+              >
+                <span>{index + 1}</span>
+                <strong>{dimension.name}</strong>
+                <em>{dimension.value}%</em>
+              </button>
+            ))}
+          </div>
+        )}
         <div className="detail-sections">
-          {detail.sections.map(([title, text], index) => (
+          {detailContent.sections.map(([title, text], index) => (
             isSmallScreen ? (
               <details
                 key={title}

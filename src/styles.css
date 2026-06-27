@@ -1885,13 +1885,78 @@ button {
   text-align: center;
 }
 
-.detail-tabs span {
-  padding-bottom: 12px;
+.detail-tab {
+  border: 0;
+  padding: 0 4px 12px;
+  border-bottom: 2px solid transparent;
+  color: var(--ink);
+  background: transparent;
+  font-size: 18px;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
 }
 
-.detail-tabs .active {
+.detail-tab:active {
+  transform: translateY(1px);
+}
+
+.detail-tab:disabled {
+  opacity: 0.52;
+  cursor: default;
+}
+
+.detail-tabs .detail-tab.active {
+  padding-bottom: 12px;
   color: #352974;
   border-bottom: 2px solid var(--purple);
+}
+
+.detail-dim-selector {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+
+.detail-dim-selector button {
+  display: grid;
+  grid-template-columns: 20px 1fr 46px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.82);
+  text-align: left;
+}
+
+.detail-dim-selector button span {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  background: rgba(85, 72, 145, 0.08);
+  color: #4d3c9a;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.detail-dim-selector button strong {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 16px;
+}
+
+.detail-dim-selector button em {
+  justify-self: end;
+  color: var(--ink);
+  font-style: normal;
+}
+
+.detail-dim-selector button.active {
+  border-color: var(--purple-soft);
+  background: rgba(114, 90, 209, 0.11);
 }
 
 .detail-drawer header {
