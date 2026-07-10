@@ -9,6 +9,9 @@
     "preview": "vite preview --host 127.0.0.1",
     "validate:config": "python3 scripts/validate_game_config.py config/game-config-v11.json",
     "validate:engine": "node scripts/validate_dynamic_engine.mjs",
+    "validate:copy": "node scripts/validate_copy_only_change.mjs",
+    "audit:copy": "node scripts/audit_copy_v12_1.mjs",
+    "review:copy": "node scripts/generate_copy_review_v12_1.mjs",
     "regress": "node scripts/regress_app_engine.mjs --social-only --strict --summary-only",
     "regress:semantic": "node scripts/run_semantic_persona_regression.mjs --strict --summary-only",
     "regress:semantic:x99": "node scripts/run_semantic_persona_regression.mjs --include-x99 --personas X99 --strict --summary-only",
@@ -20,6 +23,7 @@
     "test:simulator:coverage": "node tests/simulator/dynamic-coverage-runner.mjs --rounds 20 --summary-only",
     "test:simulator:app": "playwright test tests/simulator/app-runner.spec.mjs",
     "test:app:unit": "node --test tests/app/*.test.mjs",
+    "test:copy:visual": "node scripts/visual_copy_qa.mjs",
     "test:simulator:psychometric": "node tests/simulator/psychometric-quality-runner.mjs --summary-only",
     "test:simulator:llm-review": "node tests/simulator/llm-review.mjs"
   },

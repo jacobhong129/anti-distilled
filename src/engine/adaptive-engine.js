@@ -177,7 +177,7 @@ export class AdaptiveAssessment {
       percent: clamp((answered / target) * 100, 8, 100),
       stage: this.state.currentStage,
       label: this.stageLabel(),
-      intro: this.sectionIntros[this.state.currentStage] || "系统会根据前面的回答继续确认关键判断。",
+      intro: this.sectionIntros[this.state.currentStage] || "会顺着前面的答案，继续问还没看清的地方。",
     };
   }
 
@@ -1898,11 +1898,11 @@ export class AdaptiveAssessment {
 
   stageLabel() {
     const answered = this.state.answers.length;
-    if (answered < this.flow.screeningCount) return `初筛中 ${answered + 1}/${this.flow.screeningCount}`;
-    if (this.state.currentStage === "split") return "正在确认关键分叉";
-    if (this.state.currentStage === "countercheck") return "正在反向确认";
-    if (answered >= this.flow.minimumQuestions) return "接近完成";
-    return "正在追问";
+    if (answered < this.flow.screeningCount) return `先凭直觉答 ${answered + 1}/${this.flow.screeningCount}`;
+    if (this.state.currentStage === "split") return "再分清几种相近反应";
+    if (this.state.currentStage === "countercheck") return "换个方向确认一次";
+    if (answered >= this.flow.minimumQuestions) return "快问完了";
+    return "顺着你的答案继续问";
   }
 
   result() {
@@ -1917,8 +1917,12 @@ export class AdaptiveAssessment {
     const labelDetails = this.config.labelDetails?.[labelKey] || {
       name: this.config.labels?.[labelKey] || "待开机型",
       shortName: "待机型",
-      plainMeaning: "你的个人判断还在形成更稳定的结构。",
-      shareLine: "我的含活人量还在加载中。",
+      plainMeaning: "你的个人判断还在慢慢成形，这次没有急着露出一个特别鲜明的方向。",
+      shareLine: "我的人味没消失，只是还在慢慢开机。",
+      resonance: "你能把事情做下去，但问到为什么这样选时，自己的取舍还不总是站到台前。",
+      misunderstanding: "待开机不等于没有想法，只是这次答案里还看不出一条稳定的个人路线。",
+      growthNudge: "从一个最熟的任务开始，记下你临时改动的地方和原因。判断常常藏在这些小偏离里。",
+      playfulAside: "系统没有坏，个性化插件还在后台加载。",
     };
 
     return {
@@ -2847,7 +2851,10 @@ export class AdaptiveAssessment {
     return (
       (this.config.resultBands || []).find((band) => score >= band.min && score <= band.max) || {
         name: "结构生成中",
-        line: "系统已经看到一些信号，但还需要更多题目确认。",
+        line: "已经看见一点方向，再多几道题会更稳。",
+        summary: "已经看见一点方向，再多几道题会更稳。",
+        playfulAside: "锅已经热了，菜还差最后两下。",
+        growthNudge: "继续按真实反应选择，不用为了得到某个结果调整答案。",
       }
     );
   }
@@ -2865,20 +2872,20 @@ export class AdaptiveAssessment {
   roleResult() {
     const context = this.state.roleContext || {};
     if (context.skipped) {
-      return "你跳过了工作场景补充，因此本次只展示个人含活人量，不做岗位影响分析。";
+      return "你跳过了工作场景，所以这次只聊你的判断，不替你的岗位做猜测。";
     }
     const values = Object.entries(context)
       .filter(([key, value]) => key !== "skipped" && Boolean(value))
       .map(([, value]) => value);
     if (!values.length) {
-      return "你没有填写工作方式信息，因此这里不做岗位影响分析。个人分数仍然按答题表现计算。";
+      return "你没有填写工作场景，所以这里不做岗位影响分析；含活人量仍然只按答题表现计算。";
     }
 
     const low = ["direction", "guarded", "taste", "trust"].filter((value) => values.includes(value)).length;
     const high = ["routine", "standard", "efficiency"].filter((value) => values.includes(value)).length;
-    if (low >= 2) return "你的岗位里有较多方向、信任、品味或责任压力，不太适合被流程或 AI 完整接手；AI 更像放大器，而不是替身。";
-    if (high >= 2) return "你的岗位里有不少表层任务可以流程化；这不代表你本人低分，而是提醒你把例外判断和边界能力说清楚。";
-    return "你的岗位影响中等：一部分工作可以交给工具，但关键场景仍需要人判断能不能用、该不该用。";
+    if (low >= 2) return "岗位接手风险偏低：方向、信任、审美或责任占了不少分量。AI 很适合当放大器，暂时还不太适合独自值班。";
+    if (high >= 2) return "岗位接手风险偏高：不少表层任务已经能写进流程。这不替你本人扣分，只提醒你把例外和边界说得更清楚。";
+    return "岗位接手风险中等：一部分工作可以放心交给工具，碰到关键场景，仍然要有人判断能不能用、该不该用。";
   }
 }
 

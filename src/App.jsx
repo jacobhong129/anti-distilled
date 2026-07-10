@@ -162,9 +162,9 @@ function AppStatus({ error, loading, onRetry }) {
       <main>
         <section className="app-status page-frame" role={error ? "alert" : "status"} aria-live="polite">
           <BrandFlaskMark className="brand-mark status-brand-mark" />
-          <h1>{error ? "页面没有加载完整" : "正在准备测试"}</h1>
-          <p>{error ? "题目配置暂时没有载入。可以直接重试，不会清除已经保存的答题进度。" : "题目和评测引擎正在载入。"}</p>
-          {error && <button className="primary-button" type="button" onClick={onRetry} disabled={loading}>{loading ? "正在重试" : "重新载入"}</button>}
+          <h1>{error ? "题目没能顺利载入" : "正在把题目摆好"}</h1>
+          <p>{error ? "先别急，已经答过的内容还在。点一下重试，我们从刚才的地方继续。" : "很快就好，顺便给每道题找好位置。"}</p>
+          {error && <button className="primary-button" type="button" onClick={onRetry} disabled={loading}>{loading ? "再试一次中…" : "再试一次"}</button>}
         </section>
       </main>
       <FooterSignature />
@@ -188,25 +188,25 @@ function SmokeBackdrop({ view, score }) {
 function BrandHeader({ view, menuOpen, onToggleMenu, onHome, onLearn, onStart }) {
   return (
     <header className="brand-header">
-      <button className="brand-lockup" onClick={onHome} type="button" aria-label="返回首页">
+      <button className="brand-lockup" onClick={onHome} type="button" aria-label="回到抗蒸性测试首页">
         <BrandFlaskMark />
         <span>
           <strong>抗蒸性测试</strong>
           <small>测测你的含活人量</small>
         </span>
       </button>
-      <nav id="primary-navigation" className={menuOpen ? "is-open" : ""} aria-label="主要导航">
+      <nav id="primary-navigation" className={menuOpen ? "is-open" : ""} aria-label="页面导航">
         <button type="button" onClick={onLearn}>什么是抗蒸性？</button>
         <button type="button" onClick={onStart}>开始测试</button>
       </nav>
-      <button className="mobile-menu-button" type="button" aria-label={menuOpen ? "关闭导航" : "打开导航"} aria-controls="primary-navigation" aria-expanded={menuOpen} onClick={onToggleMenu}>
+      <button className="mobile-menu-button" type="button" aria-label={menuOpen ? "收起页面导航" : "展开页面导航"} aria-controls="primary-navigation" aria-expanded={menuOpen} onClick={onToggleMenu}>
         <span />
         <span />
         <span />
       </button>
       {view === "result" && (
         <button className="header-share" type="button" onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })}>
-          分享结果
+          去分享
         </button>
       )}
     </header>
@@ -216,7 +216,7 @@ function BrandHeader({ view, menuOpen, onToggleMenu, onHome, onLearn, onStart })
 function StepIndicator({ active }) {
   const steps = ["开始", "工作场景", "动态测试", "结果"];
   return (
-    <ol className="step-indicator" aria-label="测试流程">
+    <ol className="step-indicator" aria-label="当前测试步骤">
       {steps.map((step, index) => (
         <li key={step} className={index < active ? "done" : index === active ? "current" : ""} aria-current={index === active ? "step" : undefined}>
           <span aria-hidden="true">{index < active ? "✓" : index + 1}</span>
@@ -233,25 +233,25 @@ function HomePage({ onStart, onLearn }) {
       <div className="hero-copy">
         <h1><span>测测你的</span><span>抗蒸性</span></h1>
         <div className="title-rule" aria-hidden="true" />
-        <p>看看你的判断、经验、审美和取舍，有多难被蒸馏成一套工作流、一个插件，或一个同事 Skill。</p>
+        <p>如果把你的工作方式交给 AI、流程或一个同事 Skill，哪些能学走，哪些还得你本人在场？</p>
         <div className="hero-actions">
           <button className="primary-button" type="button" onClick={onStart}>开始测试 <span>→</span></button>
           <button className="text-button" type="button" onClick={onLearn}>什么是抗蒸性？ <span>›</span></button>
         </div>
       </div>
 
-      <figure className="distillation-art" aria-label="人的想法经过蒸馏形成工作流、插件、Skill 和提示词">
+      <figure className="distillation-art" aria-label="人的判断和经验被整理成工作流、插件、Skill 与提示词">
         <picture>
           <source media="(max-width: 820px)" srcSet={publicAsset(assetMap.global.homeDistillationMobile)} />
-          <img src={publicAsset(assetMap.global.homeDistillationDesktop)} alt="人的想法经过蒸馏过程转化为工作流、插件、Skill 和提示词" fetchPriority="high" decoding="async" />
+          <img src={publicAsset(assetMap.global.homeDistillationDesktop)} alt="人的判断和经验经过整理，成为工作流、插件、Skill 与提示词" fetchPriority="high" decoding="async" />
         </picture>
       </figure>
 
       <div className="meaning-callout">
         <span className="seal-icon"><img src={publicAsset(assetMap.global.sparkleSeal)} alt="" /></span>
         <div>
-          <h2>含活人量，越高越难蒸馏</h2>
-          <p>我们关心的不是你会不会被替代，而是你身上那些很难完整复制的人味。</p>
+          <h2>含活人量越高，越不能只抄作业</h2>
+          <p>这不是“会不会被替代”的预言。我们想看的，是你的判断里还有多少现场、分寸和亲身经验。</p>
         </div>
         <span className="human-stamp" aria-label="人味难蒸"><span>人味</span><span>难蒸</span></span>
       </div>
@@ -264,33 +264,33 @@ function TheoryPage({ onBack, onStart }) {
     <section className="theory-page page-frame compact-frame">
       <div className="theory-heading">
         <h1>什么是抗蒸性</h1>
-        <p>人在 AI 时代，哪些部分很难被完整复制</p>
+        <p>有些方法能写进文档，有些判断必须人在现场</p>
         <div className="title-rule" aria-hidden="true" />
       </div>
 
-      <figure className="theory-flow-art" aria-label="复杂的人类判断经过蒸馏后形成工作流、插件、Skill 与提示词">
-        <img src={publicAsset(assetMap.global.homeDistillationDesktop)} alt="人的想法经过蒸馏过程转化为工作流、插件、Skill 和提示词" loading="lazy" decoding="async" />
+      <figure className="theory-flow-art" aria-label="人的判断和经验被整理成工作流、插件、Skill 与提示词">
+        <img src={publicAsset(assetMap.global.homeDistillationDesktop)} alt="人的判断和经验经过整理，成为工作流、插件、Skill 与提示词" loading="lazy" decoding="async" />
       </figure>
 
       <div className="theory-grid top">
         <article className="theory-card">
-          <h2>1. 概念定义：从人到 Skill，会丢掉什么</h2>
-          <p>所谓“蒸馏”，是把复杂的人类工作过程提炼为可复用、可自动化的规则、流程、提示词或插件，使其能被机器或他人以更低成本复制。</p>
-          <p>抗蒸性，是指在这个过程中仍然留在你身上的关键判断、审美取舍、责任承担和现场理解。</p>
+          <h2>1. 把你的方法交出去，会漏掉什么</h2>
+          <p>把一件事整理成规则、流程、提示词或插件，别人和机器就能更省力地照着做。这里把这个过程叫作“蒸馏”。</p>
+          <p>总有一些东西不肯乖乖进文档：临场判断、审美取舍、对后果的担当，还有只有你注意到的细节。它们就是抗蒸性。</p>
         </article>
         <article className="theory-card model-card">
-          <h2>2. 抗蒸性三层模型</h2>
+          <h2>2. 三层都在做事，难复制的程度不同</h2>
           <div className="layer-model">
-            <div><strong>责任层</strong><span>为结果负责</span></div>
-            <div><strong>判断层</strong><span>做出更优取舍</span></div>
-            <div><strong>行为层</strong><span>执行与产出</span></div>
+            <div><strong>责任层</strong><span>愿意为后果签字</span></div>
+            <div><strong>判断层</strong><span>知道该留什么、舍什么</span></div>
+            <div><strong>行为层</strong><span>把事情做出来</span></div>
           </div>
-          <p>越靠上的层越难被完整复制。AI 能生成内容，但不天然承担后果；流程能提高稳定性，但不会自动理解边界。</p>
+          <p>越往上，越难完整复制。AI 可以交稿，流程可以保稳，但后果落到谁身上、这次该不该破例，仍然要有人判断。</p>
         </article>
       </div>
 
       <section className="dimension-grid">
-        <h2>3. 六个观察维度</h2>
+        <h2>3. 我们会从六个角度看</h2>
         <div>
           {Object.entries(DIMENSION_DETAILS).map(([key, item]) => (
             <article key={key}>
@@ -306,26 +306,26 @@ function TheoryPage({ onBack, onStart }) {
 
       <div className="theory-grid bottom">
         <article className="theory-card">
-          <h2>4. 为什么它重要</h2>
+          <h2>4. 为什么值得测一测</h2>
           <ul>
-            <li>AI 能复制输出形式，但未必理解情境、责任和后果。</li>
-            <li>决定质量差异的，往往是无法被规则穷尽的判断与品味。</li>
-            <li>抗蒸性越高，越能把 AI 变成放大器，而不是自己的替身。</li>
+            <li>AI 很会学输出的样子，却不一定知道此时此地为什么要这么做。</li>
+            <li>真正拉开质量差距的，常常是那几次没照模板走的判断。</li>
+            <li>知道哪些能交给 AI，才更容易把它用成帮手，而不是方向盘。</li>
           </ul>
         </article>
         <article className="theory-card">
-          <h2>5. 如何理解自己的抗蒸性</h2>
+          <h2>5. 看结果时，抓住这三件事</h2>
           <ul>
-            <li>看经验来源：你的判断是来自真实经历，还是来自听起来合理的模板。</li>
-            <li>看边界意识：你是否知道一个方法什么时候不适用。</li>
-            <li>看取舍能力：你是否能说明为什么保留这个、放弃那个。</li>
+            <li>你的判断从哪儿来：亲手做过、踩过坑，还是只听起来很有道理。</li>
+            <li>你知不知道什么时候该停：好方法也有不适用的那一天。</li>
+            <li>你能不能说清取舍：留下什么、放下什么，以及为什么。</li>
           </ul>
         </article>
       </div>
 
       <div className="theory-note">
         <span>i</span>
-        <p>说明：本测试是一个自我理解工具，用来讨论你在 AI 时代的判断方式，不用于招聘、医疗或人格定论。</p>
+        <p>这是一面自我观察的小镜子，不是招聘筛子、医疗判断，也不会替你给人格下结论。</p>
       </div>
 
       <div className="theory-actions">
@@ -356,9 +356,9 @@ function WorkContextPage({ onSubmit, onSkip }) {
   return (
     <section className="work-page page-frame compact-frame">
       <div className="work-heading">
-        <h1>要不要先补充你的工作场景？</h1>
+        <h1>先说说你平时在做什么？</h1>
         <div className="title-rule" aria-hidden="true" />
-        <p>这部分不会直接改变你的含活人量，只帮助结果页区分：是你本人很难复制，还是这份工作本身更容易被流程或 AI 接手。</p>
+        <p>选填，不会给含活人量加分或扣分。它只帮你分清：难复制的是你的判断，还是岗位本身暂时不容易交给流程和 AI。</p>
       </div>
 
       <form
@@ -400,15 +400,15 @@ function WorkContextPage({ onSubmit, onSkip }) {
         ))}
       </form>
 
-      {needsAnswer && <p ref={errorRef} id="work-form-error" className="form-error" role="alert" tabIndex="-1">至少选择一项，或直接跳过这一步。</p>}
+      {needsAnswer && <p ref={errorRef} id="work-form-error" className="form-error" role="alert" tabIndex="-1">还没有选择。你可以答一项，也可以直接跳过。</p>}
       <div className="work-submit-panel">
         <div className="work-actions">
-          <button className="primary-button" type="submit" form="work-context-form">提交，开始测试</button>
-          <button className="secondary-button" type="button" onClick={onSkip}>跳过，直接测试</button>
+          <button className="primary-button" type="submit" form="work-context-form">选好了，开始测试</button>
+          <button className="secondary-button" type="button" onClick={onSkip}>先跳过</button>
         </div>
         <div className="skip-note">
           <span aria-hidden="true">ⓘ</span>
-          <p>跳过后仍可得到含活人量；结果页只是不显示岗位影响分析。</p>
+          <p>跳过不影响测试，只是结果页少一栏工作场景解读。</p>
         </div>
       </div>
     </section>
@@ -484,11 +484,11 @@ function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrev
           <span><strong>抗蒸性测试</strong><small>测测你的含活人量</small></span>
         </div>
         <nav>
-          <button className="active" type="button" aria-current="page">正在测试</button>
-          <button type="button" onClick={() => setGuide("instructions")}>测试说明</button>
+          <button className="active" type="button" aria-current="page">答题中</button>
+          <button type="button" onClick={() => setGuide("instructions")}>怎么答更准</button>
           <button type="button" onClick={() => setGuide("theory")}>什么是抗蒸性</button>
         </nav>
-        <button type="button" onClick={onRestart}>退出后可重新开始</button>
+        <button type="button" onClick={onRestart}>退出并重新开始</button>
       </aside>
 
       <div className="question-panel">
@@ -502,7 +502,7 @@ function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrev
             <div
               className="dot-progress"
               role="progressbar"
-              aria-label="答题进度"
+              aria-label="当前答题进度"
               aria-valuemin="0"
               aria-valuemax={totalDots}
               aria-valuenow={progress.answered}
@@ -536,12 +536,12 @@ function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrev
 
           <div className="question-actions">
             <button className="secondary-button" type="button" onClick={onPrevious} disabled={!history.length}>← 上一题</button>
-            <p>没有绝对正确的答案，选最接近你的那一个。</p>
+            <p>不用选“最正确”的，选你真的会做的。</p>
           </div>
         </article>
 
         <div className="smoke-density">
-          <span>答题进度</span>
+          <span>已经答到</span>
           <div><i style={{ width: `${progress.percent}%` }} /></div>
           <strong>{progress.answered} 题</strong>
         </div>
@@ -557,7 +557,7 @@ function QuestionGuideDrawer({ guide, onClose }) {
   return (
     <div className="question-guide-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
       <aside ref={dialogRef} className="question-guide-drawer" role="dialog" aria-modal="true" aria-labelledby="question-guide-title" tabIndex="-1">
-        <button className="detail-close" type="button" onClick={onClose} aria-label="关闭" data-dialog-initial-focus>×</button>
+        <button className="detail-close" type="button" onClick={onClose} aria-label="关闭答题说明" data-dialog-initial-focus>×</button>
         <header>
           <h2 id="question-guide-title">{guide.title}</h2>
           <p>{guide.subtitle}</p>
@@ -570,7 +570,7 @@ function QuestionGuideDrawer({ guide, onClose }) {
             </section>
           ))}
         </div>
-        <button className="primary-button soft" type="button" onClick={onClose}>继续答题</button>
+        <button className="primary-button soft" type="button" onClick={onClose}>明白了，继续答</button>
       </aside>
     </div>
   );
@@ -599,13 +599,13 @@ function ResultPage({ result, onRestart, onOpenLabel, onOpenDimension }) {
       <div className="result-hero">
         <img className="score-smoke" src={publicAsset(resultSmokePath(result.score))} alt="" aria-hidden="true" />
         <div className="score-block">
-          <span>测试完成</span>
+          <span>答完了，来看看</span>
           <h1>你的含活人量</h1>
           <div className="score-number"><strong>{result.score}</strong><em>%</em></div>
-          <p>{scoreHelpText(result.score)}</p>
+          <p>{scoreHelpText(result)}</p>
         </div>
         <div className="band-block">
-          <span>你的段位是</span>
+          <span>这次落在</span>
           <div>
             <AssetBadge src={bandBadge} alt={`${result.band.name}徽章`} label={result.band.name} variant="band" />
             <h2>{result.band.name}</h2>
@@ -613,37 +613,37 @@ function ResultPage({ result, onRestart, onOpenLabel, onOpenDimension }) {
           <p>{bandRoastText(result)}</p>
         </div>
         <div className="result-actions">
-          <button className="secondary-button" type="button" onClick={onRestart}>再测一次</button>
-          <button className="primary-button dark" type="button" onClick={copyShare} aria-live="polite">{copyState === "done" ? "已复制" : copyState === "failed" ? "复制失败" : "分享结果"}</button>
+          <button className="secondary-button" type="button" onClick={onRestart}>换个状态再测</button>
+          <button className="primary-button dark" type="button" onClick={copyShare} aria-live="polite">{copyState === "done" ? "文案已复制" : copyState === "failed" ? "没复制上，再点一次" : "复制结果去分享"}</button>
         </div>
       </div>
 
       <div className={`result-grid ${showRole ? "" : "no-role"}`}>
         <article className="result-card label-card">
-          <h2>你的判断标签</h2>
+          <h2>最像你的判断标签</h2>
           <AssetBadge src={labelBadge} alt={`${result.labelDetails.name}徽章`} label={result.labelDetails.name} variant="label" />
           <h3>{result.labelDetails.name}</h3>
           <p>{result.labelDetails.plainMeaning}</p>
-          <button type="button" onClick={onOpenLabel}>查看标签详情 ›</button>
+          <button type="button" onClick={onOpenLabel}>看看为什么像你 ›</button>
         </article>
 
         <article className="result-card share-card">
-          <h2>一句话分享</h2>
+          <h2>一句话带走</h2>
           <blockquote>{result.labelDetails.shareLine || result.band.line}</blockquote>
           <p>#我的含活人量{result.score}% #{result.band.name}</p>
-          <button className="secondary-button" type="button" onClick={copyShare}>复制分享文案</button>
+          <button className="secondary-button" type="button" onClick={copyShare}>复制这一段</button>
         </article>
 
         {showRole && (
           <article className="result-card role-card">
-            <h2>岗位影响</h2>
+            <h2>放进你的工作里看</h2>
             <strong>{roleText.includes("偏低") ? "中等偏低" : roleText.includes("偏高") ? "高" : "中等"}</strong>
             <p>{roleText}</p>
           </article>
         )}
 
         <article className="result-card dimension-card">
-          <h2>六大维度表现</h2>
+          <h2>六个判断侧面</h2>
           <div className="dimension-bars">
             {result.dimensions.map((dimension) => {
               const detail = DIMENSION_DETAILS[dimension.key];
@@ -662,12 +662,12 @@ function ResultPage({ result, onRestart, onOpenLabel, onOpenDimension }) {
         </article>
 
         <article className="result-card evidence-card">
-          <h2>这次结果提醒你想什么？</h2>
+          <h2>看完先别急着给自己定型</h2>
           <ul>
-            <li>含活人量不是好坏评判，而是在看你的判断里有多少情境、边界、经验和取舍。</li>
-            <li>判断标签不是人格定型，只是这次答题里最突出的判断线索。</li>
-            <li>六个维度不是训练清单，而是六个反问角度：我看见了什么、舍弃了什么、承担了什么。</li>
-            <li>点击标签或维度，可以继续理解这个结果为什么成立，以及哪些地方可能被看偏。</li>
+            <li>{result.band.growthNudge}</li>
+            <li>标签只是在复述你这次最明显的判断习惯，不是给人格贴永久标签。</li>
+            <li>六个维度也不是待办清单。挑一个最有感觉的看看，就已经够用了。</li>
+            <li>如果某句话让你想反驳，别急着划走：那份“不像我”本身也是一条线索。</li>
           </ul>
         </article>
       </div>
@@ -681,10 +681,10 @@ function SharePanel({ result, onCopy, state }) {
   return (
     <aside className="share-panel">
       <div>
-        <strong>小贴士</strong>
-        <p>含活人量更像一面镜子：它不告诉你该做什么，而是提醒你在 AI 越来越会执行之后，哪些判断还要留在自己手里。</p>
+        <strong>临走前一句</strong>
+        <p>AI 越会干活，越值得想清楚方向盘放在哪儿。把重复劳动交出去没关系，别顺手把判断也一起打包。</p>
       </div>
-      <button className="text-button" type="button" onClick={onCopy} aria-live="polite">{state === "done" ? "已复制分享文案" : "复制结果文案"} <span>›</span></button>
+      <button className="text-button" type="button" onClick={onCopy} aria-live="polite">{state === "done" ? "已经复制好了" : "复制结果文案"} <span>›</span></button>
     </aside>
   );
 }
@@ -740,7 +740,7 @@ function ResultDetailDrawer({ detail, onClose, onSwitch }) {
   return (
     <div className="detail-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
       <aside ref={dialogRef} className="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detail-title" tabIndex="-1">
-        <button className="detail-close" type="button" onClick={onClose} aria-label="关闭" data-dialog-initial-focus>×</button>
+        <button className="detail-close" type="button" onClick={onClose} aria-label="关闭结果详情" data-dialog-initial-focus>×</button>
         <div className="detail-tabs">
           <button type="button" className={`detail-tab ${activeTab === "label" ? "active" : ""}`} onClick={() => switchTab("label")}>判断标签</button>
           {showDimensionTab && (
@@ -789,7 +789,7 @@ function ResultDetailDrawer({ detail, onClose, onSwitch }) {
             )
           ))}
         </div>
-        <button className="primary-button soft" type="button" onClick={onClose}>看完了</button>
+        <button className="primary-button soft" type="button" onClick={onClose}>看明白了</button>
       </aside>
     </div>
   );

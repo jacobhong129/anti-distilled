@@ -1,0 +1,7092 @@
+{
+  "version": "12.1",
+  "baselineRef": "ae304c2",
+  "generatedAt": "2026-07-10T14:18:03.880Z",
+  "scope": {
+    "questionsReviewed": 120,
+    "optionsReviewed": 480,
+    "metadataProtected": true
+  },
+  "items": [
+    {
+      "id": "SCREEN_01",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "你写一份工作方法文档时，通常会写到哪一步？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把步骤写清楚，让别人照着做"
+          },
+          {
+            "key": "B",
+            "text": "加上注意事项，提醒别人少踩坑"
+          },
+          {
+            "key": "C",
+            "text": "写出依据，说明什么时候该变通"
+          },
+          {
+            "key": "D",
+            "text": "写到一半会卡住，因为很多判断靠现场感觉"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "写一份工作方法文档时，你会写到哪一步？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把步骤写清楚，让别人照着做"
+          },
+          {
+            "key": "B",
+            "text": "加上注意事项，提醒别人少踩坑"
+          },
+          {
+            "key": "C",
+            "text": "写出依据，说明什么时候该变通"
+          },
+          {
+            "key": "D",
+            "text": "写到一半会卡住，因为很多判断靠现场感觉"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_02",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "别人发来一句“你方便再看看吗”，你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "帮他重新看一遍，把事推进"
+          },
+          {
+            "key": "B",
+            "text": "问他最担心哪里，避免大家来回返工"
+          },
+          {
+            "key": "C",
+            "text": "分清他要补漏、兜底，还是确认责任"
+          },
+          {
+            "key": "D",
+            "text": "我会觉得他想让我兜底，心里留个神"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "别人发来“你方便再看看吗”，你会怎么接？",
+        "options": [
+          {
+            "key": "A",
+            "text": "再帮他看一遍，把事情往前推"
+          },
+          {
+            "key": "B",
+            "text": "问他最担心哪里，免得来回返工"
+          },
+          {
+            "key": "C",
+            "text": "分清他是要补漏、兜底，还是确认责任"
+          },
+          {
+            "key": "D",
+            "text": "觉得他可能想让我兜底，先留个神"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "SCREEN_03",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "模板答案和你的直觉冲突时，你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按模板来，至少不容易出大错"
+          },
+          {
+            "key": "B",
+            "text": "检查自己的直觉有没有具体证据"
+          },
+          {
+            "key": "C",
+            "text": "拿一个小例子试一下，看模板在哪种情况会失效"
+          },
+          {
+            "key": "D",
+            "text": "我会怀疑这个模板不适合当前情况"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "模板答案和你的直觉冲突时，你会怎么选？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按模板来，至少不容易出大错"
+          },
+          {
+            "key": "B",
+            "text": "检查自己的直觉有没有具体证据"
+          },
+          {
+            "key": "C",
+            "text": "拿一个小例子试一下，看模板在哪种情况会失效"
+          },
+          {
+            "key": "D",
+            "text": "我会怀疑这个模板不适合当前情况"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_04",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "看到一篇结构完整、但很像 AI 写的文章，你最容易注意到什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能不能解决实际问题"
+          },
+          {
+            "key": "B",
+            "text": "有真实观点，还是只是在铺结构"
+          },
+          {
+            "key": "C",
+            "text": "作者最想押哪个观点，哪些内容可以删"
+          },
+          {
+            "key": "D",
+            "text": "哪一段最像空话，需要改实"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "一篇文章结构完整却很像 AI 写的，你先注意什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "先看它能不能解决实际问题"
+          },
+          {
+            "key": "B",
+            "text": "看它有真观点，还是只在铺结构"
+          },
+          {
+            "key": "C",
+            "text": "找出作者真正押的观点，再看哪些能删"
+          },
+          {
+            "key": "D",
+            "text": "先揪出最像空话的那段，把它改实"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "SCREEN_05",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "接到“做高级点”这种需求，你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找几个参考，搭一个看起来像样的版本"
+          },
+          {
+            "key": "B",
+            "text": "问清楚这东西给谁看、要解决什么问题"
+          },
+          {
+            "key": "C",
+            "text": "把“高级”重写成几个具体判断标准"
+          },
+          {
+            "key": "D",
+            "text": "做一个样本，让大家对着样本说感觉"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "接到“做高级点”这种需求，你从哪儿下手？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找几个参考，搭一个看起来像样的版本"
+          },
+          {
+            "key": "B",
+            "text": "问清楚这东西给谁看、要解决什么问题"
+          },
+          {
+            "key": "C",
+            "text": "把“高级”重写成几个具体判断标准"
+          },
+          {
+            "key": "D",
+            "text": "做一个样本，让大家对着样本说感觉"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_06",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "当目标和你在意的原则冲突时，你更可能怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "完成目标，原则问题之后再说"
+          },
+          {
+            "key": "B",
+            "text": "找一个折中方案，尽量两边都不伤"
+          },
+          {
+            "key": "C",
+            "text": "说清楚真正冲突和可能代价，再给替代做法"
+          },
+          {
+            "key": "D",
+            "text": "我宁愿慢一点，也不想用自己不认可的方式做成"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "目标撞上你在意的原则时，你会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "完成目标，原则问题之后再说"
+          },
+          {
+            "key": "B",
+            "text": "找一个折中方案，尽量两边都不伤"
+          },
+          {
+            "key": "C",
+            "text": "说清楚真正冲突和可能代价，再给替代做法"
+          },
+          {
+            "key": "D",
+            "text": "我宁愿慢一点，也不想用自己不认可的方式做成"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_07",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "你觉得经验最有价值的地方是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "做得更快、更稳"
+          },
+          {
+            "key": "B",
+            "text": "少踩以前踩过的坑"
+          },
+          {
+            "key": "C",
+            "text": "有些坑能换来经验，有些坑只是白白付代价"
+          },
+          {
+            "key": "D",
+            "text": "提前发现事情开始跑偏"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "对你来说，经验最值钱的地方是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "让我做得更快、更稳"
+          },
+          {
+            "key": "B",
+            "text": "让我少踩以前踩过的坑"
+          },
+          {
+            "key": "C",
+            "text": "让我分清哪些坑能换来经验，哪些只是白付代价"
+          },
+          {
+            "key": "D",
+            "text": "让我更早发现事情开始跑偏"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "SCREEN_08",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "你现在最希望 AI 帮你承担哪一部分？",
+        "options": [
+          {
+            "key": "A",
+            "text": "重复、整理、初稿这些可以标准化的活"
+          },
+          {
+            "key": "B",
+            "text": "信息处理和方案扩展，让我有更多选择"
+          },
+          {
+            "key": "C",
+            "text": "低风险部分可以交给它，关键判断我自己留着"
+          },
+          {
+            "key": "D",
+            "text": "它可以帮我想，但不要替我决定什么重要"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "你现在最想把哪部分工作交给 AI？",
+        "options": [
+          {
+            "key": "A",
+            "text": "重复、整理、初稿这些可以标准化的活"
+          },
+          {
+            "key": "B",
+            "text": "信息处理和方案扩展，让我有更多选择"
+          },
+          {
+            "key": "C",
+            "text": "低风险部分可以交给它，关键判断我自己留着"
+          },
+          {
+            "key": "D",
+            "text": "它可以帮我想，但不要替我决定什么重要"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_09",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "别人让你讲讲“你为什么这么判断”，你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "讲出几个固定规则，让别人更容易复用"
+          },
+          {
+            "key": "B",
+            "text": "结合案例说清楚自己怎么想的"
+          },
+          {
+            "key": "C",
+            "text": "讲出判断背后的条件、边界和例外"
+          },
+          {
+            "key": "D",
+            "text": "说“我就是感觉不对”，但一时不一定讲得清"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "别人追问“你为什么这么判断”，你会怎么讲？",
+        "options": [
+          {
+            "key": "A",
+            "text": "讲出几个固定规则，让别人更容易复用"
+          },
+          {
+            "key": "B",
+            "text": "结合案例说清楚自己怎么想的"
+          },
+          {
+            "key": "C",
+            "text": "讲出判断背后的条件、边界和例外"
+          },
+          {
+            "key": "D",
+            "text": "说“我就是感觉不对”，但一时不一定讲得清"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_10",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "AI 给了你一个看起来很完整的方案，你第一反应更像哪一种？",
+        "options": [
+          {
+            "key": "A",
+            "text": "用起来，再根据结果慢慢改"
+          },
+          {
+            "key": "B",
+            "text": "检查它有没有误解真实目标"
+          },
+          {
+            "key": "C",
+            "text": "找出最容易在现实里出错的一步"
+          },
+          {
+            "key": "D",
+            "text": "我会越完整越警惕，怕它把真正的问题盖过去"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "AI 交来一份很完整的方案，你先做什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "用起来，再根据结果慢慢改"
+          },
+          {
+            "key": "B",
+            "text": "检查它有没有误解真实目标"
+          },
+          {
+            "key": "C",
+            "text": "找出最容易在现实里出错的一步"
+          },
+          {
+            "key": "D",
+            "text": "我会越完整越警惕，怕它把真正的问题盖过去"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_11",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "四个方案都能交差时，你通常怎么选？",
+        "options": [
+          {
+            "key": "A",
+            "text": "选最稳、最容易被接受的那个"
+          },
+          {
+            "key": "B",
+            "text": "选信息最清楚、成本最低的那个"
+          },
+          {
+            "key": "C",
+            "text": "选最能代表我立场的那个"
+          },
+          {
+            "key": "D",
+            "text": "选最不像常规答案、最有记忆点的那个"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "四个方案都能交差，你最后会选哪个？",
+        "options": [
+          {
+            "key": "A",
+            "text": "选最稳、最容易被接受的那个"
+          },
+          {
+            "key": "B",
+            "text": "选信息最清楚、成本最低的那个"
+          },
+          {
+            "key": "C",
+            "text": "选最能代表我立场的那个"
+          },
+          {
+            "key": "D",
+            "text": "选最不像常规答案、最有记忆点的那个"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_12",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "会上所有人都说“可以”，但你觉得没人真的相信。你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "既然大家都同意，就继续往前推"
+          },
+          {
+            "key": "B",
+            "text": "会后找关键人确认真实顾虑"
+          },
+          {
+            "key": "C",
+            "text": "把“大家到底愿不愿意为它负责”问出来"
+          },
+          {
+            "key": "D",
+            "text": "记着这个气氛，后面很可能会出问题"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "会上人人都说可以，你却觉得没人真信，会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "既然大家都同意，就继续往前推"
+          },
+          {
+            "key": "B",
+            "text": "会后找关键人问清真实顾虑"
+          },
+          {
+            "key": "C",
+            "text": "直接问大家愿不愿意为这个决定负责"
+          },
+          {
+            "key": "D",
+            "text": "记住这个气氛，后面可能会出问题"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "SCREEN_13",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "你看完一份“很专业”的材料后，最常用什么判断它有没有价值？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能不能帮我把事情做下去"
+          },
+          {
+            "key": "B",
+            "text": "有没有把复杂问题讲清楚"
+          },
+          {
+            "key": "C",
+            "text": "为了这个选择，必须放弃什么"
+          },
+          {
+            "key": "D",
+            "text": "是不是在用专业包装普通结论"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "看完一份“很专业”的材料，你怎么判断它有用没用？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能不能帮我把事情做下去"
+          },
+          {
+            "key": "B",
+            "text": "有没有把复杂问题讲清楚"
+          },
+          {
+            "key": "C",
+            "text": "为了这个选择，必须放弃什么"
+          },
+          {
+            "key": "D",
+            "text": "是不是在用专业包装普通结论"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_14",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "别人说“给我一个不一样的想法”，你通常怎么开始？",
+        "options": [
+          {
+            "key": "A",
+            "text": "收集同类案例，避免凭空乱想"
+          },
+          {
+            "key": "B",
+            "text": "确认什么叫“不一样”，是不一样给谁看"
+          },
+          {
+            "key": "C",
+            "text": "换一个问题问法，看能不能打开新方向"
+          },
+          {
+            "key": "D",
+            "text": "抛几个怪一点的点子，再慢慢收回来"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "别人要一个“不一样的想法”，你会怎么开头？",
+        "options": [
+          {
+            "key": "A",
+            "text": "收集同类案例，避免凭空乱想"
+          },
+          {
+            "key": "B",
+            "text": "确认什么叫“不一样”，是不一样给谁看"
+          },
+          {
+            "key": "C",
+            "text": "换一个问题问法，看能不能打开新方向"
+          },
+          {
+            "key": "D",
+            "text": "抛几个怪一点的点子，再慢慢收回来"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_15",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "别人给了一个很合理的建议，但你担心照做会出问题。你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "照建议做，后面发现问题再调整"
+          },
+          {
+            "key": "B",
+            "text": "问清这个建议适合什么情况"
+          },
+          {
+            "key": "C",
+            "text": "说出可能后果，再给一个更稳的替代做法"
+          },
+          {
+            "key": "D",
+            "text": "暂停一下，把“不想照做”的原因找具体"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "建议听着合理，你却担心照做出事，会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "照建议做，后面发现问题再调整"
+          },
+          {
+            "key": "B",
+            "text": "问清这个建议适合什么情况"
+          },
+          {
+            "key": "C",
+            "text": "说出可能后果，再给一个更稳的替代做法"
+          },
+          {
+            "key": "D",
+            "text": "暂停一下，把“不想照做”的原因找具体"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SCREEN_16",
+      "before": {
+        "prefix": "SCREEN",
+        "dimensionText": "第一反应筛查",
+        "question": "如果把你的方法训练成一个 Skill，你觉得最可能发生什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "日常工作会被它稳定替代"
+          },
+          {
+            "key": "B",
+            "text": "大部分能做，关键处还要我看"
+          },
+          {
+            "key": "C",
+            "text": "步骤能学会，例外和责任学不会"
+          },
+          {
+            "key": "D",
+            "text": "动作学得到，但很快变成另一个人"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "先凭直觉",
+        "dimensionText": "先凭第一反应",
+        "question": "把你的方法训练成 Skill，最可能发生什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "日常工作会被它稳定替代"
+          },
+          {
+            "key": "B",
+            "text": "大部分能做，关键处还要我看"
+          },
+          {
+            "key": "C",
+            "text": "步骤能学会，例外和责任学不会"
+          },
+          {
+            "key": "D",
+            "text": "动作学得到，但很快变成另一个人"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "CONTEXT_01",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "会上方案看着没问题，但你觉得哪里怪。你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "看数据和事实是不是支持这个方案"
+          },
+          {
+            "key": "B",
+            "text": "问它在哪些情况下可能不成立"
+          },
+          {
+            "key": "C",
+            "text": "把“怪”的感觉说成一个具体风险"
+          },
+          {
+            "key": "D",
+            "text": "观察谁一直没说话，气氛可能有线索"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "方案看着没问题，你却觉得哪儿怪，会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "看数据和事实是不是支持这个方案"
+          },
+          {
+            "key": "B",
+            "text": "问它在哪些情况下可能不成立"
+          },
+          {
+            "key": "C",
+            "text": "把“怪”的感觉说成一个具体风险"
+          },
+          {
+            "key": "D",
+            "text": "观察谁一直没说话，气氛可能有线索"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "CONTEXT_02",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "老板说“你看着办”，你通常怎么理解？",
+        "options": [
+          {
+            "key": "A",
+            "text": "这是让我自己定方案，我会直接推进"
+          },
+          {
+            "key": "B",
+            "text": "确认有哪些不能踩的底线"
+          },
+          {
+            "key": "C",
+            "text": "问清他最不想看到什么结果"
+          },
+          {
+            "key": "D",
+            "text": "猜他其实有答案，只是没有明说"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "老板说“你看着办”，你会把它听成什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "这是让我自己定方案，我会直接推进"
+          },
+          {
+            "key": "B",
+            "text": "确认有哪些不能踩的底线"
+          },
+          {
+            "key": "C",
+            "text": "问清他最不想看到什么结果"
+          },
+          {
+            "key": "D",
+            "text": "猜他其实有答案，只是没有明说"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "CONTEXT_03",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "群里突然没人回你的问题，你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "再发一遍，可能大家没看到"
+          },
+          {
+            "key": "B",
+            "text": "换个更具体的问法，让对方更容易回答"
+          },
+          {
+            "key": "C",
+            "text": "看是不是问错人、问错时机或问错场合"
+          },
+          {
+            "key": "D",
+            "text": "心里会觉得他们可能不想接这个事"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "群里突然没人回你的问题，你会怎么接着办？",
+        "options": [
+          {
+            "key": "A",
+            "text": "再发一遍，可能大家没看到"
+          },
+          {
+            "key": "B",
+            "text": "换个更具体的问法，让对方更容易回答"
+          },
+          {
+            "key": "C",
+            "text": "看是不是问错人、问错时机或问错场合"
+          },
+          {
+            "key": "D",
+            "text": "心里会觉得他们可能不想接这个事"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "CONTEXT_04",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "会议快结束才有人提出反对意见，你第一反应更像哪一种？",
+        "options": [
+          {
+            "key": "A",
+            "text": "让他会后再说，不打断当前节奏"
+          },
+          {
+            "key": "B",
+            "text": "问清楚他具体反对哪一点"
+          },
+          {
+            "key": "C",
+            "text": "看是不是前面没有给反对空间"
+          },
+          {
+            "key": "D",
+            "text": "想他为什么现在才敢说，背后可能有顾虑"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "会议快结束才有人反对，你的第一反应是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "让他会后再说，不打断当前节奏"
+          },
+          {
+            "key": "B",
+            "text": "问清楚他具体反对哪一点"
+          },
+          {
+            "key": "C",
+            "text": "看是不是前面没有给反对空间"
+          },
+          {
+            "key": "D",
+            "text": "想他为什么现在才敢说，背后可能有顾虑"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "CONTEXT_05",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "别人说“这个先不展开”，你通常怎么判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "跳过，尊重当前会议目标"
+          },
+          {
+            "key": "B",
+            "text": "记下来，会后再问清楚"
+          },
+          {
+            "key": "C",
+            "text": "它是不是关键分歧，只是暂时被压住了"
+          },
+          {
+            "key": "D",
+            "text": "我觉得这里可能藏着问题，后面一定要追一下"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "别人说“这个先不展开”，你会怎么理解？",
+        "options": [
+          {
+            "key": "A",
+            "text": "先跳过，尊重当前会议目标"
+          },
+          {
+            "key": "B",
+            "text": "先记下来，会后再问清楚"
+          },
+          {
+            "key": "C",
+            "text": "判断它是不是被暂时压住的关键分歧"
+          },
+          {
+            "key": "D",
+            "text": "觉得这里可能藏着问题，之后一定追问"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "CONTEXT_06",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "一个人嘴上说“没事”，但状态明显不对。你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "既然他说没事，就按没事处理"
+          },
+          {
+            "key": "B",
+            "text": "私下问一句是不是需要帮忙"
+          },
+          {
+            "key": "C",
+            "text": "这件事会不会影响后续协作"
+          },
+          {
+            "key": "D",
+            "text": "观察，不急着戳破他的防御"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "一个人嘴上说没事，状态却明显不对，你会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "他说没事，就先按没事处理"
+          },
+          {
+            "key": "B",
+            "text": "私下问一句需不需要帮忙"
+          },
+          {
+            "key": "C",
+            "text": "先判断这会不会影响后面的协作"
+          },
+          {
+            "key": "D",
+            "text": "继续观察，不急着戳破他的防御"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "CONTEXT_07",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "客户说“你们这个挺有意思”，你的第一反应更像哪一种？",
+        "options": [
+          {
+            "key": "A",
+            "text": "这是一个正向反馈，可以继续推进"
+          },
+          {
+            "key": "B",
+            "text": "确认他具体觉得哪里有意思"
+          },
+          {
+            "key": "C",
+            "text": "这是不是礼貌性肯定，还没有真实购买意愿"
+          },
+          {
+            "key": "D",
+            "text": "感觉这句话可能是在拖延表态"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "客户说“你们这个挺有意思”，你先怎么理解？",
+        "options": [
+          {
+            "key": "A",
+            "text": "这是一个正向反馈，可以继续推进"
+          },
+          {
+            "key": "B",
+            "text": "确认他具体觉得哪里有意思"
+          },
+          {
+            "key": "C",
+            "text": "这是不是礼貌性肯定，还没有真实购买意愿"
+          },
+          {
+            "key": "D",
+            "text": "感觉这句话可能是在拖延表态"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "CONTEXT_08",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "一个任务突然被加急，但没人说原因。你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按加急处理，别耽误进度"
+          },
+          {
+            "key": "B",
+            "text": "问清最晚什么时候必须交付"
+          },
+          {
+            "key": "C",
+            "text": "追问为什么加急，因为原因会影响做法"
+          },
+          {
+            "key": "D",
+            "text": "警惕是不是有人前面漏了事情"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "任务突然加急，却没人说原因，你会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按加急处理，别耽误进度"
+          },
+          {
+            "key": "B",
+            "text": "问清最晚什么时候必须交付"
+          },
+          {
+            "key": "C",
+            "text": "追问为什么加急，因为原因会影响做法"
+          },
+          {
+            "key": "D",
+            "text": "警惕是不是有人前面漏了事情"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "CONTEXT_09",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "你发现团队在反复讨论同一个问题。你通常会怎么判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "说明还没有找到足够好的方案"
+          },
+          {
+            "key": "B",
+            "text": "可能是信息不完整，需要补材料"
+          },
+          {
+            "key": "C",
+            "text": "可能真正的分歧没有被说出来"
+          },
+          {
+            "key": "D",
+            "text": "可能没人愿意拍板，所以问题一直绕圈"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "团队反复绕着同一个问题打转，你会怀疑什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "说明还没有找到足够好的方案"
+          },
+          {
+            "key": "B",
+            "text": "可能是信息不完整，需要补材料"
+          },
+          {
+            "key": "C",
+            "text": "可能真正的分歧没有被说出来"
+          },
+          {
+            "key": "D",
+            "text": "可能没人愿意拍板，所以问题一直绕圈"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "CONTEXT_10",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "别人让你“随便给点意见”，你通常怎么给意见？",
+        "options": [
+          {
+            "key": "A",
+            "text": "说几个明显可以改的点"
+          },
+          {
+            "key": "B",
+            "text": "问他想要方向意见还是细节意见"
+          },
+          {
+            "key": "C",
+            "text": "他是真的想听意见，还是需要确认感"
+          },
+          {
+            "key": "D",
+            "text": "谨慎一点，因为“随便”常常不是真的随便"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "别人请你“随便给点意见”，你会怎么给？",
+        "options": [
+          {
+            "key": "A",
+            "text": "先说几个明显可以改的点"
+          },
+          {
+            "key": "B",
+            "text": "问他要方向意见还是细节意见"
+          },
+          {
+            "key": "C",
+            "text": "先判断他真想听意见，还是只要确认"
+          },
+          {
+            "key": "D",
+            "text": "说得谨慎些，因为“随便”往往不随便"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "CONTEXT_11",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "一个项目进展很顺，但你总觉得不踏实。你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "继续推进，顺利本身也是信号"
+          },
+          {
+            "key": "B",
+            "text": "检查关键假设有没有被验证过"
+          },
+          {
+            "key": "C",
+            "text": "找出目前最没人愿意讨论的风险"
+          },
+          {
+            "key": "D",
+            "text": "相信这种不踏实，把节奏放慢"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "项目一路很顺，你却总不踏实，会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "继续推进，顺利本身也是信号"
+          },
+          {
+            "key": "B",
+            "text": "检查关键假设有没有被验证过"
+          },
+          {
+            "key": "C",
+            "text": "找出目前最没人愿意讨论的风险"
+          },
+          {
+            "key": "D",
+            "text": "相信这种不踏实，把节奏放慢"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "CONTEXT_12",
+      "before": {
+        "prefix": "CONTEXT",
+        "dimensionText": "读懂场面和人话",
+        "question": "两个人都说自己没问题，但合作结果一直不好。你通常会看哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "谁没有按约定交付"
+          },
+          {
+            "key": "B",
+            "text": "分工和接口是不是不清楚"
+          },
+          {
+            "key": "C",
+            "text": "双方对“好结果”的理解是否不同"
+          },
+          {
+            "key": "D",
+            "text": "他们是不是其实不信任彼此"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看见场面",
+        "dimensionText": "读懂话，也读懂场面",
+        "question": "两个人都说没问题，合作却一直不好，你会看哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "谁没有按约定交付"
+          },
+          {
+            "key": "B",
+            "text": "分工和接口是不是不清楚"
+          },
+          {
+            "key": "C",
+            "text": "双方对“好结果”的理解是否不同"
+          },
+          {
+            "key": "D",
+            "text": "他们是不是其实不信任彼此"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_01",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "一个流程很顺，但结果不好，你更可能怀疑什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "可能是执行不到位"
+          },
+          {
+            "key": "B",
+            "text": "可能是指标选错了"
+          },
+          {
+            "key": "C",
+            "text": "可能是流程背后的假设过期了"
+          },
+          {
+            "key": "D",
+            "text": "可能从一开始就问错了问题"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "流程走得很顺，结果却不好，你先怀疑什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "可能是执行不到位"
+          },
+          {
+            "key": "B",
+            "text": "可能是指标选错了"
+          },
+          {
+            "key": "C",
+            "text": "可能是流程背后的假设过期了"
+          },
+          {
+            "key": "D",
+            "text": "可能从一开始就问错了问题"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_02",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "同事问“这事有模板吗”，你会怎么回应？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把模板发给他，帮他启动"
+          },
+          {
+            "key": "B",
+            "text": "问这次是不是同类问题"
+          },
+          {
+            "key": "C",
+            "text": "提醒模板最容易用错的地方"
+          },
+          {
+            "key": "D",
+            "text": "反问他为什么一定要找模板"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "同事问“这事有模板吗”，你会怎么回？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把模板发给他，帮他启动"
+          },
+          {
+            "key": "B",
+            "text": "问这次是不是同类问题"
+          },
+          {
+            "key": "C",
+            "text": "提醒模板最容易用错的地方"
+          },
+          {
+            "key": "D",
+            "text": "反问他为什么一定要找模板"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_03",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "一个方法很多人推荐，你通常怎么判断要不要用？",
+        "options": [
+          {
+            "key": "A",
+            "text": "试用看看，效果不好再换"
+          },
+          {
+            "key": "B",
+            "text": "看它适合什么场景和人群"
+          },
+          {
+            "key": "C",
+            "text": "小范围验证，再决定是否扩大"
+          },
+          {
+            "key": "D",
+            "text": "找它失败过的案例，看看坑在哪里"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "一个方法很多人推荐，你怎么决定要不要用？",
+        "options": [
+          {
+            "key": "A",
+            "text": "试用看看，效果不好再换"
+          },
+          {
+            "key": "B",
+            "text": "看它适合什么场景和人群"
+          },
+          {
+            "key": "C",
+            "text": "小范围验证，再决定是否扩大"
+          },
+          {
+            "key": "D",
+            "text": "找它失败过的案例，看看坑在哪里"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_04",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "你发现大家都在照流程做，但没人知道为什么。你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只要流程有效，就继续"
+          },
+          {
+            "key": "B",
+            "text": "查一下流程当初是为了解决什么问题"
+          },
+          {
+            "key": "C",
+            "text": "现在的问题是否已经变了"
+          },
+          {
+            "key": "D",
+            "text": "我觉得这个流程已经开始危险了"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "大家都照流程做，却没人知道原因，你会怎么办？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只要流程有效，就继续照着做"
+          },
+          {
+            "key": "B",
+            "text": "查清流程当初要解决什么问题"
+          },
+          {
+            "key": "C",
+            "text": "确认现在的问题是不是已经变了"
+          },
+          {
+            "key": "D",
+            "text": "觉得这个流程已经开始有点危险"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "BOUNDARY_05",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "一个标准被反复引用，但现场情况明显更复杂。你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按标准来，减少争议"
+          },
+          {
+            "key": "B",
+            "text": "标出哪些地方可以照标准，哪些地方不能"
+          },
+          {
+            "key": "C",
+            "text": "解释标准背后的目的，再调整做法"
+          },
+          {
+            "key": "D",
+            "text": "质疑这个标准是不是过时了"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "标准被反复引用，现场却更复杂，你会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按标准来，减少争议"
+          },
+          {
+            "key": "B",
+            "text": "标出哪些地方可以照标准，哪些地方不能"
+          },
+          {
+            "key": "C",
+            "text": "解释标准背后的目的，再调整做法"
+          },
+          {
+            "key": "D",
+            "text": "质疑这个标准是不是过时了"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_06",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "别人把你的经验总结成三条原则，你觉得不太准确。你会怎么改？",
+        "options": [
+          {
+            "key": "A",
+            "text": "让他用着，后面再慢慢补充"
+          },
+          {
+            "key": "B",
+            "text": "加上适用条件，避免被乱用"
+          },
+          {
+            "key": "C",
+            "text": "加上反例，说明什么时候不能这么做"
+          },
+          {
+            "key": "D",
+            "text": "标出哪些关键例外被省掉了，否则别人会误用"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "别人把你的经验总结成三条原则，你会怎么改？",
+        "options": [
+          {
+            "key": "A",
+            "text": "让他用着，后面再慢慢补充"
+          },
+          {
+            "key": "B",
+            "text": "加上适用条件，避免被乱用"
+          },
+          {
+            "key": "C",
+            "text": "加上反例，说明什么时候不能这么做"
+          },
+          {
+            "key": "D",
+            "text": "标出哪些关键例外被省掉了，否则别人会误用"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_07",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "一个自动化工具能省很多时间，但你担心它误导判断。你会怎么用？",
+        "options": [
+          {
+            "key": "A",
+            "text": "让它多做，人工抽查结果"
+          },
+          {
+            "key": "B",
+            "text": "只让它处理低风险、规则清楚的部分"
+          },
+          {
+            "key": "C",
+            "text": "明确哪些判断必须由人来做"
+          },
+          {
+            "key": "D",
+            "text": "能不用就不用，怕人慢慢失去判断力"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "自动化工具很省时间，却可能带偏判断，你会怎么用？",
+        "options": [
+          {
+            "key": "A",
+            "text": "让它多做，人工抽查结果"
+          },
+          {
+            "key": "B",
+            "text": "只让它处理低风险、规则清楚的部分"
+          },
+          {
+            "key": "C",
+            "text": "明确哪些判断必须由人来做"
+          },
+          {
+            "key": "D",
+            "text": "能不用就不用，怕人慢慢失去判断力"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_08",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "你需要教新人一个复杂任务。你会教什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "标准步骤，让他能完成"
+          },
+          {
+            "key": "B",
+            "text": "常见错误，让他别出大问题"
+          },
+          {
+            "key": "C",
+            "text": "教他判断什么时候照步骤做，什么时候停下来问"
+          },
+          {
+            "key": "D",
+            "text": "真实案例，让他感受事情为什么复杂"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "教新人做一项复杂任务时，你最想教什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "先教标准步骤，让他能做完"
+          },
+          {
+            "key": "B",
+            "text": "先讲常见错误，别出大问题"
+          },
+          {
+            "key": "C",
+            "text": "教他何时照步骤做，何时停下来问"
+          },
+          {
+            "key": "D",
+            "text": "用真实案例让他感受事情为什么复杂"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "BOUNDARY_09",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "当一个判断无法完全量化时，你会怎么让它更可靠？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找几个相关指标做参考"
+          },
+          {
+            "key": "B",
+            "text": "列出会影响判断的关键条件"
+          },
+          {
+            "key": "C",
+            "text": "用案例对齐标准，让大家知道什么算好、什么算坏"
+          },
+          {
+            "key": "D",
+            "text": "承认它本来就很难量化，不要装成科学"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "一个判断没法完全量化，你会怎样让它更可靠？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找几个相关指标做参考"
+          },
+          {
+            "key": "B",
+            "text": "列出会影响判断的关键条件"
+          },
+          {
+            "key": "C",
+            "text": "用案例对齐标准，让大家知道什么算好、什么算坏"
+          },
+          {
+            "key": "D",
+            "text": "承认它本来就很难量化，不要装成科学"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_10",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "别人说“行业最佳实践都是这么做的”，你会怎么想？",
+        "options": [
+          {
+            "key": "A",
+            "text": "最佳实践值得重点参考"
+          },
+          {
+            "key": "B",
+            "text": "看我们的情况和它是否相似"
+          },
+          {
+            "key": "C",
+            "text": "追问这个最佳实践解决的是哪类问题"
+          },
+          {
+            "key": "D",
+            "text": "我会怀疑这句话是不是在代替思考"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "听到“行业最佳实践都这么做”，你会先想什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "最佳实践值得重点参考"
+          },
+          {
+            "key": "B",
+            "text": "看我们的情况和它是否相似"
+          },
+          {
+            "key": "C",
+            "text": "追问这个最佳实践解决的是哪类问题"
+          },
+          {
+            "key": "D",
+            "text": "我会怀疑这句话是不是在代替思考"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_11",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "你发现一个指标变好了，但用户体验反而变差。你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "确认数据是否准确"
+          },
+          {
+            "key": "B",
+            "text": "看是不是优化指标带来了副作用"
+          },
+          {
+            "key": "C",
+            "text": "重新定义这个指标该服务什么目标"
+          },
+          {
+            "key": "D",
+            "text": "认为这个指标已经不值得信任了"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "指标变好了，用户体验却变差，你会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "确认数据是否准确"
+          },
+          {
+            "key": "B",
+            "text": "看是不是优化指标带来了副作用"
+          },
+          {
+            "key": "C",
+            "text": "重新定义这个指标该服务什么目标"
+          },
+          {
+            "key": "D",
+            "text": "认为这个指标已经不值得信任了"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "BOUNDARY_12",
+      "before": {
+        "prefix": "BOUNDARY",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "你什么时候最不愿意把判断交给 AI？",
+        "options": [
+          {
+            "key": "A",
+            "text": "结果风险很高的时候"
+          },
+          {
+            "key": "B",
+            "text": "输入信息不完整的时候"
+          },
+          {
+            "key": "C",
+            "text": "需要权衡人、关系和长期后果的时候"
+          },
+          {
+            "key": "D",
+            "text": "它答得很顺，但没有问清关键限制的时候"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "确认边界",
+        "dimensionText": "知道什么时候不能照搬",
+        "question": "碰到什么情况，你最不愿把判断交给 AI？",
+        "options": [
+          {
+            "key": "A",
+            "text": "结果风险很高的时候"
+          },
+          {
+            "key": "B",
+            "text": "输入信息不完整的时候"
+          },
+          {
+            "key": "C",
+            "text": "需要权衡人、关系和长期后果的时候"
+          },
+          {
+            "key": "D",
+            "text": "它答得很顺，但没有问清关键限制的时候"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_01",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "别人给你一个很空的需求，你会怎样让它变得可做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找类似案例，确定大概形态"
+          },
+          {
+            "key": "B",
+            "text": "问清目标、对象和交付标准"
+          },
+          {
+            "key": "C",
+            "text": "把需求改写成几个可选择的问题"
+          },
+          {
+            "key": "D",
+            "text": "做一个粗糙版本，用它逼出真实需求"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "别人给你一个很空的需求，你怎么把它变得能做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找类似案例，确定大概形态"
+          },
+          {
+            "key": "B",
+            "text": "问清目标、对象和交付标准"
+          },
+          {
+            "key": "C",
+            "text": "把需求改写成几个可选择的问题"
+          },
+          {
+            "key": "D",
+            "text": "做一个粗糙版本，用它逼出真实需求"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_02",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "一个方案走不通时，你通常会怎么换路？",
+        "options": [
+          {
+            "key": "A",
+            "text": "调整细节，再试一次"
+          },
+          {
+            "key": "B",
+            "text": "换一个参考对象或解决路径"
+          },
+          {
+            "key": "C",
+            "text": "重新定义问题，看是不是目标设错了"
+          },
+          {
+            "key": "D",
+            "text": "把原方案拆掉，看看还剩什么是真的"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "一个方案走不通时，你会从哪儿换路？",
+        "options": [
+          {
+            "key": "A",
+            "text": "调整细节，再试一次"
+          },
+          {
+            "key": "B",
+            "text": "换一个参考对象或解决路径"
+          },
+          {
+            "key": "C",
+            "text": "重新定义问题，看是不是目标设错了"
+          },
+          {
+            "key": "D",
+            "text": "把原方案拆掉，看看还剩什么是真的"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_03",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "你要做一个“有新意但不能乱”的东西，会从哪里开始？",
+        "options": [
+          {
+            "key": "A",
+            "text": "确定基本结构，保证不跑偏"
+          },
+          {
+            "key": "B",
+            "text": "找到一个熟悉框架，再换掉关键元素"
+          },
+          {
+            "key": "C",
+            "text": "找到最核心的张力，让新意服务它"
+          },
+          {
+            "key": "D",
+            "text": "放开想，再把太野的部分收回来"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "要做得有新意又不能乱，你会从哪里开始？",
+        "options": [
+          {
+            "key": "A",
+            "text": "确定基本结构，保证不跑偏"
+          },
+          {
+            "key": "B",
+            "text": "找到一个熟悉框架，再换掉关键元素"
+          },
+          {
+            "key": "C",
+            "text": "找到最核心的张力，让新意服务它"
+          },
+          {
+            "key": "D",
+            "text": "放开想，再把太野的部分收回来"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_04",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "面对一堆零散材料，你会怎么整理成一个观点？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按主题分类，形成清楚结构"
+          },
+          {
+            "key": "B",
+            "text": "找出重复出现的信息和矛盾点"
+          },
+          {
+            "key": "C",
+            "text": "看哪些材料真正改变了结论"
+          },
+          {
+            "key": "D",
+            "text": "找最有感觉的一条线索往下挖"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "面对一堆零散材料，你怎么整理出一个观点？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按主题分类，形成清楚结构"
+          },
+          {
+            "key": "B",
+            "text": "找出重复出现的信息和矛盾点"
+          },
+          {
+            "key": "C",
+            "text": "看哪些材料真正改变了结论"
+          },
+          {
+            "key": "D",
+            "text": "找最有感觉的一条线索往下挖"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_05",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "别人让你“优化一下这个方案”，你会优化哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "改明显不清楚、不顺的地方"
+          },
+          {
+            "key": "B",
+            "text": "问他想优化效果、成本还是说服力"
+          },
+          {
+            "key": "C",
+            "text": "找出方案最核心的判断是否成立"
+          },
+          {
+            "key": "D",
+            "text": "把它改成一个更有气质的版本"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "别人让你“优化一下方案”，你先动哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "先改明显不清楚、不顺的地方"
+          },
+          {
+            "key": "B",
+            "text": "先问要优化效果、成本还是说服力"
+          },
+          {
+            "key": "C",
+            "text": "先看方案最核心的判断成不成立"
+          },
+          {
+            "key": "D",
+            "text": "把它改成更有气质的版本"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "GENERATIVE_06",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "一个想法很有趣，但落不了地。你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "保留想法，再找机会用"
+          },
+          {
+            "key": "B",
+            "text": "找一个更小的场景试一下"
+          },
+          {
+            "key": "C",
+            "text": "保留有价值的洞察，删掉不现实的包装"
+          },
+          {
+            "key": "D",
+            "text": "留下有价值的部分，换成更可做的形式"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "想法很有趣却落不了地，你会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "保留想法，再找机会用"
+          },
+          {
+            "key": "B",
+            "text": "找一个更小的场景试一下"
+          },
+          {
+            "key": "C",
+            "text": "保留有价值的洞察，删掉不现实的包装"
+          },
+          {
+            "key": "D",
+            "text": "留下有价值的部分，换成更可做的形式"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_07",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "别人给你一个平庸版本，让你做得更好。你通常怎么判断“更好”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "更完整、更清楚、更不容易出错"
+          },
+          {
+            "key": "B",
+            "text": "更符合目标用户的真实需要"
+          },
+          {
+            "key": "C",
+            "text": "有明确取舍，敢删掉一部分"
+          },
+          {
+            "key": "D",
+            "text": "更有记忆点，让人看完能留下感觉"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "拿到一个平庸版本时，你怎么判断何为“更好”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "更完整、更清楚、更不容易出错"
+          },
+          {
+            "key": "B",
+            "text": "更符合目标用户的真实需要"
+          },
+          {
+            "key": "C",
+            "text": "有明确取舍，敢删掉一部分"
+          },
+          {
+            "key": "D",
+            "text": "更有记忆点，让人看完能留下感觉"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_08",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "你在创作或策划时，最怕哪种状态？",
+        "options": [
+          {
+            "key": "A",
+            "text": "材料不够，做不出完整东西"
+          },
+          {
+            "key": "B",
+            "text": "目标不清，怎么做都像猜"
+          },
+          {
+            "key": "C",
+            "text": "问题本身太假，做得再好也没意义"
+          },
+          {
+            "key": "D",
+            "text": "一切都对，但看不出真实问题和真实选择"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "做创作或策划时，你最怕掉进哪种状态？",
+        "options": [
+          {
+            "key": "A",
+            "text": "材料不够，做不出完整东西"
+          },
+          {
+            "key": "B",
+            "text": "目标不清，怎么做都像在猜"
+          },
+          {
+            "key": "C",
+            "text": "问题本身太假，做好了也没意义"
+          },
+          {
+            "key": "D",
+            "text": "一切都对，却看不见真实问题和选择"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "GENERATIVE_09",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "你需要把一个复杂想法讲给普通人听。你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "做一个清楚提纲，避免讲乱"
+          },
+          {
+            "key": "B",
+            "text": "用一个贴近生活的例子引入"
+          },
+          {
+            "key": "C",
+            "text": "保留核心矛盾，不把它讲成鸡汤"
+          },
+          {
+            "key": "D",
+            "text": "找一句有穿透力的话，让人记住"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "要把复杂想法讲给普通人听，你会怎么讲？",
+        "options": [
+          {
+            "key": "A",
+            "text": "做一个清楚提纲，避免讲乱"
+          },
+          {
+            "key": "B",
+            "text": "用一个贴近生活的例子引入"
+          },
+          {
+            "key": "C",
+            "text": "保留核心矛盾，不把它讲成鸡汤"
+          },
+          {
+            "key": "D",
+            "text": "找一句有穿透力的话，让人记住"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_10",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "当大家都在同一套框架里打转时，你会怎么破局？",
+        "options": [
+          {
+            "key": "A",
+            "text": "补充更多信息，看框架能不能继续用"
+          },
+          {
+            "key": "B",
+            "text": "换一个行业或案例来类比"
+          },
+          {
+            "key": "C",
+            "text": "问一个框架外的问题，看看假设是否成立"
+          },
+          {
+            "key": "D",
+            "text": "说这套框架已经把人带沟里了"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "大家都在同一套框架里打转，你会怎么破局？",
+        "options": [
+          {
+            "key": "A",
+            "text": "补充更多信息，看框架能不能继续用"
+          },
+          {
+            "key": "B",
+            "text": "换一个行业或案例来类比"
+          },
+          {
+            "key": "C",
+            "text": "问一个框架外的问题，看看假设是否成立"
+          },
+          {
+            "key": "D",
+            "text": "说这套框架已经把人带沟里了"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_11",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "你做方案时，最想避免哪种“完成”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "内容都齐了，但执行起来麻烦"
+          },
+          {
+            "key": "B",
+            "text": "逻辑都顺了，但对象不买账"
+          },
+          {
+            "key": "C",
+            "text": "看似完整，却没有真正解决核心矛盾"
+          },
+          {
+            "key": "D",
+            "text": "很像一个合格答案，但不像我的答案"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "做方案时，你最不想要哪一种“完成”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "内容都齐了，但执行起来麻烦"
+          },
+          {
+            "key": "B",
+            "text": "逻辑都顺了，但对象不买账"
+          },
+          {
+            "key": "C",
+            "text": "看似完整，却没有真正解决核心矛盾"
+          },
+          {
+            "key": "D",
+            "text": "很像一个合格答案，但不像我的答案"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GENERATIVE_12",
+      "before": {
+        "prefix": "GENERATIVE",
+        "dimensionText": "把问题改准、把方案做活",
+        "question": "你通常怎么判断一个新想法值得继续做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能不能形成可执行计划"
+          },
+          {
+            "key": "B",
+            "text": "是否解决了真实痛点"
+          },
+          {
+            "key": "C",
+            "text": "是否打开了原来没有的选择"
+          },
+          {
+            "key": "D",
+            "text": "能继续长出方案，而不是只停在一句灵感"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "重新问问题",
+        "dimensionText": "把问题改准，把方案做活",
+        "question": "一个新想法值不值得继续，你怎么判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能不能形成可执行计划"
+          },
+          {
+            "key": "B",
+            "text": "是否解决了真实痛点"
+          },
+          {
+            "key": "C",
+            "text": "是否打开了原来没有的选择"
+          },
+          {
+            "key": "D",
+            "text": "能继续长出方案，而不是只停在一句灵感"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_01",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "你看到一个设计“很精致但不打动人”，会想到什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "可能还缺少更好的视觉细节"
+          },
+          {
+            "key": "B",
+            "text": "可能没有抓住目标人群的感受"
+          },
+          {
+            "key": "C",
+            "text": "可能形式很完整，但没有真正的判断"
+          },
+          {
+            "key": "D",
+            "text": "它太像作业了，没有人的痕迹"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "一个设计很精致，却没打动你，你会想到什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "可能还缺少更好的视觉细节"
+          },
+          {
+            "key": "B",
+            "text": "可能没有抓住目标人群的感受"
+          },
+          {
+            "key": "C",
+            "text": "可能形式很完整，但没有真正的判断"
+          },
+          {
+            "key": "D",
+            "text": "它太像作业了，没有人的痕迹"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_02",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "你判断一段表达好不好，最看重什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "清楚准确，没有废话"
+          },
+          {
+            "key": "B",
+            "text": "目标读者容易理解"
+          },
+          {
+            "key": "C",
+            "text": "有明确立场和取舍"
+          },
+          {
+            "key": "D",
+            "text": "能感觉到真人在说话"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "判断一段表达好不好时，你最看重什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "清楚准确，没有废话"
+          },
+          {
+            "key": "B",
+            "text": "目标读者容易理解"
+          },
+          {
+            "key": "C",
+            "text": "有明确立场和取舍"
+          },
+          {
+            "key": "D",
+            "text": "能感觉到真人在说话"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_03",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "一个作品被很多人夸“高级”，你通常会怎么判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "足够精致和完整"
+          },
+          {
+            "key": "B",
+            "text": "符合场景和受众"
+          },
+          {
+            "key": "C",
+            "text": "有克制、有取舍，不只是堆效果"
+          },
+          {
+            "key": "D",
+            "text": "包装感有没有盖过内容本身"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "一个作品被夸“高级”，你会怎么判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "足够精致和完整"
+          },
+          {
+            "key": "B",
+            "text": "符合场景和受众"
+          },
+          {
+            "key": "C",
+            "text": "有克制、有取舍，不只是堆效果"
+          },
+          {
+            "key": "D",
+            "text": "包装感有没有盖过内容本身"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_04",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "你觉得“像 AI”最主要的问题是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "太多正确废话"
+          },
+          {
+            "key": "B",
+            "text": "不知道听的人真正需要什么"
+          },
+          {
+            "key": "C",
+            "text": "不知道该留什么、删什么"
+          },
+          {
+            "key": "D",
+            "text": "缺少具体经历和判断来源"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "你觉得内容“像 AI”，主要问题出在哪儿？",
+        "options": [
+          {
+            "key": "A",
+            "text": "太多正确废话"
+          },
+          {
+            "key": "B",
+            "text": "不知道听的人真正需要什么"
+          },
+          {
+            "key": "C",
+            "text": "不知道该留什么、删什么"
+          },
+          {
+            "key": "D",
+            "text": "缺少具体经历和判断来源"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_05",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "别人让你评价一个作品，你会怎么说得更有用？",
+        "options": [
+          {
+            "key": "A",
+            "text": "哪里清楚、哪里不清楚"
+          },
+          {
+            "key": "B",
+            "text": "结合目标，说明有效和无效"
+          },
+          {
+            "key": "C",
+            "text": "真正的优点，以及最该放弃的部分"
+          },
+          {
+            "key": "D",
+            "text": "先讲真实感觉，再慢慢解释原因"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "别人请你评价作品，你怎么说才更有用？",
+        "options": [
+          {
+            "key": "A",
+            "text": "直接说哪里清楚、哪里不清楚"
+          },
+          {
+            "key": "B",
+            "text": "结合目标，说明哪些有效、哪些没用"
+          },
+          {
+            "key": "C",
+            "text": "点出真正的优点和最该放弃的部分"
+          },
+          {
+            "key": "D",
+            "text": "先讲真实感受，再慢慢解释原因"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "TASTE_06",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "你最容易被哪种内容打动？",
+        "options": [
+          {
+            "key": "A",
+            "text": "结构清楚，信息密度高"
+          },
+          {
+            "key": "B",
+            "text": "说中了真实处境，让人觉得被理解"
+          },
+          {
+            "key": "C",
+            "text": "有判断、有分寸，不讨好所有人"
+          },
+          {
+            "key": "D",
+            "text": "细节很具体，能看出作者真的经历或想过"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "什么样的内容最容易打动你？",
+        "options": [
+          {
+            "key": "A",
+            "text": "结构清楚，信息密度高"
+          },
+          {
+            "key": "B",
+            "text": "说中了真实处境，让人觉得被理解"
+          },
+          {
+            "key": "C",
+            "text": "有判断、有分寸，不讨好所有人"
+          },
+          {
+            "key": "D",
+            "text": "细节很具体，能看出作者真的经历或想过"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_07",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "一个东西“看起来都对”，但你觉得不好。你会怎么确认？",
+        "options": [
+          {
+            "key": "A",
+            "text": "再看一遍细节，找具体问题"
+          },
+          {
+            "key": "B",
+            "text": "找目标用户试试看有没有反应"
+          },
+          {
+            "key": "C",
+            "text": "它是不是没有真正做选择"
+          },
+          {
+            "key": "D",
+            "text": "相信这种不好，它通常不是空穴来风"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "一个东西看起来都对，你却觉得不好，怎么确认？",
+        "options": [
+          {
+            "key": "A",
+            "text": "再看一遍细节，找出具体问题"
+          },
+          {
+            "key": "B",
+            "text": "找目标用户试试，看他们有没有反应"
+          },
+          {
+            "key": "C",
+            "text": "检查它是不是一直没有真正做选择"
+          },
+          {
+            "key": "D",
+            "text": "先相信这份不好，再追它从哪儿来"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "TASTE_08",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "你修改别人文案时，最常删掉什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "重复、啰嗦、影响阅读的句子"
+          },
+          {
+            "key": "B",
+            "text": "和目标无关、读者不关心的内容"
+          },
+          {
+            "key": "C",
+            "text": "看似正确但没有判断的套话"
+          },
+          {
+            "key": "D",
+            "text": "那些很顺但没有具体经验、对象和取舍的话"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "改别人文案时，你最常删掉哪类句子？",
+        "options": [
+          {
+            "key": "A",
+            "text": "重复、啰嗦、影响阅读的句子"
+          },
+          {
+            "key": "B",
+            "text": "和目标无关、读者不关心的内容"
+          },
+          {
+            "key": "C",
+            "text": "看似正确但没有判断的套话"
+          },
+          {
+            "key": "D",
+            "text": "那些很顺但没有具体经验、对象和取舍的话"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_09",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "你觉得“有品味”的核心是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "知道什么是更好的标准"
+          },
+          {
+            "key": "B",
+            "text": "知道什么适合当前的人和场景"
+          },
+          {
+            "key": "C",
+            "text": "知道什么该放弃，敢于不讨好所有人"
+          },
+          {
+            "key": "D",
+            "text": "能保留一点无法被标准解释的东西"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "在你看来，“有品味”的核心是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "知道什么是更好的标准"
+          },
+          {
+            "key": "B",
+            "text": "知道什么适合当前的人和场景"
+          },
+          {
+            "key": "C",
+            "text": "知道什么该放弃，敢于不讨好所有人"
+          },
+          {
+            "key": "D",
+            "text": "能保留一点无法被标准解释的东西"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_10",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "当数据说 A 更好，但你觉得 B 更有潜力时，你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "尊重数据，选择 A"
+          },
+          {
+            "key": "B",
+            "text": "看数据有没有覆盖关键场景"
+          },
+          {
+            "key": "C",
+            "text": "设计一个测试，验证 B 的潜力是不是存在"
+          },
+          {
+            "key": "D",
+            "text": "保留 B，因为有些东西数据暂时看不到"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "数据说 A 更好，你却觉得 B 有潜力，会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "尊重数据，选择 A"
+          },
+          {
+            "key": "B",
+            "text": "看数据有没有覆盖关键场景"
+          },
+          {
+            "key": "C",
+            "text": "设计一个测试，验证 B 的潜力是不是存在"
+          },
+          {
+            "key": "D",
+            "text": "保留 B，因为有些东西数据暂时看不到"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_11",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "你通常怎么判断一个表达是不是“用力过猛”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "堆了太多形容词和效果"
+          },
+          {
+            "key": "B",
+            "text": "超过了别人真正需要的信息"
+          },
+          {
+            "key": "C",
+            "text": "用好听的话盖住想得不够清楚"
+          },
+          {
+            "key": "D",
+            "text": "把简单判断包装得过分隆重"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "你怎么判断一段表达是不是“用力过猛”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "堆了太多形容词和效果"
+          },
+          {
+            "key": "B",
+            "text": "超过了别人真正需要的信息"
+          },
+          {
+            "key": "C",
+            "text": "用好听的话盖住想得不够清楚"
+          },
+          {
+            "key": "D",
+            "text": "把简单判断包装得过分隆重"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "TASTE_12",
+      "before": {
+        "prefix": "TASTE",
+        "dimensionText": "识别空话和假精致",
+        "question": "你评价 AI 生成内容时，最常做哪一步？",
+        "options": [
+          {
+            "key": "A",
+            "text": "检查事实和逻辑有没有问题"
+          },
+          {
+            "key": "B",
+            "text": "看是否适合当前对象和语境"
+          },
+          {
+            "key": "C",
+            "text": "找出它最空、最没有判断的地方"
+          },
+          {
+            "key": "D",
+            "text": "看它有没有让我产生“这不是人写的”感觉"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "分辨真假",
+        "dimensionText": "分得清空话和假精致",
+        "question": "检查 AI 生成内容时，你最常先做什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "检查事实和逻辑有没有问题"
+          },
+          {
+            "key": "B",
+            "text": "看是否适合当前对象和语境"
+          },
+          {
+            "key": "C",
+            "text": "找出它最空、最没有判断的地方"
+          },
+          {
+            "key": "D",
+            "text": "看它有没有让我产生“这不是人写的”感觉"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_01",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "为了更快拿到结果，需要牺牲一点你在意的质量。你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "接受牺牲，完成最重要的事"
+          },
+          {
+            "key": "B",
+            "text": "明确牺牲范围，别让它继续扩大"
+          },
+          {
+            "key": "C",
+            "text": "说明牺牲会带来的后果，再让大家选择"
+          },
+          {
+            "key": "D",
+            "text": "如果牺牲的是核心质量，我会很难接受"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "为了更快出结果，要牺牲一点质量，你会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "接受牺牲，完成最重要的事"
+          },
+          {
+            "key": "B",
+            "text": "明确牺牲范围，别让它继续扩大"
+          },
+          {
+            "key": "C",
+            "text": "说明牺牲会带来的后果，再让大家选择"
+          },
+          {
+            "key": "D",
+            "text": "如果牺牲的是核心质量，我会很难接受"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_02",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "一个方案对业务有利，但可能让用户误解。你通常会怎么判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只要不违规，就可以尝试"
+          },
+          {
+            "key": "B",
+            "text": "调整表达，尽量减少误解"
+          },
+          {
+            "key": "C",
+            "text": "把误解风险说清楚，再决定是否推进"
+          },
+          {
+            "key": "D",
+            "text": "倾向于不做，因为这是在透支信任"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "方案对业务有利，却可能误导用户，你会怎么判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只要不违规，就可以尝试"
+          },
+          {
+            "key": "B",
+            "text": "调整表达，尽量减少误解"
+          },
+          {
+            "key": "C",
+            "text": "把误解风险说清楚，再决定是否推进"
+          },
+          {
+            "key": "D",
+            "text": "倾向于不做，因为这是在透支信任"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_03",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "你和团队主流意见不一致时，通常会怎么表达？",
+        "options": [
+          {
+            "key": "A",
+            "text": "我会少说一点，让事情继续走"
+          },
+          {
+            "key": "B",
+            "text": "找证据支持自己的担心"
+          },
+          {
+            "key": "C",
+            "text": "说清我反对的是哪部分，以及替代方案是什么"
+          },
+          {
+            "key": "D",
+            "text": "如果我觉得方向不对，会直接说出来"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "你和团队主流意见不同时，会怎么表达？",
+        "options": [
+          {
+            "key": "A",
+            "text": "少说一点，让事情先继续走"
+          },
+          {
+            "key": "B",
+            "text": "找证据撑住自己的担心"
+          },
+          {
+            "key": "C",
+            "text": "说清反对哪部分，再给替代方案"
+          },
+          {
+            "key": "D",
+            "text": "觉得方向不对时，会直接说出来"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "STANCE_04",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "别人说“大家都这么做”，你第一反应更像哪一种？",
+        "options": [
+          {
+            "key": "A",
+            "text": "大家都这么做，说明有现实原因"
+          },
+          {
+            "key": "B",
+            "text": "看这样做是否符合我们的目标"
+          },
+          {
+            "key": "C",
+            "text": "问这样做会牺牲什么，以及谁承担代价"
+          },
+          {
+            "key": "D",
+            "text": "我不太接受“大家都这样”作为理由"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "别人说“大家都这么做”，你第一反应是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "大家都这么做，说明有现实原因"
+          },
+          {
+            "key": "B",
+            "text": "看这样做是否符合我们的目标"
+          },
+          {
+            "key": "C",
+            "text": "问这样做会牺牲什么，以及谁承担代价"
+          },
+          {
+            "key": "D",
+            "text": "我不太接受“大家都这样”作为理由"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_05",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "一个决定短期有效，但长期会留下隐患。你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "解决眼前问题，长期问题之后再看"
+          },
+          {
+            "key": "B",
+            "text": "把问题记录下来，后续找机会修"
+          },
+          {
+            "key": "C",
+            "text": "同时给出短期方案和长期代价"
+          },
+          {
+            "key": "D",
+            "text": "如果问题很大，我会阻止它变成默认做法"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "决定短期有效，长期却留隐患，你会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "解决眼前问题，长期问题之后再看"
+          },
+          {
+            "key": "B",
+            "text": "把问题记录下来，后续找机会修"
+          },
+          {
+            "key": "C",
+            "text": "同时给出短期方案和长期代价"
+          },
+          {
+            "key": "D",
+            "text": "如果问题很大，我会阻止它变成默认做法"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_06",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "你觉得“专业责任”最重要的部分是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把承诺的事情按时做好"
+          },
+          {
+            "key": "B",
+            "text": "让相关方知道风险和限制"
+          },
+          {
+            "key": "C",
+            "text": "在关键取舍上给出负责任的判断"
+          },
+          {
+            "key": "D",
+            "text": "不做自己明知道会伤害长期信任的事"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "你觉得“专业责任”最重要的部分是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把承诺的事情按时做好"
+          },
+          {
+            "key": "B",
+            "text": "让相关方知道风险和限制"
+          },
+          {
+            "key": "C",
+            "text": "在关键取舍上给出负责任的判断"
+          },
+          {
+            "key": "D",
+            "text": "不做自己明知道会伤害长期信任的事"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_07",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "当一个需求明显来自焦虑，而不是真问题时，你通常会怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "完成需求，情绪稳定也重要"
+          },
+          {
+            "key": "B",
+            "text": "问清真正担心的结果是什么"
+          },
+          {
+            "key": "C",
+            "text": "把焦虑翻译成可处理的问题"
+          },
+          {
+            "key": "D",
+            "text": "接住对方的担心，再说明真正要解决的是什么"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "需求明显来自焦虑，不是真问题，你会怎么接？",
+        "options": [
+          {
+            "key": "A",
+            "text": "先完成需求，稳定情绪也重要"
+          },
+          {
+            "key": "B",
+            "text": "问清对方真正害怕什么结果"
+          },
+          {
+            "key": "C",
+            "text": "把这份焦虑翻成能处理的问题"
+          },
+          {
+            "key": "D",
+            "text": "先接住对方的担心，再说真正该解决什么"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "STANCE_08",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "如果一个优秀方案需要你承担更多责任，你会怎么想？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能推进就承担，结果最重要"
+          },
+          {
+            "key": "B",
+            "text": "确认责任怎么分、资源够不够"
+          },
+          {
+            "key": "C",
+            "text": "这个责任是否真的应该由我承担"
+          },
+          {
+            "key": "D",
+            "text": "如果方向值得，我愿意多扛一点"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "优秀方案需要你多承担责任，你会怎么想？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能推进就承担，结果最重要"
+          },
+          {
+            "key": "B",
+            "text": "确认责任怎么分、资源够不够"
+          },
+          {
+            "key": "C",
+            "text": "这个责任是否真的应该由我承担"
+          },
+          {
+            "key": "D",
+            "text": "如果方向值得，我愿意多扛一点"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_09",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "你最不愿意在工作中变成哪种人？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只会拖慢团队进度的人"
+          },
+          {
+            "key": "B",
+            "text": "只会指出问题但不给方案的人"
+          },
+          {
+            "key": "C",
+            "text": "明知道不对还把它包装成专业的人"
+          },
+          {
+            "key": "D",
+            "text": "为了显得成熟而把自己磨平的人"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "工作里，你最不愿变成哪一种人？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只会拖慢团队进度的人"
+          },
+          {
+            "key": "B",
+            "text": "只会指出问题但不给方案的人"
+          },
+          {
+            "key": "C",
+            "text": "明知道不对还把它包装成专业的人"
+          },
+          {
+            "key": "D",
+            "text": "为了显得成熟而把自己磨平的人"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_10",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "当用户喜欢的东西和你认为好的东西不一致时，你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "尊重用户喜欢，结果由用户决定"
+          },
+          {
+            "key": "B",
+            "text": "找到用户喜欢背后的真实需求"
+          },
+          {
+            "key": "C",
+            "text": "解释两者差异，并给出更负责任的选择"
+          },
+          {
+            "key": "D",
+            "text": "努力守住我认为真正好的部分"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "用户喜欢的和你认为好的不一样，你会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "尊重用户喜欢，结果由用户决定"
+          },
+          {
+            "key": "B",
+            "text": "找到用户喜欢背后的真实需求"
+          },
+          {
+            "key": "C",
+            "text": "解释两者差异，并给出更负责任的选择"
+          },
+          {
+            "key": "D",
+            "text": "努力守住我认为真正好的部分"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_11",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "一个项目需要你“稍微装一下”，让结果更好看。你通常会怎么判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只要不伤害事实，可以适度包装"
+          },
+          {
+            "key": "B",
+            "text": "看包装是否会改变别人对事实的理解"
+          },
+          {
+            "key": "C",
+            "text": "区分表达优化和判断造假，前者可以，后者不行"
+          },
+          {
+            "key": "D",
+            "text": "对“装一下”很敏感，容易产生抵触"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "项目要你“稍微装一下”让结果好看，你会怎么判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只要不伤害事实，可以适度包装"
+          },
+          {
+            "key": "B",
+            "text": "看包装是否会改变别人对事实的理解"
+          },
+          {
+            "key": "C",
+            "text": "区分表达优化和判断造假，前者可以，后者不行"
+          },
+          {
+            "key": "D",
+            "text": "对“装一下”很敏感，容易产生抵触"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "STANCE_12",
+      "before": {
+        "prefix": "STANCE",
+        "dimensionText": "价值底线和后果判断",
+        "question": "你什么时候会主动说“不”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "资源明显不够，做了也交不了"
+          },
+          {
+            "key": "B",
+            "text": "目标不清，继续做只会返工"
+          },
+          {
+            "key": "C",
+            "text": "做法会造成我不能接受的后果"
+          },
+          {
+            "key": "D",
+            "text": "继续做下去会伤害信任、关系或长期结果"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "看清取舍",
+        "dimensionText": "看底线，也看选择的后果",
+        "question": "碰到什么情况，你会主动说“不”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "资源明显不够，做了也交不了"
+          },
+          {
+            "key": "B",
+            "text": "目标不清，继续做只会返工"
+          },
+          {
+            "key": "C",
+            "text": "做法会造成我不能接受的后果"
+          },
+          {
+            "key": "D",
+            "text": "继续做下去会伤害信任、关系或长期结果"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_01",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你怎么知道自己的直觉不是瞎猜？",
+        "options": [
+          {
+            "key": "A",
+            "text": "它以前多次帮我避开问题"
+          },
+          {
+            "key": "B",
+            "text": "我能说出它来自哪些具体经历"
+          },
+          {
+            "key": "C",
+            "text": "我能说明它在哪些情况下可能失效"
+          },
+          {
+            "key": "D",
+            "text": "有强烈感觉，但会再找具体信号确认"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "你怎么确认自己的直觉不是瞎猜？",
+        "options": [
+          {
+            "key": "A",
+            "text": "它以前多次帮我避开问题"
+          },
+          {
+            "key": "B",
+            "text": "我能说出它来自哪些具体经历"
+          },
+          {
+            "key": "C",
+            "text": "我能说明它在哪些情况下可能失效"
+          },
+          {
+            "key": "D",
+            "text": "有强烈感觉，但会再找具体信号确认"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_02",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你复盘一次失败时，最想留下什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "下次不要再犯的错误清单"
+          },
+          {
+            "key": "B",
+            "text": "关键节点上我少看了什么信息"
+          },
+          {
+            "key": "C",
+            "text": "我的判断模型哪里需要更新"
+          },
+          {
+            "key": "D",
+            "text": "那种“不对劲”的感觉到底从哪里开始"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "复盘一次失败时，你最想留下什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "下次不要再犯的错误清单"
+          },
+          {
+            "key": "B",
+            "text": "关键节点上我少看了什么信息"
+          },
+          {
+            "key": "C",
+            "text": "我的判断模型哪里需要更新"
+          },
+          {
+            "key": "D",
+            "text": "那种“不对劲”的感觉到底从哪里开始"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_03",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你学一个新方法时，什么时候才觉得它真正变成自己的？",
+        "options": [
+          {
+            "key": "A",
+            "text": "我能独立照着做出来"
+          },
+          {
+            "key": "B",
+            "text": "我知道常见坑和操作细节"
+          },
+          {
+            "key": "C",
+            "text": "我知道它适合什么问题、不适合什么问题"
+          },
+          {
+            "key": "D",
+            "text": "我开始能凭感觉改它，而不是只会照搬"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "学一个新方法，到哪一步才算真正变成自己的？",
+        "options": [
+          {
+            "key": "A",
+            "text": "我能独立照着做出来"
+          },
+          {
+            "key": "B",
+            "text": "我知道常见坑和操作细节"
+          },
+          {
+            "key": "C",
+            "text": "我知道它适合什么问题、不适合什么问题"
+          },
+          {
+            "key": "D",
+            "text": "我开始能凭感觉改它，而不是只会照搬"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_04",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "别人问你“为什么你一看就知道不对”，你会怎么回答？",
+        "options": [
+          {
+            "key": "A",
+            "text": "给他讲几个明显判断标准"
+          },
+          {
+            "key": "B",
+            "text": "举几个过去遇到过的类似例子"
+          },
+          {
+            "key": "C",
+            "text": "说明我看到的是哪些异常信号组合"
+          },
+          {
+            "key": "D",
+            "text": "我可能会说不清，但我知道它不是正常状态"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "别人问你“为什么一看就知道不对”，你怎么答？",
+        "options": [
+          {
+            "key": "A",
+            "text": "讲几个比较明显的判断标准"
+          },
+          {
+            "key": "B",
+            "text": "举几次过去遇到的类似情况"
+          },
+          {
+            "key": "C",
+            "text": "说清我看到的异常信号组合"
+          },
+          {
+            "key": "D",
+            "text": "一时说不清，但知道这不是正常状态"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "GROUND_05",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你觉得一个人真正有经验，表现在哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "做事更熟练，不容易慌"
+          },
+          {
+            "key": "B",
+            "text": "见过更多情况，知道怎么处理"
+          },
+          {
+            "key": "C",
+            "text": "能在新情况里识别旧问题的变形"
+          },
+          {
+            "key": "D",
+            "text": "能在别人还没发现时感到事情要变"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "一个人真正有经验，会表现在哪儿？",
+        "options": [
+          {
+            "key": "A",
+            "text": "做事更熟练，不容易慌"
+          },
+          {
+            "key": "B",
+            "text": "见过更多情况，知道怎么处理"
+          },
+          {
+            "key": "C",
+            "text": "能在新情况里识别旧问题的变形"
+          },
+          {
+            "key": "D",
+            "text": "能在别人还没发现时感到事情要变"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_06",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你遇到陌生问题时，会怎么调用过去经验？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找相似案例，套用已有办法"
+          },
+          {
+            "key": "B",
+            "text": "找相似点和不同点，避免硬套"
+          },
+          {
+            "key": "C",
+            "text": "抽出底层结构，再决定能不能借用经验"
+          },
+          {
+            "key": "D",
+            "text": "让直觉反应一下，再回头找原因"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "遇到陌生问题时，你怎么调用过去的经验？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找相似案例，套用已有办法"
+          },
+          {
+            "key": "B",
+            "text": "找相似点和不同点，避免硬套"
+          },
+          {
+            "key": "C",
+            "text": "抽出底层结构，再决定能不能借用经验"
+          },
+          {
+            "key": "D",
+            "text": "让直觉反应一下，再回头找原因"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_07",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你如何处理“以前这样做有效，现在可能不行”的情况？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按旧方法试一下，看效果如何"
+          },
+          {
+            "key": "B",
+            "text": "找出环境变化在哪里"
+          },
+          {
+            "key": "C",
+            "text": "更新判断条件，而不是简单否定旧经验"
+          },
+          {
+            "key": "D",
+            "text": "我会很快感觉旧方法味道不对"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "以前有效的方法现在可能不灵，你会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "按旧方法试一下，看效果如何"
+          },
+          {
+            "key": "B",
+            "text": "找出环境变化在哪里"
+          },
+          {
+            "key": "C",
+            "text": "更新判断条件，而不是简单否定旧经验"
+          },
+          {
+            "key": "D",
+            "text": "我会很快感觉旧方法味道不对"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_08",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你最信任自己的哪类判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "有数据支持、可以验证"
+          },
+          {
+            "key": "B",
+            "text": "有案例支持、能解释清楚"
+          },
+          {
+            "key": "C",
+            "text": "被失败反复修正过"
+          },
+          {
+            "key": "D",
+            "text": "一开始来自感觉，后来能被信号验证"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "你最信任自己哪一类判断？",
+        "options": [
+          {
+            "key": "A",
+            "text": "有数据支持、可以验证的判断"
+          },
+          {
+            "key": "B",
+            "text": "有案例支持、能解释清楚的判断"
+          },
+          {
+            "key": "C",
+            "text": "被失败反复修正过的判断"
+          },
+          {
+            "key": "D",
+            "text": "先来自感觉、后来被信号验证的判断"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "GROUND_09",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你教别人经验时，最怕他学成什么样？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只记住步骤，细节做不到位"
+          },
+          {
+            "key": "B",
+            "text": "只记住案例，不知道换场景"
+          },
+          {
+            "key": "C",
+            "text": "只记住结论，不知道判断条件"
+          },
+          {
+            "key": "D",
+            "text": "学得太像我，反而失去自己的感觉"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "把经验教给别人时，你最怕他学成什么样？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只记住步骤，细节做不到位"
+          },
+          {
+            "key": "B",
+            "text": "只记住案例，不知道换场景"
+          },
+          {
+            "key": "C",
+            "text": "只记住结论，不知道判断条件"
+          },
+          {
+            "key": "D",
+            "text": "学得太像我，反而失去自己的感觉"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_10",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "当别人质疑你的经验“不够科学”时，你会怎么回应？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找数据证明自己的判断"
+          },
+          {
+            "key": "B",
+            "text": "用案例说明它为什么可靠"
+          },
+          {
+            "key": "C",
+            "text": "说明经验判断的边界和适用条件"
+          },
+          {
+            "key": "D",
+            "text": "承认它不完全科学，但它也不是没价值"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "别人说你的经验“不够科学”，你会怎么回应？",
+        "options": [
+          {
+            "key": "A",
+            "text": "找数据证明自己的判断"
+          },
+          {
+            "key": "B",
+            "text": "用案例说明它为什么可靠"
+          },
+          {
+            "key": "C",
+            "text": "说明经验判断的边界和适用条件"
+          },
+          {
+            "key": "D",
+            "text": "承认它不完全科学，但它也不是没价值"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_11",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你觉得“踩过坑”最应该转化成什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "更标准的检查清单"
+          },
+          {
+            "key": "B",
+            "text": "更清楚的风险提醒"
+          },
+          {
+            "key": "C",
+            "text": "更准确的判断边界"
+          },
+          {
+            "key": "D",
+            "text": "一种以后看到类似信号就会停下来的能力"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "你觉得“踩过坑”最后该留下什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "更标准的检查清单"
+          },
+          {
+            "key": "B",
+            "text": "更清楚的风险提醒"
+          },
+          {
+            "key": "C",
+            "text": "更准确的判断边界"
+          },
+          {
+            "key": "D",
+            "text": "一种以后看到类似信号就会停下来的能力"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "GROUND_12",
+      "before": {
+        "prefix": "GROUND",
+        "dimensionText": "经验有没有真的变成判断",
+        "question": "你什么时候会推翻自己过去很相信的经验？",
+        "options": [
+          {
+            "key": "A",
+            "text": "新数据证明它不再有效"
+          },
+          {
+            "key": "B",
+            "text": "新场景和原场景差异太大"
+          },
+          {
+            "key": "C",
+            "text": "我发现它背后的假设已经变了"
+          },
+          {
+            "key": "D",
+            "text": "我感觉继续相信它会让我变迟钝"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "调用经验",
+        "dimensionText": "让经验真正长成判断",
+        "question": "什么时候，你会推翻自己曾经很信的经验？",
+        "options": [
+          {
+            "key": "A",
+            "text": "新数据证明它不再有效"
+          },
+          {
+            "key": "B",
+            "text": "新场景和原场景差异太大"
+          },
+          {
+            "key": "C",
+            "text": "我发现它背后的假设已经变了"
+          },
+          {
+            "key": "D",
+            "text": "我感觉继续相信它会让我变迟钝"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SKILL_01",
+      "before": {
+        "prefix": "SKILL",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "别人接手你的工作时，最容易复制走哪部分？",
+        "options": [
+          {
+            "key": "A",
+            "text": "固定流程和交付格式"
+          },
+          {
+            "key": "B",
+            "text": "常见问题的处理办法"
+          },
+          {
+            "key": "C",
+            "text": "一部分判断框架，但关键例外还要问我"
+          },
+          {
+            "key": "D",
+            "text": "表面动作能复制，真正的分寸很难复制"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "拆解方法",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "别人接手你的工作，最容易复制走哪部分？",
+        "options": [
+          {
+            "key": "A",
+            "text": "固定流程和交付格式"
+          },
+          {
+            "key": "B",
+            "text": "常见问题的处理办法"
+          },
+          {
+            "key": "C",
+            "text": "一部分判断框架，但关键例外还要问我"
+          },
+          {
+            "key": "D",
+            "text": "表面动作能复制，真正的分寸很难复制"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SKILL_02",
+      "before": {
+        "prefix": "SKILL",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "如果你请 AI 当你的副手，你最放心交给它什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "整理材料、生成初稿和格式处理"
+          },
+          {
+            "key": "B",
+            "text": "根据我给的标准做第一轮筛选"
+          },
+          {
+            "key": "C",
+            "text": "提供备选方案，但最终判断由我来"
+          },
+          {
+            "key": "D",
+            "text": "只让它帮我激发想法，不让它替我决定"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "拆解方法",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "如果请 AI 当副手，你最放心交给它什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "整理材料、生成初稿和格式处理"
+          },
+          {
+            "key": "B",
+            "text": "根据我给的标准做第一轮筛选"
+          },
+          {
+            "key": "C",
+            "text": "提供备选方案，但最终判断由我来"
+          },
+          {
+            "key": "D",
+            "text": "只让它帮我激发想法，不让它替我决定"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SKILL_03",
+      "before": {
+        "prefix": "SKILL",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "你的工作价值最稳定地来自哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "高效率完成标准任务"
+          },
+          {
+            "key": "B",
+            "text": "把复杂任务拆得更清楚"
+          },
+          {
+            "key": "C",
+            "text": "在关键处做出更好的判断"
+          },
+          {
+            "key": "D",
+            "text": "在混乱里保留人的感觉和方向"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "拆解方法",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "你的工作价值最稳定地来自哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "高效率完成标准任务"
+          },
+          {
+            "key": "B",
+            "text": "把复杂任务拆得更清楚"
+          },
+          {
+            "key": "C",
+            "text": "在关键处做出更好的判断"
+          },
+          {
+            "key": "D",
+            "text": "在混乱里保留人的感觉和方向"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SKILL_04",
+      "before": {
+        "prefix": "SKILL",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "如果别人只看你的产出，不认识你本人，最可能怎么评价你？",
+        "options": [
+          {
+            "key": "A",
+            "text": "稳定、清楚、交付可靠"
+          },
+          {
+            "key": "B",
+            "text": "有方法，能把事情组织起来"
+          },
+          {
+            "key": "C",
+            "text": "有判断，很多地方不是模板答案"
+          },
+          {
+            "key": "D",
+            "text": "有稳定的个人判断，但不是故意显得特别"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "拆解方法",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "只看产出、不认识你的人，会怎么评价你？",
+        "options": [
+          {
+            "key": "A",
+            "text": "稳定、清楚、交付可靠"
+          },
+          {
+            "key": "B",
+            "text": "有方法，能把事情组织起来"
+          },
+          {
+            "key": "C",
+            "text": "有判断，很多地方不是模板答案"
+          },
+          {
+            "key": "D",
+            "text": "有稳定的个人判断，但不是故意显得特别"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SKILL_05",
+      "before": {
+        "prefix": "SKILL",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "你认为自己最容易被训练成 Skill 的部分是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "执行步骤和常用话术"
+          },
+          {
+            "key": "B",
+            "text": "分析框架和常见处理路径"
+          },
+          {
+            "key": "C",
+            "text": "一些可解释的判断原则"
+          },
+          {
+            "key": "D",
+            "text": "能训练出一部分做法，但关键例外还需要真人判断"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "拆解方法",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "你觉得自己哪部分最容易被训练成 Skill？",
+        "options": [
+          {
+            "key": "A",
+            "text": "执行步骤和常用话术"
+          },
+          {
+            "key": "B",
+            "text": "分析框架和常见处理路径"
+          },
+          {
+            "key": "C",
+            "text": "一些可解释的判断原则"
+          },
+          {
+            "key": "D",
+            "text": "能训练出一部分做法，但关键例外还需要真人判断"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SKILL_06",
+      "before": {
+        "prefix": "SKILL",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "别人夸你“很会沉淀方法”，你会怎么理解？",
+        "options": [
+          {
+            "key": "A",
+            "text": "这是很好的能力，说明我可复用"
+          },
+          {
+            "key": "B",
+            "text": "说明我的经验能帮更多人少走弯路"
+          },
+          {
+            "key": "C",
+            "text": "说明我能把部分判断翻译出来，但不是全部"
+          },
+          {
+            "key": "D",
+            "text": "我会担心自己被沉淀得太平了"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "拆解方法",
+        "dimensionText": "方法能不能被别人照着做",
+        "question": "别人夸你“很会沉淀方法”，你会怎么理解？",
+        "options": [
+          {
+            "key": "A",
+            "text": "这是很好的能力，说明我可复用"
+          },
+          {
+            "key": "B",
+            "text": "说明我的经验能帮更多人少走弯路"
+          },
+          {
+            "key": "C",
+            "text": "说明我能把部分判断翻译出来，但不是全部"
+          },
+          {
+            "key": "D",
+            "text": "我会担心自己被沉淀得太平了"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "EXPRESS_01",
+      "before": {
+        "prefix": "EXPRESS",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "你想说“这个方案不对”时，最常会怎么表达？",
+        "options": [
+          {
+            "key": "A",
+            "text": "指出几个明显问题"
+          },
+          {
+            "key": "B",
+            "text": "结合目标或用户，说它哪里不匹配"
+          },
+          {
+            "key": "C",
+            "text": "说明它依赖的前提可能不成立"
+          },
+          {
+            "key": "D",
+            "text": "说我有疑虑，再补充我看到的具体信号"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "翻译判断",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "想说“这个方案不对”时，你通常怎么表达？",
+        "options": [
+          {
+            "key": "A",
+            "text": "指出几个明显问题"
+          },
+          {
+            "key": "B",
+            "text": "结合目标或用户，说它哪里不匹配"
+          },
+          {
+            "key": "C",
+            "text": "说明它依赖的前提可能不成立"
+          },
+          {
+            "key": "D",
+            "text": "说我有疑虑，再补充我看到的具体信号"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "EXPRESS_02",
+      "before": {
+        "prefix": "EXPRESS",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "你怎样把一个直觉判断讲给团队听？",
+        "options": [
+          {
+            "key": "A",
+            "text": "讲结论，再补几个理由"
+          },
+          {
+            "key": "B",
+            "text": "用一个真实案例让大家理解"
+          },
+          {
+            "key": "C",
+            "text": "拆成信号、依据和可能后果"
+          },
+          {
+            "key": "D",
+            "text": "说感受，再看大家能不能接住"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "翻译判断",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "你怎么把一个直觉判断讲给团队听？",
+        "options": [
+          {
+            "key": "A",
+            "text": "先讲结论，再补几个理由"
+          },
+          {
+            "key": "B",
+            "text": "用一个真实案例让大家听懂"
+          },
+          {
+            "key": "C",
+            "text": "把它拆成信号、依据和可能后果"
+          },
+          {
+            "key": "D",
+            "text": "先说感受，再看大家能不能接住"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "EXPRESS_03",
+      "before": {
+        "prefix": "EXPRESS",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "别人没听懂你的观点时，你通常怎么调整？",
+        "options": [
+          {
+            "key": "A",
+            "text": "换一种更简单的说法"
+          },
+          {
+            "key": "B",
+            "text": "举一个对方熟悉的例子"
+          },
+          {
+            "key": "C",
+            "text": "找出对方卡住的是事实、逻辑还是价值判断"
+          },
+          {
+            "key": "D",
+            "text": "如果对方不在那个状态里，我会觉得很难讲"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "翻译判断",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "别人没听懂你的观点时，你会怎么调整？",
+        "options": [
+          {
+            "key": "A",
+            "text": "换一种更简单的说法"
+          },
+          {
+            "key": "B",
+            "text": "举一个对方熟悉的例子"
+          },
+          {
+            "key": "C",
+            "text": "找出对方卡住的是事实、逻辑还是价值判断"
+          },
+          {
+            "key": "D",
+            "text": "如果对方不在那个状态里，我会觉得很难讲"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "EXPRESS_04",
+      "before": {
+        "prefix": "EXPRESS",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "你如何避免自己的判断变成“只有我懂”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "多写文档，把过程记录下来"
+          },
+          {
+            "key": "B",
+            "text": "多用案例，让别人知道我怎么想"
+          },
+          {
+            "key": "C",
+            "text": "把判断条件和例外情况说清楚"
+          },
+          {
+            "key": "D",
+            "text": "我不一定避免，有些东西本来就很难共享"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "翻译判断",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "你怎么避免自己的判断变成“只有我懂”？",
+        "options": [
+          {
+            "key": "A",
+            "text": "多写文档，把过程记录下来"
+          },
+          {
+            "key": "B",
+            "text": "多用案例，让别人知道我怎么想"
+          },
+          {
+            "key": "C",
+            "text": "把判断条件和例外情况说清楚"
+          },
+          {
+            "key": "D",
+            "text": "我不一定避免，有些东西本来就很难共享"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "EXPRESS_05",
+      "before": {
+        "prefix": "EXPRESS",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "别人说你“太抽象”，你通常会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把观点改成更直接的话"
+          },
+          {
+            "key": "B",
+            "text": "补充具体场景和例子"
+          },
+          {
+            "key": "C",
+            "text": "把真正想表达的判断拆清楚"
+          },
+          {
+            "key": "D",
+            "text": "我觉得有些东西讲得太具体就变味了"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "翻译判断",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "别人说你“太抽象”，你会怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把观点改成更直接的话"
+          },
+          {
+            "key": "B",
+            "text": "补充具体场景和例子"
+          },
+          {
+            "key": "C",
+            "text": "把真正想表达的判断拆清楚"
+          },
+          {
+            "key": "D",
+            "text": "我觉得有些东西讲得太具体就变味了"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "EXPRESS_06",
+      "before": {
+        "prefix": "EXPRESS",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "当你需要让别人理解一个复杂判断时，你最想提升哪一步？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把话说得更短、更清楚"
+          },
+          {
+            "key": "B",
+            "text": "用对方熟悉的例子讲明白"
+          },
+          {
+            "key": "C",
+            "text": "说出判断条件，让别人知道我为什么这么看"
+          },
+          {
+            "key": "D",
+            "text": "保留复杂性，不硬讲成标准答案"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "翻译判断",
+        "dimensionText": "能不能把判断讲明白",
+        "question": "想让别人听懂复杂判断，你最想提升哪一步？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把话说得更短、更清楚"
+          },
+          {
+            "key": "B",
+            "text": "用对方熟悉的例子讲明白"
+          },
+          {
+            "key": "C",
+            "text": "说出判断条件，让别人知道我为什么这么看"
+          },
+          {
+            "key": "D",
+            "text": "保留复杂性，不硬讲成标准答案"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "NOISE_01",
+      "before": {
+        "prefix": "NOISE",
+        "dimensionText": "区分真复杂和装复杂",
+        "question": "你觉得自己“很难被复制”的主要原因是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "我的工作细节太多，别人不熟悉"
+          },
+          {
+            "key": "B",
+            "text": "我的经验比较复杂，需要时间理解"
+          },
+          {
+            "key": "C",
+            "text": "我的判断依赖场景、边界和取舍"
+          },
+          {
+            "key": "D",
+            "text": "我习惯靠个人感觉判断，但不总能说出依据"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "排除噪声",
+        "dimensionText": "分清真复杂和装复杂",
+        "question": "你觉得自己“难被复制”，主要难在哪儿？",
+        "options": [
+          {
+            "key": "A",
+            "text": "我的工作细节太多，别人不熟悉"
+          },
+          {
+            "key": "B",
+            "text": "我的经验比较复杂，需要时间理解"
+          },
+          {
+            "key": "C",
+            "text": "我的判断依赖场景、边界和取舍"
+          },
+          {
+            "key": "D",
+            "text": "我习惯靠个人感觉判断，但不总能说出依据"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "NOISE_02",
+      "before": {
+        "prefix": "NOISE",
+        "dimensionText": "区分真复杂和装复杂",
+        "question": "当别人要求你说清楚依据时，你最真实的第一反应是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "可以说清楚，只是需要整理一下"
+          },
+          {
+            "key": "B",
+            "text": "能说一部分，剩下要靠案例解释"
+          },
+          {
+            "key": "C",
+            "text": "看哪些依据能说，哪些还在经验里"
+          },
+          {
+            "key": "D",
+            "text": "有点烦，因为很多东西说了别人也不懂"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "排除噪声",
+        "dimensionText": "分清真复杂和装复杂",
+        "question": "别人要求你说清依据时，你的第一反应是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "可以说清楚，只是需要整理一下"
+          },
+          {
+            "key": "B",
+            "text": "能说一部分，剩下要靠案例解释"
+          },
+          {
+            "key": "C",
+            "text": "看哪些依据能说，哪些还在经验里"
+          },
+          {
+            "key": "D",
+            "text": "有点烦，因为很多东西说了别人也不懂"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "NOISE_03",
+      "before": {
+        "prefix": "NOISE",
+        "dimensionText": "区分真复杂和装复杂",
+        "question": "你不认同一个主流方法时，通常是因为？",
+        "options": [
+          {
+            "key": "A",
+            "text": "效率不高、成本太高"
+          },
+          {
+            "key": "B",
+            "text": "不适合当前目标或人群"
+          },
+          {
+            "key": "C",
+            "text": "背后的假设和现实不一致"
+          },
+          {
+            "key": "D",
+            "text": "主流方法容易把人弄平"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "排除噪声",
+        "dimensionText": "分清真复杂和装复杂",
+        "question": "你不认同一个主流方法，通常是为什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "它效率不高，成本也太高"
+          },
+          {
+            "key": "B",
+            "text": "它不适合当前目标或人群"
+          },
+          {
+            "key": "C",
+            "text": "它背后的假设和现实对不上"
+          },
+          {
+            "key": "D",
+            "text": "它很容易把人磨得一个样"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "NOISE_04",
+      "before": {
+        "prefix": "NOISE",
+        "dimensionText": "区分真复杂和装复杂",
+        "question": "听到“我就是凭感觉”时，你更认同哪种说法？",
+        "options": [
+          {
+            "key": "A",
+            "text": "感觉不可靠，最好转成证据"
+          },
+          {
+            "key": "B",
+            "text": "感觉有价值，但要用案例说明"
+          },
+          {
+            "key": "C",
+            "text": "感觉往往来自经验，但也需要验证"
+          },
+          {
+            "key": "D",
+            "text": "感觉就是感觉，解释太多反而不真实"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "排除噪声",
+        "dimensionText": "分清真复杂和装复杂",
+        "question": "听到“我就是凭感觉”，你更认同哪种说法？",
+        "options": [
+          {
+            "key": "A",
+            "text": "感觉不可靠，最好转成证据"
+          },
+          {
+            "key": "B",
+            "text": "感觉有价值，但要用案例说明"
+          },
+          {
+            "key": "C",
+            "text": "感觉往往来自经验，但也需要验证"
+          },
+          {
+            "key": "D",
+            "text": "感觉就是感觉，解释太多反而不真实"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "NOISE_05",
+      "before": {
+        "prefix": "NOISE",
+        "dimensionText": "区分真复杂和装复杂",
+        "question": "如果别人用 AI 做出了和你很像的东西，你会怎么想？",
+        "options": [
+          {
+            "key": "A",
+            "text": "说明我的流程确实可以被复用"
+          },
+          {
+            "key": "B",
+            "text": "看它像的是表面，还是也学到判断"
+          },
+          {
+            "key": "C",
+            "text": "找出它在哪些关键处会变味"
+          },
+          {
+            "key": "D",
+            "text": "有点不舒服，觉得自己被冒犯了"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "排除噪声",
+        "dimensionText": "分清真复杂和装复杂",
+        "question": "别人用 AI 做出很像你的东西，你会怎么想？",
+        "options": [
+          {
+            "key": "A",
+            "text": "说明我的流程确实可以被复用"
+          },
+          {
+            "key": "B",
+            "text": "看它像的是表面，还是也学到判断"
+          },
+          {
+            "key": "C",
+            "text": "找出它在哪些关键处会变味"
+          },
+          {
+            "key": "D",
+            "text": "有点不舒服，觉得自己被冒犯了"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "NOISE_06",
+      "before": {
+        "prefix": "NOISE",
+        "dimensionText": "区分真复杂和装复杂",
+        "question": "你最不希望这个测试把你误判成什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只会执行、没有判断的人"
+          },
+          {
+            "key": "B",
+            "text": "会判断，但说不清楚的人"
+          },
+          {
+            "key": "C",
+            "text": "有判断但还没形成稳定方法的人"
+          },
+          {
+            "key": "D",
+            "text": "只是想显得特别、但其实说不出依据的人"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "排除噪声",
+        "dimensionText": "分清真复杂和装复杂",
+        "question": "你最不希望这个测试把你看成哪一种人？",
+        "options": [
+          {
+            "key": "A",
+            "text": "只会执行、没有判断的人"
+          },
+          {
+            "key": "B",
+            "text": "会判断，但说不清楚的人"
+          },
+          {
+            "key": "C",
+            "text": "有判断但还没形成稳定方法的人"
+          },
+          {
+            "key": "D",
+            "text": "只是想显得特别、但其实说不出依据的人"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_01",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "直觉有依据，还是只是不想解释",
+        "question": "你说“这个东西不对劲”时，通常能追到哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能追到几个具体问题"
+          },
+          {
+            "key": "B",
+            "text": "能追到类似经历或案例"
+          },
+          {
+            "key": "C",
+            "text": "能追到一组异常信号和判断条件"
+          },
+          {
+            "key": "D",
+            "text": "追不到，但我很相信这种感觉"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "直觉有依据，还是只是不想解释",
+        "question": "你说“这东西不对劲”时，通常能追到哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能追到几个具体问题"
+          },
+          {
+            "key": "B",
+            "text": "能追到类似经历或案例"
+          },
+          {
+            "key": "C",
+            "text": "能追到一组异常信号和判断条件"
+          },
+          {
+            "key": "D",
+            "text": "追不到，但我很相信这种感觉"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_02",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "能教给别人，还是只能自己会",
+        "question": "别人想学习你的判断，你最能教给他什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "我的步骤和检查清单"
+          },
+          {
+            "key": "B",
+            "text": "我常看的信号和案例"
+          },
+          {
+            "key": "C",
+            "text": "我如何判断边界、例外和取舍"
+          },
+          {
+            "key": "D",
+            "text": "我能让他感受一下，但很难真正教会"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "能教给别人，还是只能自己会",
+        "question": "别人想学你的判断，你最能教给他什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "我的步骤和检查清单"
+          },
+          {
+            "key": "B",
+            "text": "我常看的信号和案例"
+          },
+          {
+            "key": "C",
+            "text": "我如何判断边界、例外和取舍"
+          },
+          {
+            "key": "D",
+            "text": "我能让他感受一下，但很难真正教会"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_03",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "发现风险后，是换路还是只喊停",
+        "question": "你发现一个做法有问题后，下一步通常是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "指出风险，避免继续往错的方向走"
+          },
+          {
+            "key": "B",
+            "text": "找一个更稳妥的替代做法"
+          },
+          {
+            "key": "C",
+            "text": "重新定义问题，让大家换一条路"
+          },
+          {
+            "key": "D",
+            "text": "守住底线，但不一定马上有新方案"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "发现风险后，是换路还是只喊停",
+        "question": "发现一个做法有问题后，你下一步会做什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "指出风险，避免继续往错的方向走"
+          },
+          {
+            "key": "B",
+            "text": "找一个更稳妥的替代做法"
+          },
+          {
+            "key": "C",
+            "text": "重新定义问题，让大家换一条路"
+          },
+          {
+            "key": "D",
+            "text": "守住底线，但不一定马上有新方案"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_04",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "看穿空话后，是拆穿还是重做",
+        "question": "看到一个空心但漂亮的方案，你更常怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "指出它哪里空，避免别人照搬错"
+          },
+          {
+            "key": "B",
+            "text": "根据目标把它改得更实用"
+          },
+          {
+            "key": "C",
+            "text": "把问题换个问法，让方案直接换方向"
+          },
+          {
+            "key": "D",
+            "text": "把它的假精致拆穿"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "看穿空话后，是拆穿还是重做",
+        "question": "看到空心却漂亮的方案，你更常怎么处理？",
+        "options": [
+          {
+            "key": "A",
+            "text": "指出它哪里空，避免别人照搬错"
+          },
+          {
+            "key": "B",
+            "text": "根据目标把它改得更实用"
+          },
+          {
+            "key": "C",
+            "text": "把问题换个问法，让方案直接换方向"
+          },
+          {
+            "key": "D",
+            "text": "把它的假精致拆穿"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_05",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "AI 是帮手，还是开始替你拿主意",
+        "question": "AI 让你效率提高后，你最担心什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "工具能力被浪费，自己没用明白"
+          },
+          {
+            "key": "B",
+            "text": "交付变快，但思考变浅"
+          },
+          {
+            "key": "C",
+            "text": "判断也交出去，自己只剩确认按钮"
+          },
+          {
+            "key": "D",
+            "text": "大家产出都变得很像，看不出真人判断"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "AI 是帮手，还是开始替你拿主意",
+        "question": "AI 让你效率变高后，你最担心什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "工具能力被浪费，自己没用明白"
+          },
+          {
+            "key": "B",
+            "text": "交付变快，但思考变浅"
+          },
+          {
+            "key": "C",
+            "text": "判断也交出去，自己只剩确认按钮"
+          },
+          {
+            "key": "D",
+            "text": "大家产出都变得很像，看不出真人判断"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_06",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "知道不对后，能不能给出新做法",
+        "question": "当你明确知道“这样不对”时，你能多快提出另一种做法？",
+        "options": [
+          {
+            "key": "A",
+            "text": "需要一些时间收集信息"
+          },
+          {
+            "key": "B",
+            "text": "通常能给出一个可行替代方案"
+          },
+          {
+            "key": "C",
+            "text": "我会很快能换一个问题框架重新设计"
+          },
+          {
+            "key": "D",
+            "text": "我更擅长判断哪里不对，但替代方案需要慢慢想"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "知道不对后，能不能给出新做法",
+        "question": "明确知道“这样不对”后，你多久能提出新做法？",
+        "options": [
+          {
+            "key": "A",
+            "text": "需要一些时间收集信息"
+          },
+          {
+            "key": "B",
+            "text": "通常能给出一个可行替代方案"
+          },
+          {
+            "key": "C",
+            "text": "我会很快能换一个问题框架重新设计"
+          },
+          {
+            "key": "D",
+            "text": "我更擅长判断哪里不对，但替代方案需要慢慢想"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_07",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "品味能不能说清楚",
+        "question": "你评价一个作品不好时，最常卡在哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能说出具体问题，不太卡"
+          },
+          {
+            "key": "B",
+            "text": "能说目标不匹配，但还要组织语言"
+          },
+          {
+            "key": "C",
+            "text": "能说清它缺少什么判断和取舍"
+          },
+          {
+            "key": "D",
+            "text": "能感觉它不对，但很难马上说服别人"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "品味能不能说清楚",
+        "question": "评价一个作品不好时，你最常卡在哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "能说出具体问题，不太卡"
+          },
+          {
+            "key": "B",
+            "text": "能说目标不匹配，但还要组织语言"
+          },
+          {
+            "key": "C",
+            "text": "能说清它缺少什么判断和取舍"
+          },
+          {
+            "key": "D",
+            "text": "能感觉它不对，但很难马上说服别人"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_08",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "方法被照做后，差在哪里",
+        "question": "你的方法被别人照着做之后，最容易差在哪里？",
+        "options": [
+          {
+            "key": "A",
+            "text": "细节执行不到位"
+          },
+          {
+            "key": "B",
+            "text": "关键风险没有提前看出来"
+          },
+          {
+            "key": "C",
+            "text": "例外场景里的判断分寸不一样"
+          },
+          {
+            "key": "D",
+            "text": "关键取舍不同，所以结果看起来像、实际不一样"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "方法被照做后，差在哪里",
+        "question": "别人照着你的方法做，最容易差在哪儿？",
+        "options": [
+          {
+            "key": "A",
+            "text": "细节执行不到位"
+          },
+          {
+            "key": "B",
+            "text": "关键风险没有提前看出来"
+          },
+          {
+            "key": "C",
+            "text": "例外场景里的判断分寸不一样"
+          },
+          {
+            "key": "D",
+            "text": "关键取舍不同，所以结果看起来像、实际不一样"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_09",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "反对流程时，理由来自判断还是情绪",
+        "question": "你反对一个流程时，最常给出的理由是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "太慢或太麻烦"
+          },
+          {
+            "key": "B",
+            "text": "不适合当前场景"
+          },
+          {
+            "key": "C",
+            "text": "背后的假设会导致错误结果"
+          },
+          {
+            "key": "D",
+            "text": "我就是不喜欢被流程控制"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "反对流程时，理由来自判断还是情绪",
+        "question": "反对一个流程时，你最常给出什么理由？",
+        "options": [
+          {
+            "key": "A",
+            "text": "太慢或太麻烦"
+          },
+          {
+            "key": "B",
+            "text": "不适合当前场景"
+          },
+          {
+            "key": "C",
+            "text": "背后的假设会导致错误结果"
+          },
+          {
+            "key": "D",
+            "text": "我就是不喜欢被流程控制"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_10",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "AI 离你的关键判断有多近",
+        "question": "你觉得 AI 最适合成为你的什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "规则清楚的执行任务"
+          },
+          {
+            "key": "B",
+            "text": "整理信息、扩展思路"
+          },
+          {
+            "key": "C",
+            "text": "提意见可以，但不能替我做决定"
+          },
+          {
+            "key": "D",
+            "text": "放进工具箱，重要判断还是我自己来"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "AI 离你的关键判断有多近",
+        "question": "你觉得 AI 最适合在你身边扮演什么角色？",
+        "options": [
+          {
+            "key": "A",
+            "text": "接手规则清楚的执行任务"
+          },
+          {
+            "key": "B",
+            "text": "替我整理信息、扩展思路"
+          },
+          {
+            "key": "C",
+            "text": "可以提意见，但别替我做决定"
+          },
+          {
+            "key": "D",
+            "text": "待在工具箱里，重要判断还是我来"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "有措辞调整；已按人物、动作、对象、条件、先后、程度和态度逐项核对。"
+      }
+    },
+    {
+      "id": "SPLIT_11",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "下一步是更稳定，还是更有自己",
+        "question": "你目前最想提升的能力是什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "更稳定地完成复杂任务"
+          },
+          {
+            "key": "B",
+            "text": "更清楚地沉淀自己的方法"
+          },
+          {
+            "key": "C",
+            "text": "更敢于提出自己的判断"
+          },
+          {
+            "key": "D",
+            "text": "更知道自己到底在意什么"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "下一步是更稳定，还是更有自己",
+        "question": "眼下你最想提升哪一种能力？",
+        "options": [
+          {
+            "key": "A",
+            "text": "更稳定地完成复杂任务"
+          },
+          {
+            "key": "B",
+            "text": "更清楚地沉淀自己的方法"
+          },
+          {
+            "key": "C",
+            "text": "更敢于提出自己的判断"
+          },
+          {
+            "key": "D",
+            "text": "更知道自己到底在意什么"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_12",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "你更擅长打磨，还是重构",
+        "question": "别人给你一个还不错但没惊喜的东西，你更想怎么做？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把它打磨得更完整"
+          },
+          {
+            "key": "B",
+            "text": "找出它没有打中人的原因"
+          },
+          {
+            "key": "C",
+            "text": "重构它的表达方式，让它出现新方向"
+          },
+          {
+            "key": "D",
+            "text": "指出它为什么“还不错但没有真正的判断”"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "你更擅长打磨，还是重构",
+        "question": "拿到还不错却没惊喜的东西，你更想怎么改？",
+        "options": [
+          {
+            "key": "A",
+            "text": "把它打磨得更完整"
+          },
+          {
+            "key": "B",
+            "text": "找出它没有打中人的原因"
+          },
+          {
+            "key": "C",
+            "text": "重构它的表达方式，让它出现新方向"
+          },
+          {
+            "key": "D",
+            "text": "指出它为什么“还不错但没有真正的判断”"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_13",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "你说复杂，到底复杂在哪里",
+        "question": "你判断一个场景复杂时，主要靠什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "信息多、变化多"
+          },
+          {
+            "key": "B",
+            "text": "现场人和关系释放出的信号很多"
+          },
+          {
+            "key": "C",
+            "text": "过去见过类似结构，知道这里容易出事"
+          },
+          {
+            "key": "D",
+            "text": "感觉到它复杂，再慢慢找原因"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "你说复杂，到底复杂在哪里",
+        "question": "你觉得一个场景复杂，主要是看见了什么？",
+        "options": [
+          {
+            "key": "A",
+            "text": "信息多、变化多"
+          },
+          {
+            "key": "B",
+            "text": "现场人和关系释放出的信号很多"
+          },
+          {
+            "key": "C",
+            "text": "过去见过类似结构，知道这里容易出事"
+          },
+          {
+            "key": "D",
+            "text": "感觉到它复杂，再慢慢找原因"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    },
+    {
+      "id": "SPLIT_14",
+      "before": {
+        "prefix": "SPLIT",
+        "dimensionText": "判断在心里，还是能翻译出来",
+        "question": "如果结果页说“你有判断，但还没翻译出来”，你会觉得？",
+        "options": [
+          {
+            "key": "A",
+            "text": "不太像我，我通常能说清楚"
+          },
+          {
+            "key": "B",
+            "text": "有点像，我需要案例才能讲清楚"
+          },
+          {
+            "key": "C",
+            "text": "很像，我常有判断但表达慢半拍"
+          },
+          {
+            "key": "D",
+            "text": "有点像，但我怕讲太简单会丢掉关键复杂性"
+          }
+        ]
+      },
+      "after": {
+        "prefix": "再追一层",
+        "dimensionText": "判断在心里，还是能翻译出来",
+        "question": "如果结果说“你有判断，但还没翻译出来”，你觉得呢？",
+        "options": [
+          {
+            "key": "A",
+            "text": "不太像我，我通常能说清楚"
+          },
+          {
+            "key": "B",
+            "text": "有点像，我需要案例才能讲清楚"
+          },
+          {
+            "key": "C",
+            "text": "很像，我常有判断但表达慢半拍"
+          },
+          {
+            "key": "D",
+            "text": "有点像，但我怕讲太简单会丢掉关键复杂性"
+          }
+        ]
+      },
+      "review": {
+        "questionReviewed": true,
+        "optionCountReviewed": 4,
+        "distinctOptionKeysPreserved": true,
+        "optionOrderPreserved": true,
+        "scoringAndRoutingMetadataPreserved": true,
+        "actorActionConditionOrderChecked": true,
+        "intensityAndStanceChecked": true,
+        "note": "原选项已经自然且区分清楚；为避免制造语义漂移，审阅后保留原文。"
+      }
+    }
+  ]
+}

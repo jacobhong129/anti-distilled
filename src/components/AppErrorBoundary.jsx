@@ -16,10 +16,10 @@ export class AppErrorBoundary extends Component {
     return (
       <main className="fatal-error" role="alert">
         <section className="app-status page-frame">
-          <h1>页面遇到了一点问题</h1>
-          <p>你的答题进度会尽量保留。刷新后可以继续；如果配置已经升级，会从首页重新开始。</p>
+          <h1>页面刚才绊了一下</h1>
+          <p>已经答过的内容会尽量保留。刷新后可以接着来；如果题库恰好更新了，就会从首页重新开始。</p>
           <button className="primary-button" type="button" onClick={() => window.location.reload()}>
-            刷新页面
+            刷新一下
           </button>
         </section>
       </main>

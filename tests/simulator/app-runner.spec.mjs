@@ -20,7 +20,7 @@ function replayObservedChoices(choices) {
 async function runPersonaOnPage(page, persona) {
   await page.goto("/");
   await page.getByRole("button", { name: /开始测试/ }).first().click();
-  await page.getByRole("button", { name: /跳过，直接测试/ }).click();
+  await page.getByRole("button", { name: /跳过/ }).click();
 
   const choices = [];
   for (let guard = 0; guard < 32; guard += 1) {
