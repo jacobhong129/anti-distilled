@@ -1,12 +1,12 @@
 const CORE_METRICS = ["CXT", "BND", "GEN", "TST", "STN", "GRD"];
 const AUX_METRICS = ["SKL", "EXP", "NOI", "TLB"];
 const METRIC_NAMES = {
-  CXT: "情境判断",
-  BND: "边界判断",
-  GEN: "问题重构",
-  TST: "审美判断",
-  STN: "价值取舍",
-  GRD: "经验内化",
+  CXT: "情境",
+  BND: "边界",
+  GEN: "重构",
+  TST: "审美",
+  STN: "取舍",
+  GRD: "经验",
   SKL: "可 Skill 化",
   EXP: "表达转译",
   NOI: "伪抗蒸噪声",
@@ -1922,7 +1922,7 @@ export class AdaptiveAssessment {
       resonance: "你能把事情做下去，但问到为什么这样选时，自己的取舍还不总是站到台前。",
       misunderstanding: "待开机不等于没有想法，只是这次答案里还看不出一条稳定的个人路线。",
       growthNudge: "从一个最熟的任务开始，记下你临时改动的地方和原因。判断常常藏在这些小偏离里。",
-      playfulAside: "系统没有坏，个性化插件还在后台加载。",
+      playfulAside: "火没有灭，只是眼下烧得小，还要再添几根自己的柴。",
     };
 
     return {

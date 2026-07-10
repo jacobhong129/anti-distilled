@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
+import { RESULT_DETAIL_TITLES, UI_COPY } from "../src/app/product-content.js";
 
 const baseline = JSON.parse(execFileSync("git", ["show", "ae304c2:config/game-config-v11.json"], { encoding: "utf8" }));
 const current = JSON.parse(fs.readFileSync("config/game-config-v11.json", "utf8"));
@@ -34,7 +35,16 @@ const traceChecks = {
   notButPattern: (allCopy.match(/不是[^。！？\n]{0,30}而是/g) || []).length,
   grandioseClaims: (allCopy.match(/赋能|重塑|颠覆|全方位|多维度|深度洞察|至关重要/g) || []).length,
   internalTermsInResultCopy: current.resultBands.concat(Object.values(current.labelDetails)).flatMap(Object.values).filter((value) => typeof value === "string" && /labelDelta|scoreProfile|evidence|置信度|内部权重|题目路径/.test(value)).length,
+  techMetaphorsInResultCopy: current.resultBands.concat(Object.values(current.labelDetails)).flatMap(Object.values).filter((value) => typeof value === "string" && /脑内|HDMI|个性化插件|风险提示|安装包|空文件夹/.test(value)).length,
 };
+const parallelTitleGroups = [
+  ["页头导航", ...Object.values(UI_COPY.header)],
+  ["流程步骤", ...UI_COPY.steps],
+  ["答题侧栏", ...Object.values(UI_COPY.quizMenu)],
+  ["结果栏目", ...Object.values(UI_COPY.resultSections)],
+  ["标签详情", ...RESULT_DETAIL_TITLES.label],
+  ["维度详情", ...RESULT_DETAIL_TITLES.dimension],
+];
 
 assert.equal(current.items.length, 120);
 assert.equal(current.items.flatMap((item) => item.options).length, 480);
@@ -44,11 +54,16 @@ assert.ok(questionLengths.filter((length) => length >= 16 && length <= 28).lengt
 assert.equal(traceChecks.longDash, 0, "可见文案不使用长破折号");
 assert.equal(traceChecks.grandioseClaims, 0, "发现宣传腔或空泛大词");
 assert.equal(traceChecks.internalTermsInResultCopy, 0, "结果文案暴露内部评分术语");
+assert.equal(traceChecks.techMetaphorsInResultCopy, 0, "结果文案仍在堆叠技术梗");
 assert.ok(traceChecks.notButPattern <= 4, "“不是……而是……”句式仍然过多");
 assert.ok(repeatedCopy.length <= 4, "存在过多重复的长句");
+for (const [group, ...titles] of parallelTitleGroups) {
+  assert.ok(titles.every((title) => [...title].length === 4), `${group} 未保持四字对仗：${titles.join(" / ")}`);
+}
 
 console.log("v12.1 可见文案审计通过");
 console.log(`题干：120/120 已审阅，${changedQuestions} 条改写；${questionLengths.filter((length) => length >= 16 && length <= 28).length}/120 位于 16–28 字，最长 ${Math.max(...questionLengths)} 字`);
 console.log(`选项：480/480 已审阅，${changedOptions} 条改写；480/480 不超过 22 字，最长 ${Math.max(...optionLengths)} 字`);
 console.log(`AI 痕迹：长破折号 ${traceChecks.longDash}，宣传腔词 ${traceChecks.grandioseClaims}，“不是……而是……” ${traceChecks.notButPattern}`);
-console.log(`重复长句：${repeatedCopy.length}；结果页内部术语：${traceChecks.internalTermsInResultCopy}`);
+console.log(`重复长句：${repeatedCopy.length}；结果页内部术语：${traceChecks.internalTermsInResultCopy}；技术梗堆叠：${traceChecks.techMetaphorsInResultCopy}`);
+console.log(`栏目对仗：${parallelTitleGroups.map(([group, ...titles]) => `${group} ${titles.length}/${titles.length}`).join("；")}`);

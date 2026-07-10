@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { assetMap, DIMENSION_SYMBOLS, publicAsset, resultSmokePath } from "./app/assets.js";
-import { DIMENSION_DETAILS, QUESTION_GUIDES, ROLE_FIELDS, VIEW_STEP } from "./app/product-content.js";
+import { DIMENSION_DETAILS, QUESTION_GUIDES, ROLE_FIELDS, THEORY_COPY, UI_COPY, VIEW_STEP } from "./app/product-content.js";
 import {
   bandRoastText,
   buildDimensionDetail,
   buildLabelDetail,
+  buildResultPortrait,
+  buildResultReading,
   buildShareLine,
   resultTone,
   scoreHelpText,
@@ -196,8 +198,8 @@ function BrandHeader({ view, menuOpen, onToggleMenu, onHome, onLearn, onStart })
         </span>
       </button>
       <nav id="primary-navigation" className={menuOpen ? "is-open" : ""} aria-label="页面导航">
-        <button type="button" onClick={onLearn}>什么是抗蒸性？</button>
-        <button type="button" onClick={onStart}>开始测试</button>
+        <button type="button" onClick={onLearn}>{UI_COPY.header.theory}</button>
+        <button type="button" onClick={onStart}>{UI_COPY.header.start}</button>
       </nav>
       <button className="mobile-menu-button" type="button" aria-label={menuOpen ? "收起页面导航" : "展开页面导航"} aria-controls="primary-navigation" aria-expanded={menuOpen} onClick={onToggleMenu}>
         <span />
@@ -206,7 +208,7 @@ function BrandHeader({ view, menuOpen, onToggleMenu, onHome, onLearn, onStart })
       </button>
       {view === "result" && (
         <button className="header-share" type="button" onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })}>
-          去分享
+          {UI_COPY.header.share}
         </button>
       )}
     </header>
@@ -214,7 +216,7 @@ function BrandHeader({ view, menuOpen, onToggleMenu, onHome, onLearn, onStart })
 }
 
 function StepIndicator({ active }) {
-  const steps = ["开始", "工作场景", "动态测试", "结果"];
+  const steps = UI_COPY.steps;
   return (
     <ol className="step-indicator" aria-label="当前测试步骤">
       {steps.map((step, index) => (
@@ -236,7 +238,7 @@ function HomePage({ onStart, onLearn }) {
         <p>如果把你的工作方式交给 AI、流程或一个同事 Skill，哪些能学走，哪些还得你本人在场？</p>
         <div className="hero-actions">
           <button className="primary-button" type="button" onClick={onStart}>开始测试 <span>→</span></button>
-          <button className="text-button" type="button" onClick={onLearn}>什么是抗蒸性？ <span>›</span></button>
+          <button className="text-button" type="button" onClick={onLearn}>{UI_COPY.header.theory} <span>›</span></button>
         </div>
       </div>
 
@@ -250,8 +252,8 @@ function HomePage({ onStart, onLearn }) {
       <div className="meaning-callout">
         <span className="seal-icon"><img src={publicAsset(assetMap.global.sparkleSeal)} alt="" /></span>
         <div>
-          <h2>含活人量越高，越不能只抄作业</h2>
-          <p>这不是“会不会被替代”的预言。我们想看的，是你的判断里还有多少现场、分寸和亲身经验。</p>
+          <h2>方法可以复制，人不只是一套方法</h2>
+          <p>含活人量看的，是流程写完以后，还留在你身上的现场、分寸和亲身经验。</p>
         </div>
         <span className="human-stamp" aria-label="人味难蒸"><span>人味</span><span>难蒸</span></span>
       </div>
@@ -263,8 +265,8 @@ function TheoryPage({ onBack, onStart }) {
   return (
     <section className="theory-page page-frame compact-frame">
       <div className="theory-heading">
-        <h1>什么是抗蒸性</h1>
-        <p>有些方法能写进文档，有些判断必须人在现场</p>
+        <h1>{THEORY_COPY.title}</h1>
+        <p>{THEORY_COPY.subtitle}</p>
         <div className="title-rule" aria-hidden="true" />
       </div>
 
@@ -274,23 +276,20 @@ function TheoryPage({ onBack, onStart }) {
 
       <div className="theory-grid top">
         <article className="theory-card">
-          <h2>1. 把你的方法交出去，会漏掉什么</h2>
-          <p>把一件事整理成规则、流程、提示词或插件，别人和机器就能更省力地照着做。这里把这个过程叫作“蒸馏”。</p>
-          <p>总有一些东西不肯乖乖进文档：临场判断、审美取舍、对后果的担当，还有只有你注意到的细节。它们就是抗蒸性。</p>
+          <h2>{THEORY_COPY.distillation.title}</h2>
+          {THEORY_COPY.distillation.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </article>
         <article className="theory-card model-card">
-          <h2>2. 三层都在做事，难复制的程度不同</h2>
+          <h2>{THEORY_COPY.layers.title}</h2>
           <div className="layer-model">
-            <div><strong>责任层</strong><span>愿意为后果签字</span></div>
-            <div><strong>判断层</strong><span>知道该留什么、舍什么</span></div>
-            <div><strong>行为层</strong><span>把事情做出来</span></div>
+            {THEORY_COPY.layers.items.map(([name, text]) => <div key={name}><strong>{name}</strong><span>{text}</span></div>)}
           </div>
-          <p>越往上，越难完整复制。AI 可以交稿，流程可以保稳，但后果落到谁身上、这次该不该破例，仍然要有人判断。</p>
+          <p>{THEORY_COPY.layers.body}</p>
         </article>
       </div>
 
       <section className="dimension-grid">
-        <h2>3. 我们会从六个角度看</h2>
+        <h2>{THEORY_COPY.dimensionsTitle}</h2>
         <div>
           {Object.entries(DIMENSION_DETAILS).map(([key, item]) => (
             <article key={key}>
@@ -306,30 +305,22 @@ function TheoryPage({ onBack, onStart }) {
 
       <div className="theory-grid bottom">
         <article className="theory-card">
-          <h2>4. 为什么值得测一测</h2>
-          <ul>
-            <li>AI 很会学输出的样子，却不一定知道此时此地为什么要这么做。</li>
-            <li>真正拉开质量差距的，常常是那几次没照模板走的判断。</li>
-            <li>知道哪些能交给 AI，才更容易把它用成帮手，而不是方向盘。</li>
-          </ul>
+          <h2>{THEORY_COPY.handOff.title}</h2>
+          {THEORY_COPY.handOff.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </article>
         <article className="theory-card">
-          <h2>5. 看结果时，抓住这三件事</h2>
-          <ul>
-            <li>你的判断从哪儿来：亲手做过、踩过坑，还是只听起来很有道理。</li>
-            <li>你知不知道什么时候该停：好方法也有不适用的那一天。</li>
-            <li>你能不能说清取舍：留下什么、放下什么，以及为什么。</li>
-          </ul>
+          <h2>{THEORY_COPY.holdOn.title}</h2>
+          {THEORY_COPY.holdOn.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </article>
       </div>
 
       <div className="theory-note">
         <span>i</span>
-        <p>这是一面自我观察的小镜子，不是招聘筛子、医疗判断，也不会替你给人格下结论。</p>
+        <p>{THEORY_COPY.note}</p>
       </div>
 
       <div className="theory-actions">
-        <button className="secondary-button" type="button" onClick={onBack}>返回首页</button>
+        <button className="secondary-button" type="button" onClick={onBack}>回到首页</button>
         <button className="primary-button" type="button" onClick={onStart}>开始测试</button>
       </div>
     </section>
@@ -484,11 +475,11 @@ function QuestionPage({ currentItem, engine, history, progress, onAnswer, onPrev
           <span><strong>抗蒸性测试</strong><small>测测你的含活人量</small></span>
         </div>
         <nav>
-          <button className="active" type="button" aria-current="page">答题中</button>
-          <button type="button" onClick={() => setGuide("instructions")}>怎么答更准</button>
-          <button type="button" onClick={() => setGuide("theory")}>什么是抗蒸性</button>
+          <button className="active" type="button" aria-current="page">{UI_COPY.quizMenu.current}</button>
+          <button type="button" onClick={() => setGuide("instructions")}>{UI_COPY.quizMenu.instructions}</button>
+          <button type="button" onClick={() => setGuide("theory")}>{UI_COPY.quizMenu.theory}</button>
         </nav>
-        <button type="button" onClick={onRestart}>退出并重新开始</button>
+        <button type="button" onClick={onRestart}>{UI_COPY.quizMenu.restart}</button>
       </aside>
 
       <div className="question-panel">
@@ -583,6 +574,10 @@ function ResultPage({ result, onRestart, onOpenLabel, onOpenDimension }) {
   const roleText = result.role || "";
   const showRole = roleText && !roleText.includes("跳过") && !roleText.includes("没有填写");
   const shareText = buildShareLine(result);
+  const portrait = buildResultPortrait(result);
+  const reading = buildResultReading(result);
+  const roleLevel = roleText.includes("偏低") ? "偏低" : roleText.includes("偏高") ? "偏高" : "中等";
+  const roleDetail = roleText.replace(/^岗位接手风险(?:偏低|偏高|中等)：/, "");
 
   const copyShare = async () => {
     try {
@@ -599,13 +594,13 @@ function ResultPage({ result, onRestart, onOpenLabel, onOpenDimension }) {
       <div className="result-hero">
         <img className="score-smoke" src={publicAsset(resultSmokePath(result.score))} alt="" aria-hidden="true" />
         <div className="score-block">
-          <span>答完了，来看看</span>
+          <span>本次结果</span>
           <h1>你的含活人量</h1>
           <div className="score-number"><strong>{result.score}</strong><em>%</em></div>
           <p>{scoreHelpText(result)}</p>
         </div>
         <div className="band-block">
-          <span>这次落在</span>
+          <span>所处段位</span>
           <div>
             <AssetBadge src={bandBadge} alt={`${result.band.name}徽章`} label={result.band.name} variant="band" />
             <h2>{result.band.name}</h2>
@@ -613,37 +608,39 @@ function ResultPage({ result, onRestart, onOpenLabel, onOpenDimension }) {
           <p>{bandRoastText(result)}</p>
         </div>
         <div className="result-actions">
-          <button className="secondary-button" type="button" onClick={onRestart}>换个状态再测</button>
-          <button className="primary-button dark" type="button" onClick={copyShare} aria-live="polite">{copyState === "done" ? "文案已复制" : copyState === "failed" ? "没复制上，再点一次" : "复制结果去分享"}</button>
+          <button className="secondary-button" type="button" onClick={onRestart}>重新作答</button>
+          <button className="primary-button dark" type="button" onClick={copyShare} aria-live="polite">{copyState === "done" ? "完整文案已复制" : copyState === "failed" ? "没复制上，再试一次" : "复制完整结果"}</button>
         </div>
       </div>
 
       <div className={`result-grid ${showRole ? "" : "no-role"}`}>
         <article className="result-card label-card">
-          <h2>最像你的判断标签</h2>
+          <h2>{UI_COPY.resultSections.label}</h2>
           <AssetBadge src={labelBadge} alt={`${result.labelDetails.name}徽章`} label={result.labelDetails.name} variant="label" />
           <h3>{result.labelDetails.name}</h3>
           <p>{result.labelDetails.plainMeaning}</p>
-          <button type="button" onClick={onOpenLabel}>看看为什么像你 ›</button>
+          <p className="label-resonance">{result.labelDetails.resonance}</p>
+          <button type="button" onClick={onOpenLabel}>展开完整解读 ›</button>
         </article>
 
-        <article className="result-card share-card">
-          <h2>一句话带走</h2>
-          <blockquote>{result.labelDetails.shareLine || result.band.line}</blockquote>
-          <p>#我的含活人量{result.score}% #{result.band.name}</p>
-          <button className="secondary-button" type="button" onClick={copyShare}>复制这一段</button>
+        <article className="result-card portrait-card">
+          <h2>{UI_COPY.resultSections.portrait}</h2>
+          <div className="portrait-copy">
+            {portrait.map((paragraph, index) => <p key={`${index}-${paragraph}`}>{paragraph}</p>)}
+          </div>
         </article>
 
         {showRole && (
           <article className="result-card role-card">
-            <h2>放进你的工作里看</h2>
-            <strong>{roleText.includes("偏低") ? "中等偏低" : roleText.includes("偏高") ? "高" : "中等"}</strong>
-            <p>{roleText}</p>
+            <h2>{UI_COPY.resultSections.role}</h2>
+            <strong>{roleLevel}</strong>
+            <p>{roleDetail}</p>
           </article>
         )}
 
         <article className="result-card dimension-card">
-          <h2>六个判断侧面</h2>
+          <h2>{UI_COPY.resultSections.dimensions}</h2>
+          <p className="section-lede">数字不论优劣，只看你习惯把力气放在哪一面。</p>
           <div className="dimension-bars">
             {result.dimensions.map((dimension) => {
               const detail = DIMENSION_DETAILS[dimension.key];
@@ -662,13 +659,10 @@ function ResultPage({ result, onRestart, onOpenLabel, onOpenDimension }) {
         </article>
 
         <article className="result-card evidence-card">
-          <h2>看完先别急着给自己定型</h2>
-          <ul>
-            <li>{result.band.growthNudge}</li>
-            <li>标签只是在复述你这次最明显的判断习惯，不是给人格贴永久标签。</li>
-            <li>六个维度也不是待办清单。挑一个最有感觉的看看，就已经够用了。</li>
-            <li>如果某句话让你想反驳，别急着划走：那份“不像我”本身也是一条线索。</li>
-          </ul>
+          <h2>{UI_COPY.resultSections.interpretation}</h2>
+          <div className="result-reading">
+            {reading.map((paragraph, index) => <p key={`${index}-${paragraph}`}>{paragraph}</p>)}
+          </div>
         </article>
       </div>
 
@@ -678,13 +672,14 @@ function ResultPage({ result, onRestart, onOpenLabel, onOpenDimension }) {
 }
 
 function SharePanel({ result, onCopy, state }) {
+  const shareText = buildShareLine(result);
   return (
     <aside className="share-panel">
       <div>
-        <strong>临走前一句</strong>
-        <p>AI 越会干活，越值得想清楚方向盘放在哪儿。把重复劳动交出去没关系，别顺手把判断也一起打包。</p>
+        <strong>{UI_COPY.resultSections.share}</strong>
+        <p className="share-copy-preview">{shareText}</p>
       </div>
-      <button className="text-button" type="button" onClick={onCopy} aria-live="polite">{state === "done" ? "已经复制好了" : "复制结果文案"} <span>›</span></button>
+      <button className="text-button" type="button" onClick={onCopy} aria-live="polite">{state === "done" ? "完整文案已复制" : "复制整段文案"} <span>›</span></button>
     </aside>
   );
 }

@@ -1736,12 +1736,18 @@ button {
 }
 
 .label-card p,
-.share-card p,
+.portrait-card p,
 .role-card p,
-.evidence-card li {
+.evidence-card p,
+.dimension-card .section-lede {
   color: #2e3a36;
   font-size: 16px;
   line-height: 1.85;
+}
+
+.label-card .label-resonance {
+  margin-top: 10px;
+  color: var(--muted);
 }
 
 .label-card > button {
@@ -1752,20 +1758,41 @@ button {
   font-family: var(--font-ui);
 }
 
-.share-card blockquote {
-  margin: 0;
-  color: #1d2824;
-  font-family: var(--font-title);
-  font-size: 24px;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
+.portrait-copy {
+  display: grid;
+  gap: 12px;
 }
 
-.share-card .secondary-button {
-  min-width: 0;
-  min-height: 40px;
-  padding: 0 16px;
-  font-size: 14px;
+.portrait-copy p {
+  margin: 0;
+}
+
+.portrait-copy p:first-child {
+  color: #1d2824;
+  font-family: var(--font-title);
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+.portrait-copy p:last-child {
+  padding-top: 10px;
+  border-top: 1px solid rgba(16, 24, 22, 0.1);
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.dimension-card .section-lede {
+  margin: -4px 0 16px;
+  color: var(--muted);
+}
+
+.result-reading {
+  display: grid;
+  gap: 14px;
+}
+
+.result-reading p {
+  margin: 0;
 }
 
 .role-card strong {
@@ -1845,9 +1872,14 @@ button {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  align-items: center;
+  align-items: flex-start;
   margin: 18px 0 0;
   padding: 20px 24px;
+}
+
+.share-panel > div {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .share-panel strong {
@@ -1859,6 +1891,18 @@ button {
   margin: 6px 0 0;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.share-panel .share-copy-preview {
+  max-width: 960px;
+  white-space: pre-line;
+  color: #2e3a36;
+  font-size: 15px;
+}
+
+.share-panel .text-button {
+  flex: 0 0 auto;
+  margin-top: -8px;
 }
 
 .detail-backdrop {
@@ -2985,7 +3029,7 @@ button {
 
   .label-card {
     display: grid;
-    grid-template-columns: 74px minmax(0, 1fr) auto;
+    grid-template-columns: 74px minmax(0, 1fr);
     align-items: center;
     gap: 12px;
   }
@@ -3007,24 +3051,18 @@ button {
   }
 
   .label-card p {
-    grid-column: 2 / -1;
-    margin: -8px 0 0;
+    grid-column: 1 / -1;
+    margin: 0;
     min-width: 0;
     overflow-wrap: anywhere;
   }
 
   .label-card > button {
-    grid-column: 3;
-    grid-row: 2;
-    margin: 0;
-    font-size: 0;
-  }
-
-  .label-card > button::after {
-    content: "›";
-    font-family: var(--font-ui);
-    font-size: 30px;
-    line-height: 1;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    justify-self: start;
+    margin-top: 2px;
+    font-size: 14px;
   }
 
   .dimension-bars button {

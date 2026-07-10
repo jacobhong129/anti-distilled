@@ -85,7 +85,7 @@ test.describe("simulator app integration", () => {
       expect(result.pageBand).toBe(result.replayBand);
       expect(result.pageLabel).toBe(result.replayLabel);
       await expect(page.locator(".dimension-card")).toBeVisible();
-      await expect(page.locator(".share-card")).toBeVisible();
+      await expect(page.locator(".share-panel")).toBeVisible();
       await expect(page.locator(".evidence-card")).toBeVisible();
     });
   }

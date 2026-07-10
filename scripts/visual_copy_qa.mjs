@@ -50,8 +50,16 @@ async function runViewport(browser, profile) {
   const homeMetrics = await checkPageWidth(page, `${profile.name}/首页`);
   await page.screenshot({ path: `${outputDir}/${profile.name}-home.png`, fullPage: true });
 
-  await page.getByRole("button", { name: /什么是抗蒸性/ }).first().click();
-  await page.getByRole("heading", { name: "什么是抗蒸性" }).waitFor();
+  await page.getByRole("button", { name: /抗蒸小记/ }).first().click();
+  await page.getByRole("heading", { name: "有些东西，蒸不走" }).waitFor();
+  assert.deepEqual(await page.locator(".theory-card h2, .dimension-grid > h2").allInnerTexts(), [
+    "一、蒸馏之后",
+    "二、三层功夫",
+    "三、六面见人",
+    "四、放手之物",
+    "五、留手之物",
+  ]);
+  assert.deepEqual(await page.locator(".dimension-grid article > strong").allInnerTexts(), ["情境", "边界", "重构", "审美", "取舍", "经验"]);
   const theoryMetrics = await checkPageWidth(page, `${profile.name}/介绍`);
   await page.screenshot({ path: `${outputDir}/${profile.name}-theory.png`, fullPage: true });
 
@@ -69,23 +77,46 @@ async function runViewport(browser, profile) {
   } else {
     await page.getByRole("button", { name: /跳过/ }).click();
   }
+  await page.locator(".question-card h1").waitFor();
+  const questionMetrics = await checkPageWidth(page, `${profile.name}/答题`);
+  if (profile.name === "desktop") {
+    assert.deepEqual(await page.locator(".quiz-side nav button").allInnerTexts(), ["继续答题", "答题须知", "抗蒸小记"]);
+    assert.equal((await page.locator(".quiz-side > button").last().innerText()).trim(), "退出重测");
+  }
+  await page.screenshot({ path: `${outputDir}/${profile.name}-question.png`, fullPage: true });
   const answered = await answerToResult(page);
   assert.ok(answered >= 14 && answered <= 24, `${profile.name} 实际答题数异常：${answered}`);
   const resultMetrics = await checkPageWidth(page, `${profile.name}/结果`);
+  const expectedResultSections = profile.name === "desktop"
+    ? ["判断底色", "结果小传", "工作映照", "六维侧影", "结果解读"]
+    : ["判断底色", "结果小传", "六维侧影", "结果解读"];
+  assert.deepEqual(await page.locator(".result-card h2").allInnerTexts(), expectedResultSections);
+  assert.equal((await page.locator(".share-panel strong").innerText()).trim(), "分享文案");
   if (profile.name === "desktop") {
     await page.locator(".role-card").waitFor();
-    assert.match(await page.locator(".role-card").innerText(), /岗位接手风险/);
+    const roleCopy = await page.locator(".role-card").innerText();
+    assert.match(roleCopy, /工作映照/);
+    assert.match(roleCopy, /偏低|偏高|中等/);
   }
   await page.screenshot({ path: `${outputDir}/${profile.name}-result.png`, fullPage: true });
 
-  await page.locator(".share-card button").click();
-  await page.getByText(/文案已复制|已经复制好了/).first().waitFor();
+  await page.locator(".share-panel button").click();
+  await page.getByText(/完整文案已复制/).first().waitFor();
+  const copiedText = await page.evaluate(() => navigator.clipboard.readText());
+  const resultScore = (await page.locator(".score-number strong").innerText()).trim();
+  const resultBand = (await page.locator(".band-block h2").innerText()).trim();
+  const resultLabel = (await page.locator(".label-card h3").innerText()).trim();
+  assert.ok([...copiedText].length >= 180, `${profile.name} 分享文案过短`);
+  for (const expected of [resultScore, resultBand, resultLabel, "#抗蒸性测试"]) {
+    assert.ok(copiedText.includes(expected), `${profile.name} 分享文案缺少 ${expected}`);
+  }
+  assert.ok(copiedText.split("\n\n").length >= 5, `${profile.name} 分享文案缺少段落层次`);
 
   await page.locator(".label-card button").click();
   const drawer = page.locator(".detail-drawer");
   await drawer.waitFor();
-  await expectCount(page.getByText("翻成人话", { exact: true }), 1, `${profile.name} 标签详情缺少“翻成人话”`);
-  await expectCount(page.getByText("顺手说一句", { exact: true }), 1, `${profile.name} 标签详情缺少“顺手说一句”`);
+  await expectCount(page.getByText("标签释义", { exact: true }), 1, `${profile.name} 标签详情缺少“标签释义”`);
+  await expectCount(page.getByText("题外一笔", { exact: true }), 1, `${profile.name} 标签详情缺少“题外一笔”`);
 
   await page.getByRole("button", { name: "维度详情" }).click();
   const dimensionButtons = page.locator(".detail-dim-selector button");
@@ -107,7 +138,7 @@ async function runViewport(browser, profile) {
   assert.deepEqual(consoleErrors, [], `${profile.name} 控制台报错：${consoleErrors.join(" | ")}`);
   assert.deepEqual(pageErrors, [], `${profile.name} 页面异常：${pageErrors.join(" | ")}`);
   await context.close();
-  return { name: profile.name, answered, homeMetrics, theoryMetrics, workMetrics, resultMetrics, drawerMetrics };
+  return { name: profile.name, answered, homeMetrics, theoryMetrics, workMetrics, questionMetrics, resultMetrics, drawerMetrics };
 }
 
 async function expectCount(locator, minimum, message) {
