@@ -19,6 +19,7 @@
     "test:simulator:semantic": "node tests/simulator/semantic-runner.mjs --include-x99 --strict --summary-only",
     "test:simulator:coverage": "node tests/simulator/dynamic-coverage-runner.mjs --rounds 20 --summary-only",
     "test:simulator:app": "playwright test tests/simulator/app-runner.spec.mjs",
+    "test:app:unit": "node --test tests/app/*.test.mjs",
     "test:simulator:psychometric": "node tests/simulator/psychometric-quality-runner.mjs --summary-only",
     "test:simulator:llm-review": "node tests/simulator/llm-review.mjs"
   },

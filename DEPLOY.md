@@ -1,24 +1,17 @@
 # 抗蒸性测试 Web 应用部署说明
 
-这是一个纯静态 Web 应用，不依赖后端服务。可直接部署到云服务器、Nginx、OSS/CDN、Vercel、Netlify、Cloudflare Pages 等静态托管环境。
+这是一个纯前端 Web 应用，不依赖后端服务。源码使用 React + Vite，构建后得到纯静态文件，可部署到云服务器、Nginx、OSS/CDN、Vercel、Netlify、Cloudflare Pages 等静态托管环境。
 
 ## 部署内容
 
-只需要发布 `web/` 目录：
-
-- `index.html`
-- `styles.css`
-- `app.js`
-- `adaptive-engine.js`
-- `data/game-config.json`
-- `assets/`
+发布 `web/` 目录。该目录由 `npm run build` 生成，不再手写维护。
 
 当前 Netlify 配置见 `netlify.toml`：
 
 ```toml
 [build]
   publish = "web"
-  command = ""
+  command = "npm run build"
 ```
 
 推送到 GitHub `main` 后，Netlify 会从仓库发布 `web/` 目录。
@@ -32,15 +25,21 @@ https://anti-distilled.netlify.app/
 ## 发布前校验
 
 ```bash
-node --check web/app.js
-python3 scripts/validate_game_config.py web/data/game-config.json
+npm run test:app:unit
+npm run build
+npm run validate:config
+npm run validate:engine
+npm run regress
 ```
+
+生产响应头由 `netlify.toml` 统一管理：HTML 与题目配置每次重新验证，带内容哈希的构建资产长期缓存，并限制页面嵌入、敏感浏览器权限与非本站资源加载。
 
 ## Nginx 部署示例
 
 1. 上传文件到服务器：
 
 ```bash
+npm run build
 scp -r web/* root@your-server:/var/www/anti-distilled/
 ```
 
@@ -70,14 +69,14 @@ systemctl reload nginx
 ## 本地预览
 
 ```bash
-cd web
-python3 -m http.server 4173
+npm install
+npm run dev
 ```
 
 然后打开：
 
 ```text
-http://localhost:4173/
+http://127.0.0.1:5173/
 ```
 
 ## 面向用户版本说明

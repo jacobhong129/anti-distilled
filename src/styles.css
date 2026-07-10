@@ -89,6 +89,20 @@ button:disabled {
   opacity: 0.42;
 }
 
+button:focus-visible,
+[href]:focus-visible,
+[role="radio"]:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(106, 84, 200, 0.76);
+  outline-offset: 3px;
+}
+
+h1[tabindex="-1"]:focus,
+.question-guide-drawer:focus,
+.detail-drawer:focus {
+  outline: none;
+}
+
 a,
 button {
   -webkit-appearance: none;
@@ -278,6 +292,15 @@ button {
   height: 42px;
   display: block;
   flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.fatal-error {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--paper);
 }
 
 .brand-lockup strong,
@@ -3262,5 +3285,16 @@ button {
 
   .dimension-bars button {
     grid-template-columns: 26px minmax(58px, 70px) minmax(0, 1fr) 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

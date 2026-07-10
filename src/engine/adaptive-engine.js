@@ -750,10 +750,13 @@ export class AdaptiveAssessment {
       sourceEvidence + tradeoffEvidence <= 3 &&
       normalized.NOI < 45;
     const structure = this.structuralTendency(normalized);
+    const denseHuman = this.highDensityHumanEvidence(normalized, structure);
+    if (denseHuman.qualified) return false;
     return highPostureLowSource || polishedLowSource || structure.misreadRisk;
   }
 
   scoreSuppressionRisk(normalized = this.getNormalizedScores()) {
+    if (this.highDensityHumanEvidence(normalized).qualified) return false;
     const highCoreCount = CORE_METRICS.filter((metric) => normalized[metric] >= 72).length;
     const concreteEvidence = evidenceScore(this.state.evidenceCounts, [
       "specific_experience",
@@ -940,6 +943,135 @@ export class AdaptiveAssessment {
     };
   }
 
+  highDensityHumanEvidence(normalized = this.getNormalizedScores(), structure = this.structuralTendency(normalized)) {
+    const evidence = structure?.evidenceGroups || {};
+    const highCoreCount = structure?.highCoreCount ?? CORE_METRICS.filter((metric) => normalized[metric] >= 72).length;
+    const veryHighCoreCount = CORE_METRICS.filter((metric) => normalized[metric] >= 82).length;
+    const coreAverage =
+      structure?.coreAverage ?? CORE_METRICS.reduce((sum, metric) => sum + (normalized[metric] || 0), 0) / CORE_METRICS.length;
+    const humanEvidence =
+      (evidence.source || 0) +
+      (evidence.boundary || 0) +
+      (evidence.generation || 0) +
+      (evidence.value || 0) +
+      (evidence.taste || 0) +
+      (evidence.aiBoundary || 0);
+    const anchorGroups = [
+      evidence.source || 0,
+      evidence.boundary || 0,
+      evidence.generation || 0,
+      evidence.value || 0,
+      (evidence.taste || 0) + (evidence.aiBoundary || 0),
+    ].filter((value) => value >= 2).length;
+    const lowNoise =
+      normalized.NOI <= 18 &&
+      (evidence.polish || 0) === 0 &&
+      ((evidence.noise || 0) <= 1 || ((evidence.noise || 0) <= 2 && (evidence.source || 0) >= 2 && (evidence.boundary || 0) >= 4));
+    const tacitDensity = normalized.EXP <= 24 && normalized.SKL <= 12;
+    const distinctiveAnchor =
+      (evidence.source || 0) >= 2 ||
+      (evidence.taste || 0) + (evidence.aiBoundary || 0) >= 2 ||
+      normalized.TLB >= 80;
+    const denseCore = highCoreCount >= 5 && coreAverage >= 88;
+    const broadEvidence = humanEvidence >= 12 && (anchorGroups >= 3 || ((evidence.generation || 0) >= 6 && (evidence.value || 0) >= 4));
+    const qualified = denseCore && broadEvidence && lowNoise && tacitDensity && distinctiveAnchor;
+    const elite =
+      qualified &&
+      coreAverage >= 92 &&
+      humanEvidence >= 14 &&
+      (anchorGroups >= 3 || (veryHighCoreCount >= 5 && (evidence.generation || 0) >= 6 && (evidence.value || 0) >= 4));
+    return {
+      qualified,
+      elite,
+      highCoreCount,
+      veryHighCoreCount,
+      coreAverage,
+      humanEvidence,
+      anchorGroups,
+      scoreFloor: elite ? 90 : 84,
+    };
+  }
+
+  highScoreEvidenceAccess(normalized = this.getNormalizedScores(), structure = this.structuralTendency(normalized)) {
+    const evidence = structure?.evidenceGroups || {};
+    const highCoreCount = structure?.highCoreCount ?? CORE_METRICS.filter((metric) => normalized[metric] >= 72).length;
+    const veryHighCoreCount = CORE_METRICS.filter((metric) => normalized[metric] >= 82).length;
+    const coreAverage =
+      structure?.coreAverage ?? CORE_METRICS.reduce((sum, metric) => sum + (normalized[metric] || 0), 0) / CORE_METRICS.length;
+    const polishNoise = (evidence.polish || 0) + (evidence.noise || 0);
+    const sourceBoundaryPeak = (evidence.source || 0) >= 2 && (evidence.boundary || 0) >= 4;
+    const pureReframePeak =
+      (evidence.generation || 0) >= 10 &&
+      (evidence.value || 0) >= 6 &&
+      polishNoise <= 1 &&
+      highCoreCount >= 5;
+    const toolReframePeak =
+      normalized.TLB >= 80 &&
+      (evidence.generation || 0) >= 6 &&
+      (evidence.value || 0) >= 6 &&
+      coreAverage >= 92 &&
+      polishNoise <= 1;
+    const tasteAiPeak =
+      (evidence.taste || 0) + (evidence.aiBoundary || 0) >= 3 &&
+      (evidence.value || 0) >= 5 &&
+      coreAverage >= 94 &&
+      (evidence.source || 0) >= 1 &&
+      (evidence.polish || 0) <= 1;
+    const semanticCreativePeak =
+      normalized.CXT >= 90 &&
+      normalized.GEN >= 98 &&
+      normalized.TST >= 90 &&
+      normalized.BND >= 70 &&
+      normalized.STN >= 70 &&
+      (evidence.generation || 0) >= 8 &&
+      (evidence.value || 0) >= 6 &&
+      normalized.NOI <= 35 &&
+      (evidence.polish || 0) <= 1;
+    const semanticDenseReframe =
+      coreAverage >= 62 &&
+      coreAverage <= 80 &&
+      normalized.CXT >= 80 &&
+      normalized.BND >= 60 &&
+      normalized.STN >= 60 &&
+      (evidence.generation || 0) >= 8 &&
+      (evidence.value || 0) >= 5 &&
+      (evidence.process || 0) <= 2 &&
+      (evidence.polish || 0) === 0 &&
+      (evidence.noise || 0) <= 1 &&
+      normalized.NOI <= 5;
+    const creativeTasteEvidence =
+      normalized.GEN >= 88 &&
+      normalized.TST >= 88 &&
+      (evidence.generation || 0) >= 6 &&
+      (evidence.value || 0) >= 5 &&
+      (evidence.taste || 0) >= 2 &&
+      normalized.NOI <= 24 &&
+      (evidence.noise || 0) <= 2 &&
+      (evidence.polish || 0) <= 3;
+    const sourceBackedKey =
+      (evidence.source || 0) >= 2 &&
+      ((evidence.boundary || 0) >= 4 || (evidence.taste || 0) + (evidence.aiBoundary || 0) >= 3) &&
+      coreAverage >= 86;
+    const groundedTasteKey =
+      (evidence.taste || 0) + (evidence.aiBoundary || 0) >= 3 &&
+      (evidence.value || 0) >= 5 &&
+      highCoreCount >= 4 &&
+      coreAverage >= 90 &&
+      (evidence.source || 0) >= 1 &&
+      (evidence.polish || 0) <= 1;
+    const peak90 = sourceBoundaryPeak || pureReframePeak || toolReframePeak || tasteAiPeak || semanticCreativePeak || semanticDenseReframe;
+    const key80 = peak90 || sourceBackedKey || groundedTasteKey;
+    return {
+      peak90,
+      key80,
+      creativeTasteEvidence,
+      semanticDenseReframe,
+      highCoreCount,
+      veryHighCoreCount,
+      coreAverage,
+    };
+  }
+
   structureRoutes(structure) {
     if (!structure) return [];
     const routes = {
@@ -997,6 +1129,8 @@ export class AdaptiveAssessment {
 
   structuralScorePenalty(normalized = this.getNormalizedScores()) {
     const structure = this.structuralTendency(normalized);
+    const denseHuman = this.highDensityHumanEvidence(normalized, structure);
+    if (denseHuman.qualified) return 0;
     const types = structure.typeProfile;
     const evidence = structure.evidenceGroups;
     const highCore = structure.highCoreCount;
@@ -1412,11 +1546,28 @@ export class AdaptiveAssessment {
       normalized.GEN >= 35 &&
       normalized.GRD < 30 &&
       sourcePedigreeEvidence <= 1;
-    if (!risks.includes("polished_answer_risk") && (lowExpressionOverclaim || lowTransferMatureOverclaim || lowExpressionNoiseOverclaim)) {
+    const expressiveGenerationOverclaim =
+      normalized.EXP >= 24 &&
+      normalized.SKL <= 18 &&
+      sourcePedigreeEvidence + boundaryEvidence + concreteCriticalTaste + aiJudgmentReserved <= 2 &&
+      generationEvidence + valueEvidence >= 10 &&
+      (professionalPolish >= 1 || matureAnswerCount >= 8 || normalized.NOI >= 20);
+    const lowCoreProfessionalShell =
+      CORE_METRICS.reduce((sum, metric) => sum + (normalized[metric] || 0), 0) / CORE_METRICS.length < 36 &&
+      normalized.EXP >= 45 &&
+      normalized.TST >= 45 &&
+      normalized.STN < 35 &&
+      normalized.GRD < 25;
+    if (!risks.includes("polished_answer_risk") && (lowExpressionOverclaim || lowTransferMatureOverclaim || lowExpressionNoiseOverclaim || expressiveGenerationOverclaim || lowCoreProfessionalShell)) {
       risks.push("polished_answer_risk");
     }
     if (!risks.includes("polished_answer_risk") && this.structuralTendency(normalized).misreadRisk) {
       risks.push("polished_answer_risk");
+    }
+    const denseHuman = this.highDensityHumanEvidence(normalized);
+    if (denseHuman.qualified) {
+      const index = risks.indexOf("polished_answer_risk");
+      if (index >= 0) risks.splice(index, 1);
     }
     const estimatedScore = this.estimateBaseScore(normalized);
     if (estimatedScore >= 35 && estimatedScore <= 44 && normalized.SKL >= 62 && normalized.NOI < 40) risks.push("low_band_flattening_risk");
@@ -1447,6 +1598,13 @@ export class AdaptiveAssessment {
   structureLabelFit(label, structure, normalized = this.getNormalizedScores()) {
     if (!structure) return 0;
     const evidence = structure.evidenceGroups || {};
+    if (label === "high_density_human") {
+      const denseHuman = this.highDensityHumanEvidence(normalized, structure);
+      if (denseHuman.elite) return 14;
+      if (denseHuman.qualified) return 8;
+      if (structure.highCoreCount >= 5 && structure.coreAverage >= 86 && normalized.NOI <= 18 && evidence.polish === 0) return 3.5;
+      return 0;
+    }
     if (label === "value_low_generation") {
       let fit = 0;
       const valueDominant = evidence.value >= 4 && evidence.generation <= 3 && normalized.GEN < 68;
@@ -1472,16 +1630,18 @@ export class AdaptiveAssessment {
       return fit;
     }
     if (label === "generative_reframer" && structure.top === "generative_reframe") {
+      const weakAnchors = (evidence.source || 0) + (evidence.boundary || 0) + (evidence.taste || 0) + (evidence.aiBoundary || 0);
+      if (evidence.generation >= 6 && weakAnchors <= 2 && normalized.EXP >= 24 && normalized.SKL <= 18) return -12;
       return evidence.generation >= 4 ? 3.8 : 1.8;
     }
     if (label === "generative_reframer" && normalized.NOI >= 70 && normalized.EXP <= 12) {
       return -10;
     }
     if (label === "generative_reframer" && normalized.BND < 36 && normalized.STN < 36 && normalized.GRD < 45) {
-      return -8;
+      return -14;
     }
     if (label === "generative_reframer" && normalized.EXP >= 70 && normalized.BND < 45 && normalized.STN < 40) {
-      return -8;
+      return -18;
     }
     if (label === "generative_reframer" && evidence.generation < 4 && normalized.GEN < 72) {
       return -4.5;
@@ -1514,7 +1674,7 @@ export class AdaptiveAssessment {
       return normalized.EXP >= 55 && evidence.process + evidence.source < 8 ? 3.6 : 1.2;
     }
     if (label === "expressive_high" && normalized.EXP >= 70 && normalized.CXT >= 70 && normalized.BND < 45 && normalized.STN < 40) {
-      return 12;
+      return 24;
     }
     if (label === "relationship_stabilizer") {
       const relationshipEvidence = evidenceScore(this.state.evidenceCounts, [
@@ -1525,6 +1685,12 @@ export class AdaptiveAssessment {
         "audience_need_check",
         "value_signal",
       ]);
+      const serviceCoordination =
+        normalized.CXT >= 88 &&
+        structure.typeProfile.conditionDensity >= 0.08 &&
+        (evidence.process >= 1 || relationshipEvidence >= 3) &&
+        normalized.NOI <= 35;
+      if (serviceCoordination) return normalized.EXP >= 38 ? 13.5 : 9.5;
       if ((structure.top === "expressive_transfer" || normalized.EXP >= 38) && relationshipEvidence >= 4 && normalized.GEN < 74) return 4.2;
       if (relationshipEvidence >= 3 && normalized.CXT >= 42 && normalized.GEN < 70) return 2.4;
       if (this.serviceTranslationSignature(structure, normalized)) return 8.6;
@@ -1532,6 +1698,12 @@ export class AdaptiveAssessment {
     }
     if (label === "context_reader") {
       const contextEvidence = evidenceScore(this.state.evidenceCounts, ["condition_clarification", "context_signal", "pause_to_identify_reason", "audience_need_check"]);
+      const serviceCoordination =
+        normalized.CXT >= 88 &&
+        structure.typeProfile.conditionDensity >= 0.08 &&
+        (evidence.process >= 1 || contextEvidence >= 3) &&
+        normalized.NOI <= 35;
+      if (serviceCoordination) return normalized.EXP >= 38 ? 12 : 8.5;
       if ((structure.top === "expressive_transfer" || normalized.EXP >= 38) && contextEvidence >= 3 && normalized.CXT >= 38) return 3.4;
       if (this.serviceTranslationSignature(structure, normalized)) return 8.8;
       if (normalized.CXT >= 85 && normalized.BND >= 70 && normalized.STN >= 70 && normalized.SKL < 12 && normalized.GEN < 95) return 8.2;
@@ -1542,6 +1714,15 @@ export class AdaptiveAssessment {
     if (label === "fake_resistance" && (structure.top === "noise_resistance" || structure.misreadRisk)) {
       if (normalized.NOI >= 75 && normalized.EXP <= 12) return 9.5;
       return evidence.noise + evidence.polish >= 3 ? 3.2 : 1.4;
+    }
+    if (label === "fake_resistance" && evidence.noise + evidence.polish >= 3 && normalized.NOI >= 18 && normalized.EXP <= 28 && normalized.SKL <= 18) {
+      return 8.4;
+    }
+    if (label === "fake_resistance" && normalized.NOI >= 28 && normalized.BND < 40 && normalized.STN < 38 && normalized.GRD < 65) {
+      return 12;
+    }
+    if (label === "empty_professional_detector" && evidence.taste + evidence.polish + evidence.noise >= 3 && normalized.TST >= 76 && normalized.SKL <= 18) {
+      return 5.6;
     }
     if (label === "fake_resistance" && normalized.NOI >= 30 && normalized.EXP <= 22 && normalized.TLB >= 75) {
       return 14;
@@ -1566,6 +1747,9 @@ export class AdaptiveAssessment {
     }
     if ((label === "intuition_grounded" || label === "grounded_experience") && structure.top === "source_backed_experience") {
       return evidence.source >= 2 ? 2.6 : 1.2;
+    }
+    if (label === "ai_amplified_professional" && evidence.aiBoundary >= 2 && normalized.TLB >= 70 && normalized.GEN >= 65) {
+      return 12;
     }
     if (label === "ai_amplified_professional" && (structure.top === "tool_amplified" || normalized.TLB >= 70)) {
       return evidence.aiBoundary >= 1 || normalized.TLB >= 70 ? 3.4 : 1.4;
@@ -1781,9 +1965,10 @@ export class AdaptiveAssessment {
 
   riskScorePenalty(normalized = this.getNormalizedScores()) {
     const risks = this.openRisks(normalized, false);
+    const denseHuman = this.highDensityHumanEvidence(normalized);
     let penalty = 0;
-    if (risks.includes("polished_answer_risk")) penalty += 8;
-    if (this.scoreSuppressionRisk(normalized)) penalty += 8;
+    if (risks.includes("polished_answer_risk") && !denseHuman.qualified) penalty += 8;
+    if (this.scoreSuppressionRisk(normalized) && !denseHuman.qualified) penalty += 8;
     penalty += this.structuralScorePenalty(normalized);
     if (risks.includes("ai_underrecognized_risk")) penalty -= 1.5;
     return penalty;
@@ -1792,6 +1977,7 @@ export class AdaptiveAssessment {
   applyScoreCalibration(score, normalized = this.getNormalizedScores(), includeRiskPenalty = true) {
     const calibration = this.config.scoreCalibration || {};
     let calibrated = score;
+    const denseHuman = this.highDensityHumanEvidence(normalized);
     const structuralPenalty = includeRiskPenalty ? this.structuralScorePenalty(normalized) : 0;
     const polishedRiskOpen =
       includeRiskPenalty &&
@@ -1830,6 +2016,11 @@ export class AdaptiveAssessment {
       if (reliableExecution && calibrated >= 20 && calibrated < 40) calibrated = Math.max(calibrated, 38);
       if (reliableExecution && normalized.EXP >= 55 && calibrated < 45) calibrated = Math.max(calibrated, 45);
     }
+    if (denseHuman.qualified) {
+      calibrated = Math.max(calibrated, denseHuman.scoreFloor);
+      if (denseHuman.elite) calibrated = Math.max(calibrated, calibration.peakScoreAccess?.minimumScore ?? 90);
+      calibrated = Math.min(calibrated, calibration.peakScoreAccess?.cap ?? 98);
+    }
     if (includeRiskPenalty) calibrated = this.applyRiskScoreEffects(calibrated, normalized);
     calibrated = this.applyStructureCaps(calibrated, normalized);
     if (structuralPenalty >= 20) {
@@ -1846,6 +2037,8 @@ export class AdaptiveAssessment {
     const evidence = this.state.evidenceCounts;
     let adjusted = score;
     const structure = this.structuralTendency(normalized);
+    const denseHuman = this.highDensityHumanEvidence(normalized, structure);
+    const highScoreAccess = this.highScoreEvidenceAccess(normalized, structure);
     const groundedGenerationEvidence = evidenceScore(evidence, [
       "risk_with_alternative",
       "failure_boundary",
@@ -1904,7 +2097,7 @@ export class AdaptiveAssessment {
       normalized.SKL < 18 &&
       normalized.EXP < 45 &&
       structure.typeProfile.matureDensity >= 0.5;
-    if (weakTransferHighCore) {
+    if (weakTransferHighCore && !denseHuman.qualified) {
       const concreteSource = evidenceScore(evidence, [
         "specific_experience",
         "case_validated",
@@ -1941,6 +2134,17 @@ export class AdaptiveAssessment {
     if (proceduralValueOverclaim) {
       adjusted = Math.min(adjusted, 54);
     }
+    const earlyValueBoundaryOverclaim =
+      normalized.CXT < 80 &&
+      normalized.GEN < 72 &&
+      normalized.SKL < 18 &&
+      normalized.BND >= 70 &&
+      normalized.STN >= 70 &&
+      structure.evidenceGroups.value >= 5 &&
+      structure.evidenceGroups.source + structure.evidenceGroups.boundary + structure.evidenceGroups.generation <= 5;
+    if (earlyValueBoundaryOverclaim) {
+      adjusted = Math.min(adjusted, 54);
+    }
     const highCoreLowSkillPackaging =
       structure.highCoreCount >= 4 &&
       normalized.SKL < 10 &&
@@ -1949,7 +2153,7 @@ export class AdaptiveAssessment {
       normalized.STN >= 96 &&
       structure.sourceIntegrity < 0.28;
     if (highCoreLowSkillPackaging) {
-      adjusted = Math.min(adjusted, 74);
+      adjusted = denseHuman.qualified ? Math.max(adjusted, denseHuman.scoreFloor) : Math.min(adjusted, 74);
     }
     const valuePackagingWithoutTransfer =
       normalized.BND >= 96 &&
@@ -1960,7 +2164,7 @@ export class AdaptiveAssessment {
       normalized.EXP < 45 &&
       structure.sourceIntegrity < 0.3;
     if (valuePackagingWithoutTransfer) {
-      adjusted = Math.min(adjusted, 74);
+      adjusted = denseHuman.qualified ? Math.max(adjusted, denseHuman.scoreFloor) : Math.min(adjusted, 74);
     }
     const highCoreServicePackaging =
       structure.highCoreCount >= 5 &&
@@ -2003,6 +2207,30 @@ export class AdaptiveAssessment {
     if (toolOnlyInflation) {
       adjusted = Math.min(adjusted, 54);
     }
+    const expressiveProcessLowGuard =
+      adjusted > 54 &&
+      normalized.EXP >= 70 &&
+      normalized.SKL >= 40 &&
+      normalized.BND < 35 &&
+      normalized.STN < 35 &&
+      structure.evidenceGroups.process >= 2;
+    if (expressiveProcessLowGuard) {
+      adjusted = Math.min(adjusted, 54);
+    }
+    const shallowContextReframe =
+      adjusted > 64 &&
+      normalized.CXT >= 85 &&
+      normalized.GEN >= 90 &&
+      normalized.TST >= 85 &&
+      normalized.BND < 60 &&
+      normalized.STN < 60 &&
+      structure.evidenceGroups.source === 0 &&
+      structure.evidenceGroups.taste === 0 &&
+      structure.evidenceGroups.aiBoundary === 0 &&
+      structure.evidenceGroups.process >= 2;
+    if (shallowContextReframe) {
+      adjusted = Math.min(adjusted, 64);
+    }
     const isolatedBoundaryInflation =
       adjusted > 54 &&
       normalized.CXT < 30 &&
@@ -2036,6 +2264,19 @@ export class AdaptiveAssessment {
     if (toolPeakLowCreative) {
       adjusted = Math.min(adjusted, 74);
     }
+    const complianceProcessCap =
+      adjusted > 54 &&
+      normalized.CXT < 70 &&
+      normalized.GEN < 65 &&
+      normalized.TST < 70 &&
+      normalized.BND >= 90 &&
+      normalized.STN >= 90 &&
+      structure.evidenceGroups.process >= 2 &&
+      structure.evidenceGroups.source === 0 &&
+      structure.evidenceGroups.taste === 0;
+    if (complianceProcessCap) {
+      adjusted = Math.min(adjusted, 54);
+    }
     const peakWithoutSourceDifferentiator =
       adjusted > 90 &&
       structure.highCoreCount >= 4 &&
@@ -2043,8 +2284,62 @@ export class AdaptiveAssessment {
       structure.evidenceGroups.source === 0 &&
       (structure.evidenceGroups.polish >= 2 || structure.evidenceGroups.generation <= 4 || normalized.CXT < 80);
     if (peakWithoutSourceDifferentiator) {
-      adjusted = Math.min(adjusted, 84);
+      adjusted = Math.min(adjusted, denseHuman.qualified ? Math.max(denseHuman.scoreFloor, 84) : 84);
     }
+    const valueGuardFloor =
+      normalized.BND >= 64 &&
+      normalized.BND <= 82 &&
+      normalized.STN >= 60 &&
+      normalized.STN <= 82 &&
+      normalized.GEN < 30 &&
+      normalized.SKL < 25 &&
+      structure.evidenceGroups.value >= 4 &&
+      normalized.NOI <= 25;
+    if (valueGuardFloor) adjusted = Math.max(adjusted, 55);
+    const coordinationProcessFloor =
+      structure.typeProfile.conditionDensity >= 0.3 &&
+      structure.typeProfile.processDensity >= 0.09 &&
+      normalized.EXP >= 25 &&
+      structure.evidenceGroups.value >= 5 &&
+      normalized.NOI <= 35;
+    if (coordinationProcessFloor) adjusted = Math.max(adjusted, 44);
+    const contextCoordinationFloor =
+      normalized.CXT >= 44 &&
+      normalized.BND >= 44 &&
+      normalized.GEN >= 40 &&
+      structure.evidenceGroups.generation >= 4 &&
+      structure.evidenceGroups.value >= 4 &&
+      structure.typeProfile.conditionDensity >= 0.18 &&
+      normalized.NOI <= 35;
+    if (contextCoordinationFloor) adjusted = Math.max(adjusted, 45);
+    const semanticCreativeReframe =
+      normalized.CXT >= 80 &&
+      normalized.GEN >= 90 &&
+      normalized.TST >= 80 &&
+      structure.coreAverage <= 88 &&
+      normalized.BND >= 45 &&
+      normalized.STN >= 45 &&
+      structure.evidenceGroups.generation >= 8 &&
+      (structure.evidenceGroups.value >= 4 || normalized.TLB >= 80) &&
+      normalized.NOI <= 35 &&
+      structure.evidenceGroups.process <= 2 &&
+      structure.evidenceGroups.polish <= 1;
+    if (semanticCreativeReframe) {
+      const peakCreative =
+        normalized.CXT >= 90 &&
+        normalized.GEN >= 98 &&
+        normalized.TST >= 90 &&
+        normalized.BND >= 70 &&
+        normalized.STN >= 70 &&
+        structure.evidenceGroups.generation >= 8 &&
+        structure.evidenceGroups.value >= 6;
+      adjusted = Math.max(adjusted, peakCreative ? 90 : 65);
+    }
+    if (highScoreAccess.semanticDenseReframe) adjusted = Math.max(adjusted, 90);
+    if (denseHuman.qualified) adjusted = Math.max(adjusted, denseHuman.scoreFloor);
+    if (highScoreAccess.creativeTasteEvidence) adjusted = Math.max(adjusted, 68);
+    if (adjusted > 89 && !highScoreAccess.peak90) adjusted = Math.min(adjusted, highScoreAccess.key80 ? 84 : 74);
+    if (adjusted > 79 && !highScoreAccess.key80) adjusted = Math.min(adjusted, 74);
     return adjusted;
   }
 

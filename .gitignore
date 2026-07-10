@@ -3,7 +3,7 @@ deploy/
 *.log
 node_modules/
 dist/
-build/
+/build/
 .vercel/
 .netlify/
 .deploy_key/
