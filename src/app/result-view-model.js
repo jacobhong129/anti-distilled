@@ -63,6 +63,9 @@ export function buildShareLine(result) {
 
 export function buildLabelDetail(result) {
   const [meaningTitle, resonanceTitle, misunderstandingTitle, growthTitle, signalsTitle, asideTitle] = RESULT_DETAIL_TITLES.label;
+  const visibleSignals = [...(result.dimensions || [])]
+    .sort((left, right) => right.value - left.value)
+    .slice(0, 3);
   return {
     type: "判断标签",
     title: result.labelDetails.name,
@@ -73,7 +76,7 @@ export function buildLabelDetail(result) {
       [resonanceTitle, result.labelDetails.resonance],
       [misunderstandingTitle, result.labelDetails.misunderstanding],
       [growthTitle, result.labelDetails.growthNudge],
-      [signalsTitle, `这次最显眼的三处线索是 ${result.signals.slice(0, 3).map((signal) => `${signal.name} ${signal.value}%`).join("、")}。它们合在一起，才把“${result.labelDetails.name}”推到了前面。`],
+      [signalsTitle, `这次最显眼的三处线索是 ${visibleSignals.map((signal) => `${signal.name} ${signal.value}%`).join("、")}。它们合在一起，才把“${result.labelDetails.name}”推到了前面。`],
       [asideTitle, result.labelDetails.playfulAside],
     ],
   };

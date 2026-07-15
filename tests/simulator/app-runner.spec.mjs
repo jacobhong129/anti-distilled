@@ -20,7 +20,6 @@ function replayObservedChoices(choices) {
 async function runPersonaOnPage(page, persona) {
   await page.goto("/");
   await page.getByRole("button", { name: /开始测试/ }).first().click();
-  await page.getByRole("button", { name: /跳过/ }).click();
 
   const choices = [];
   for (let guard = 0; guard < 32; guard += 1) {
@@ -33,7 +32,7 @@ async function runPersonaOnPage(page, persona) {
     const buttons = await page.locator(".option-card").all();
     const buttonRows = [];
     for (const button of buttons) {
-      const text = (await button.locator("span").innerText()).trim();
+      const text = (await button.locator("span:not(.option-index)").innerText()).trim();
       const option = item.options.find((candidate) => candidate.text === text);
       expect(option, `option exists in config: ${text}`).toBeTruthy();
       buttonRows.push({ button, option });
@@ -59,7 +58,7 @@ async function runPersonaOnPage(page, persona) {
   await expect(page.getByRole("heading", { name: "你的含活人量" })).toBeVisible();
   const pageScore = Number.parseInt(await page.locator(".score-number strong").innerText(), 10);
   const pageBand = (await page.locator(".band-block h2").innerText()).trim();
-  const pageLabel = (await page.locator(".label-card h3").innerText()).trim();
+  const pageLabel = (await page.locator(".label-card h2").innerText()).trim();
   const replay = replayObservedChoices(choices);
 
   return {
@@ -85,7 +84,7 @@ test.describe("simulator app integration", () => {
       expect(result.pageBand).toBe(result.replayBand);
       expect(result.pageLabel).toBe(result.replayLabel);
       await expect(page.locator(".dimension-card")).toBeVisible();
-      await expect(page.locator(".share-panel")).toBeVisible();
+      await expect(page.getByRole("button", { name: /生成我的分享卡/ })).toBeVisible();
       await expect(page.locator(".evidence-card")).toBeVisible();
     });
   }

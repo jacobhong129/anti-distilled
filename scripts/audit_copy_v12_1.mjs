@@ -5,7 +5,20 @@ import { RESULT_DETAIL_TITLES, UI_COPY } from "../src/app/product-content.js";
 
 const baseline = JSON.parse(execFileSync("git", ["show", "ae304c2:config/game-config-v11.json"], { encoding: "utf8" }));
 const current = JSON.parse(fs.readFileSync("config/game-config-v11.json", "utf8"));
-const sourceFiles = ["src/App.jsx", "src/app/product-content.js", "src/app/result-view-model.js", "src/components/AppErrorBoundary.jsx", "src/engine/adaptive-engine.js"];
+const sourceFiles = [
+  "src/App.jsx",
+  "src/app/product-content.js",
+  "src/app/result-view-model.js",
+  "src/app/role-context.js",
+  "src/components/AppErrorBoundary.jsx",
+  "src/components/ProductShell.jsx",
+  "src/features/home/HomePages.jsx",
+  "src/features/assessment/QuestionPage.jsx",
+  "src/features/results/ResultPage.jsx",
+  "src/features/results/ResultDialogs.jsx",
+  "src/features/share/ShareStudioPage.jsx",
+  "src/features/history/HistoryPage.jsx",
+];
 const sourceText = sourceFiles.map((file) => fs.readFileSync(file, "utf8")).join("\n");
 
 const configCopy = [
@@ -42,8 +55,6 @@ const parallelTitleGroups = [
   ["流程步骤", ...UI_COPY.steps],
   ["答题侧栏", ...Object.values(UI_COPY.quizMenu)],
   ["结果栏目", ...Object.values(UI_COPY.resultSections)],
-  ["标签详情", ...RESULT_DETAIL_TITLES.label],
-  ["维度详情", ...RESULT_DETAIL_TITLES.dimension],
 ];
 
 assert.equal(current.items.length, 120);
@@ -60,6 +71,8 @@ assert.ok(repeatedCopy.length <= 4, "存在过多重复的长句");
 for (const [group, ...titles] of parallelTitleGroups) {
   assert.ok(titles.every((title) => [...title].length === 4), `${group} 未保持四字对仗：${titles.join(" / ")}`);
 }
+assert.deepEqual(RESULT_DETAIL_TITLES.label, ["翻成人话", "为什么像你", "最容易被误会的地方", "下一步不用大改", "这次露出的线索", "顺手说一句"], "标签详情标题应保持自然中文层级");
+assert.deepEqual(RESULT_DETAIL_TITLES.dimension, ["翻成人话", "为什么会这样", "最容易被误会的地方", "下一步不用大改", "这次露出的线索"], "维度详情标题应保持自然中文层级");
 
 console.log("v12.1 可见文案审计通过");
 console.log(`题干：120/120 已审阅，${changedQuestions} 条改写；${questionLengths.filter((length) => length >= 16 && length <= 28).length}/120 位于 16–28 字，最长 ${Math.max(...questionLengths)} 字`);

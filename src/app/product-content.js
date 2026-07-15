@@ -1,9 +1,10 @@
 export const VIEW_STEP = {
   home: 0,
   theory: 0,
-  work: 1,
-  question: 2,
-  result: 3,
+  question: 1,
+  result: 2,
+  share: 3,
+  history: 3,
 };
 
 export const UI_COPY = {
@@ -30,8 +31,8 @@ export const UI_COPY = {
 };
 
 export const RESULT_DETAIL_TITLES = {
-  label: ["标签释义", "命中缘由", "常见误读", "可做之事", "答题线索", "题外一笔"],
-  dimension: ["维度释义", "分数缘由", "常见误读", "可做之事", "答题线索"],
+  label: ["翻成人话", "为什么像你", "最容易被误会的地方", "下一步不用大改", "这次露出的线索", "顺手说一句"],
+  dimension: ["翻成人话", "为什么会这样", "最容易被误会的地方", "下一步不用大改", "这次露出的线索"],
 };
 
 export const THEORY_COPY = {
